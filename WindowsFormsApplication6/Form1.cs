@@ -17,7 +17,7 @@ namespace BiBo
         private String   LoginAsUserName;
         private String   UserStatusText;
 
-        private String  countriesSource = "countries.data";
+        private String  countriesSource = "../../countries.txt";
 
         private Random random = new Random();
 
@@ -169,7 +169,25 @@ namespace BiBo
 
         private void buttonUserAdd_Click(object sender, EventArgs e)
         {
-          //string
+
+          String UserFName = textBoxUserFirstname.Text;
+          String UserName = textBoxUserLastname.Text;
+
+          String Street = textBoxUserStreet.Text;
+          String StreetNumber = textBoxUserHomeNumber.Text;
+          String StreetExtention = textBoxUserAdressExtention.Text;
+
+          String zipCode = textBoxUserPLZ.Text;
+
+          String City = textBoxUserCity.Text;
+          String Country = comboBoxUserCountries.SelectedValue + "";
+
+          labelPLZ.Text = Country;
+
+          /*if (!Validation.Name(UserName))
+          {
+            //@todo set error on gui
+          }*/
         }
     }
 }
