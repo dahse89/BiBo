@@ -7,18 +7,12 @@ namespace BiBo.Persons
 {
   public class Admin : Employee
   {
-    Rights right = Rights.ADMINISTRATOR;
-
+    
     //Konstruktor für Administrator
     public Admin(int customerID, string firstName, string lastName, DateTime birthDate)
       : base(customerID, firstName, lastName, birthDate)
     {
-    }
-
-    public Rights Right
-    {
-      get { return right; }
-      set { right = value; }
+        Right = Rights.ADMINISTRATOR;
     }
 
     //Erstelle neuen Mitarbeiter

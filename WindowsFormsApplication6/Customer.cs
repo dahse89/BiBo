@@ -35,18 +35,24 @@ namespace BiBo.Persons
         private string country;                  //Land
 
         [XmlAttribute("Rights")]
-        private Rights right = Rights.CUSTOMER; //Rechte
+        private Rights right = Rights.CUSTOMER;  //Rechte
         [XmlAttribute("ChargeAccountNumber")]
         private int chargeAccountNumber;         //GebuehrenkontoNr
+        [XmlAttribute("ChargeAccount")]
+        private float chargeAccount;             //Gebuehrenkonto
         [XmlAttribute("BiboID")]
         private int biboID;                      //Bibliotheks-ID
         [XmlAttribute("CardID")]
         private int cardID;                      //Ausweis-ID
+        [XmlAttribute("CardValidUntil")]
+        private string cardValidUntil;           //Gültigkeitdatum des Auswieses
         [XmlAttribute("UserState")]
         private UserStates userState;            //Benutzer- Status
-        
         [XmlAttribute("MobileNumber")]
-        private string mobileNumber;
+        private string mobileNumber;             //Handy-Nummer
+        [XmlAttribute("Email")]
+        private string eMailAddress;             //Email-Adresse
+
 
         //Konstruktor
         public Customer(int customerID, string firstName, string lastName, DateTime birthDate)
@@ -118,6 +124,11 @@ namespace BiBo.Persons
             get { return chargeAccountNumber; }
             set { chargeAccountNumber = value; }
         }
+        public float ChargeAccount
+        {
+            get { return chargeAccount; }
+            set { chargeAccount = value; }
+        }
         public int BiboID
         {
             get { return biboID; }
@@ -133,6 +144,18 @@ namespace BiBo.Persons
             get { return userState; }
             set { userState = value; }
         }
+        public string MobileNumber
+        {
+            get { return mobileNumber; }
+            set { mobileNumber = value; }
+        }
+        public string EMailAddress
+        {
+            get { return eMailAddress; }
+            set { eMailAddress = value; }
+        }
+
+
 
         public DataSet getDataSet()
         {
