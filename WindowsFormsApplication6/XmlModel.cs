@@ -28,7 +28,7 @@ namespace BiBo
       {
         XmlSerializer serializer = new XmlSerializer(typeof(Database));
         FileStream loadStream = new FileStream("Database.xml", FileMode.Open, FileAccess.Read);
-        Database loadedObject = (Database)serializer.Deserialize(loadStream);
+        //Database loadedObject = (Database)serializer.Deserialize(loadStream);
         loadStream.Close();
       }
     }
