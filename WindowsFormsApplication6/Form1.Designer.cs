@@ -51,10 +51,10 @@
           this.UserStatus.AutoSize = true;
           this.UserStatus.BackColor = System.Drawing.SystemColors.Window;
           this.UserStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          this.UserStatus.ForeColor = System.Drawing.Color.Black;
           this.UserStatus.Location = new System.Drawing.Point(21, 51);
           this.UserStatus.Name = "UserStatus";
           this.UserStatus.Size = new System.Drawing.Size(52, 13);
-          this.UserStatus.ForeColor = System.Drawing.Color.Black;
           this.UserStatus.TabIndex = 1;
           this.UserStatus.Text = "Status: ";
           // 
@@ -108,34 +108,34 @@
           // 
           // userDetails
           // 
+          this.userDetails.ForeColor = System.Drawing.Color.Black;
           this.userDetails.Location = new System.Drawing.Point(603, 173);
           this.userDetails.Name = "userDetails";
           this.userDetails.Size = new System.Drawing.Size(200, 100);
           this.userDetails.TabIndex = 3;
           this.userDetails.TabStop = false;
           this.userDetails.Text = "Kunden Details";
-          this.userDetails.ForeColor = System.Drawing.Color.Black;
           // 
           // userStatistic
           // 
+          this.userStatistic.ForeColor = System.Drawing.Color.Black;
           this.userStatistic.Location = new System.Drawing.Point(598, 13);
           this.userStatistic.Name = "userStatistic";
           this.userStatistic.Size = new System.Drawing.Size(200, 100);
           this.userStatistic.TabIndex = 2;
           this.userStatistic.TabStop = false;
           this.userStatistic.Text = "Statistic";
-          this.userStatistic.ForeColor = System.Drawing.Color.Black;
           // 
           // UserTablePanel
           // 
           this.UserTablePanel.Controls.Add(this.userTableDataSet);
+          this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
           this.UserTablePanel.Location = new System.Drawing.Point(12, 164);
           this.UserTablePanel.Name = "UserTablePanel";
           this.UserTablePanel.Size = new System.Drawing.Size(562, 181);
           this.UserTablePanel.TabIndex = 1;
           this.UserTablePanel.TabStop = false;
           this.UserTablePanel.Text = "Kunden";
-          this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
           // 
           // userTableDataSet
           // 
@@ -147,23 +147,23 @@
           // 
           // UserAddPanel
           // 
+          this.UserAddPanel.ForeColor = System.Drawing.Color.Black;
           this.UserAddPanel.Location = new System.Drawing.Point(12, 13);
           this.UserAddPanel.Name = "UserAddPanel";
           this.UserAddPanel.Size = new System.Drawing.Size(579, 144);
           this.UserAddPanel.TabIndex = 0;
           this.UserAddPanel.TabStop = false;
           this.UserAddPanel.Text = "Kunde hinzufügen";
-          this.UserAddPanel.ForeColor = System.Drawing.Color.Black;
           // 
           // userName
           // 
           this.userName.AutoSize = true;
           this.userName.BackColor = System.Drawing.SystemColors.Window;
           this.userName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          this.userName.ForeColor = System.Drawing.Color.Black;
           this.userName.Location = new System.Drawing.Point(106, 32);
           this.userName.Margin = new System.Windows.Forms.Padding(0);
           this.userName.Name = "userName";
-          this.userName.ForeColor = System.Drawing.Color.Black;
           this.userName.Size = new System.Drawing.Size(11, 13);
           this.userName.TabIndex = 0;
           this.userName.Text = " ";
@@ -173,10 +173,10 @@
           this.userStat.AutoSize = true;
           this.userStat.BackColor = System.Drawing.SystemColors.Window;
           this.userStat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+          this.userStat.ForeColor = System.Drawing.Color.Black;
           this.userStat.Location = new System.Drawing.Point(64, 51);
           this.userStat.Name = "userStat";
           this.userStat.Size = new System.Drawing.Size(11, 13);
-          this.userStat.ForeColor = System.Drawing.Color.Black;
           this.userStat.TabIndex = 1;
           this.userStat.Text = " ";
           // 
@@ -195,6 +195,7 @@
           this.Controls.Add(this.panel3);
           this.Controls.Add(this.panel2);
           this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+          this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
           this.Name = "Form1";
           this.Text = "Form1";
           this.Resize += new System.EventHandler(this.Form1_Resize);
