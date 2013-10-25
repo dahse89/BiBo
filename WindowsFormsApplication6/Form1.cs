@@ -65,7 +65,7 @@ namespace BiBo
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            makeResponsiv((Form)sender);
+            //makeResponsiv((Form)sender);
         }
 
         private void makeResponsivOnce(Form window)
