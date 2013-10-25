@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BiBo
 {
-  class Library
+  public class Library
   {
     private double fee;           //Gebuehren
     private string openingTime;  //Oeffnungszeiten

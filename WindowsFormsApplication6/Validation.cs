@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace BiBo
 {
-  class Validation
+  public class Validation
   {
     public static bool isEmpty(string s) // Leer oder Null
     {

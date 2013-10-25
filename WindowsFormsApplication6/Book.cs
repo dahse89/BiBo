@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BiBo
 {
-  class Book
+  public class Book
   {
     private string author;       //Autor des Buch
     private string titel;        //Titel

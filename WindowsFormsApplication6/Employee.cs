@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BiBo.Persons
 {
-  class Employee : Customer    
+  public class Employee : Customer    
   {
    public Rights right = Rights.EMPLOYEE;
 

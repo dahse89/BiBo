@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
+using BiBo.Persons;
 
-namespace BiBo
+namespace BiBo.Data
 {
   [XmlRoot("Database"), Serializable]
-  class Database
+  public class Database
   {
     [XmlElement("Customer")]
     public Customer customer { get; set; }

@@ -5,10 +5,12 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using BiBo.Persons;
+using BiBo.Data;
 
 namespace BiBo
 {
-  class XmlModel
+  public class XmlModel
   {
     // Initialisiert die "Datenbank"
     // Sorgt dafür, dass bei jedem Aufruf auf jeden Fall eine Database.xml Datei vorhanden ist

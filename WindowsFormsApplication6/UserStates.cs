@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiBo
 {
-    enum UserStates
+    public enum UserStates
     {
         ACTIVE, BANNED, DELETED
     }

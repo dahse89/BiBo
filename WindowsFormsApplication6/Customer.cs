@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace BiBo.Persons
 {
-    class Customer
+    public class Customer
     {
         //Member-Variablen Deklaration
         [XmlAttribute("CustomerID")]
