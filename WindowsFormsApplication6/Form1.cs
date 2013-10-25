@@ -182,12 +182,50 @@ namespace BiBo
           String City = textBoxUserCity.Text;
           String Country = comboBoxUserCountries.SelectedValue + "";
 
-          labelPLZ.Text = Country;
 
-          /*if (!Validation.Name(UserName))
+          // @todo remove all error messages
+          textBoxUserFirstname.BackColor = Color.White;
+          textBoxUserLastname.BackColor = Color.White;
+          textBoxUserStreet.BackColor = Color.White;
+          textBoxUserHomeNumber.BackColor = Color.White;
+          textBoxUserCity.BackColor = Color.White;
+
+          //validate UserFName
+          if (!Validation.Name(UserFName))
           {
-            //@todo set error on gui
-          }*/
+            textBoxUserFirstname.BackColor = Color.Red;
+            return;
+          }
+
+          //validate UserName
+          if (!Validation.Name(UserName))
+          {
+            textBoxUserLastname.BackColor = Color.Red;
+            return;
+          }
+
+          //validate Street
+          if (!Validation.Street(Street))
+          {
+            textBoxUserStreet.BackColor = Color.Red;
+            return;
+          }
+
+          //validate StreetNumber
+          if (!Validation.isNumeric(StreetNumber) || Validation.isEmpty(StreetNumber))
+          {
+            textBoxUserHomeNumber.BackColor = Color.Red;
+            return;
+          }
+
+          //validate City
+          if (!Validation.Name(City))
+          {
+            textBoxUserCity.BackColor = Color.Red;
+            return;
+          }
+
+
         }
     }
 }
