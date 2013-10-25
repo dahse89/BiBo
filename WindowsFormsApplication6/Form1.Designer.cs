@@ -39,9 +39,10 @@
           this.UserTablePanel = new System.Windows.Forms.GroupBox();
           this.userTableDataSet = new System.Windows.Forms.DataGridView();
           this.UserAddPanel = new System.Windows.Forms.GroupBox();
+          this.buttonUserAdd = new System.Windows.Forms.Button();
           this.comboBoxUserCountries = new System.Windows.Forms.ComboBox();
           this.labelUserCoutry = new System.Windows.Forms.Label();
-          this.textBox1 = new System.Windows.Forms.TextBox();
+          this.textBoxUserCity = new System.Windows.Forms.TextBox();
           this.labelUserCity = new System.Windows.Forms.Label();
           this.textBoxUserPLZ = new System.Windows.Forms.TextBox();
           this.labelPLZ = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
           this.textBoxUserFirstname = new System.Windows.Forms.TextBox();
           this.userName = new System.Windows.Forms.Label();
           this.userStat = new System.Windows.Forms.Label();
-          this.buttonUserAdd = new System.Windows.Forms.Button();
           this.MainPanel.SuspendLayout();
           this.UserTablePanel.SuspendLayout();
           ((System.ComponentModel.ISupportInitialize)(this.userTableDataSet)).BeginInit();
@@ -169,7 +169,7 @@
           this.UserAddPanel.Controls.Add(this.buttonUserAdd);
           this.UserAddPanel.Controls.Add(this.comboBoxUserCountries);
           this.UserAddPanel.Controls.Add(this.labelUserCoutry);
-          this.UserAddPanel.Controls.Add(this.textBox1);
+          this.UserAddPanel.Controls.Add(this.textBoxUserCity);
           this.UserAddPanel.Controls.Add(this.labelUserCity);
           this.UserAddPanel.Controls.Add(this.textBoxUserPLZ);
           this.UserAddPanel.Controls.Add(this.labelPLZ);
@@ -192,6 +192,16 @@
           this.UserAddPanel.TabStop = false;
           this.UserAddPanel.Text = "Kunde hinzufügen";
           // 
+          // buttonUserAdd
+          // 
+          this.buttonUserAdd.Location = new System.Drawing.Point(14, 240);
+          this.buttonUserAdd.Name = "buttonUserAdd";
+          this.buttonUserAdd.Size = new System.Drawing.Size(75, 23);
+          this.buttonUserAdd.TabIndex = 15;
+          this.buttonUserAdd.Text = "hinzufügen";
+          this.buttonUserAdd.UseVisualStyleBackColor = true;
+          this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
+          // 
           // comboBoxUserCountries
           // 
           this.comboBoxUserCountries.FormattingEnabled = true;
@@ -209,12 +219,12 @@
           this.labelUserCoutry.TabIndex = 13;
           this.labelUserCoutry.Text = "Land:";
           // 
-          // textBox1
+          // textBoxUserCity
           // 
-          this.textBox1.Location = new System.Drawing.Point(187, 171);
-          this.textBox1.Name = "textBox1";
-          this.textBox1.Size = new System.Drawing.Size(90, 20);
-          this.textBox1.TabIndex = 12;
+          this.textBoxUserCity.Location = new System.Drawing.Point(187, 171);
+          this.textBoxUserCity.Name = "textBoxUserCity";
+          this.textBoxUserCity.Size = new System.Drawing.Size(90, 20);
+          this.textBoxUserCity.TabIndex = 12;
           // 
           // labelUserCity
           // 
@@ -353,16 +363,6 @@
           this.userStat.TabIndex = 1;
           this.userStat.Text = " ";
           // 
-          // buttonUserAdd
-          // 
-          this.buttonUserAdd.Location = new System.Drawing.Point(14, 240);
-          this.buttonUserAdd.Name = "buttonUserAdd";
-          this.buttonUserAdd.Size = new System.Drawing.Size(75, 23);
-          this.buttonUserAdd.TabIndex = 15;
-          this.buttonUserAdd.Text = "hinzufügen";
-          this.buttonUserAdd.UseVisualStyleBackColor = true;
-          this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
-          // 
           // Form1
           // 
           this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,7 +419,7 @@
         private System.Windows.Forms.TextBox textBoxUserAdressExtention;
         private System.Windows.Forms.TextBox textBoxUserPLZ;
         private System.Windows.Forms.Label labelPLZ;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxUserCity;
         private System.Windows.Forms.Label labelUserCity;
         private System.Windows.Forms.ComboBox comboBoxUserCountries;
         private System.Windows.Forms.Label labelUserCoutry;
