@@ -65,7 +65,7 @@ namespace BiBo
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            makeResponsiv((Form)sender);
+            //makeResponsiv((Form)sender);
         }
 
         private void makeResponsivOnce(Form window)
@@ -75,6 +75,13 @@ namespace BiBo
 
         private void makeResponsiv(Form window)
         {
+
+            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
+          	int deskWidth = Screen.PrimaryScreen.Bounds.Width;
+
+            window.Width = deskWidth;
+            window.Height = deskHeight;
+
             //get current window size
             int windowHeight = window.Height;
             int windowWidth = window.Width;
@@ -84,21 +91,27 @@ namespace BiBo
             MainPanel.Width = windowWidth - 235;
             MainPanel.Height = windowHeight - 115;
 
+            //resize add user panel
             UserAddPanel.Width = MainPanel.Width * 3 / 4 - 25;
             UserAddPanel.Height = MainPanel.Height / 3 - 25;
 
-            UserTablePanel.Location = new System.Drawing.Point(13, MainPanel.Height / 3 - 5); 
-            UserTablePanel.Width = MainPanel.Width / 2 - 25;
-            UserTablePanel.Height = MainPanel.Height * 2 / 3 - 10;
-
+            //resize user statstic panel
             userStatistic.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 4, 13);
             userStatistic.Height = UserAddPanel.Height;
             userStatistic.Width = MainPanel.Width / 4 - 7;
 
-            userDetails.Location = new System.Drawing.Point(MainPanel.Width / 2 - 2, MainPanel.Height / 3 - 5);
-            userDetails.Width = MainPanel.Width / 2 - 10;
+
+            //resize user table panel
+            UserTablePanel.Location = new System.Drawing.Point(13, MainPanel.Height / 3 - 5); 
+            UserTablePanel.Width = MainPanel.Width * 3 / 4 - 25;
+            UserTablePanel.Height = MainPanel.Height * 2 / 3 - 10;                  
+
+            //resize user details panel
+            userDetails.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 2, MainPanel.Height / 3 - 5);
+            userDetails.Width = MainPanel.Width / 4 - 10;
             userDetails.Height = MainPanel.Height * 2 / 3 - 10;
 
+            //resize user table 
             userTableDataSet.Width = UserTablePanel.Width - 15;
             userTableDataSet.Height = UserTablePanel.Height - 25;
 
