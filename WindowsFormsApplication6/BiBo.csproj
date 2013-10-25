@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.cs" />
+    <Compile Include="Admin.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="Library.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="Validation.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
