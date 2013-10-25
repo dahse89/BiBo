@@ -18,7 +18,7 @@ namespace BiBo.Persons
         private string street;                   //Strasse
         private int streetNumber;                //Hausnummer
         private string additionalRoad;           //Strassenzusatz
-        private int zipCode;                     //PLZ
+        private string zipCode;                  //PLZ
         private string town;                     //Stadt
         private string country;                  //Land
         
@@ -27,6 +27,8 @@ namespace BiBo.Persons
         private int biboID;                      //Bibliotheks-ID
         private int cardID;                      //Ausweis-ID
         private UserStates userState;            //Benutzer- Status
+
+        private string mobileNumber;
 
         //Konstruktor
         public Customer(int customerID, string firstName, string lastName, DateTime birthDate)
@@ -71,7 +73,7 @@ namespace BiBo.Persons
             get { return additionalRoad; }
             set { additionalRoad = value; }
         }
-        public int ZipCode
+        public string ZipCode
         {
             get { return zipCode; }
             set { zipCode = value; }
