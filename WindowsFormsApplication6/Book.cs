@@ -9,6 +9,6 @@ namespace BiBo
   {
     private string author;       //Autor des Buch
     private string titel;        //Titel
-    public string subjectArea;  //Fachrichtung
+    private string subjectArea;  //Fachrichtung
   }
 }
