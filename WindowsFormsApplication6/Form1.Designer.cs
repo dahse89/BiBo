@@ -39,11 +39,30 @@
           this.UserTablePanel = new System.Windows.Forms.GroupBox();
           this.userTableDataSet = new System.Windows.Forms.DataGridView();
           this.UserAddPanel = new System.Windows.Forms.GroupBox();
+          this.comboBoxUserCountries = new System.Windows.Forms.ComboBox();
+          this.labelUserCoutry = new System.Windows.Forms.Label();
+          this.textBox1 = new System.Windows.Forms.TextBox();
+          this.labelUserCity = new System.Windows.Forms.Label();
+          this.textBoxUserPLZ = new System.Windows.Forms.TextBox();
+          this.labelPLZ = new System.Windows.Forms.Label();
+          this.textBoxUserAdressExtention = new System.Windows.Forms.TextBox();
+          this.labelUserStreetExtention = new System.Windows.Forms.Label();
+          this.textBoxUserHomeNumber = new System.Windows.Forms.TextBox();
+          this.textBoxUserStreet = new System.Windows.Forms.TextBox();
+          this.label4 = new System.Windows.Forms.Label();
+          this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+          this.label2 = new System.Windows.Forms.Label();
+          this.label3 = new System.Windows.Forms.Label();
+          this.label1 = new System.Windows.Forms.Label();
+          this.textBoxUserLastname = new System.Windows.Forms.TextBox();
+          this.textBoxUserFirstname = new System.Windows.Forms.TextBox();
           this.userName = new System.Windows.Forms.Label();
           this.userStat = new System.Windows.Forms.Label();
+          this.buttonUserAdd = new System.Windows.Forms.Button();
           this.MainPanel.SuspendLayout();
           this.UserTablePanel.SuspendLayout();
           ((System.ComponentModel.ISupportInitialize)(this.userTableDataSet)).BeginInit();
+          this.UserAddPanel.SuspendLayout();
           this.SuspendLayout();
           // 
           // UserStatus
@@ -103,7 +122,7 @@
           this.MainPanel.Controls.Add(this.UserAddPanel);
           this.MainPanel.Location = new System.Drawing.Point(220, 77);
           this.MainPanel.Name = "MainPanel";
-          this.MainPanel.Size = new System.Drawing.Size(815, 356);
+          this.MainPanel.Size = new System.Drawing.Size(815, 483);
           this.MainPanel.TabIndex = 3;
           // 
           // userDetails
@@ -130,9 +149,9 @@
           // 
           this.UserTablePanel.Controls.Add(this.userTableDataSet);
           this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
-          this.UserTablePanel.Location = new System.Drawing.Point(12, 164);
+          this.UserTablePanel.Location = new System.Drawing.Point(12, 301);
           this.UserTablePanel.Name = "UserTablePanel";
-          this.UserTablePanel.Size = new System.Drawing.Size(562, 181);
+          this.UserTablePanel.Size = new System.Drawing.Size(562, 166);
           this.UserTablePanel.TabIndex = 1;
           this.UserTablePanel.TabStop = false;
           this.UserTablePanel.Text = "Kunden";
@@ -147,13 +166,167 @@
           // 
           // UserAddPanel
           // 
+          this.UserAddPanel.Controls.Add(this.buttonUserAdd);
+          this.UserAddPanel.Controls.Add(this.comboBoxUserCountries);
+          this.UserAddPanel.Controls.Add(this.labelUserCoutry);
+          this.UserAddPanel.Controls.Add(this.textBox1);
+          this.UserAddPanel.Controls.Add(this.labelUserCity);
+          this.UserAddPanel.Controls.Add(this.textBoxUserPLZ);
+          this.UserAddPanel.Controls.Add(this.labelPLZ);
+          this.UserAddPanel.Controls.Add(this.textBoxUserAdressExtention);
+          this.UserAddPanel.Controls.Add(this.labelUserStreetExtention);
+          this.UserAddPanel.Controls.Add(this.textBoxUserHomeNumber);
+          this.UserAddPanel.Controls.Add(this.textBoxUserStreet);
+          this.UserAddPanel.Controls.Add(this.label4);
+          this.UserAddPanel.Controls.Add(this.dateTimePicker1);
+          this.UserAddPanel.Controls.Add(this.label2);
+          this.UserAddPanel.Controls.Add(this.label3);
+          this.UserAddPanel.Controls.Add(this.label1);
+          this.UserAddPanel.Controls.Add(this.textBoxUserLastname);
+          this.UserAddPanel.Controls.Add(this.textBoxUserFirstname);
           this.UserAddPanel.ForeColor = System.Drawing.Color.Black;
           this.UserAddPanel.Location = new System.Drawing.Point(12, 13);
           this.UserAddPanel.Name = "UserAddPanel";
-          this.UserAddPanel.Size = new System.Drawing.Size(579, 144);
+          this.UserAddPanel.Size = new System.Drawing.Size(579, 282);
           this.UserAddPanel.TabIndex = 0;
           this.UserAddPanel.TabStop = false;
           this.UserAddPanel.Text = "Kunde hinzufügen";
+          // 
+          // comboBoxUserCountries
+          // 
+          this.comboBoxUserCountries.FormattingEnabled = true;
+          this.comboBoxUserCountries.Location = new System.Drawing.Point(77, 207);
+          this.comboBoxUserCountries.Name = "comboBoxUserCountries";
+          this.comboBoxUserCountries.Size = new System.Drawing.Size(200, 21);
+          this.comboBoxUserCountries.TabIndex = 14;
+          // 
+          // labelUserCoutry
+          // 
+          this.labelUserCoutry.AutoSize = true;
+          this.labelUserCoutry.Location = new System.Drawing.Point(12, 207);
+          this.labelUserCoutry.Name = "labelUserCoutry";
+          this.labelUserCoutry.Size = new System.Drawing.Size(34, 13);
+          this.labelUserCoutry.TabIndex = 13;
+          this.labelUserCoutry.Text = "Land:";
+          // 
+          // textBox1
+          // 
+          this.textBox1.Location = new System.Drawing.Point(187, 171);
+          this.textBox1.Name = "textBox1";
+          this.textBox1.Size = new System.Drawing.Size(90, 20);
+          this.textBox1.TabIndex = 12;
+          // 
+          // labelUserCity
+          // 
+          this.labelUserCity.AutoSize = true;
+          this.labelUserCity.Location = new System.Drawing.Point(146, 178);
+          this.labelUserCity.Name = "labelUserCity";
+          this.labelUserCity.Size = new System.Drawing.Size(35, 13);
+          this.labelUserCity.TabIndex = 11;
+          this.labelUserCity.Text = "Stadt:";
+          // 
+          // textBoxUserPLZ
+          // 
+          this.textBoxUserPLZ.Location = new System.Drawing.Point(77, 172);
+          this.textBoxUserPLZ.Name = "textBoxUserPLZ";
+          this.textBoxUserPLZ.Size = new System.Drawing.Size(58, 20);
+          this.textBoxUserPLZ.TabIndex = 10;
+          // 
+          // labelPLZ
+          // 
+          this.labelPLZ.AutoSize = true;
+          this.labelPLZ.Location = new System.Drawing.Point(12, 175);
+          this.labelPLZ.Name = "labelPLZ";
+          this.labelPLZ.Size = new System.Drawing.Size(30, 13);
+          this.labelPLZ.TabIndex = 9;
+          this.labelPLZ.Text = "PLZ:";
+          // 
+          // textBoxUserAdressExtention
+          // 
+          this.textBoxUserAdressExtention.Location = new System.Drawing.Point(77, 145);
+          this.textBoxUserAdressExtention.Name = "textBoxUserAdressExtention";
+          this.textBoxUserAdressExtention.Size = new System.Drawing.Size(200, 20);
+          this.textBoxUserAdressExtention.TabIndex = 8;
+          // 
+          // labelUserStreetExtention
+          // 
+          this.labelUserStreetExtention.AutoSize = true;
+          this.labelUserStreetExtention.Location = new System.Drawing.Point(12, 145);
+          this.labelUserStreetExtention.Name = "labelUserStreetExtention";
+          this.labelUserStreetExtention.Size = new System.Drawing.Size(42, 13);
+          this.labelUserStreetExtention.TabIndex = 7;
+          this.labelUserStreetExtention.Text = "Zusatz:";
+          // 
+          // textBoxUserHomeNumber
+          // 
+          this.textBoxUserHomeNumber.Location = new System.Drawing.Point(248, 115);
+          this.textBoxUserHomeNumber.Name = "textBoxUserHomeNumber";
+          this.textBoxUserHomeNumber.Size = new System.Drawing.Size(29, 20);
+          this.textBoxUserHomeNumber.TabIndex = 6;
+          // 
+          // textBoxUserStreet
+          // 
+          this.textBoxUserStreet.Location = new System.Drawing.Point(77, 115);
+          this.textBoxUserStreet.Name = "textBoxUserStreet";
+          this.textBoxUserStreet.Size = new System.Drawing.Size(164, 20);
+          this.textBoxUserStreet.TabIndex = 5;
+          // 
+          // label4
+          // 
+          this.label4.AutoSize = true;
+          this.label4.Location = new System.Drawing.Point(11, 118);
+          this.label4.Name = "label4";
+          this.label4.Size = new System.Drawing.Size(48, 13);
+          this.label4.TabIndex = 4;
+          this.label4.Text = "Strasse: ";
+          // 
+          // dateTimePicker1
+          // 
+          this.dateTimePicker1.Location = new System.Drawing.Point(77, 84);
+          this.dateTimePicker1.Name = "dateTimePicker1";
+          this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+          this.dateTimePicker1.TabIndex = 2;
+          // 
+          // label2
+          // 
+          this.label2.AutoSize = true;
+          this.label2.Location = new System.Drawing.Point(11, 90);
+          this.label2.Name = "label2";
+          this.label2.Size = new System.Drawing.Size(65, 13);
+          this.label2.TabIndex = 1;
+          this.label2.Text = "Geburtstag: ";
+          // 
+          // label3
+          // 
+          this.label3.AutoSize = true;
+          this.label3.Location = new System.Drawing.Point(11, 32);
+          this.label3.Name = "label3";
+          this.label3.Size = new System.Drawing.Size(52, 13);
+          this.label3.TabIndex = 1;
+          this.label3.Text = "Vorname:";
+          // 
+          // label1
+          // 
+          this.label1.AutoSize = true;
+          this.label1.Location = new System.Drawing.Point(11, 58);
+          this.label1.Name = "label1";
+          this.label1.Size = new System.Drawing.Size(62, 13);
+          this.label1.TabIndex = 1;
+          this.label1.Text = "Nachname:";
+          // 
+          // textBoxUserLastname
+          // 
+          this.textBoxUserLastname.Location = new System.Drawing.Point(77, 55);
+          this.textBoxUserLastname.Name = "textBoxUserLastname";
+          this.textBoxUserLastname.Size = new System.Drawing.Size(200, 20);
+          this.textBoxUserLastname.TabIndex = 0;
+          // 
+          // textBoxUserFirstname
+          // 
+          this.textBoxUserFirstname.Location = new System.Drawing.Point(77, 28);
+          this.textBoxUserFirstname.Name = "textBoxUserFirstname";
+          this.textBoxUserFirstname.Size = new System.Drawing.Size(200, 20);
+          this.textBoxUserFirstname.TabIndex = 0;
           // 
           // userName
           // 
@@ -180,12 +353,21 @@
           this.userStat.TabIndex = 1;
           this.userStat.Text = " ";
           // 
+          // buttonUserAdd
+          // 
+          this.buttonUserAdd.Location = new System.Drawing.Point(14, 240);
+          this.buttonUserAdd.Name = "buttonUserAdd";
+          this.buttonUserAdd.Size = new System.Drawing.Size(75, 23);
+          this.buttonUserAdd.TabIndex = 15;
+          this.buttonUserAdd.Text = "hinzufügen";
+          this.buttonUserAdd.UseVisualStyleBackColor = true;
+          this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
+          // 
           // Form1
           // 
           this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
           this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-          this.BackgroundImage = global::BiBo.Properties.Resources.bibibg2;
-          this.ClientSize = new System.Drawing.Size(1035, 434);
+          this.ClientSize = new System.Drawing.Size(1035, 572);
           this.Controls.Add(this.MainPanel);
           this.Controls.Add(this.userStat);
           this.Controls.Add(this.UserStatus);
@@ -202,6 +384,8 @@
           this.MainPanel.ResumeLayout(false);
           this.UserTablePanel.ResumeLayout(false);
           ((System.ComponentModel.ISupportInitialize)(this.userTableDataSet)).EndInit();
+          this.UserAddPanel.ResumeLayout(false);
+          this.UserAddPanel.PerformLayout();
           this.ResumeLayout(false);
           this.PerformLayout();
 
@@ -222,6 +406,24 @@
         private System.Windows.Forms.GroupBox userDetails;
         private System.Windows.Forms.GroupBox userStatistic;
         private System.Windows.Forms.DataGridView userTableDataSet;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxUserLastname;
+        private System.Windows.Forms.TextBox textBoxUserFirstname;
+        private System.Windows.Forms.TextBox textBoxUserHomeNumber;
+        private System.Windows.Forms.TextBox textBoxUserStreet;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelUserStreetExtention;
+        private System.Windows.Forms.TextBox textBoxUserAdressExtention;
+        private System.Windows.Forms.TextBox textBoxUserPLZ;
+        private System.Windows.Forms.Label labelPLZ;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label labelUserCity;
+        private System.Windows.Forms.ComboBox comboBoxUserCountries;
+        private System.Windows.Forms.Label labelUserCoutry;
+        private System.Windows.Forms.Button buttonUserAdd;
 
     }
 }
