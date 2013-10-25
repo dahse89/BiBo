@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace BiBo
 {
     public partial class Form1 : Form
     {
         //content
-        private String LoginAsUserName;
-        private String UserStatusText;
+        private String   LoginAsUserName;
+        private String   UserStatusText;
+
+        private String  countriesSource = "countries.data";
 
         private Random random = new Random();
 
@@ -28,7 +31,28 @@ namespace BiBo
             this.UserStatusText = "Admin";
 
             //render view
+            initCourtries();
             publishContent();
+        }
+
+        private void initCourtries()
+        {
+
+          List<String> countrieNames = new List<String>();
+
+          //create line string to catch lines from file
+          string line;
+
+          // Read the file and display it line by line.
+          StreamReader file = new System.IO.StreamReader(this.countriesSource);
+          while ((line = file.ReadLine()) != null)
+          {
+            //add to country dataTable
+            countrieNames.Add(line);
+          }
+          file.Close();
+
+          comboBoxUserCountries.DataSource = countrieNames;
         }
 
         private void publishContent()
@@ -92,13 +116,13 @@ namespace BiBo
             MainPanel.Height = windowHeight - 115;
 
             //resize add user panel
-            UserAddPanel.Width = MainPanel.Width * 3 / 4 - 25;
+            UserAddPanel.Width = MainPanel.Width / 3 - 25;
             UserAddPanel.Height = MainPanel.Height / 3 - 25;
 
             //resize user statstic panel
-            userStatistic.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 4, 13);
+            userStatistic.Location = new System.Drawing.Point(MainPanel.Width / 3 - 4, 13);
             userStatistic.Height = UserAddPanel.Height;
-            userStatistic.Width = MainPanel.Width / 4 - 7;
+            userStatistic.Width = MainPanel.Width * 2 / 3 - 7;
 
 
             //resize user table panel
@@ -117,6 +141,35 @@ namespace BiBo
 
            
             
+        }
+
+        /*
+   *         //Member-Variablen Deklaration
+          private int customerID;                  //Kunden-ID
+
+          private string firstName;                //Vorname
+          private string lastName;                 //Nachname
+          private DateTime birthDate;              //Geburtstag
+
+          private string street;                   //Strasse
+          private int streetNumber;                //Hausnummer
+          private string additionalRoad;           //Strassenzusatz
+          private int zipCode;                     //PLZ
+          private string town;                     //Stadt
+          private string country;                  //Land
+
+          private Rights right = Rights.CUSTOMER; //Rechte
+          private int chargeAccountNumber;         //GebuehrenkontoNr
+          private int biboID;                      //Bibliotheks-ID
+          private int cardID;                      //Ausweis-ID
+          private UserStates userState;            //Benutzer- Status
+
+   * 
+   */
+
+        private void buttonUserAdd_Click(object sender, EventArgs e)
+        {
+          //string
         }
     }
 }
