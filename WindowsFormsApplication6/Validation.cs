@@ -30,7 +30,13 @@ namespace BiBo
     }
     public static bool zipCode(string s)
     {
-      return true; // @ todo
+      return Regex.IsMatch(s, "^d{5}$");  
+      // 5 - stellige Zahlen
+    }
+    public static bool TelNumber(string s)
+    {
+      return Regex.IsMatch(s, "^\\(\\d{1,2}(\\s\\d{1,2}){1,2}\\)\\s(\\d{1,2}(\\s\\d{1,2}){1,2})((-(\\d{1,4})){0,1})$");
+      // Deutsche Telefonnummer nach DIN 5008: 1996-0 (z. B. (0 34 56) 34 56 67, (03 45) 5 67 67, (0 45) 2 33 45-45)
     }
 
   }
