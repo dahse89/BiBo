@@ -13,9 +13,10 @@ namespace BiBo
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+          XmlModel xmlModel = new XmlModel();
+          Application.EnableVisualStyles();
+          Application.SetCompatibleTextRenderingDefault(false);
+          Application.Run(new Form1());
         }
     }
 }
