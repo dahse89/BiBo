@@ -43,7 +43,8 @@ namespace BiBo.Persons
         private int cardID;                      //Ausweis-ID
         [XmlAttribute("UserState")]
         private UserStates userState;            //Benutzer- Status
-
+        
+        [XmlAttribute("MobileNumber")]
         private string mobileNumber;
 
         //Konstruktor
@@ -54,6 +55,7 @@ namespace BiBo.Persons
             this.lastName = lastName;
             this.birthDate = birthDate;
         }
+        public Customer() { }
 
         //Property Deklaration
         public int CustomerID

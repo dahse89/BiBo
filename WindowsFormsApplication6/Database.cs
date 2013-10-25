@@ -12,5 +12,7 @@ namespace BiBo.Data
   {
     [XmlElement("Customer")]
     public Customer customer { get; set; }
+
+    public Database() { }
   }
 }
