@@ -3,29 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
-namespace BiBo
+namespace BiBo.Persons
 {
     class Customer
     {
         //Member-Variablen Deklaration
+        [XmlAttribute("CustomerID")]
         private int customerID;                  //Kunden-ID
 
+        [XmlAttribute("FirstName")]
         private string firstName;                //Vorname
+        [XmlAttribute("LastName")]
         private string lastName;                 //Nachname
+        [XmlAttribute("BirthDate")]
         private DateTime birthDate;              //Geburtstag
 
+        [XmlAttribute("Street")]
         private string street;                   //Strasse
+        [XmlAttribute("StreetNumber")]
         private int streetNumber;                //Hausnummer
+        [XmlAttribute("AdditionalRoad")]
         private string additionalRoad;           //Strassenzusatz
+        [XmlAttribute("ZipCode")]
         private int zipCode;                     //PLZ
+        [XmlAttribute("Town")]
         private string town;                     //Stadt
+        [XmlAttribute("Country")]
         private string country;                  //Land
 
+        [XmlAttribute("Rights")]
         private Rights right = Rights.CUSTOMER; //Rechte
+        [XmlAttribute("ChargeAccountNumber")]
         private int chargeAccountNumber;         //GebuehrenkontoNr
+        [XmlAttribute("BiboID")]
         private int biboID;                      //Bibliotheks-ID
+        [XmlAttribute("CardID")]
         private int cardID;                      //Ausweis-ID
+        [XmlAttribute("UserState")]
         private UserStates userState;            //Benutzer- Status
 
         //Konstruktor
