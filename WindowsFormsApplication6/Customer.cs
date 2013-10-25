@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BiBo
+namespace BiBo.Persons
 {
     class Customer
     {
@@ -21,7 +21,7 @@ namespace BiBo
         private int zipCode;                     //PLZ
         private string town;                     //Stadt
         private string country;                  //Land
-
+        
         private Rights right = Rights.CUSTOMER; //Rechte
         private int chargeAccountNumber;         //GebuehrenkontoNr
         private int biboID;                      //Bibliotheks-ID
