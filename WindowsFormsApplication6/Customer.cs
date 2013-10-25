@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -131,6 +132,11 @@ namespace BiBo.Persons
         {
             get { return userState; }
             set { userState = value; }
+        }
+
+        public DataSet getDataSet()
+        {
+          return new DataSet();
         }
     }
 }
