@@ -12,7 +12,7 @@ namespace BiBo.Persons
     {
         //Member-Variablen Deklaration
         [XmlAttribute("CustomerID")]
-        private int customerID;                  //Kunden-ID
+        private double customerID;                  //Kunden-ID
 
         [XmlAttribute("FirstName")]
         private string firstName;                //Vorname
@@ -55,7 +55,7 @@ namespace BiBo.Persons
 
 
         //Konstruktor
-        public Customer(int customerID, string firstName, string lastName, DateTime birthDate)
+        public Customer(double customerID, string firstName, string lastName, DateTime birthDate)
         {
             this.customerID = customerID;
             this.firstName = firstName;
@@ -65,9 +65,9 @@ namespace BiBo.Persons
         public Customer() { }
 
         //Property Deklaration
-        public int CustomerID
+        public double CustomerID
         {
-            get { return customerID; }
+            get { return this.customerID; }
         }
 
         public string FirstName

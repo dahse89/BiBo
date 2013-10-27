@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.IO;
+using BiBo.Persons;
 
 namespace BiBo
 {
@@ -19,7 +20,7 @@ namespace BiBo
 
         private String  countriesSource = "../../countries.txt";
 
-        private Random random = new Random();
+        private Random r = new Random();
 
         public Form1()
         {
@@ -64,27 +65,86 @@ namespace BiBo
             userStat.Text += this.UserStatusText;
 
             DataTable ds = new DataTable("UserTable");
-            ds.Columns.Add("checkbox",typeof(String));
-            ds.Columns.Add("ID", typeof(int));
-            ds.Columns.Add("Vorname", typeof(String));
-            ds.Columns.Add("Nachname", typeof(String));
-            ds.Columns.Add("geliehende Bücher", typeof(int));
 
-            for (int i = 0; i < 100; i++)
+            userTableDataSet.RowHeadersVisible = false;
+
+            userTableDataSet.ColumnCount = 6;
+            userTableDataSet.Columns[0].Name = "ID";
+            userTableDataSet.Columns[1].Name = "Vorname";
+            userTableDataSet.Columns[2].Name = "Nachname";
+            userTableDataSet.Columns[3].Name = "Alter";
+            userTableDataSet.Columns[4].Name = "Status";
+            userTableDataSet.Columns[5].Name = "ausgeliehende Bücher";
+
+
+
+            //insert some random stuff
+
+            userTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
+
+
+            for (int i = 0; i < 5; i++)
             {
-                ds.Rows.Add(
-                    "",
-                    random.Next(1000,9999),
-                    new String[] { "Peter", "Klaus", "Alex", "Daniel", "Michael", "Carlos", "Jack", "Ricko", "Karjiv", "Laszlo" }.GetValue(random.Next(10)),
-                    new String[] { "Dahse", "Münzberg", "Korepin", "Dambeck", "Müller", "Mainer", "Schultze", "Mustermann", "Karbaum", "Galu" }.GetValue(random.Next(10)),
-                    random.Next(5)
-                );
+
+                addToUserTable(getRandomCustomer());
             }
 
 
-            userTableDataSet.DataSource = ds;
+            
+        }
+
+        private void addToUserTable(Customer cust)
+        {
+            TimeSpan age;
+
+            age = DateTime.Now - cust.BirthDate;
+        
+            userTableDataSet.Rows.Add(
+                    false,
+                    cust.CustomerID.ToString(),
+                    cust.FirstName,
+                    cust.LastName,
+                    ((int)Math.Floor((DateTime.Now - cust.BirthDate).TotalDays / 365.25D)).ToString(),
+                    "test",
+                    "0"
+             );
+
+            setUserTableReadOnly();
+        }
+
+        private Customer getRandomCustomer()
+        {
+           
+            String[] fnames = new String[] {"Philipp","Marcus","Vico","Yevgen","Klaus","Peter","Ignatz","Mario","Hans","Ingolf"};
+            String[] lnames = new String[] { "Dahse", "Münzberg", "Dambeck", "Korpin", "Müller", "Meyer", "Schultz", "Mustermann", "Li", "Bauer" };
+      
+            return new Customer(
+                r.Next(10000,1000000),
+                fnames[r.Next(0, fnames.Length)],
+                lnames[r.Next(0, lnames.Length)],
+                new DateTime(r.Next(1920,2005),r.Next(1,12),r.Next(1,28))
+            );
+        }
+
+        private void setUserTableReadOnly()
+        {
+
+            for (int i = 0; i < userTableDataSet.Rows.Count; i++)
+            {
+                for (int j = 0; j < userTableDataSet.Rows[i].Cells.Count; j++)
+                {
+                    if (j == 1)
+                    {
+                        /*checkbox*/
 
 
+                    }
+                    else
+                    {
+                        userTableDataSet.Rows[i].Cells[j].ReadOnly = true;
+                    }
+                }
+            }
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -117,7 +177,9 @@ namespace BiBo
 
             //resize add user panel
             UserAddPanel.Width = MainPanel.Width / 3 - 25;
-            UserAddPanel.Height = MainPanel.Height / 3 - 25;
+            int userAddHeight = MainPanel.Height / 3 - 25;
+            int userAddMinHeight = 280;
+            UserAddPanel.Height = userAddHeight < userAddMinHeight ? userAddMinHeight : userAddHeight;
 
             //resize user statstic panel
             userStatistic.Location = new System.Drawing.Point(MainPanel.Width / 3 - 4, 13);
@@ -126,14 +188,14 @@ namespace BiBo
 
 
             //resize user table panel
-            UserTablePanel.Location = new System.Drawing.Point(13, MainPanel.Height / 3 - 5); 
+            UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15); 
             UserTablePanel.Width = MainPanel.Width * 3 / 4 - 25;
-            UserTablePanel.Height = MainPanel.Height * 2 / 3 - 10;                  
+            UserTablePanel.Height = MainPanel.Height - UserAddPanel.Height - 15;                  
 
             //resize user details panel
-            userDetails.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 2, MainPanel.Height / 3 - 5);
+            userDetails.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
             userDetails.Width = MainPanel.Width / 4 - 10;
-            userDetails.Height = MainPanel.Height * 2 / 3 - 10;
+            userDetails.Height = MainPanel.Height - UserAddPanel.Height - 15;
 
             //resize user table 
             userTableDataSet.Width = UserTablePanel.Width - 15;
@@ -176,6 +238,8 @@ namespace BiBo
           String Street = textBoxUserStreet.Text;
           String StreetNumber = textBoxUserHomeNumber.Text;
           String StreetExtention = textBoxUserAdressExtention.Text;
+
+          DateTime Birthday = dateTimePickerAddUser.Value;
 
           String zipCode = textBoxUserPLZ.Text;
 
@@ -224,6 +288,18 @@ namespace BiBo
             textBoxUserCity.BackColor = Color.Red;
             return;
           }
+
+          
+
+            Customer newCustomer = new Customer(
+                23,
+                UserFName,
+                UserName,
+                Birthday
+             );
+
+            addToUserTable(newCustomer);
+
 
 
         }
