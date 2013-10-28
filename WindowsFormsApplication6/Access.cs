@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiBo
 {
-    public enum ACCESS
+    public enum Access
     {
         MAGAZIN, FREEHAND_LENDING
     }

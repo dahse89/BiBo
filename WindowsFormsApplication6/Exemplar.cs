@@ -2,27 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BiBo.Persons;
 
 namespace BiBo
 {
   public class Exemplar
   {
   	//Member-Variablen Deklaration
-  	[XmlAttribute("LoanPeriod")]
     private DateTime loanPeriod; 	//Ausleifrist 
-    [XmlAttribute("State")]
     private BookStates state;			//Status des Buches (only_visible, damaged, missing)
-    [XmlAttribute("Signatur")]
     private string signatur; 			//signatur des buches
-    [XmlAttribute("Access")]
     private Access accesser; 			//Zugang zum Exemplar (magazin, freihandausleihe)
-    [XmlAttribute("Borrower")]
     private Customer borrower;		//Ausleiher
     
     //Konstruktor
     public Exemplar(string signatur)
     {
-    	this.signatur = signatur
+        this.signatur = signatur;
     }
     
     //Property Deklaration
@@ -46,7 +42,7 @@ namespace BiBo
             get { return this.accesser; }
             set { this.accesser = value; }
     }
-    public string Borrower
+    public Customer Borrower
     {
             get { return this.borrower; }
             set { this.borrower = value; }

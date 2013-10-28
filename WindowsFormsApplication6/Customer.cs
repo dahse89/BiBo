@@ -11,46 +11,27 @@ namespace BiBo.Persons
     public class Customer
     {
         //Member-Variablen Deklaration
-        [XmlAttribute("CustomerID")]
         private double customerID;                  //Kunden-ID
 
-        [XmlAttribute("FirstName")]
         private string firstName;                //Vorname
-        [XmlAttribute("LastName")]
         private string lastName;                 //Nachname
-        [XmlAttribute("BirthDate")]
         private DateTime birthDate;              //Geburtstag
 
-        [XmlAttribute("Street")]
         private string street;                   //Strasse
-        [XmlAttribute("StreetNumber")]
-        private int streetNumber;                //Hausnummer
-        [XmlAttribute("AdditionalRoad")]
-        private string additionalRoad;           //Strassenzusatz
-        [XmlAttribute("ZipCode")]
+        private int streetNumber;                //
+        private string additionalRoad;           //
         private int zipCode;                     //PLZ
-        [XmlAttribute("Town")]
-        private string town;                     //Stadt
-        [XmlAttribute("Country")]
+        private string town;                     //
         private string country;                  //Land
 
-        [XmlAttribute("Rights")]
         private Rights right = Rights.CUSTOMER;  //Rechte
-        [XmlAttribute("ChargeAccountNumber")]
         private int chargeAccountNumber;         //GebuehrenkontoNr
-        [XmlAttribute("ChargeAccount")]
         private float chargeAccount;             //Gebuehrenkonto
-        [XmlAttribute("BiboID")]
         private int biboID;                      //Bibliotheks-ID
-        [XmlAttribute("CardID")]
-        private int cardID;                      //Ausweis-ID
-        [XmlAttribute("CardValidUntil")]
-        private string cardValidUntil;           //Gültigkeitdatum des Auswieses
-        [XmlAttribute("UserState")]
-        private UserStates userState;            //Benutzer- Status
-        [XmlAttribute("MobileNumber")]
-        private string mobileNumber;             //Handy-Nummer
-        [XmlAttribute("Email")]
+        private int cardID;                      //Ausweis-
+        private string cardValidUntil;           //Gültigkeitdatum des 
+        private UserStates userState;            //Benutzer- 
+        private string mobileNumber;             //Handy-
         private string eMailAddress;             //Email-Adresse
 
 

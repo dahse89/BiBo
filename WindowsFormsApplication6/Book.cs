@@ -9,13 +9,9 @@ namespace BiBo
   public class Book
   {
   	//Member-Variablen Deklaration
-    [XmlAttribute("Author")]
     private string author;       			//Autor des Buch
-    [XmlAttribute("Titel")]
     private string titel;        			//Titel
-    [XmlAttribute("SubjectArea")]
     private string subjectArea;  			//Fachrichtung
-    [XmlAttribute("Exemplare")]
     private List<Exemplar> exemplare;	//Liste aller Exemplare
 
     public string Author
@@ -33,7 +29,7 @@ namespace BiBo
         get { return this.subjectArea; }
         set { this.subjectArea = value; }
     }
-		public string Exemplare
+		public List<Exemplar> Exemplare
     {
         get { return this.exemplare; }
         set { this.exemplare= value; }
