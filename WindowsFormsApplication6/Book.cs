@@ -8,6 +8,7 @@ namespace BiBo
 {
   public class Book
   {
+  	//Member-Variablen Deklaration
     [XmlAttribute("Author")]
     private string author;       //Autor des Buch
     [XmlAttribute("Titel")]

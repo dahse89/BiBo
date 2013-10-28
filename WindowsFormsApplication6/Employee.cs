@@ -8,7 +8,7 @@ namespace BiBo.Persons
 {
   public class Employee : Customer    
   {
-
+		//Member-Variablen Deklaration
     List<Customer> customerList = new List<Customer>(); //Liste mit allen Kunden
 
    //Konstruktor für Mitarbeiter
