@@ -10,29 +10,33 @@ namespace BiBo
   {
   	//Member-Variablen Deklaration
     [XmlAttribute("Author")]
-    private string author;       //Autor des Buch
+    private string author;       			//Autor des Buch
     [XmlAttribute("Titel")]
-    private string titel;        //Titel
+    private string titel;        			//Titel
     [XmlAttribute("SubjectArea")]
-    private string subjectArea;  //Fachrichtung
+    private string subjectArea;  			//Fachrichtung
+    [XmlAttribute("Exemplare")]
+    private List<Exemplar> exemplare;	//Liste aller Exemplare
 
     public string Author
     {
-        get { return author; }
-        set { author = value; }
+        get { return this.author; }
+        set { this.author = value; }
     }
-
     public string Titel
     {
-        get { return titel; }
-        set { titel = value; }
+        get { return this.titel; }
+        set { this.titel = value; }
     }
-
     public string SubjectArea
     {
-        get { return subjectArea; }
-        set { subjectArea = value; }
+        get { return this.subjectArea; }
+        set { this.subjectArea = value; }
     }
-
+		public string Exemplare
+    {
+        get { return this.exemplare; }
+        set { this.exemplare= value; }
+    }
   }
 }

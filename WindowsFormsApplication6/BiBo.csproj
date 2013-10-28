@@ -63,6 +63,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rights.cs" />
     <Compile Include="UserStates.cs" />
+    <Compile Include="BookStates.cs" />
+    <Compile Include="Access.cs" />
     <Compile Include="XmlModel.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

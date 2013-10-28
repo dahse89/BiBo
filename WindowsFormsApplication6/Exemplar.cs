@@ -11,11 +11,11 @@ namespace BiBo
   	[XmlAttribute("LoanPeriod")]
     private DateTime loanPeriod; 	//Ausleifrist 
     [XmlAttribute("State")]
-    private string state; 				// anderer Status als bei Kunde ( ausgeliehen / verf�gbar) 
+    private BookStates state;			//Status des Buches (only_visible, damaged, missing)
     [XmlAttribute("Signatur")]
-    private string signatur; 			// mehere Exemplare / alphanumerisch 
+    private string signatur; 			//signatur des buches
     [XmlAttribute("Access")]
-    private string access; 
+    private Access accesser; 			//Zugang zum Exemplar (magazin, freihandausleihe)
     [XmlAttribute("Borrower")]
     private Customer borrower;		//Ausleiher
     
@@ -31,7 +31,7 @@ namespace BiBo
             get { return this.loanPeriod; }
             set { this.loanPeriod = value; }
     }
-    public string State
+    public BookStates State
     {
             get { return this.state; }
             set { this.state = value; }
@@ -41,10 +41,10 @@ namespace BiBo
             get { return this.signatur; }
             set { this.signatur = value; }
     }
-    public string Access
+    public Access Accesser
     {
-            get { return this.access; }
-            set { this.access = value; }
+            get { return this.accesser; }
+            set { this.accesser = value; }
     }
     public string Borrower
     {

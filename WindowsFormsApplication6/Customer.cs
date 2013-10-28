@@ -69,94 +69,93 @@ namespace BiBo.Persons
         {
             get { return this.customerID; }
         }
-
         public string FirstName
         {
-            get { return firstName; }
+            get { return this.firstName; }
         }
         public string LastName
         {
-            get { return lastName; }
+            get { return this.lastName; }
+            set { this.lastName = value; }
         }
         public DateTime BirthDate
         {
-            get { return birthDate; }
+            get { return this.birthDate; }
         }
 
         public string Street
         {
-            get { return street; }
-            set { street = value; }
+            get { return this.street; }
+            set { this.street = value; }
         }
         public int StreetNumber
         {
-            get { return streetNumber; }
-            set { streetNumber = value; }
+            get { return this.streetNumber; }
+            set { this.streetNumber = value; }
         }
         public string AdditionalRoad
         {
-            get { return additionalRoad; }
-            set { additionalRoad = value; }
+            get { return this.additionalRoad; }
+            set { this.additionalRoad = value; }
         }
         public int ZipCode
         {
-            get { return zipCode; }
-            set { zipCode = value; }
+            get { return this.zipCode; }
+            set { this.zipCode = value; }
         }
         public string Town
         {
-            get { return town; }
-            set { town = value; }
+            get { return this.town; }
+            set { this.town = value; }
         }
         public string Country
         {
-            get { return country; }
-            set { country = value; }
+            get { return this.country; }
+            set { this.country = value; }
         }
 
         public Rights Right
         {
-            get { return right; }
-            set { right = value; }
+            get { return this.right; }
+            set { this.right = value; }
         }
         public int ChargeAccountNumber
         {
-            get { return chargeAccountNumber; }
-            set { chargeAccountNumber = value; }
+            get { return this.chargeAccountNumber; }
+            set { this.chargeAccountNumber = value; }
         }
         public float ChargeAccount
         {
-            get { return chargeAccount; }
-            set { chargeAccount = value; }
+            get { return this.chargeAccount; }
+            set { this.chargeAccount = value; }
         }
         public int BiboID
         {
-            get { return biboID; }
-            set { biboID = value; }
+            get { return this.biboID; }
+            set { this.biboID = value; }
         }
         public int CardID
         {
-            get { return cardID; }
-            set { cardID = value; }
+            get { return this.cardID; }
+            set { this.cardID = value; }
         }
         public UserStates UserState
         {
-            get { return userState; }
-            set { userState = value; }
+            get { return this.userState; }
+            set { this.userState = value; }
         }
         public string MobileNumber
         {
-            get { return mobileNumber; }
-            set { mobileNumber = value; }
+            get { return this.mobileNumber; }
+            set { this.mobileNumber = value; }
         }
         public string EMailAddress
         {
-            get { return eMailAddress; }
-            set { eMailAddress = value; }
+            get { return this.eMailAddress; }
+            set { this.eMailAddress = value; }
         }
 
-
-
+				//Methoden
         public DataSet getDataSet()
         {
           return new DataSet();
