@@ -22,6 +22,7 @@ namespace BiBo
 
           Customer c = new Customer(123, "Marcus", "Münzberg", DateTime.Now);
           con.createDatabase();
+          con.addCustomer(c);
         }
     }
 }
