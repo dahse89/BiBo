@@ -25,9 +25,9 @@ namespace BiBo
 
       public bool createDatabase()
       {
-          SQLiteCommand creater = new SQLiteCommand(this.con);
-          creater.CommandText = String.Format("CREATE TABLE IF NOT EXISTS Customer ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name VARCHAR(100) NOT NULL);");
-          creater.ExecuteNonQuery();
+          string customerSQL = "CREATE TABLE IF NOT EXISTS Customer (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(100) NOT NULL, lastName VARCHAR(100) NOT NULL, birthDate DATETIME NOT NULL, street VARCHAR(100), streetNumber VARCHAR(10), additionalRoad VARCHAR(100), zipCode INTEGER(5), town VARCHAR(100), country VARCHAR(100), chargeAccount INTEGER(100));";
+          SQLiteCommand command = new SQLiteCommand(customerSQL, this.con);
+          command.ExecuteNonQuery();
           return true;
       }
   }
