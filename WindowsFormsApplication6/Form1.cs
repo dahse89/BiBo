@@ -119,7 +119,7 @@ namespace BiBo
             String[] lnames = new String[] { "Dahse", "Münzberg", "Dambeck", "Korpin", "Müller", "Meyer", "Schultz", "Mustermann", "Li", "Bauer" };
       
             return new Customer(
-                r.Next(10000,1000000),
+                System.Convert.ToUInt64(r.Next(10000,1000000)),
                 fnames[r.Next(0, fnames.Length)],
                 lnames[r.Next(0, lnames.Length)],
                 new DateTime(r.Next(1920,2005),r.Next(1,12),r.Next(1,28))

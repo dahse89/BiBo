@@ -42,5 +42,28 @@ namespace BiBo
           }
           return true;
       }
+
+      public List<Customer> getCustomer()
+      {
+          List<Customer> customerList = new List<Customer>();
+
+          SQLiteCommand command = new SQLiteCommand(this.con);
+          command.CommandText = "SELECT * FROM Customer";
+          SQLiteDataReader reader = command.ExecuteReader();
+
+          if (reader.HasRows)
+          {
+              while (reader.Read())
+              {
+                  int intId = reader.GetInt32(reader.GetOrdinal("id"));
+                  ulong id = System.Convert.ToUInt64(intId);
+                  string firstName = reader.GetString(reader.GetOrdinal("firstName"));
+                  string lastName = reader.GetString(reader.GetOrdinal("lastName"));
+                  customerList.Add(new Customer(id,firstName,lastName,new DateTime(2010, 2, 22)));
+              }
+          }
+
+          return customerList;
+      }
   }
 }
