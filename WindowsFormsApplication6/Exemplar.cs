@@ -14,6 +14,7 @@ namespace BiBo
     private string signatur; 			//signatur des buches
     private Access accesser; 			//Zugang zum Exemplar (magazin, freihandausleihe)
     private Customer borrower;		//Ausleiher
+    private int exemplarID;          //Exemplar-Nummer
     
     //Konstruktor
     public Exemplar(string signatur)
@@ -46,6 +47,18 @@ namespace BiBo
     {
             get { return this.borrower; }
             set { this.borrower = value; }
+    }
+    public int ExemplarID
+    {
+            get { return this.exemplarID; }
+            set { this.exemplarID = value; }
+    }
+
+    //Methoden
+
+    public override bool Equals(object obj)
+    {
+        return exemplarID.Equals(obj);
     }
     
     

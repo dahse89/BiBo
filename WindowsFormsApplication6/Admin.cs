@@ -9,20 +9,20 @@ namespace BiBo.Persons
   {
     
     //Konstruktor für Administrator
-    public Admin(int customerID, string firstName, string lastName, DateTime birthDate)
+    public Admin(ulong customerID, string firstName, string lastName, DateTime birthDate)
       : base(customerID, firstName, lastName, birthDate)
     {
         Right = Rights.ADMINISTRATOR;
     }
 
     //Erstelle neuen Mitarbeiter
-    public Employee createEmployee(int customerID, string firstName, string lastName, DateTime birthDate)
+    public Employee createEmployee(ulong customerID, string firstName, string lastName, DateTime birthDate)
     {
       return new Employee(customerID, firstName, lastName, birthDate);
     }
 
     //Erstelle neuen Administrator
-    public Admin createAdmin(int customerID, string firstName, string lastName, DateTime birthDate)
+    public Admin createAdmin(ulong customerID, string firstName, string lastName, DateTime birthDate)
     {
       return new Admin(customerID, firstName, lastName, birthDate);
     }

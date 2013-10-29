@@ -12,14 +12,14 @@ namespace BiBo.Persons
     List<Customer> customerList = new List<Customer>(); //Liste mit allen Kunden
 
    //Konstruktor für Mitarbeiter
-   public Employee(int customerID, string firstName, string lastName, DateTime birthDate)
+   public Employee(ulong customerID, string firstName, string lastName, DateTime birthDate)
      : base(customerID, firstName, lastName, birthDate)
    {
        Right = Rights.EMPLOYEE;
    }
 
     //Erstelle Kunden
-    public Customer createCustomer(int customerID, string firstName, string lastName, DateTime birthDate) 
+    public Customer createCustomer(ulong customerID, string firstName, string lastName, DateTime birthDate) 
     {
       return new Customer(customerID, firstName, lastName, birthDate);
     }

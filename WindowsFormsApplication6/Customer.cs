@@ -10,7 +10,7 @@ namespace BiBo.Persons
     public class Customer
     {
         //Member-Variablen Deklaration
-        private double customerID;                  //Kunden-ID
+        private ulong customerID;                  //Kunden-ID
 
         private string firstName;                //Vorname
         private string lastName;                 //Nachname
@@ -35,7 +35,7 @@ namespace BiBo.Persons
 
 
         //Konstruktor
-        public Customer(double customerID, string firstName, string lastName, DateTime birthDate)
+        public Customer(ulong customerID, string firstName, string lastName, DateTime birthDate)
         {
             this.customerID = customerID;
             this.firstName = firstName;
@@ -45,7 +45,7 @@ namespace BiBo.Persons
         public Customer() { }
 
         //Property Deklaration
-        public double CustomerID
+        public ulong CustomerID
         {
             get { return this.customerID; }
         }

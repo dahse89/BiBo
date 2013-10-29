@@ -33,5 +33,26 @@ namespace BiBo
         get { return this.exemplare; }
         set { this.exemplare= value; }
     }
+
+    //Methoden
+
+     public bool AddExemplar(Exemplar newExemplar)
+     {
+         if (exemplare.Contains(newExemplar))
+         {
+             exemplare.Add(newExemplar);
+             return true;
+         }
+         return false;
+     }
+
+     public bool DeleteExemplar(Exemplar oldExemplar)
+     {
+         if(exemplare.Contains(oldExemplar)){
+             exemplare.Remove(oldExemplar);
+             return true;
+         }
+         return false;
+     }
   }
 }
