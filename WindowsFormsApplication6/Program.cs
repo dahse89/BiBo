@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using BiBo.Persons;
-using BiBo.Data;
 using BiBo.Properties;
 
 namespace BiBo
@@ -16,13 +15,13 @@ namespace BiBo
         [STAThread]
         static void Main()
         {
-          XmlModel xmlModel = new XmlModel(); 
+          SQLCon con = new SQLCon(); 
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new Form1());
 
           Customer c = new Customer(123, "Marcus", "Münzberg", DateTime.Now);
-          xmlModel.addCustomer(c);
+          con.createDatabase();
         }
     }
 }
