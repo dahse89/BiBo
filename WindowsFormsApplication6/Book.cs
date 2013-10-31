@@ -28,22 +28,32 @@ namespace BiBo
         get { return this.subjectArea; }
         set { this.subjectArea = value; }
     }
-		public List<Exemplar> Exemplare
+	public List<Exemplar> Exemplare
     {
         get { return this.exemplare; }
         set { this.exemplare= value; }
     }
+		
+	//Konstruktor
+	public Book(string author, string titel, string subjectArea)
+	{
+		this.author = author;
+		this.titel = titel;
+		this.subjectArea = subjectArea;
+		exemplare = new List<Exemplar>();
+	}
 
     //Methoden
 
      public bool AddExemplar(Exemplar newExemplar)
      {
          if (exemplare.Contains(newExemplar))
-         {
-             exemplare.Add(newExemplar);
-             return true;
-         }
-         return false;
+         		 return false;
+         
+         newExemplar.ExemplarID = exemplare.Count+1;
+         exemplare.Add(newExemplar);
+         return true;
+         
      }
 
      public bool DeleteExemplar(Exemplar oldExemplar)
@@ -54,5 +64,28 @@ namespace BiBo
          }
          return false;
      }
+     
+     public int GetLastExemplarId()
+     {
+     	int lastId = -1;
+     	foreach(Exemplar e in exemplare)
+     	{
+     		if(e.ExemplarID > lastId)
+     			lastId = e.ExemplarID;
+     	}
+     	return lastId;
+     }
+     
+     public string CreateSignatur()
+     {
+     	string authorPrefix = this.Author[0].ToString();
+     	string subjectAreaPrefix = this.SubjectArea.Substring(0,2);
+     	return "[" +authorPrefix + subjectAreaPrefix + "]";
+     }
+     
+	public override string ToString()
+	{
+		return this.Author + " " + this.Titel + " " + this. subjectArea;
+	}
   }
 }

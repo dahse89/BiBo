@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using System.Threading.Tasks;
+//using System.Threading.Tasks;
 
 namespace BiBo.Persons
 {
@@ -140,5 +140,10 @@ namespace BiBo.Persons
         {
           return new DataSet();
         }
+        
+        public override string ToString()
+				{
+					return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate;
+				}
     }
 }

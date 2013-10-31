@@ -17,9 +17,9 @@ namespace BiBo
     private int exemplarID;          //Exemplar-Nummer
     
     //Konstruktor
-    public Exemplar(string signatur)
+    public Exemplar(Book buch)
     {
-        this.signatur = signatur;
+    	this.signatur = buch.CreateSignatur();
     }
     
     //Property Deklaration
@@ -60,6 +60,11 @@ namespace BiBo
     {
         return exemplarID.Equals(obj);
     }
+    
+	public override int GetHashCode()
+	{
+		return exemplarID.GetHashCode();
+	}
     
     
   }

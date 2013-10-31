@@ -16,15 +16,17 @@ namespace BiBo
         static void Main()
         {
           SQLCon con = new SQLCon(); 
-          Application.EnableVisualStyles();
+          /*Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new Form1());
-
+*/
           Customer c = new Customer(123, "Marcus", "Münzberg", DateTime.Now);
           con.createDatabase();
           con.addCustomer(c);
 
           List<Customer> customerList = con.getCustomer();
+          Console.WriteLine("Hallo");
+          
         }
     }
 }
