@@ -74,7 +74,7 @@
     <Compile Include="BookStates.cs" />
     <Compile Include="Access.cs" />
     <Compile Include="SQLCon.cs" />
-    <Compile Include="SqlConnnector.cs.cs" />
+    <Compile Include="SqlConnnector.cs" />
     <Compile Include="BookDAO.cs" />
     <Compile Include="CustomerDAO.cs" />
     <EmbeddedResource Include="Form1.resx">
