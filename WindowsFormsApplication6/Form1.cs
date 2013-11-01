@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using BiBo.Persons;
+using BiBo.DAO;
 
 namespace BiBo
 {
@@ -82,12 +83,17 @@ namespace BiBo
 
             userTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
 
-
-            for (int i = 0; i < 5; i++)
+            SqlConnector<Customer> customerCon = SqlConnector<Customer>.GetCustomerSqlInstance();
+            List<Customer> customerList = customerCon.GetAllEntrys();
+            foreach(Customer customer in customerList )
+            {
+	        	addToUserTable(customer);
+	        }
+            /*for (int i = 0; i < 5; i++)
             {
 
                 addToUserTable(getRandomCustomer());
-            }
+            }*/
 
 
             
