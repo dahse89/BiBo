@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Erstellt mit SharpDevelop.
  * Benutzer: m588
  * Datum: 30.10.2013
@@ -8,8 +8,10 @@
  */
 using System;
 using System.Data.SQLite;
+using System.Data.SqlTypes;
 using BiBo.Persons;
 using System.Collections.Generic;
+
 
 namespace BiBo.DAO
 {
@@ -20,13 +22,14 @@ namespace BiBo.DAO
 	{
 		public CustomerDAO()
 		{
+			string customerSQL = "CREATE TABLE IF NOT EXISTS Customer (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(100) NOT NULL, lastName VARCHAR(100) NOT NULL, birthDate DATETIME, street VARCHAR(100), streetNumber VARCHAR(10), additionalRoad VARCHAR(100), zipCode INTEGER(5), town VARCHAR(100), country VARCHAR(100), chargeAccount INTEGER(100));";
+          	SQLiteCommand command = new SQLiteCommand(customerSQL, con);
+          	command.ExecuteNonQuery();
 		}
 		
 		public override bool CreateTable()
 		{
-		  string customerSQL = "CREATE TABLE IF NOT EXISTS Customer (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, firstName VARCHAR(100) NOT NULL, lastName VARCHAR(100) NOT NULL, birthDate DATETIME, street VARCHAR(100), streetNumber VARCHAR(10), additionalRoad VARCHAR(100), zipCode INTEGER(5), town VARCHAR(100), country VARCHAR(100), chargeAccount INTEGER(100));";
-          SQLiteCommand command = new SQLiteCommand(customerSQL, con);
-          command.ExecuteNonQuery();
+		  
           return true;
 		}
 		
@@ -35,7 +38,7 @@ namespace BiBo.DAO
 			if (customer.FirstName != "")
             {
               SQLiteCommand command = new SQLiteCommand(con);
-              command.CommandText = "INSERT INTO Customer (id, firstName, lastName) VALUES (NULL,'" + customer.FirstName + "','" + customer.LastName + "');";
+              command.CommandText = "INSERT INTO Customer (id, firstName, lastName, birthDate) VALUES (NULL,'" + customer.FirstName + "','" + customer.LastName+ "','" + customer.BirthDate.ToShortDateString() + "');";
               command.ExecuteNonQuery();
             }
             return true;
@@ -68,7 +71,8 @@ namespace BiBo.DAO
                   ulong id = System.Convert.ToUInt64(intId);
                   string firstName = reader.GetString(reader.GetOrdinal("firstName"));
                   string lastName = reader.GetString(reader.GetOrdinal("lastName"));
-                  customerList.Add(new Customer(id,firstName,lastName,new DateTime(2010, 2, 22)));
+                  DateTime birthDate = DateTime.Parse(reader.GetString(reader.GetOrdinal("birthDate")));
+                  customerList.Add(new Customer(id,firstName,lastName,birthDate));
               }
           }
 
