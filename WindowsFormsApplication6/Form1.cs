@@ -83,21 +83,31 @@ namespace BiBo
 
             userTableDataSet.RowHeadersVisible = false;
 
-            userTableDataSet.ColumnCount = 6;
+            /*
+             *      ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                    firstName VARCHAR(100) NOT NULL,
+                    lastName VARCHAR(100) NOT NULL,
+                    birthDate DATETIME,
+                    street VARCHAR(100),
+                    streetNumber VARCHAR(10),
+                    additionalRoad VARCHAR(100), 
+                    zipCode INTEGER(5), 
+                    town VARCHAR(100), 
+                    country VARCHAR(100), 
+                    chargeAccount INTEGER(100)
+             */
+            userTableDataSet.ColumnCount = 7;
             userTableDataSet.Columns[0].Name = "ID";
             userTableDataSet.Columns[1].Name = "Vorname";
             userTableDataSet.Columns[2].Name = "Nachname";
             userTableDataSet.Columns[3].Name = "Alter";
             userTableDataSet.Columns[4].Name = "Status";
             userTableDataSet.Columns[5].Name = "ausgeliehende Bücher";
-
-
-
-            //insert some random stuff
-
+            userTableDataSet.Columns[6].Name = "Adresse";
+            
             userTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
 
-
+            //insert customers from db
             foreach (Customer customer in SqlCustomer.GetAllEntrys())
             {
 	        	addToUserTable(customer);
@@ -107,10 +117,17 @@ namespace BiBo
 
         private void addToUserTable(Customer cust)
         {
-            TimeSpan age;
+            TimeSpan age = DateTime.Now - cust.BirthDate;
 
-            age = DateTime.Now - cust.BirthDate;
-        
+            String adress = cust.Street + " " +
+                            cust.StreetNumber +"\n " + 
+                            cust.AdditionalRoad + "\n " + 
+                            cust.ZipCode + " " + 
+                            cust.Town + "\n " + 
+                            cust.Country;
+
+            userStatistic.Text = adress;
+
             userTableDataSet.Rows.Add(
                     false,
                     cust.CustomerID.ToString(),
@@ -118,7 +135,8 @@ namespace BiBo
                     cust.LastName,
                     ((int)Math.Floor((DateTime.Now - cust.BirthDate).TotalDays / 365.25D)).ToString(),
                     "test",
-                    "0"
+                    "0",
+                    adress
              );
 
             setUserTableReadOnly();
@@ -275,23 +293,46 @@ namespace BiBo
           {
             textBoxUserCity.BackColor = Color.Red;
             return;
-          }          
+          }
 
-            Customer dummy = new Customer(
-                0,
+          //validate zipCode
+          if (!Validation.isNumeric(zipCode) || Validation.isEmpty(zipCode))
+          {
+              textBoxUserPLZ.BackColor = Color.Red;
+              return;
+          }
+
+          Customer dummy = new Customer(
+              0,
+              UserFName,
+              UserName,
+              Birthday
+           );
+             
+            dummy.Street = Street;
+            dummy.StreetNumber = Convert.ToInt32(StreetNumber);
+            dummy.AdditionalRoad = StreetExtention;
+            dummy.ZipCode = Convert.ToInt32(zipCode);
+            dummy.Town = City;
+            dummy.Country = Country;
+
+            ulong id = this.SqlCustomer.AddEntryReturnId(dummy);
+
+            Customer finalCustomer = new Customer(
+                id,
                 UserFName,
                 UserName,
                 Birthday
              );
 
-            ulong id = this.SqlCustomer.AddEntryReturnId(dummy);
+            finalCustomer.Street = Street;
+            finalCustomer.StreetNumber = Convert.ToInt32(StreetNumber);
+            finalCustomer.AdditionalRoad = StreetExtention;
+            finalCustomer.ZipCode = Convert.ToInt32(zipCode);
+            finalCustomer.Town = City;
+            finalCustomer.Country = Country;
 
-            addToUserTable(new Customer(
-                id,
-                UserFName,
-                UserName,
-                Birthday
-             ));
+            addToUserTable(finalCustomer);
         }
     }
 }
