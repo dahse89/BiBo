@@ -461,7 +461,37 @@ namespace BiBo
             
             SqlCustomer.DeleteEntryByIdList(potentialDeletedIds);
 
-
+            /**
+             * das hier ist echt lustig =)
+             * Auf den ersten Blick sieht es so aus als wären die zwei Scheifen ein bischen
+             * Overkill da man for jeden Wert in potentialDeletedIds die complette Tabelle durchläuft.
+             * 
+             * anfangs hatte ich es so:
+             * foreach (DataGridViewRow row in userTableDataSet.Rows)
+                {
+                    if (x == (ulong)Convert.ToInt64(row.Cells[1].Value.ToString()))
+                    {
+                        userTableDataSet.Rows.RemoveAt(row.Index);
+                    }
+                }
+             * sieht eigentlich gut aus aber es blieben teilweise werte über
+             * z.B.
+             * 
+             * hab in der tabelle folgende ids; 1,2,3,4,5
+             * 
+             * ich lösche 1,2,4 
+             * es bleiben 2,3,5 stehen ?? -> warum die 3
+             * 
+             * eigentlich ist es aber ganz logisch:
+             * zuerst ist row die erste Zeile der Tabelle sagen wir index 1
+             * (id ist das wonach ich lösche)
+             * 
+             * foreach run 1 >> row -> index 1 -> id 1 | wird gelöscht
+             * foreach run 2 >> row -> index 2 -> id 3 | wird nicht gelöscht
+             * foreach run 3 >> row -> index 3 -> id 4 | wird gelöscht
+             * 
+             * id 2 wurde übersprugen ^^
+             */
             foreach (ulong x in potentialDeletedIds)
             {
                 foreach (DataGridViewRow row in userTableDataSet.Rows)
