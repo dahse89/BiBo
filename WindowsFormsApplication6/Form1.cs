@@ -226,13 +226,10 @@ namespace BiBo
           String City = textBoxUserCity.Text;
           String Country = comboBoxUserCountries.SelectedValue + "";
 
-          textBoxUserFirstname.BackColor = Color.White;
-          textBoxUserLastname.BackColor = Color.White;
-          textBoxUserStreet.BackColor = Color.White;
-          textBoxUserHomeNumber.BackColor = Color.White;
-          textBoxUserCity.BackColor = Color.White;
-          textBoxUserPLZ.BackColor = Color.White;
+          whilteUserAddInputs();
 
+
+          //@todo validation task should be like this in val call
           //validate UserFName
           if (!Validation.Name(UserFName))
           {
@@ -275,13 +272,40 @@ namespace BiBo
               return;
           }
 
-          Customer dummy = new Customer(
+          pushUserToGUITableAndDB(
+                UserFName, 
+                UserName,
+                Birthday,
+                Street,
+                StreetNumber,
+                StreetExtention,
+                zipCode,
+                City,
+                Country
+          );
+
+            clearUserAddFrom();
+        }
+
+        private void pushUserToGUITableAndDB(
+                string UserFName, 
+                string UserName,
+                DateTime Birthday,
+                String Street,
+                String StreetNumber,
+                String StreetExtention,
+                String zipCode,
+                String City,
+                String Country
+        )
+        {
+            Customer dummy = new Customer(
               0,
               UserFName,
               UserName,
               Birthday
            );
-             
+
             dummy.Street = Street;
             dummy.StreetNumber = Convert.ToInt32(StreetNumber);
             dummy.AdditionalRoad = StreetExtention;
@@ -306,8 +330,16 @@ namespace BiBo
             finalCustomer.Country = Country;
 
             addToUserTable(finalCustomer);
+        }
 
-            clearUserAddFrom();
+        private void whilteUserAddInputs()
+        {
+            textBoxUserFirstname.BackColor = Color.White;
+            textBoxUserLastname.BackColor = Color.White;
+            textBoxUserStreet.BackColor = Color.White;
+            textBoxUserHomeNumber.BackColor = Color.White;
+            textBoxUserCity.BackColor = Color.White;
+            textBoxUserPLZ.BackColor = Color.White;
         }
 
         private void clearUserAddFrom()
