@@ -143,7 +143,7 @@ namespace BiBo.Persons
         
         public override string ToString()
 				{
-					return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate;
+					return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate + " " + Street + " " + Town;
 				}
     }
 }

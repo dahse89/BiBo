@@ -59,10 +59,20 @@
             this.userTableDataSet = new System.Windows.Forms.DataGridView();
             this.userName = new System.Windows.Forms.Label();
             this.userStat = new System.Windows.Forms.Label();
+            this.debug = new System.Windows.Forms.Label();
+            this.labelUserDetails = new System.Windows.Forms.Label();
+            this.groupBoxSearch = new System.Windows.Forms.GroupBox();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.groupBoxSelectedRows = new System.Windows.Forms.GroupBox();
+            this.buttonDeleteSelectedRows = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.UserAddPanel.SuspendLayout();
+            this.userDetails.SuspendLayout();
+            this.userStatistic.SuspendLayout();
             this.UserTablePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userTableDataSet)).BeginInit();
+            this.groupBoxSearch.SuspendLayout();
+            this.groupBoxSelectedRows.SuspendLayout();
             this.SuspendLayout();
             // 
             // UserStatus
@@ -301,6 +311,7 @@
             // 
             // userDetails
             // 
+            this.userDetails.Controls.Add(this.labelUserDetails);
             this.userDetails.ForeColor = System.Drawing.Color.Black;
             this.userDetails.Location = new System.Drawing.Point(603, 173);
             this.userDetails.Name = "userDetails";
@@ -311,6 +322,7 @@
             // 
             // userStatistic
             // 
+            this.userStatistic.Controls.Add(this.debug);
             this.userStatistic.ForeColor = System.Drawing.Color.Black;
             this.userStatistic.Location = new System.Drawing.Point(598, 13);
             this.userStatistic.Name = "userStatistic";
@@ -337,6 +349,7 @@
             this.userTableDataSet.Name = "userTableDataSet";
             this.userTableDataSet.Size = new System.Drawing.Size(443, 150);
             this.userTableDataSet.TabIndex = 0;
+            this.userTableDataSet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userTableDataSet_CellClick);
             // 
             // userName
             // 
@@ -363,11 +376,68 @@
             this.userStat.TabIndex = 1;
             this.userStat.Text = " ";
             // 
+            // debug
+            // 
+            this.debug.AutoSize = true;
+            this.debug.Location = new System.Drawing.Point(15, 28);
+            this.debug.Name = "debug";
+            this.debug.Size = new System.Drawing.Size(35, 13);
+            this.debug.TabIndex = 0;
+            this.debug.Text = "label5";
+            // 
+            // labelUserDetails
+            // 
+            this.labelUserDetails.AutoSize = true;
+            this.labelUserDetails.Location = new System.Drawing.Point(9, 31);
+            this.labelUserDetails.Name = "labelUserDetails";
+            this.labelUserDetails.Size = new System.Drawing.Size(0, 13);
+            this.labelUserDetails.TabIndex = 0;
+            // 
+            // groupBoxSearch
+            // 
+            this.groupBoxSearch.Controls.Add(this.textBoxSearch);
+            this.groupBoxSearch.Location = new System.Drawing.Point(2, 378);
+            this.groupBoxSearch.Name = "groupBoxSearch";
+            this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
+            this.groupBoxSearch.TabIndex = 1;
+            this.groupBoxSearch.TabStop = false;
+            this.groupBoxSearch.Text = "Suche";
+            // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(6, 19);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(200, 20);
+            this.textBoxSearch.TabIndex = 0;
+            this.textBoxSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxSearch_KeyUp);
+            // 
+            // groupBoxSelectedRows
+            // 
+            this.groupBoxSelectedRows.Controls.Add(this.buttonDeleteSelectedRows);
+            this.groupBoxSelectedRows.Location = new System.Drawing.Point(8, 440);
+            this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";
+            this.groupBoxSelectedRows.Size = new System.Drawing.Size(206, 120);
+            this.groupBoxSelectedRows.TabIndex = 4;
+            this.groupBoxSelectedRows.TabStop = false;
+            this.groupBoxSelectedRows.Text = "Markierte";
+            // 
+            // buttonDeleteSelectedRows
+            // 
+            this.buttonDeleteSelectedRows.Location = new System.Drawing.Point(6, 19);
+            this.buttonDeleteSelectedRows.Name = "buttonDeleteSelectedRows";
+            this.buttonDeleteSelectedRows.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteSelectedRows.TabIndex = 0;
+            this.buttonDeleteSelectedRows.Text = "löschen";
+            this.buttonDeleteSelectedRows.UseVisualStyleBackColor = true;
+            this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1035, 572);
+            this.Controls.Add(this.groupBoxSelectedRows);
+            this.Controls.Add(this.groupBoxSearch);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.userStat);
             this.Controls.Add(this.UserStatus);
@@ -384,8 +454,15 @@
             this.MainPanel.ResumeLayout(false);
             this.UserAddPanel.ResumeLayout(false);
             this.UserAddPanel.PerformLayout();
+            this.userDetails.ResumeLayout(false);
+            this.userDetails.PerformLayout();
+            this.userStatistic.ResumeLayout(false);
+            this.userStatistic.PerformLayout();
             this.UserTablePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userTableDataSet)).EndInit();
+            this.groupBoxSearch.ResumeLayout(false);
+            this.groupBoxSearch.PerformLayout();
+            this.groupBoxSelectedRows.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,6 +501,12 @@
         private System.Windows.Forms.ComboBox comboBoxUserCountries;
         private System.Windows.Forms.Label labelUserCoutry;
         private System.Windows.Forms.Button buttonUserAdd;
+        private System.Windows.Forms.Label debug;
+        private System.Windows.Forms.Label labelUserDetails;
+        private System.Windows.Forms.GroupBox groupBoxSearch;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.GroupBox groupBoxSelectedRows;
+        private System.Windows.Forms.Button buttonDeleteSelectedRows;
 
     }
 }

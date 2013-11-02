@@ -50,6 +50,7 @@ namespace BiBo
             //render view
             initCourtries();
             publishContent();
+           // randomPushUser();
         }
 
         private void initCourtries()
@@ -85,6 +86,7 @@ namespace BiBo
             DataTable ds = new DataTable("UserTable");
 
             userTableDataSet.RowHeadersVisible = false;
+            userTableDataSet.AllowUserToAddRows = false;
 
             userTableDataSet.ColumnCount = 7;
             userTableDataSet.Columns[0].Name = "ID";
@@ -101,7 +103,9 @@ namespace BiBo
             foreach (Customer customer in SqlCustomer.GetAllEntrys())
             {
 	        	addToUserTable(customer);
-	        }            
+	        }
+
+           
         }
 
 
@@ -137,7 +141,7 @@ namespace BiBo
             {
                 for (int j = 0; j < userTableDataSet.Rows[i].Cells.Count; j++)
                 {
-                    if (j == 1)
+                    if (j == 0)
                     {
                         /*checkbox*/
 
@@ -194,7 +198,16 @@ namespace BiBo
             //resize user table panel
             UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15); 
             UserTablePanel.Width = MainPanel.Width * 3 / 4 - 25;
-            UserTablePanel.Height = MainPanel.Height - UserAddPanel.Height - 15;                  
+            UserTablePanel.Height = MainPanel.Height - UserAddPanel.Height - 15;    
+            
+            //resize search panel
+            int y = MainPanel.Location.Y + UserTablePanel.Location.Y;
+            groupBoxSearch.Location = new System.Drawing.Point(13, y); 
+
+            //resize selected Rows panel
+            y = groupBoxSearch.Location.Y + groupBoxSearch.Height + 5;
+            groupBoxSelectedRows.Location = new System.Drawing.Point(13, y);
+            groupBoxSelectedRows.Width = groupBoxSearch.Width;
 
             //resize user details panel
             userDetails.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
@@ -287,6 +300,28 @@ namespace BiBo
             clearUserAddFrom();
         }
 
+
+        private void randomPushUser(){
+
+            String[] fnames = {"Klaus","Peter","Anton","Susan","Ingo","Carlos","Olga","Emiel","Philipp"};
+            String[] names = {"Dahse","Münzberg","Korepin","Dambeck","Quittenbaum","Müller","Mayer","Schulze"};
+
+            for (int i = 0; i < 100; i++)
+            {
+                pushUserToGUITableAndDB(
+                    fnames[r.Next(0, fnames.Length - 1)],
+                    names[r.Next(0, names.Length - 1)],
+                    new DateTime(r.Next(1900, 2000), r.Next(1, 12), r.Next(1, 28)),
+                    fnames[r.Next(0, fnames.Length - 1)] + "strasse",
+                    r.Next(1, 100).ToString(),
+                    "",
+                    r.Next(10000, 99999).ToString(),
+                     names[r.Next(0, names.Length - 1)] + "stadt",
+                     "Deutschland"
+                );
+            }
+        }
+
         private void pushUserToGUITableAndDB(
                 string UserFName, 
                 string UserName,
@@ -357,6 +392,88 @@ namespace BiBo
 
             textBoxUserCity.Text = "";
             
+        }
+
+        private void userTableDataSet_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //make all cells selected, so that it looks like the row is selected
+            for (int i = 0; i < userTableDataSet.Rows[e.RowIndex].Cells.Count; i++)
+            {
+                userTableDataSet.Rows[e.RowIndex].Cells[i].Selected = true;
+            }
+
+            //get  current user id and pass to show details method
+            ulong custId = (ulong) Convert.ToInt64( userTableDataSet.Rows[e.RowIndex].Cells[1].Value.ToString() );
+            Customer currCustomer = SqlCustomer.getCustomerById(custId);
+            displayCustomerDetails(currCustomer);
+        }
+
+        private void displayCustomerDetails(Customer customer)
+        {
+            labelUserDetails.Text = customer.ToString();
+        }
+
+        private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            Customer tmp;
+            ulong id;
+            string sid;
+
+            //@todo if main tab on user
+            TextBox self = (TextBox) sender;
+
+            debug.Text = userTableDataSet.ToString();
+
+            for (int i = 0; i < userTableDataSet.Rows.Count; i++)
+            {
+                sid = userTableDataSet.Rows[i].Cells[1].Value.ToString();
+                id = (ulong)Convert.ToInt64(sid);
+                tmp = SqlCustomer.getCustomerById(id);
+                if (!tmp.ToString().ToUpper().Contains(self.Text.ToUpper()))
+                {
+                    userTableDataSet.Rows[i].Visible = false;
+                }
+                else
+                {
+                    userTableDataSet.Rows[i].Visible = true;
+                }
+            }
+                
+        }
+
+        private void buttonDeleteSelectedRows_Click(object sender, EventArgs e)
+        {
+            List<ulong> potentialDeletedIds = new List<ulong>();
+            
+            ulong id;
+            
+            for (int i = 0; i < userTableDataSet.Rows.Count; i++)
+            {
+            
+                DataGridViewCheckBoxCell chkchecking = userTableDataSet.Rows[i].Cells[0] as DataGridViewCheckBoxCell;
+
+                if ((bool)chkchecking.Value == true)
+                {
+                    id = (ulong)Convert.ToInt64(userTableDataSet.Rows[i].Cells[1].Value.ToString());
+                    potentialDeletedIds.Add(id);                                      
+                }
+            }
+            
+            SqlCustomer.DeleteEntryByIdList(potentialDeletedIds);
+
+
+            foreach (ulong x in potentialDeletedIds)
+            {
+                foreach (DataGridViewRow row in userTableDataSet.Rows)
+                {
+                    if (x == (ulong)Convert.ToInt64(row.Cells[1].Value.ToString()))
+                    {
+                        userTableDataSet.Rows.RemoveAt(row.Index);
+                        break;
+                    }
+                }
+            }
+
         }
     }
 }

@@ -89,6 +89,17 @@ namespace BiBo.DAO
             Int64 LastRowID64 = (Int64)command.ExecuteScalar();
             return (ulong) LastRowID64;
         }
+
+        public bool DeleteEntryByIdList(List<ulong> l)
+        {
+            foreach(ulong x in l){
+                SQLiteCommand command = new SQLiteCommand(con);
+                command.CommandText = "DELETE FROM Customer WHERE id ='" + x + "';";
+                command.ExecuteNonQuery();
+              
+            }
+            return true;
+        }
 		
 		public override bool DeleteEntry(Customer customer)
 		{
@@ -100,6 +111,19 @@ namespace BiBo.DAO
             }
             return true;
 		}
+
+        public Customer getCustomerById(ulong cid){
+          SQLiteCommand command = new SQLiteCommand(con);
+          command.CommandText = "SELECT * FROM Customer WHERE id = '" + cid + "'";
+          SQLiteDataReader reader = command.ExecuteReader();
+          if (reader.HasRows)
+          {
+              reader.Read();
+              return initCustomerByReader(reader);
+          }
+
+            return new Customer();
+        }
 		
 		public override List<Customer> GetAllEntrys()
 		{
@@ -109,34 +133,38 @@ namespace BiBo.DAO
           command.CommandText = "SELECT * FROM Customer";
           SQLiteDataReader reader = command.ExecuteReader();
 
-          Customer tmp;
-
           if (reader.HasRows)
           {
               while (reader.Read())
               {
-                  int intId = reader.GetInt32(reader.GetOrdinal("id"));
-                  ulong id = System.Convert.ToUInt64(intId);
-                  string firstName = reader.GetString(reader.GetOrdinal("firstName"));
-                  string lastName = reader.GetString(reader.GetOrdinal("lastName"));
-                  DateTime birthDate = DateTime.Parse(reader.GetString(reader.GetOrdinal("birthDate")));
-
-                  tmp = new Customer(id, firstName, lastName, birthDate);
-                  
-                  string street = reader.GetString(reader.GetOrdinal("street"));
-                  tmp.Street = street;
-                  tmp.StreetNumber = Convert.ToInt32(reader.GetString(reader.GetOrdinal("streetNumber")));
-                  tmp.AdditionalRoad = reader.GetString(reader.GetOrdinal("additionalRoad"));
-                  tmp.ZipCode = reader.GetInt32(reader.GetOrdinal("zipCode"));
-                  tmp.Town = reader.GetString(reader.GetOrdinal("town"));
-                  tmp.Country = reader.GetString(reader.GetOrdinal("country"));
-
-                  customerList.Add(tmp);
+                  customerList.Add(initCustomerByReader(reader));
               }
           }
 
           return customerList;
 		}
+
+        private Customer initCustomerByReader(SQLiteDataReader reader){
+            Customer tmp;
+
+            int intId = reader.GetInt32(reader.GetOrdinal("id"));
+            ulong id = System.Convert.ToUInt64(intId);
+            string firstName = reader.GetString(reader.GetOrdinal("firstName"));
+            string lastName = reader.GetString(reader.GetOrdinal("lastName"));
+            DateTime birthDate = DateTime.Parse(reader.GetString(reader.GetOrdinal("birthDate")));
+
+            tmp = new Customer(id, firstName, lastName, birthDate);
+                  
+            string street = reader.GetString(reader.GetOrdinal("street"));
+            tmp.Street = street;
+            tmp.StreetNumber = Convert.ToInt32(reader.GetString(reader.GetOrdinal("streetNumber")));
+            tmp.AdditionalRoad = reader.GetString(reader.GetOrdinal("additionalRoad"));
+            tmp.ZipCode = reader.GetInt32(reader.GetOrdinal("zipCode"));
+            tmp.Town = reader.GetString(reader.GetOrdinal("town"));
+            tmp.Country = reader.GetString(reader.GetOrdinal("country"));
+
+            return tmp;
+        }
 	
 		
 	}
