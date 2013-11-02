@@ -17,14 +17,14 @@ namespace BiBo
         static void Main()
         {
         
-          SqlConnector<Customer> conCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
-          Customer c = new Customer(123, "Marcus", "Münzberg", DateTime(1989,07,16));
-          conCustomer.DeleteEntry(c);
-          conCustomer.AddEntry(c);
+          CustomerDAO conCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
+          //Customer c = new Customer(1234, "Philipp", "Dahse", new DateTime(1989,12,4));
+          //conCustomer.DeleteEntry(c);
+          //conCustomer.AddEntry(c);
           
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
-          Application.Run(new Form1());
+          Application.Run(new Form1(conCustomer));
 
           
         }

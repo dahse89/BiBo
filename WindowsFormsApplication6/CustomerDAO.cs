@@ -35,14 +35,25 @@ namespace BiBo.DAO
 		
 		public override bool AddEntry(Customer customer)
 		{
-			if (customer.FirstName != "")
-            {
+			//if (customer.FirstName != "") < wird vorhher schon validiert <Philipp>
+            
+              con.Open(); //<- ohne das konnte ich die Methode in Form1 komischer weise nicht benutzen <Philipp>
               SQLiteCommand command = new SQLiteCommand(con);
               command.CommandText = "INSERT INTO Customer (id, firstName, lastName, birthDate) VALUES (NULL,'" + customer.FirstName + "','" + customer.LastName+ "','" + customer.BirthDate.ToShortDateString() + "');";
               command.ExecuteNonQuery();
-            }
+
             return true;
 		}
+
+        public ulong AddEntryReturnId(Customer customer)
+        {
+            AddEntry(customer);//da hier ja eh ne unique id erzeugt wird kann ich die ja auch gleich nuten <Philipp>
+
+            SQLiteCommand command = new SQLiteCommand(con);
+            command.CommandText = "select last_insert_rowid()";
+            Int64 LastRowID64 = (Int64)command.ExecuteScalar();
+            return (ulong) LastRowID64;
+        }
 		
 		public override bool DeleteEntry(Customer customer)
 		{

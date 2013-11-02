@@ -23,8 +23,22 @@ namespace BiBo
 
         private Random r = new Random();
 
+        private CustomerDAO SqlCustomer;
+
+
+        public Form1(CustomerDAO CustCon)
+        {
+            this.SqlCustomer = CustCon;
+            __construct();
+        }
+
+
         public Form1()
         {
+            __construct();
+        }
+
+        private void __construct(){
             InitializeComponent();
             makeResponsivOnce(this);
 
@@ -83,20 +97,17 @@ namespace BiBo
 
             userTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
 
-            SqlConnector<Customer> customerCon = SqlConnector<Customer>.GetCustomerSqlInstance();
-            List<Customer> customerList = customerCon.GetAllEntrys();
-            foreach(Customer customer in customerList )
+
+            foreach (Customer customer in getAllCustomersFromDB())
             {
 	        	addToUserTable(customer);
-	        }
-            /*for (int i = 0; i < 5; i++)
-            {
-
-                addToUserTable(getRandomCustomer());
-            }*/
+	        }            
+        }
 
 
-            
+        private List<Customer> getAllCustomersFromDB()
+        {        
+            return SqlConnector<Customer>.GetCustomerSqlInstance().GetAllEntrys();
         }
 
         private void addToUserTable(Customer cust)
@@ -118,7 +129,7 @@ namespace BiBo
             setUserTableReadOnly();
         }
 
-        private Customer getRandomCustomer()
+        /*private Customer getRandomCustomer()
         {
            
             String[] fnames = new String[] {"Philipp","Marcus","Vico","Yevgen","Klaus","Peter","Ignatz","Mario","Hans","Ingolf"};
@@ -130,7 +141,7 @@ namespace BiBo
                 lnames[r.Next(0, lnames.Length)],
                 new DateTime(r.Next(1920,2005),r.Next(1,12),r.Next(1,28))
             );
-        }
+        }*/
 
         private void setUserTableReadOnly()
         {
@@ -211,30 +222,6 @@ namespace BiBo
             
         }
 
-        /*
-   *         //Member-Variablen Deklaration
-          private int customerID;                  //Kunden-ID
-
-          private string firstName;                //Vorname
-          private string lastName;                 //Nachname
-          private DateTime birthDate;              //Geburtstag
-
-          private string street;                   //Strasse
-          private int streetNumber;                //Hausnummer
-          private string additionalRoad;           //Strassenzusatz
-          private int zipCode;                     //PLZ
-          private string town;                     //Stadt
-          private string country;                  //Land
-
-          private Rights right = Rights.CUSTOMER; //Rechte
-          private int chargeAccountNumber;         //GebuehrenkontoNr
-          private int biboID;                      //Bibliotheks-ID
-          private int cardID;                      //Ausweis-ID
-          private UserStates userState;            //Benutzer- Status
-
-   * 
-   */
-
         private void buttonUserAdd_Click(object sender, EventArgs e)
         {
 
@@ -293,21 +280,23 @@ namespace BiBo
           {
             textBoxUserCity.BackColor = Color.Red;
             return;
-          }
+          }          
 
-          
-
-            Customer newCustomer = new Customer(
-                23,
+            Customer dummy = new Customer(
+                0,
                 UserFName,
                 UserName,
                 Birthday
              );
 
-            addToUserTable(newCustomer);
+            ulong id = this.SqlCustomer.AddEntryReturnId(dummy);
 
-
-
+            addToUserTable(new Customer(
+                id,
+                UserFName,
+                UserName,
+                Birthday
+             ));
         }
     }
 }
