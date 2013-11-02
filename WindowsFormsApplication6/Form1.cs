@@ -18,6 +18,7 @@ namespace BiBo
         //content
         private String   LoginAsUserName;
         private String   UserStatusText;
+        private DateTime userAddBirthDayDefault = new DateTime(1980,1,1);
 
         private String  countriesSource = "../../countries.txt";
 
@@ -79,23 +80,12 @@ namespace BiBo
             //User Status Label
             userStat.Text += this.UserStatusText;
 
+            //userAddBirthDay Default;
+            dateTimePickerAddUser.Value = userAddBirthDayDefault;
             DataTable ds = new DataTable("UserTable");
 
             userTableDataSet.RowHeadersVisible = false;
 
-            /*
-             *      ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                    firstName VARCHAR(100) NOT NULL,
-                    lastName VARCHAR(100) NOT NULL,
-                    birthDate DATETIME,
-                    street VARCHAR(100),
-                    streetNumber VARCHAR(10),
-                    additionalRoad VARCHAR(100), 
-                    zipCode INTEGER(5), 
-                    town VARCHAR(100), 
-                    country VARCHAR(100), 
-                    chargeAccount INTEGER(100)
-             */
             userTableDataSet.ColumnCount = 7;
             userTableDataSet.Columns[0].Name = "ID";
             userTableDataSet.Columns[1].Name = "Vorname";
@@ -126,8 +116,6 @@ namespace BiBo
                             cust.Town + "\n " + 
                             cust.Country;
 
-            userStatistic.Text = adress;
-
             userTableDataSet.Rows.Add(
                     false,
                     cust.CustomerID.ToString(),
@@ -141,20 +129,6 @@ namespace BiBo
 
             setUserTableReadOnly();
         }
-
-        /*private Customer getRandomCustomer()
-        {
-           
-            String[] fnames = new String[] {"Philipp","Marcus","Vico","Yevgen","Klaus","Peter","Ignatz","Mario","Hans","Ingolf"};
-            String[] lnames = new String[] { "Dahse", "Münzberg", "Dambeck", "Korpin", "Müller", "Meyer", "Schultz", "Mustermann", "Li", "Bauer" };
-      
-            return new Customer(
-                System.Convert.ToUInt64(r.Next(10000,1000000)),
-                fnames[r.Next(0, fnames.Length)],
-                lnames[r.Next(0, lnames.Length)],
-                new DateTime(r.Next(1920,2005),r.Next(1,12),r.Next(1,28))
-            );
-        }*/
 
         private void setUserTableReadOnly()
         {
@@ -252,13 +226,12 @@ namespace BiBo
           String City = textBoxUserCity.Text;
           String Country = comboBoxUserCountries.SelectedValue + "";
 
-
-          // @todo remove all error messages
           textBoxUserFirstname.BackColor = Color.White;
           textBoxUserLastname.BackColor = Color.White;
           textBoxUserStreet.BackColor = Color.White;
           textBoxUserHomeNumber.BackColor = Color.White;
           textBoxUserCity.BackColor = Color.White;
+          textBoxUserPLZ.BackColor = Color.White;
 
           //validate UserFName
           if (!Validation.Name(UserFName))
@@ -333,6 +306,25 @@ namespace BiBo
             finalCustomer.Country = Country;
 
             addToUserTable(finalCustomer);
+
+            clearUserAddFrom();
+        }
+
+        private void clearUserAddFrom()
+        {
+            textBoxUserFirstname.Text = "";
+            textBoxUserLastname.Text = "";
+
+            textBoxUserStreet.Text = "";
+            textBoxUserHomeNumber.Text = "";
+            textBoxUserAdressExtention.Text = "";
+
+            dateTimePickerAddUser.Value = userAddBirthDayDefault;
+
+            textBoxUserPLZ.Text = "";
+
+            textBoxUserCity.Text = "";
+            
         }
     }
 }
