@@ -35,9 +35,6 @@ namespace BiBo.DAO
 		
 		public override bool AddEntry(Customer customer)
 		{
-			//if (customer.FirstName != "") < wird vorhher schon validiert <Philipp>
-            
-              con.Open(); //<- ohne das konnte ich die Methode in Form1 komischer weise nicht benutzen <Philipp>
               SQLiteCommand command = new SQLiteCommand(con);
               command.CommandText = "INSERT INTO Customer (id, firstName, lastName, birthDate) VALUES (NULL,'" + customer.FirstName + "','" + customer.LastName+ "','" + customer.BirthDate.ToShortDateString() + "');";
               command.ExecuteNonQuery();

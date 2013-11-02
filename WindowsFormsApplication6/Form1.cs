@@ -98,17 +98,12 @@ namespace BiBo
             userTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
 
 
-            foreach (Customer customer in getAllCustomersFromDB())
+            foreach (Customer customer in SqlCustomer.GetAllEntrys())
             {
 	        	addToUserTable(customer);
 	        }            
         }
 
-
-        private List<Customer> getAllCustomersFromDB()
-        {        
-            return SqlConnector<Customer>.GetCustomerSqlInstance().GetAllEntrys();
-        }
 
         private void addToUserTable(Customer cust)
         {
