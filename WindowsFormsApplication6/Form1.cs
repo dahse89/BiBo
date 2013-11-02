@@ -464,7 +464,7 @@ namespace BiBo
             /**
              * das hier ist echt lustig =)
              * Auf den ersten Blick sieht es so aus als wären die zwei Scheifen ein bischen
-             * Overkill da man for jeden Wert in potentialDeletedIds die complette Tabelle durchläuft.
+             * Overkill da man für jeden Wert in potentialDeletedIds die complette Tabelle durchläuft.
              * 
              * anfangs hatte ich es so:
              * foreach (DataGridViewRow row in userTableDataSet.Rows)
@@ -480,7 +480,7 @@ namespace BiBo
              * hab in der tabelle folgende ids; 1,2,3,4,5
              * 
              * ich lösche 1,2,4 
-             * es bleiben 2,3,5 stehen ?? -> warum die 3
+             * es bleiben 2,3,5 stehen ?? -> warum die 2
              * 
              * eigentlich ist es aber ganz logisch:
              * zuerst ist row die erste Zeile der Tabelle sagen wir index 1
