@@ -9,17 +9,22 @@ namespace BiBo
   public class Exemplar
   {
   	//Member-Variablen Deklaration
-    private DateTime loanPeriod; 	//Ausleifrist 
-    private BookStates state;			//Status des Buches (only_visible, damaged, missing)
-    private string signatur; 			//signatur des buches
-    private Access accesser; 			//Zugang zum Exemplar (magazin, freihandausleihe)
-    private Customer borrower;		//Ausleiher
-    private int exemplarID;          //Exemplar-Nummer
+    private DateTime    loanPeriod;     //Ausleifrist 
+    private BookStates  state;		    //Status des Buches (only_visible, damaged, missing)
+    private string      signatur; 	    //signatur des buches
+    private Access      accesser; 	    //Zugang zum Exemplar (magazin, freihandausleihe)
+    private Customer    borrower;	    //Ausleiher
+    private ulong       exemplarId;     //Exemplar-Nummer
+    private ulong       bookId;         //dazugehörige Buch-ID
     
     //Konstruktor
     public Exemplar(Book buch)
     {
     	this.signatur = buch.CreateSignatur();
+    }
+
+    public Exemplar()
+    { 
     }
     
     //Property Deklaration
@@ -48,22 +53,28 @@ namespace BiBo
             get { return this.borrower; }
             set { this.borrower = value; }
     }
-    public int ExemplarID
+    public ulong ExemplarId
     {
-            get { return this.exemplarID; }
-            set { this.exemplarID = value; }
+            get { return this.exemplarId; }
+            set { this.exemplarId = value; }
+    }
+
+    public ulong BookId
+    {
+        get { return this.bookId; }
+        set { this.bookId = value; }
     }
 
     //Methoden
 
     public override bool Equals(object obj)
     {
-        return exemplarID.Equals(obj);
+        return exemplarId.Equals(obj);
     }
     
 	public override int GetHashCode()
 	{
-		return exemplarID.GetHashCode();
+		return exemplarId.GetHashCode();
 	}
     
     

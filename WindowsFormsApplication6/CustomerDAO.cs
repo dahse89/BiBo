@@ -41,12 +41,6 @@ namespace BiBo.DAO
           	command.ExecuteNonQuery();
 		}
 		
-		public override bool CreateTable()
-		{
-		  
-          return true;
-		}
-		
 		public override bool AddEntry(Customer customer)
 		{
               SQLiteCommand command = new SQLiteCommand(con);
@@ -80,7 +74,7 @@ namespace BiBo.DAO
             return true;
 		}
 
-        public ulong AddEntryReturnId(Customer customer)
+        public override ulong AddEntryReturnId(Customer customer)
         {
             AddEntry(customer);//da hier ja eh ne unique id erzeugt wird kann ich die ja auch gleich nutzen <Philipp>
 
@@ -90,7 +84,7 @@ namespace BiBo.DAO
             return (ulong) LastRowID64;
         }
 
-        public bool DeleteEntryByIdList(List<ulong> l)
+        public override bool DeleteEntryByIdList(List<ulong> l)
         {
             foreach(ulong x in l){
                 SQLiteCommand command = new SQLiteCommand(con);
@@ -106,23 +100,24 @@ namespace BiBo.DAO
 			if (customer.FirstName != "")
             {
               SQLiteCommand command = new SQLiteCommand(con);
-              command.CommandText = "DELETE FROM Customer WHERE firstName='" + customer.FirstName + "';";
+              command.CommandText = "DELETE FROM Customer WHERE id='" + customer.CustomerID + "';";
               command.ExecuteNonQuery();
             }
             return true;
 		}
 
-        public Customer getCustomerById(ulong cid){
+        public override Customer GetEntryById(ulong cid){
           SQLiteCommand command = new SQLiteCommand(con);
           command.CommandText = "SELECT * FROM Customer WHERE id = '" + cid + "'";
           SQLiteDataReader reader = command.ExecuteReader();
           if (reader.HasRows)
           {
               reader.Read();
-              return initCustomerByReader(reader);
+              return InitEntryByReader(reader);
           }
 
-            return new Customer();
+          else
+              throw new Exception("Eintrag nicht vorhanden");//für mich sinnvoller als ein leeres Objekt zurück zugeben
         }
 		
 		public override List<Customer> GetAllEntrys()
@@ -137,14 +132,14 @@ namespace BiBo.DAO
           {
               while (reader.Read())
               {
-                  customerList.Add(initCustomerByReader(reader));
+                  customerList.Add(InitEntryByReader(reader));
               }
           }
 
           return customerList;
 		}
 
-        private Customer initCustomerByReader(SQLiteDataReader reader){
+        protected override Customer InitEntryByReader(SQLiteDataReader reader){
             Customer tmp;
 
             int intId = reader.GetInt32(reader.GetOrdinal("id"));

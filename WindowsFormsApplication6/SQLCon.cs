@@ -112,11 +112,11 @@ namespace BiBo
           {
               while (reader.Read())
               {
-                  int id = reader.GetInt32(reader.GetOrdinal("id"));
+                  ulong id = System.Convert.ToUInt64(reader.GetInt32(reader.GetOrdinal("id")));
                   string author = reader.GetString(reader.GetOrdinal("author"));
                   string titel = reader.GetString(reader.GetOrdinal("titel"));
                   string subjectArea = reader.GetString(reader.GetOrdinal("subjectArea"));
-                  bookList.Add(new Book(author, titel, subjectArea));
+                  bookList.Add(new Book(id ,author, titel, subjectArea));
               }
           }
 
