@@ -1,4 +1,5 @@
-﻿namespace BiBo
+﻿using System.Drawing;
+namespace BiBo
 {
     partial class Form1
     {
@@ -26,8 +27,17 @@
         /// Erforderliche Methode für die Designerunterstützung.
         /// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
         /// </summary>
-        private void InitializeComponent()
+        private void InitializeComponent(int w, int h)
         {
+
+            //get current window size
+         
+
+            this.ClientSize = new System.Drawing.Size(w, h);
+
+            int windowHeight = h;
+            int windowWidth = w;
+
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -79,6 +89,7 @@
             this.groupBoxSearch.SuspendLayout();
             this.groupBoxSelectedRows.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartUserAge)).BeginInit();
+            this.ageChartPanel = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // UserStatus
@@ -138,7 +149,7 @@
             this.MainPanel.Controls.Add(this.UserTablePanel);
             this.MainPanel.Location = new System.Drawing.Point(220, 77);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(815, 483);
+            this.MainPanel.Size = new System.Drawing.Size(windowWidth - 235, windowHeight - 115);
             this.MainPanel.TabIndex = 3;
             // 
             // UserAddPanel
@@ -164,7 +175,7 @@
             this.UserAddPanel.ForeColor = System.Drawing.Color.Black;
             this.UserAddPanel.Location = new System.Drawing.Point(12, 13);
             this.UserAddPanel.Name = "UserAddPanel";
-            this.UserAddPanel.Size = new System.Drawing.Size(579, 282);
+            this.UserAddPanel.Size = new System.Drawing.Size(MainPanel.Width / 3 - 25, MainPanel.Height / 2 - 25);
             this.UserAddPanel.TabIndex = 0;
             this.UserAddPanel.TabStop = false;
             this.UserAddPanel.Text = "Kunde hinzufügen";
@@ -321,9 +332,9 @@
             this.userDetails.Controls.Add(this.labelUserDetailsName);
             this.userDetails.Controls.Add(this.labelUserDetails);
             this.userDetails.ForeColor = System.Drawing.Color.Black;
-            this.userDetails.Location = new System.Drawing.Point(603, 173);
+            this.userDetails.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
             this.userDetails.Name = "userDetails";
-            this.userDetails.Size = new System.Drawing.Size(200, 100);
+            this.userDetails.Size = new System.Drawing.Size(MainPanel.Width / 4 - 10, MainPanel.Height - UserAddPanel.Height - 15);
             this.userDetails.TabIndex = 3;
             this.userDetails.TabStop = false;
             this.userDetails.Text = "Kunden Details";
@@ -353,35 +364,76 @@
             this.labelUserDetails.Name = "labelUserDetails";
             this.labelUserDetails.Size = new System.Drawing.Size(0, 13);
             this.labelUserDetails.TabIndex = 0;
-            // 
+            //
             // userStatistic
-            // 
-            this.userStatistic.Controls.Add(this.chartUserAge);
+            //
             this.userStatistic.ForeColor = System.Drawing.Color.Black;
-            this.userStatistic.Location = new System.Drawing.Point(598, 13);
+            this.userStatistic.Location = new System.Drawing.Point(MainPanel.Width / 3 - 4, 13);
             this.userStatistic.Name = "userStatistic";
-            this.userStatistic.Size = new System.Drawing.Size(200, 100);
+            this.userStatistic.Size = new System.Drawing.Size(MainPanel.Width * 2 / 3 - 7, UserAddPanel.Height);
             this.userStatistic.TabIndex = 2;
             this.userStatistic.TabStop = false;
             this.userStatistic.Text = "Statistic";
+            //
+            // ageChartPanel
+            //
+            this.ageChartPanel.Location = new System.Drawing.Point(15, 15);
+            this.ageChartPanel.Text = "Altersverteilung";
+            this.ageChartPanel.Size = new Size(this.userStatistic.Width / 2, this.userStatistic.Height - 30);
+            // 
+            // chartUserAge
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartUserAge.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartUserAge.Legends.Add(legend1);
+            this.chartUserAge.Location = new System.Drawing.Point(0, 0);
+            this.chartUserAge.Name = "chartUserAge";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartUserAge.Series.Add(series1);
+            this.chartUserAge.Width = ageChartPanel.Width;
+            this.chartUserAge.Height = ageChartPanel.Height;
+            this.chartUserAge.TabIndex = 1;
+            this.chartUserAge.Text = "chart1";
+
+          
+            chartUserAge.Series[0].Points.Clear();
+            chartUserAge.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            chartUserAge.BackColor = Color.Transparent;
+
+
+            chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
+            chartUserAge.Legends.RemoveAt(0);
+
+            // 
+            // userStatistic Adds
+            // 
+            this.userStatistic.Controls.Add(this.ageChartPanel);
+            //
+            // ageChartPanel Adds
+            //
+            this.ageChartPanel.Controls.Add(this.chartUserAge);
             // 
             // UserTablePanel
             // 
             this.UserTablePanel.Controls.Add(this.userTableDataSet);
             this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
-            this.UserTablePanel.Location = new System.Drawing.Point(12, 301);
+            this.UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15); 
             this.UserTablePanel.Name = "UserTablePanel";
-            this.UserTablePanel.Size = new System.Drawing.Size(562, 166);
+            this.UserTablePanel.Size = new System.Drawing.Size(MainPanel.Width * 3 / 4 - 25, MainPanel.Height - UserAddPanel.Height - 15);
             this.UserTablePanel.TabIndex = 1;
             this.UserTablePanel.TabStop = false;
-            this.UserTablePanel.Text = "Kunden";
+            this.UserTablePanel.Text = "Kunden";  
+
             // 
             // userTableDataSet
             // 
             this.userTableDataSet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.userTableDataSet.Location = new System.Drawing.Point(6, 19);
             this.userTableDataSet.Name = "userTableDataSet";
-            this.userTableDataSet.Size = new System.Drawing.Size(443, 150);
+            this.userTableDataSet.Size = new System.Drawing.Size(UserTablePanel.Width - 15, UserTablePanel.Height - 25);
             this.userTableDataSet.TabIndex = 0;
             this.userTableDataSet.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userTableDataSet_CellClick);
             // 
@@ -413,7 +465,7 @@
             // groupBoxSearch
             // 
             this.groupBoxSearch.Controls.Add(this.textBoxSearch);
-            this.groupBoxSearch.Location = new System.Drawing.Point(2, 378);
+            this.groupBoxSearch.Location = new System.Drawing.Point(13, MainPanel.Location.Y + UserTablePanel.Location.Y);
             this.groupBoxSearch.Name = "groupBoxSearch";
             this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
             this.groupBoxSearch.TabIndex = 1;
@@ -431,12 +483,13 @@
             // groupBoxSelectedRows
             // 
             this.groupBoxSelectedRows.Controls.Add(this.buttonDeleteSelectedRows);
-            this.groupBoxSelectedRows.Location = new System.Drawing.Point(8, 440);
+            this.groupBoxSelectedRows.Location = new System.Drawing.Point(13, groupBoxSearch.Location.Y + groupBoxSearch.Height + 5);
             this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";
-            this.groupBoxSelectedRows.Size = new System.Drawing.Size(206, 120);
+            this.groupBoxSelectedRows.Size = new System.Drawing.Size(groupBoxSearch.Width, 120);
             this.groupBoxSelectedRows.TabIndex = 4;
             this.groupBoxSelectedRows.TabStop = false;
             this.groupBoxSelectedRows.Text = "Markierte";
+    
             // 
             // buttonDeleteSelectedRows
             // 
@@ -446,29 +499,13 @@
             this.buttonDeleteSelectedRows.TabIndex = 0;
             this.buttonDeleteSelectedRows.Text = "löschen";
             this.buttonDeleteSelectedRows.UseVisualStyleBackColor = true;
-            this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);
-            // 
-            // chartUserAge
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartUserAge.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartUserAge.Legends.Add(legend1);
-            this.chartUserAge.Location = new System.Drawing.Point(17, 19);
-            this.chartUserAge.Name = "chartUserAge";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chartUserAge.Series.Add(series1);
-            this.chartUserAge.Size = new System.Drawing.Size(300, 107);
-            this.chartUserAge.TabIndex = 1;
-            this.chartUserAge.Text = "chart1";
+            this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);         
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1035, 572);
+            
             this.Controls.Add(this.groupBoxSelectedRows);
             this.Controls.Add(this.groupBoxSearch);
             this.Controls.Add(this.MainPanel);
@@ -483,7 +520,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.MainPanel.ResumeLayout(false);
             this.UserAddPanel.ResumeLayout(false);
             this.UserAddPanel.PerformLayout();
@@ -515,6 +551,7 @@
         private System.Windows.Forms.GroupBox UserTablePanel;
         private System.Windows.Forms.GroupBox userDetails;
         private System.Windows.Forms.GroupBox userStatistic;
+        private System.Windows.Forms.GroupBox ageChartPanel;
         private System.Windows.Forms.DataGridView userTableDataSet;
         private System.Windows.Forms.DateTimePicker dateTimePickerAddUser;
         private System.Windows.Forms.Label label2;

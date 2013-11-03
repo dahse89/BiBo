@@ -11,6 +11,7 @@ using System.IO;
 using BiBo.Persons;
 using BiBo.DAO;
 
+
 namespace BiBo
 {
     public partial class Form1 : Form
@@ -40,8 +41,9 @@ namespace BiBo
         }
 
         private void __construct(){
-            InitializeComponent();
-            makeResponsivOnce(this);
+            int width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+            int height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+            InitializeComponent(width,height);
 
             //init content
             this.LoginAsUserName = "Philipp Dahse";
@@ -150,85 +152,7 @@ namespace BiBo
                 }
             }
         }
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            //makeResponsiv((Form)sender);
-        }
-
-        private void makeResponsivOnce(Form window)
-        {
-            makeResponsiv(window);
-        }
-
-        private void makeResponsiv(Form window)
-        {
-
-            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
-          	int deskWidth = Screen.PrimaryScreen.Bounds.Width;
-
-            window.Width = deskWidth;
-            window.Height = deskHeight;
-
-            //get current window size
-            int windowHeight = window.Height;
-            int windowWidth = window.Width;
-
-
-            //resize main panel
-            MainPanel.Width = windowWidth - 235;
-            MainPanel.Height = windowHeight - 115;
-
-            //resize add user panel
-            UserAddPanel.Width = MainPanel.Width / 3 - 25;
-            int userAddHeight = MainPanel.Height / 3 - 25;
-            int userAddMinHeight = 280;
-            UserAddPanel.Height = userAddHeight < userAddMinHeight ? userAddMinHeight : userAddHeight;
-
-            //resize user statstic panel
-            userStatistic.Location = new System.Drawing.Point(MainPanel.Width / 3 - 4, 13);
-            userStatistic.Height = UserAddPanel.Height;
-            userStatistic.Width = MainPanel.Width * 2 / 3 - 7;
-
-
-            //resize user table panel
-            UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15); 
-            UserTablePanel.Width = MainPanel.Width * 3 / 4 - 25;
-            UserTablePanel.Height = MainPanel.Height - UserAddPanel.Height - 15;    
-            
-            //resize search panel
-            int y = MainPanel.Location.Y + UserTablePanel.Location.Y;
-            groupBoxSearch.Location = new System.Drawing.Point(13, y); 
-
-            //resize selected Rows panel
-            y = groupBoxSearch.Location.Y + groupBoxSearch.Height + 5;
-            groupBoxSelectedRows.Location = new System.Drawing.Point(13, y);
-            groupBoxSelectedRows.Width = groupBoxSearch.Width;
-
-            //resize user details panel
-            userDetails.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
-            userDetails.Width = MainPanel.Width / 4 - 10;
-            userDetails.Height = MainPanel.Height - UserAddPanel.Height - 15;
-
-            //resize user table 
-            userTableDataSet.Width = UserTablePanel.Width - 15;
-            userTableDataSet.Height = UserTablePanel.Height - 25;
-
-            //resize use age chars
-            chartUserAge.Width = userStatistic.Width - 50;
-            chartUserAge.Series.RemoveAt(0);
-            chartUserAge.Series.Add("unter 18");
-            chartUserAge.Series.Add("unter 25");
-            chartUserAge.Series.Add("unter 35");
-            chartUserAge.Series.Add("unter 50");
-            chartUserAge.Series.Add("unter 60");
-            chartUserAge.Series.Add("über 60");
-
-          
-           
-            
-        }
-
+       
         private void initAgeChart()
         {
             int age;
@@ -267,12 +191,21 @@ namespace BiBo
                     count_gt60++;
                 }                
             }
-            chartUserAge.Series[0].Points.AddXY(0, count_less18);
-            chartUserAge.Series[1].Points.AddXY(1, count_less25);
-            chartUserAge.Series[2].Points.AddXY(2, count_less35);
-            chartUserAge.Series[3].Points.AddXY(3, count_less50);
-            chartUserAge.Series[4].Points.AddXY(4, count_less60);
-            chartUserAge.Series[5].Points.AddXY(5, count_gt60);
+
+            Dictionary<string, int> tags = new Dictionary<string, int>() { 
+                { "< 18", count_less18 },
+                { "< 25", count_less25 },
+                { "< 35", count_less35 },
+                { "< 50", count_less50 },
+                { "< 60", count_less60 },
+                { ">= 60", count_gt60 }
+            };
+
+            foreach (string tagname in tags.Keys)
+            {
+                chartUserAge.Series[0].Points.AddXY(tagname, tags[tagname]);
+            }
+          
         }
 
         private void buttonUserAdd_Click(object sender, EventArgs e)
