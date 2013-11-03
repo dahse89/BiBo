@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Customer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StreetNumber>0</StreetNumber>
+  <ZipCode>0</ZipCode>
+  <Right>CUSTOMER</Right>
+  <ChargeAccountNumber>0</ChargeAccountNumber>
+  <ChargeAccount>0</ChargeAccount>
+  <BiboID>0</BiboID>
+  <CardID>0</CardID>
+  <UserState>ACTIVE</UserState>
+</Customer>

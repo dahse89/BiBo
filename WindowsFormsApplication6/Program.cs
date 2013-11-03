@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using BiBo.Persons;
-using BiBo.Data;
 using BiBo.Properties;
+using BiBo.DAO;
 
 namespace BiBo
 {
@@ -16,13 +16,17 @@ namespace BiBo
         [STAThread]
         static void Main()
         {
-          XmlModel xmlModel = new XmlModel(); 
+        
+          CustomerDAO conCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
+          //Customer c = new Customer(1234, "Philipp", "Dahse", new DateTime(1989,12,4));
+          //conCustomer.DeleteEntry(c);
+          //conCustomer.AddEntry(c);
+          
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
-          Application.Run(new Form1());
+          Application.Run(new Form1(conCustomer));
 
-          Customer c = new Customer(123, "Marcus", "Münzberg", DateTime.Now);
-          xmlModel.addCustomer(c);
+          
         }
     }
 }

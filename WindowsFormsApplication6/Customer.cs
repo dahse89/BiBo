@@ -3,53 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+//using System.Threading.Tasks;
 
 namespace BiBo.Persons
 {
     public class Customer
     {
         //Member-Variablen Deklaration
-        [XmlAttribute("CustomerID")]
-        private int customerID;                  //Kunden-ID
+        private ulong customerID;                  //Kunden-ID
 
-        [XmlAttribute("FirstName")]
         private string firstName;                //Vorname
-        [XmlAttribute("LastName")]
         private string lastName;                 //Nachname
-        [XmlAttribute("BirthDate")]
         private DateTime birthDate;              //Geburtstag
 
-        [XmlAttribute("Street")]
         private string street;                   //Strasse
-        [XmlAttribute("StreetNumber")]
-        private int streetNumber;                //Hausnummer
-        [XmlAttribute("AdditionalRoad")]
-        private string additionalRoad;           //Strassenzusatz
-        [XmlAttribute("ZipCode")]
+        private int streetNumber;                //
+        private string additionalRoad;           //
         private int zipCode;                     //PLZ
-        [XmlAttribute("Town")]
-        private string town;                     //Stadt
-        [XmlAttribute("Country")]
+        private string town;                     //
         private string country;                  //Land
 
-        [XmlAttribute("Rights")]
-        private Rights right = Rights.CUSTOMER; //Rechte
-        [XmlAttribute("ChargeAccountNumber")]
+        private Rights right = Rights.CUSTOMER;  //Rechte
         private int chargeAccountNumber;         //GebuehrenkontoNr
-        [XmlAttribute("BiboID")]
+        private float chargeAccount;             //Gebuehrenkonto
         private int biboID;                      //Bibliotheks-ID
-        [XmlAttribute("CardID")]
-        private int cardID;                      //Ausweis-ID
-        [XmlAttribute("UserState")]
-        private UserStates userState;            //Benutzer- Status
-        
-        [XmlAttribute("MobileNumber")]
-        private string mobileNumber;
+        private int cardID;                      //Ausweis-
+        private string cardValidUntil;           //Gültigkeitdatum des 
+        private UserStates userState;            //Benutzer- 
+        private string mobileNumber;             //Handy-
+        private string eMailAddress;             //Email-Adresse
+
 
         //Konstruktor
-        public Customer(int customerID, string firstName, string lastName, DateTime birthDate)
+        public Customer(ulong customerID, string firstName, string lastName, DateTime birthDate)
         {
             this.customerID = customerID;
             this.firstName = firstName;
@@ -59,84 +45,125 @@ namespace BiBo.Persons
         public Customer() { }
 
         //Property Deklaration
-        public int CustomerID
+        public ulong CustomerID
         {
-            get { return customerID; }
+            get { return this.customerID; }
         }
-
         public string FirstName
         {
-            get { return firstName; }
+            get { return this.firstName; }
         }
         public string LastName
         {
-            get { return lastName; }
+            get { return this.lastName; }
+            set { this.lastName = value; }
         }
         public DateTime BirthDate
         {
-            get { return birthDate; }
+            get { return this.birthDate; }
         }
 
         public string Street
         {
-            get { return street; }
-            set { street = value; }
+            get { return this.street; }
+            set { this.street = value; }
         }
         public int StreetNumber
         {
-            get { return streetNumber; }
-            set { streetNumber = value; }
+            get { return this.streetNumber; }
+            set { this.streetNumber = value; }
         }
         public string AdditionalRoad
         {
-            get { return additionalRoad; }
-            set { additionalRoad = value; }
+            get { return this.additionalRoad; }
+            set { this.additionalRoad = value; }
         }
         public int ZipCode
         {
-            get { return zipCode; }
-            set { zipCode = value; }
+            get { return this.zipCode; }
+            set { this.zipCode = value; }
         }
         public string Town
         {
-            get { return town; }
-            set { town = value; }
+            get { return this.town; }
+            set { this.town = value; }
         }
         public string Country
         {
-            get { return country; }
-            set { country = value; }
+            get { return this.country; }
+            set { this.country = value; }
         }
 
         public Rights Right
         {
-            get { return right; }
-            set { right = value; }
+            get { return this.right; }
+            set { this.right = value; }
         }
         public int ChargeAccountNumber
         {
-            get { return chargeAccountNumber; }
-            set { chargeAccountNumber = value; }
+            get { return this.chargeAccountNumber; }
+            set { this.chargeAccountNumber = value; }
+        }
+        public float ChargeAccount
+        {
+            get { return this.chargeAccount; }
+            set { this.chargeAccount = value; }
         }
         public int BiboID
         {
-            get { return biboID; }
-            set { biboID = value; }
+            get { return this.biboID; }
+            set { this.biboID = value; }
         }
         public int CardID
         {
-            get { return cardID; }
-            set { cardID = value; }
+            get { return this.cardID; }
+            set { this.cardID = value; }
         }
         public UserStates UserState
         {
-            get { return userState; }
-            set { userState = value; }
+            get { return this.userState; }
+            set { this.userState = value; }
+        }
+        public string MobileNumber
+        {
+            get { return this.mobileNumber; }
+            set { this.mobileNumber = value; }
+        }
+        public string EMailAddress
+        {
+            get { return this.eMailAddress; }
+            set { this.eMailAddress = value; }
         }
 
+        public String getFullAdress()
+        {
+            return  this.Street + " " + this.StreetNumber + "\n" +
+                    (this.AdditionalRoad == "" ? "" : (this.AdditionalRoad + "\n")) +
+                    this.ZipCode + " " +
+                    this.Town + "\n" +
+                    this.Country;
+    }
+
+				//Methoden
         public DataSet getDataSet()
         {
           return new DataSet();
+        }
+        
+        public override string ToString()
+		{
+			return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate + " " + Street + " " + Town;
+		}
+
+        public override bool Equals(object obj)
+        {
+            return obj.GetHashCode() == this.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            string hashString = this.firstName + this.lastName + this.birthDate + this.street + this.streetNumber + this.town;
+            return hashString.GetHashCode();
         }
     }
 }

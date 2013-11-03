@@ -2,27 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BiBo.Persons;
 
 namespace BiBo.Persons
 {
   public class Employee : Customer    
   {
-   public Rights right = Rights.EMPLOYEE;
+		//Member-Variablen Deklaration
+    List<Customer> customerList = new List<Customer>(); //Liste mit allen Kunden
 
    //Konstruktor für Mitarbeiter
-   public Employee(int customerID, string firstName, string lastName, DateTime birthDate)
+   public Employee(ulong customerID, string firstName, string lastName, DateTime birthDate)
      : base(customerID, firstName, lastName, birthDate)
    {
+       Right = Rights.EMPLOYEE;
    }
 
-   public Rights Right
-   {
-     get { return right; }
-     set { right = value; }
-   }
-    
     //Erstelle Kunden
-    public Customer createCustomer(int customerID, string firstName, string lastName, DateTime birthDate) 
+    public Customer createCustomer(ulong customerID, string firstName, string lastName, DateTime birthDate) 
     {
       return new Customer(customerID, firstName, lastName, birthDate);
     }
@@ -37,5 +34,12 @@ namespace BiBo.Persons
       customer.Town = town;
       customer.Country = country;
     }
+
+    public bool deleteCustomer(Customer customer)
+    {
+        customer.UserState = UserStates.DELETED;
+        return true;
+    }
+
   }
 }
