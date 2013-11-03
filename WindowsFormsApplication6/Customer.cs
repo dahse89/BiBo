@@ -135,6 +135,15 @@ namespace BiBo.Persons
             set { this.eMailAddress = value; }
         }
 
+        public String getFullAdress()
+        {
+            return  this.Street + " " + this.StreetNumber + "\n" +
+                    (this.AdditionalRoad == "" ? "" : (this.AdditionalRoad + "\n")) +
+                    this.ZipCode + " " +
+                    this.Town + "\n" +
+                    this.Country;
+    }
+
 				//Methoden
         public DataSet getDataSet()
         {

@@ -105,7 +105,8 @@ namespace BiBo
 	        	addToUserTable(customer);
 	        }
 
-           
+
+            initAgeChart();
         }
 
 
@@ -113,12 +114,7 @@ namespace BiBo
         {
             TimeSpan age = DateTime.Now - cust.BirthDate;
 
-            String adress = cust.Street + " " +
-                            cust.StreetNumber +"\n " + 
-                            cust.AdditionalRoad + "\n " + 
-                            cust.ZipCode + " " + 
-                            cust.Town + "\n " + 
-                            cust.Country;
+            String adress = cust.getFullAdress();
 
             userTableDataSet.Rows.Add(
                     false,
@@ -218,8 +214,65 @@ namespace BiBo
             userTableDataSet.Width = UserTablePanel.Width - 15;
             userTableDataSet.Height = UserTablePanel.Height - 25;
 
+            //resize use age chars
+            chartUserAge.Width = userStatistic.Width - 50;
+            chartUserAge.Series.RemoveAt(0);
+            chartUserAge.Series.Add("unter 18");
+            chartUserAge.Series.Add("unter 25");
+            chartUserAge.Series.Add("unter 35");
+            chartUserAge.Series.Add("unter 50");
+            chartUserAge.Series.Add("unter 60");
+            chartUserAge.Series.Add("über 60");
+
+          
            
             
+        }
+
+        private void initAgeChart()
+        {
+            int age;
+            int count_less18 = 0;
+            int count_less25 = 0;
+            int count_less35 = 0;
+            int count_less50 = 0;
+            int count_less60 = 0;
+            int count_gt60 = 0;
+
+            foreach (DataGridViewRow row in userTableDataSet.Rows)
+            {
+                age = Convert.ToInt32(row.Cells[4].Value.ToString());
+                if (age < 18)
+                {
+                    count_less18++;
+                }
+                else if (age < 25)
+                {
+                    count_less25++;
+                }
+                else if (age < 35)
+                {
+                    count_less35++;
+                }
+                else if (age < 50)
+                {
+                    count_less50++;
+                }
+                else if (age < 60)
+                {
+                    count_less60++;
+                }
+                else
+                {
+                    count_gt60++;
+                }                
+            }
+            chartUserAge.Series[0].Points.AddXY(0, count_less18);
+            chartUserAge.Series[1].Points.AddXY(1, count_less25);
+            chartUserAge.Series[2].Points.AddXY(2, count_less35);
+            chartUserAge.Series[3].Points.AddXY(3, count_less50);
+            chartUserAge.Series[4].Points.AddXY(4, count_less60);
+            chartUserAge.Series[5].Points.AddXY(5, count_gt60);
         }
 
         private void buttonUserAdd_Click(object sender, EventArgs e)
@@ -410,7 +463,8 @@ namespace BiBo
 
         private void displayCustomerDetails(Customer customer)
         {
-            labelUserDetails.Text = customer.ToString();
+            labelUserDetailsName.Text = "Name: " + customer.FirstName + " " + customer.LastName;
+            labelUserDetailsAdress.Text = "Adresse: " + customer.getFullAdress();
         }
 
         private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
@@ -422,7 +476,7 @@ namespace BiBo
             //@todo if main tab on user
             TextBox self = (TextBox) sender;
 
-            debug.Text = userTableDataSet.ToString();
+            
 
             for (int i = 0; i < userTableDataSet.Rows.Count; i++)
             {

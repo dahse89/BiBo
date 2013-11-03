@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.UserStatus = new System.Windows.Forms.Label();
             this.LoginAs = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -54,17 +57,19 @@
             this.textBoxUserFirstname = new System.Windows.Forms.TextBox();
             this.textBoxUserLastname = new System.Windows.Forms.TextBox();
             this.userDetails = new System.Windows.Forms.GroupBox();
+            this.labelUserDetailsAdress = new System.Windows.Forms.Label();
+            this.labelUserDetailsName = new System.Windows.Forms.Label();
+            this.labelUserDetails = new System.Windows.Forms.Label();
             this.userStatistic = new System.Windows.Forms.GroupBox();
             this.UserTablePanel = new System.Windows.Forms.GroupBox();
             this.userTableDataSet = new System.Windows.Forms.DataGridView();
             this.userName = new System.Windows.Forms.Label();
             this.userStat = new System.Windows.Forms.Label();
-            this.debug = new System.Windows.Forms.Label();
-            this.labelUserDetails = new System.Windows.Forms.Label();
             this.groupBoxSearch = new System.Windows.Forms.GroupBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.groupBoxSelectedRows = new System.Windows.Forms.GroupBox();
             this.buttonDeleteSelectedRows = new System.Windows.Forms.Button();
+            this.chartUserAge = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.MainPanel.SuspendLayout();
             this.UserAddPanel.SuspendLayout();
             this.userDetails.SuspendLayout();
@@ -73,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userTableDataSet)).BeginInit();
             this.groupBoxSearch.SuspendLayout();
             this.groupBoxSelectedRows.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartUserAge)).BeginInit();
             this.SuspendLayout();
             // 
             // UserStatus
@@ -311,6 +317,8 @@
             // 
             // userDetails
             // 
+            this.userDetails.Controls.Add(this.labelUserDetailsAdress);
+            this.userDetails.Controls.Add(this.labelUserDetailsName);
             this.userDetails.Controls.Add(this.labelUserDetails);
             this.userDetails.ForeColor = System.Drawing.Color.Black;
             this.userDetails.Location = new System.Drawing.Point(603, 173);
@@ -320,9 +328,35 @@
             this.userDetails.TabStop = false;
             this.userDetails.Text = "Kunden Details";
             // 
+            // labelUserDetailsAdress
+            // 
+            this.labelUserDetailsAdress.AutoSize = true;
+            this.labelUserDetailsAdress.Location = new System.Drawing.Point(10, 37);
+            this.labelUserDetailsAdress.Name = "labelUserDetailsAdress";
+            this.labelUserDetailsAdress.Size = new System.Drawing.Size(51, 13);
+            this.labelUserDetailsAdress.TabIndex = 2;
+            this.labelUserDetailsAdress.Text = "Adresse: ";
+            // 
+            // labelUserDetailsName
+            // 
+            this.labelUserDetailsName.AutoSize = true;
+            this.labelUserDetailsName.Location = new System.Drawing.Point(10, 19);
+            this.labelUserDetailsName.Name = "labelUserDetailsName";
+            this.labelUserDetailsName.Size = new System.Drawing.Size(41, 13);
+            this.labelUserDetailsName.TabIndex = 1;
+            this.labelUserDetailsName.Text = "Name: ";
+            // 
+            // labelUserDetails
+            // 
+            this.labelUserDetails.AutoSize = true;
+            this.labelUserDetails.Location = new System.Drawing.Point(9, 31);
+            this.labelUserDetails.Name = "labelUserDetails";
+            this.labelUserDetails.Size = new System.Drawing.Size(0, 13);
+            this.labelUserDetails.TabIndex = 0;
+            // 
             // userStatistic
             // 
-            this.userStatistic.Controls.Add(this.debug);
+            this.userStatistic.Controls.Add(this.chartUserAge);
             this.userStatistic.ForeColor = System.Drawing.Color.Black;
             this.userStatistic.Location = new System.Drawing.Point(598, 13);
             this.userStatistic.Name = "userStatistic";
@@ -376,23 +410,6 @@
             this.userStat.TabIndex = 1;
             this.userStat.Text = " ";
             // 
-            // debug
-            // 
-            this.debug.AutoSize = true;
-            this.debug.Location = new System.Drawing.Point(15, 28);
-            this.debug.Name = "debug";
-            this.debug.Size = new System.Drawing.Size(35, 13);
-            this.debug.TabIndex = 0;
-            this.debug.Text = "label5";
-            // 
-            // labelUserDetails
-            // 
-            this.labelUserDetails.AutoSize = true;
-            this.labelUserDetails.Location = new System.Drawing.Point(9, 31);
-            this.labelUserDetails.Name = "labelUserDetails";
-            this.labelUserDetails.Size = new System.Drawing.Size(0, 13);
-            this.labelUserDetails.TabIndex = 0;
-            // 
             // groupBoxSearch
             // 
             this.groupBoxSearch.Controls.Add(this.textBoxSearch);
@@ -431,6 +448,22 @@
             this.buttonDeleteSelectedRows.UseVisualStyleBackColor = true;
             this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);
             // 
+            // chartUserAge
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartUserAge.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartUserAge.Legends.Add(legend1);
+            this.chartUserAge.Location = new System.Drawing.Point(17, 19);
+            this.chartUserAge.Name = "chartUserAge";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartUserAge.Series.Add(series1);
+            this.chartUserAge.Size = new System.Drawing.Size(300, 107);
+            this.chartUserAge.TabIndex = 1;
+            this.chartUserAge.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,12 +490,12 @@
             this.userDetails.ResumeLayout(false);
             this.userDetails.PerformLayout();
             this.userStatistic.ResumeLayout(false);
-            this.userStatistic.PerformLayout();
             this.UserTablePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userTableDataSet)).EndInit();
             this.groupBoxSearch.ResumeLayout(false);
             this.groupBoxSearch.PerformLayout();
             this.groupBoxSelectedRows.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartUserAge)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,12 +534,14 @@
         private System.Windows.Forms.ComboBox comboBoxUserCountries;
         private System.Windows.Forms.Label labelUserCoutry;
         private System.Windows.Forms.Button buttonUserAdd;
-        private System.Windows.Forms.Label debug;
         private System.Windows.Forms.Label labelUserDetails;
         private System.Windows.Forms.GroupBox groupBoxSearch;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.GroupBox groupBoxSelectedRows;
         private System.Windows.Forms.Button buttonDeleteSelectedRows;
+        private System.Windows.Forms.Label labelUserDetailsName;
+        private System.Windows.Forms.Label labelUserDetailsAdress;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartUserAge;
 
     }
 }
