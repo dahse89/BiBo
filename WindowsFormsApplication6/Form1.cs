@@ -496,13 +496,15 @@ namespace BiBo
         private void booksImage_Click(object sender, EventArgs e)
         {
             //hide customer main panel
-            this.MainPanel.Visible = false;
+            this.CustomerMainPanel.Visible = false;
+            this.BooksMainPanel.Visible = true;
         }
 
         private void customerImage_Click(object sender, EventArgs e)
         {
             //show customer Main Panel
-            this.MainPanel.Visible = true;
+            this.CustomerMainPanel.Visible = true;
+            this.BooksMainPanel.Visible = false;
         }
 
     } 

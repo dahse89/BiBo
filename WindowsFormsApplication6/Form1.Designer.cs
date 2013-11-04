@@ -50,7 +50,8 @@ namespace BiBo
             this.booksImage = new System.Windows.Forms.Panel();
             this.customerImage = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.MainPanel = new System.Windows.Forms.Panel();
+            this.CustomerMainPanel = new System.Windows.Forms.Panel();
+            this.BooksMainPanel = new System.Windows.Forms.Panel();
             this.UserAddPanel = new System.Windows.Forms.GroupBox();
             this.buttonUserAdd = new System.Windows.Forms.Button();
             this.comboBoxUserCountries = new System.Windows.Forms.ComboBox();
@@ -84,7 +85,8 @@ namespace BiBo
             this.groupBoxSelectedRows = new System.Windows.Forms.GroupBox();
             this.buttonDeleteSelectedRows = new System.Windows.Forms.Button();
             this.chartUserAge = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.MainPanel.SuspendLayout();
+            this.CustomerMainPanel.SuspendLayout();
+            this.BooksMainPanel.SuspendLayout();
             this.UserAddPanel.SuspendLayout();
             this.userDetails.SuspendLayout();
             this.userStatistic.SuspendLayout();
@@ -148,17 +150,24 @@ namespace BiBo
             this.panel1.Size = new System.Drawing.Size(64, 64);
             this.panel1.TabIndex = 2;
             // 
-            // MainPanel
+            // CsutomerMainPanel
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.MainPanel.Controls.Add(this.UserAddPanel);
-            this.MainPanel.Controls.Add(this.userDetails);
-            this.MainPanel.Controls.Add(this.userStatistic);
-            this.MainPanel.Controls.Add(this.UserTablePanel);
-            this.MainPanel.Location = new System.Drawing.Point(220, 77);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(windowWidth - 235, windowHeight - 115);
-            this.MainPanel.TabIndex = 3;
+            this.CustomerMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CustomerMainPanel.Controls.Add(this.UserAddPanel);
+            this.CustomerMainPanel.Controls.Add(this.userDetails);
+            this.CustomerMainPanel.Controls.Add(this.userStatistic);
+            this.CustomerMainPanel.Controls.Add(this.UserTablePanel);
+            this.CustomerMainPanel.Location = new System.Drawing.Point(220, 77);
+            this.CustomerMainPanel.Name = "MainPanel";
+            this.CustomerMainPanel.Size = new System.Drawing.Size(windowWidth - 235, windowHeight - 115);
+            this.CustomerMainPanel.TabIndex = 3;
+            //
+            // booksMainPanel
+            //
+            this.BooksMainPanel.BackColor = Color.Red;
+            this.BooksMainPanel.Location = this.CustomerMainPanel.Location;
+            this.BooksMainPanel.Size = this.CustomerMainPanel.Size;
+            this.BooksMainPanel.Visible = false;
             // 
             // UserAddPanel
             // 
@@ -183,7 +192,7 @@ namespace BiBo
             this.UserAddPanel.ForeColor = System.Drawing.Color.Black;
             this.UserAddPanel.Location = new System.Drawing.Point(12, 13);
             this.UserAddPanel.Name = "UserAddPanel";
-            this.UserAddPanel.Size = new System.Drawing.Size(MainPanel.Width / 3 - 25, MainPanel.Height / 2 - 25);
+            this.UserAddPanel.Size = new System.Drawing.Size(CustomerMainPanel.Width / 3 - 25, CustomerMainPanel.Height / 2 - 25);
             this.UserAddPanel.TabIndex = 0;
             this.UserAddPanel.TabStop = false;
             this.UserAddPanel.Text = "Kunde hinzufügen";
@@ -340,9 +349,9 @@ namespace BiBo
             this.userDetails.Controls.Add(this.labelUserDetailsName);
             this.userDetails.Controls.Add(this.labelUserDetails);
             this.userDetails.ForeColor = System.Drawing.Color.Black;
-            this.userDetails.Location = new System.Drawing.Point(MainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
+            this.userDetails.Location = new System.Drawing.Point(CustomerMainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
             this.userDetails.Name = "userDetails";
-            this.userDetails.Size = new System.Drawing.Size(MainPanel.Width / 4 - 10, MainPanel.Height - UserAddPanel.Height - 15);
+            this.userDetails.Size = new System.Drawing.Size(CustomerMainPanel.Width / 4 - 10, CustomerMainPanel.Height - UserAddPanel.Height - 15);
             this.userDetails.TabIndex = 3;
             this.userDetails.TabStop = false;
             this.userDetails.Text = "Kunden Details";
@@ -376,9 +385,9 @@ namespace BiBo
             // userStatistic
             //
             this.userStatistic.ForeColor = System.Drawing.Color.Black;
-            this.userStatistic.Location = new System.Drawing.Point(MainPanel.Width / 3 - 4, 13);
+            this.userStatistic.Location = new System.Drawing.Point(CustomerMainPanel.Width / 3 - 4, 13);
             this.userStatistic.Name = "userStatistic";
-            this.userStatistic.Size = new System.Drawing.Size(MainPanel.Width * 2 / 3 - 7, UserAddPanel.Height);
+            this.userStatistic.Size = new System.Drawing.Size(CustomerMainPanel.Width * 2 / 3 - 7, UserAddPanel.Height);
             this.userStatistic.TabIndex = 2;
             this.userStatistic.TabStop = false;
             this.userStatistic.Text = "Statistic";
@@ -430,7 +439,7 @@ namespace BiBo
             this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
             this.UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15); 
             this.UserTablePanel.Name = "UserTablePanel";
-            this.UserTablePanel.Size = new System.Drawing.Size(MainPanel.Width * 3 / 4 - 25, MainPanel.Height - UserAddPanel.Height - 15);
+            this.UserTablePanel.Size = new System.Drawing.Size(CustomerMainPanel.Width * 3 / 4 - 25, CustomerMainPanel.Height - UserAddPanel.Height - 15);
             this.UserTablePanel.TabIndex = 1;
             this.UserTablePanel.TabStop = false;
             this.UserTablePanel.Text = "Kunden";  
@@ -473,7 +482,7 @@ namespace BiBo
             // groupBoxSearch
             // 
             this.groupBoxSearch.Controls.Add(this.textBoxSearch);
-            this.groupBoxSearch.Location = new System.Drawing.Point(13, MainPanel.Location.Y + UserTablePanel.Location.Y);
+            this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
             this.groupBoxSearch.Name = "groupBoxSearch";
             this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
             this.groupBoxSearch.TabIndex = 1;
@@ -516,7 +525,8 @@ namespace BiBo
             
             this.Controls.Add(this.groupBoxSelectedRows);
             this.Controls.Add(this.groupBoxSearch);
-            this.Controls.Add(this.MainPanel);
+            this.Controls.Add(this.CustomerMainPanel);
+            this.Controls.Add(this.BooksMainPanel);
             this.Controls.Add(this.userStat);
             this.Controls.Add(this.UserStatus);
             this.Controls.Add(this.userName);
@@ -528,7 +538,7 @@ namespace BiBo
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.MainPanel.ResumeLayout(false);
+            this.CustomerMainPanel.ResumeLayout(false);
             this.UserAddPanel.ResumeLayout(false);
             this.UserAddPanel.PerformLayout();
             this.userDetails.ResumeLayout(false);
@@ -552,7 +562,8 @@ namespace BiBo
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label LoginAs;
         private System.Windows.Forms.Label UserStatus;
-        private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Panel CustomerMainPanel;
+        private System.Windows.Forms.Panel BooksMainPanel;
         private System.Windows.Forms.Label userName;
         private System.Windows.Forms.Label userStat;
         private System.Windows.Forms.GroupBox UserAddPanel;
