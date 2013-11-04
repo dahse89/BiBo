@@ -33,6 +33,10 @@ namespace BiBo
             //get current window size
          
 
+            //force small monitor for testing <dahse89>
+            w = 1366;
+            h = 768;
+
             this.ClientSize = new System.Drawing.Size(w, h);
 
             int windowHeight = h;
@@ -43,8 +47,8 @@ namespace BiBo
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.UserStatus = new System.Windows.Forms.Label();
             this.LoginAs = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.booksImage = new System.Windows.Forms.Panel();
+            this.customerImage = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.UserAddPanel = new System.Windows.Forms.GroupBox();
@@ -116,28 +120,32 @@ namespace BiBo
             this.LoginAs.TabIndex = 0;
             this.LoginAs.Text = "eingeloggt als: ";
             // 
-            // panel3
+            // customer user image
             // 
-            this.panel3.BackgroundImage = global::BiBo.Properties.Resources.icon2;
-            this.panel3.Location = new System.Drawing.Point(286, 18);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(60, 53);
-            this.panel3.TabIndex = 2;
+            this.customerImage.BackgroundImage = global::BiBo.Properties.Resources.customer;
+            this.customerImage.Location = new System.Drawing.Point(221, 19);
+            this.customerImage.Name = "panel2";
+            this.customerImage.Size = new System.Drawing.Size(64, 64);
+            this.customerImage.TabIndex = 2;
+            this.customerImage.Click += new System.EventHandler(this.customerImage_Click);
             // 
-            // panel2
+            // books image
             // 
-            this.panel2.BackgroundImage = global::BiBo.Properties.Resources.user2;
-            this.panel2.Location = new System.Drawing.Point(221, 19);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(60, 65);
-            this.panel2.TabIndex = 2;
+            this.booksImage.BackgroundImage = global::BiBo.Properties.Resources.booksicon;
+            this.booksImage.Location = new System.Drawing.Point(286, 18);
+            this.booksImage.Name = "panel3";
+            this.booksImage.Size = new System.Drawing.Size(64, 64);
+            this.booksImage.TabIndex = 2;
+            this.booksImage.Click += new System.EventHandler(this.booksImage_Click);
+       
+            
             // 
-            // panel1
+            // currently panel1 not used
             // 
             this.panel1.BackgroundImage = global::BiBo.Properties.Resources.icon2;
             this.panel1.Location = new System.Drawing.Point(352, 18);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(60, 53);
+            this.panel1.Size = new System.Drawing.Size(64, 64);
             this.panel1.TabIndex = 2;
             // 
             // MainPanel
@@ -513,9 +521,9 @@ namespace BiBo
             this.Controls.Add(this.UserStatus);
             this.Controls.Add(this.userName);
             this.Controls.Add(this.LoginAs);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            //this.Controls.Add(this.panel1);
+            this.Controls.Add(this.booksImage);
+            this.Controls.Add(this.customerImage);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
@@ -539,8 +547,8 @@ namespace BiBo
 
         #endregion
 
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel customerImage;
+        private System.Windows.Forms.Panel booksImage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label LoginAs;
         private System.Windows.Forms.Label UserStatus;

@@ -492,6 +492,20 @@ namespace BiBo
             }
 
         }
-    }
+
+        private void booksImage_Click(object sender, EventArgs e)
+        {
+            //hide customer main panel
+            this.MainPanel.Visible = false;
+        }
+
+        private void customerImage_Click(object sender, EventArgs e)
+        {
+            //show customer Main Panel
+            this.MainPanel.Visible = true;
+        }
+
+    } 
+    
 }
  
