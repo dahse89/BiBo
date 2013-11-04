@@ -507,6 +507,11 @@ namespace BiBo
             this.BooksMainPanel.Visible = false;
         }
 
+        private void close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     } 
     
 }
