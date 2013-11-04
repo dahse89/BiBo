@@ -383,14 +383,14 @@ namespace BiBo
         private void userTableDataSet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //make all cells selected, so that it looks like the row is selected
-            for (int i = 0; i < userTableDataSet.Rows[e.RowIndex].Cells.Count; i++)
+            for (int i = 0; i < userTableDataSet.Rows[e.RowIndex].Cells.Count; i++) //IndexOutOfBoundException wenn man in der Tabelle auf de koopf klickt zum sortieren --> Marcus
             {
                 userTableDataSet.Rows[e.RowIndex].Cells[i].Selected = true;
             }
 
             //get  current user id and pass to show details method
             ulong custId = (ulong) Convert.ToInt64( userTableDataSet.Rows[e.RowIndex].Cells[1].Value.ToString() );
-            Customer currCustomer = SqlCustomer.getCustomerById(custId);
+            Customer currCustomer = SqlCustomer.GetEntryById(custId);
             displayCustomerDetails(currCustomer);
         }
 
@@ -415,7 +415,7 @@ namespace BiBo
             {
                 sid = userTableDataSet.Rows[i].Cells[1].Value.ToString();
                 id = (ulong)Convert.ToInt64(sid);
-                tmp = SqlCustomer.getCustomerById(id);
+                tmp = SqlCustomer.GetEntryById(id);
                 if (!tmp.ToString().ToUpper().Contains(self.Text.ToUpper()))
                 {
                     userTableDataSet.Rows[i].Visible = false;

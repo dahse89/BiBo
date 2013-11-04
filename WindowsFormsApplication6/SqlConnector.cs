@@ -43,12 +43,18 @@ namespace BiBo.DAO
 			return new CustomerDAO();
 		}
 		
-		public abstract bool CreateTable();
-		
 		public abstract bool AddEntry(T obj);
+
+        public abstract ulong AddEntryReturnId(T obj);
 		
 		public abstract bool DeleteEntry(T obj);
+
+        public abstract bool DeleteEntryByIdList(List<ulong> l);
+
+        public abstract T GetEntryById(ulong id);
 		
 		public abstract List<T> GetAllEntrys();
+
+        protected abstract T InitEntryByReader(SQLiteDataReader reader);
 	}
 }

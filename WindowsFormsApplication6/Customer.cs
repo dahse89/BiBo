@@ -151,8 +151,19 @@ namespace BiBo.Persons
         }
         
         public override string ToString()
-				{
-					return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate + " " + Street + " " + Town;
-				}
+		{
+			return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate + " " + Street + " " + Town;
+		}
+
+        public override bool Equals(object obj)
+        {
+            return obj.GetHashCode() == this.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            string hashString = this.firstName + this.lastName + this.birthDate + this.street + this.streetNumber + this.town;
+            return hashString.GetHashCode();
+        }
     }
 }

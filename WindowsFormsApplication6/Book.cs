@@ -8,11 +8,16 @@ namespace BiBo
   public class Book
   {
   	//Member-Variablen Deklaration
+    private ulong bookId;
     private string author;       			//Autor des Buch
     private string titel;        			//Titel
     private string subjectArea;  			//Fachrichtung
     private List<Exemplar> exemplare;	//Liste aller Exemplare
 
+    public ulong BookId
+    {
+        get { return this.BookId; }
+    }
     public string Author
     {
         get { return this.author; }
@@ -35,8 +40,9 @@ namespace BiBo
     }
 		
 	//Konstruktor
-	public Book(string author, string titel, string subjectArea)
+	public Book(ulong bookId, string author, string titel, string subjectArea)
 	{
+        this.bookId = bookId;
 		this.author = author;
 		this.titel = titel;
 		this.subjectArea = subjectArea;
@@ -50,7 +56,7 @@ namespace BiBo
          if (exemplare.Contains(newExemplar))
          		 return false;
          
-         newExemplar.ExemplarID = exemplare.Count+1;
+         newExemplar.ExemplarId = System.Convert.ToUInt64(exemplare.Count+1);
          exemplare.Add(newExemplar);
          return true;
          
@@ -65,15 +71,15 @@ namespace BiBo
          return false;
      }
      
-     public int GetLastExemplarId()
+     public ulong GetLastExemplarId() 
      {
-     	int lastId = -1;
+     	ulong lastId = 0;
      	foreach(Exemplar e in exemplare)
      	{
-     		if(e.ExemplarID > lastId)
-     			lastId = e.ExemplarID;
+     		if(e.ExemplarId > lastId)
+     			lastId = e.ExemplarId;
      	}
-     	return lastId;
+     	return lastId; // wenn lastId == 0, dann ist liste leer
      }
      
      public string CreateSignatur()
