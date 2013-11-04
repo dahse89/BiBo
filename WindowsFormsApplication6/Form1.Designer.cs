@@ -53,6 +53,7 @@ namespace BiBo
             this.CustomerMainPanel = new System.Windows.Forms.Panel();
             this.BooksMainPanel = new System.Windows.Forms.Panel();
             this.UserAddPanel = new System.Windows.Forms.GroupBox();
+            this.groupBoxAddBook = new System.Windows.Forms.GroupBox();            
             this.buttonUserAdd = new System.Windows.Forms.Button();
             this.comboBoxUserCountries = new System.Windows.Forms.ComboBox();
             this.labelUserCoutry = new System.Windows.Forms.Label();
@@ -153,10 +154,6 @@ namespace BiBo
             // CsutomerMainPanel
             // 
             this.CustomerMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CustomerMainPanel.Controls.Add(this.UserAddPanel);
-            this.CustomerMainPanel.Controls.Add(this.userDetails);
-            this.CustomerMainPanel.Controls.Add(this.userStatistic);
-            this.CustomerMainPanel.Controls.Add(this.UserTablePanel);
             this.CustomerMainPanel.Location = new System.Drawing.Point(220, 77);
             this.CustomerMainPanel.Name = "MainPanel";
             this.CustomerMainPanel.Size = new System.Drawing.Size(windowWidth - 235, windowHeight - 115);
@@ -164,32 +161,14 @@ namespace BiBo
             //
             // booksMainPanel
             //
-            this.BooksMainPanel.BackColor = Color.Red;
+            this.BooksMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.BooksMainPanel.Location = this.CustomerMainPanel.Location;
             this.BooksMainPanel.Size = this.CustomerMainPanel.Size;
             this.BooksMainPanel.Visible = false;
             // 
             // UserAddPanel
             // 
-            this.UserAddPanel.Controls.Add(this.buttonUserAdd);
-            this.UserAddPanel.Controls.Add(this.comboBoxUserCountries);
-            this.UserAddPanel.Controls.Add(this.labelUserCoutry);
-            this.UserAddPanel.Controls.Add(this.textBoxUserCity);
-            this.UserAddPanel.Controls.Add(this.labelUserCity);
-            this.UserAddPanel.Controls.Add(this.textBoxUserPLZ);
-            this.UserAddPanel.Controls.Add(this.labelPLZ);
-            this.UserAddPanel.Controls.Add(this.textBoxUserAdressExtention);
-            this.UserAddPanel.Controls.Add(this.labelUserStreetExtention);
-            this.UserAddPanel.Controls.Add(this.textBoxUserHomeNumber);
-            this.UserAddPanel.Controls.Add(this.textBoxUserStreet);
-            this.UserAddPanel.Controls.Add(this.label4);
-            this.UserAddPanel.Controls.Add(this.dateTimePickerAddUser);
-            this.UserAddPanel.Controls.Add(this.label2);
-            this.UserAddPanel.Controls.Add(this.label3);
-            this.UserAddPanel.Controls.Add(this.label1);
-            this.UserAddPanel.Controls.Add(this.textBoxUserFirstname);
-            this.UserAddPanel.Controls.Add(this.textBoxUserLastname);
-            this.UserAddPanel.ForeColor = System.Drawing.Color.Black;
+            this.UserAddPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.UserAddPanel.Location = new System.Drawing.Point(12, 13);
             this.UserAddPanel.Name = "UserAddPanel";
             this.UserAddPanel.Size = new System.Drawing.Size(CustomerMainPanel.Width / 3 - 25, CustomerMainPanel.Height / 2 - 25);
@@ -345,9 +324,6 @@ namespace BiBo
             // 
             // userDetails
             // 
-            this.userDetails.Controls.Add(this.labelUserDetailsAdress);
-            this.userDetails.Controls.Add(this.labelUserDetailsName);
-            this.userDetails.Controls.Add(this.labelUserDetails);
             this.userDetails.ForeColor = System.Drawing.Color.Black;
             this.userDetails.Location = new System.Drawing.Point(CustomerMainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
             this.userDetails.Name = "userDetails";
@@ -425,17 +401,8 @@ namespace BiBo
             chartUserAge.Legends.RemoveAt(0);
 
             // 
-            // userStatistic Adds
-            // 
-            this.userStatistic.Controls.Add(this.ageChartPanel);
-            //
-            // ageChartPanel Adds
-            //
-            this.ageChartPanel.Controls.Add(this.chartUserAge);
-            // 
             // UserTablePanel
-            // 
-            this.UserTablePanel.Controls.Add(this.userTableDataSet);
+            //             
             this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
             this.UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15); 
             this.UserTablePanel.Name = "UserTablePanel";
@@ -481,7 +448,6 @@ namespace BiBo
             // 
             // groupBoxSearch
             // 
-            this.groupBoxSearch.Controls.Add(this.textBoxSearch);
             this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
             this.groupBoxSearch.Name = "groupBoxSearch";
             this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
@@ -499,7 +465,6 @@ namespace BiBo
             // 
             // groupBoxSelectedRows
             // 
-            this.groupBoxSelectedRows.Controls.Add(this.buttonDeleteSelectedRows);
             this.groupBoxSelectedRows.Location = new System.Drawing.Point(13, groupBoxSearch.Location.Y + groupBoxSearch.Height + 5);
             this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";
             this.groupBoxSelectedRows.Size = new System.Drawing.Size(groupBoxSearch.Width, 120);
@@ -522,18 +487,6 @@ namespace BiBo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            
-            this.Controls.Add(this.groupBoxSelectedRows);
-            this.Controls.Add(this.groupBoxSearch);
-            this.Controls.Add(this.CustomerMainPanel);
-            this.Controls.Add(this.BooksMainPanel);
-            this.Controls.Add(this.userStat);
-            this.Controls.Add(this.UserStatus);
-            this.Controls.Add(this.userName);
-            this.Controls.Add(this.LoginAs);
-            //this.Controls.Add(this.panel1);
-            this.Controls.Add(this.booksImage);
-            this.Controls.Add(this.customerImage);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
@@ -552,6 +505,81 @@ namespace BiBo
             ((System.ComponentModel.ISupportInitialize)(this.chartUserAge)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+            //
+            // groupBoxAddBook
+            //
+            this.groupBoxAddBook.Text = "Buch hinzufügen";
+            this.groupBoxAddBook.Location = new Point(10, 10);
+            this.groupBoxAddBook.Size = new Size(this.BooksMainPanel.Width / 2 - 20, this.BooksMainPanel.Height / 2 - 20);
+
+
+            /*
+             * Controll Adds
+             */
+
+            //Adds to BooksMainPanel
+            this.BooksMainPanel.Controls.Add(this.groupBoxAddBook);
+
+            //Adds to CustomerMainPanel
+            this.CustomerMainPanel.Controls.Add(this.UserAddPanel);
+            this.CustomerMainPanel.Controls.Add(this.userDetails);
+            this.CustomerMainPanel.Controls.Add(this.userStatistic);
+            this.CustomerMainPanel.Controls.Add(this.UserTablePanel);
+
+            // Adds to UserAddPanel
+            this.UserAddPanel.Controls.Add(this.buttonUserAdd);
+            this.UserAddPanel.Controls.Add(this.comboBoxUserCountries);
+            this.UserAddPanel.Controls.Add(this.labelUserCoutry);
+            this.UserAddPanel.Controls.Add(this.textBoxUserCity);
+            this.UserAddPanel.Controls.Add(this.labelUserCity);
+            this.UserAddPanel.Controls.Add(this.textBoxUserPLZ);
+            this.UserAddPanel.Controls.Add(this.labelPLZ);
+            this.UserAddPanel.Controls.Add(this.textBoxUserAdressExtention);
+            this.UserAddPanel.Controls.Add(this.labelUserStreetExtention);
+            this.UserAddPanel.Controls.Add(this.textBoxUserHomeNumber);
+            this.UserAddPanel.Controls.Add(this.textBoxUserStreet);
+            this.UserAddPanel.Controls.Add(this.label4);
+            this.UserAddPanel.Controls.Add(this.dateTimePickerAddUser);
+            this.UserAddPanel.Controls.Add(this.label2);
+            this.UserAddPanel.Controls.Add(this.label3);
+            this.UserAddPanel.Controls.Add(this.label1);
+            this.UserAddPanel.Controls.Add(this.textBoxUserFirstname);
+            this.UserAddPanel.Controls.Add(this.textBoxUserLastname);
+            
+            // Adds to userDetails panel
+            this.userDetails.Controls.Add(this.labelUserDetailsAdress);
+            this.userDetails.Controls.Add(this.labelUserDetailsName);
+            this.userDetails.Controls.Add(this.labelUserDetails);
+
+            // Adds to userStatistic panel           
+            this.userStatistic.Controls.Add(this.ageChartPanel);
+
+            // Adds to ageChartPanel         
+            this.ageChartPanel.Controls.Add(this.chartUserAge);
+
+            //Adds to userTabelPanel
+            this.UserTablePanel.Controls.Add(this.userTableDataSet);
+
+            //Adds to groupBoxSearch
+            this.groupBoxSearch.Controls.Add(this.textBoxSearch);
+
+            //Adds to groupBoxSelectedRows
+            this.groupBoxSelectedRows.Controls.Add(this.buttonDeleteSelectedRows);
+
+            //Add to From 1 (main window)
+            this.Controls.Add(this.groupBoxSelectedRows);
+            this.Controls.Add(this.groupBoxSearch);
+            this.Controls.Add(this.CustomerMainPanel);
+            this.Controls.Add(this.BooksMainPanel);
+            this.Controls.Add(this.userStat);
+            this.Controls.Add(this.UserStatus);
+            this.Controls.Add(this.userName);
+            this.Controls.Add(this.LoginAs);
+            //this.Controls.Add(this.panel1);
+            this.Controls.Add(this.booksImage);
+            this.Controls.Add(this.customerImage);
+
+
 
         }
 
@@ -571,6 +599,7 @@ namespace BiBo
         private System.Windows.Forms.GroupBox userDetails;
         private System.Windows.Forms.GroupBox userStatistic;
         private System.Windows.Forms.GroupBox ageChartPanel;
+        private System.Windows.Forms.GroupBox groupBoxAddBook;
         private System.Windows.Forms.DataGridView userTableDataSet;
         private System.Windows.Forms.DateTimePicker dateTimePickerAddUser;
         private System.Windows.Forms.Label label2;
