@@ -12,3 +12,9 @@ Marcus:
 Die Readme zur unterhaltung nutzen, auch nicht schlecht ^^
 Von mir aus gerne einfach noch nen Default Konstruktor setzen. Aber bei Klassen, die Variablen haben die nur einmal gesetzt 
 werden, und keine setter haben, klappt das nicht, da diese ja später nicht mehr neu gesetzt werden können.
+
+Vico:
+Also ich finde es ne gute Idee, da diese Datei ja immer zu sehen ist :D
+Öhm, naja, das ist in der Tat so!
+Aber ich würde der Einfachkeit-halber noch einen Default Konstruktor definieren, welcher ohne Parameter aufgerufen werden kann!
+
