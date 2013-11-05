@@ -29,6 +29,7 @@ namespace BiBo
         private GroupBox groupBoxSearch             = new GroupBox();
         private GroupBox groupBoxSelectedRows       = new GroupBox();
         private GroupBox ageChartPanel              = new GroupBox();
+        private GroupBox groupBoxBookTable          = new GroupBox();
         #endregion
         #region init Button
         private Button buttonUserAdd                = new Button();
@@ -77,6 +78,7 @@ namespace BiBo
         #endregion
         #region init DataGridView
         private DataGridView userTableDataSet        = new DataGridView();
+        private DataGridView booksTableDataSet       = new DataGridView();
         #endregion
         #region init Chart
         private Chart chartUserAge                   = new Chart();
@@ -189,6 +191,7 @@ namespace BiBo
                 this.panel1.TabIndex = 2;
                 #endregion
 
+                //Main Panel
                 #region CutomerMainPanel
                     #region CutomerMainPanel Values
                     this.CustomerMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -446,9 +449,8 @@ namespace BiBo
                     this.BooksMainPanel.Location = this.CustomerMainPanel.Location;
                     this.BooksMainPanel.Size = this.CustomerMainPanel.Size;
                     this.BooksMainPanel.Visible = false;
-
-                    #region Add Book
-                        #region groupBoxAddBook
+                  
+                    #region groupBoxAddBook
                             this.groupBoxAddBook.Text = "Buch hinzufügen";
                             this.groupBoxAddBook.Location = new Point(10, 10);
                             this.groupBoxAddBook.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height / 6 - 20);
@@ -471,14 +473,30 @@ namespace BiBo
                                     this.textBoxBookAddTitel.Size = this.textBoxBookAddauthor.Size;
                                     this.textBoxBookAddsubjectArea.Size = this.textBoxBookAddauthor.Size;
                                 #endregion
-                        #endregion
-                    //addBooksActionButton
+                                #region addBooksActionButton
+                                    this.addBooksActionButton.Location = new Point(10, 110);
+                                    this.addBooksActionButton.Size = new Size(95,25);
+                                    this.addBooksActionButton.Text = "Buch hinzufügen";
+                                    this.addBooksActionButton.Click += new System.EventHandler(addBooksActionButton_Click);
+                                #endregion
                     #endregion
+                    #region groupBoxBookTable
+                        this.groupBoxBookTable.Text = "Bücher Tabelle";
+                        this.groupBoxBookTable.Location = new Point(10, this.groupBoxAddBook.Location.Y + this.groupBoxAddBook.Height + 10);
+                        this.groupBoxBookTable.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height *5 / 6 );
+                        #region booksTableDataSet
+                            this.booksTableDataSet.Location = new Point(10,20);
 
+                            this.booksTableDataSet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                            this.booksTableDataSet.Name = "booksTableDataSet";
+                            this.booksTableDataSet.Size = new System.Drawing.Size(this.groupBoxBookTable.Width - 25, this.groupBoxBookTable.Height - 35);
+                            this.booksTableDataSet.TabIndex = 0;
+                        #endregion
+                    #endregion
                 #endregion
 
-                #region groupBoxSearch
-                    this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
+                        #region groupBoxSearch
+                        this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
                     this.groupBoxSearch.Name = "groupBoxSearch";
                     this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
                     this.groupBoxSearch.TabIndex = 1;
@@ -534,21 +552,25 @@ namespace BiBo
                     this.SuspendLayout();
                     #endregion
 
-            /*
+                    /*
              * Controll Adds
              */
 
-           
+            #region groupBoxBookTable
+            this.groupBoxBookTable.Controls.Add(this.booksTableDataSet);
+            #endregion
             #region Adds to groupBoxAddBook
-            this.groupBoxAddBook.Controls.Add(this.textBoxBookAddauthor);
+                    this.groupBoxAddBook.Controls.Add(this.textBoxBookAddauthor);
             this.groupBoxAddBook.Controls.Add(this.textBoxBookAddsubjectArea);
             this.groupBoxAddBook.Controls.Add(this.textBoxBookAddTitel);
             this.groupBoxAddBook.Controls.Add(this.labelBookAddauthor);
             this.groupBoxAddBook.Controls.Add(this.labelBookAddsubjectArea);
             this.groupBoxAddBook.Controls.Add(this.lableBookAddTitel);
+            this.groupBoxAddBook.Controls.Add(this.addBooksActionButton);
             #endregion
             #region Adds to BooksMainPanel
             this.BooksMainPanel.Controls.Add(this.groupBoxAddBook);
+            this.BooksMainPanel.Controls.Add(this.groupBoxBookTable);
             #endregion
             #region Adds to CustomerMainPanel
             this.CustomerMainPanel.Controls.Add(this.UserAddPanel);
