@@ -19,4 +19,4 @@ Also ich finde es ne gute Idee, da diese Datei ja immer zu sehen ist :D
 Aber ich würde der Einfachkeit-halber noch einen Default Konstruktor definieren, welcher ohne Parameter aufgerufen werden kann!
 
 Philipp: Hab mal das Aufgaben_Blatt.jpg mit reingepackt. Ich versteh was Ihr meint mit den Konstruktoren und dann müsste z.B.
-Customer auch einen Setter für die ID haben, was ich allerdings sehr begrüßen würde, siehe Form1.pushUserToGUITableAndDB() -> dummy
+Customer auch einen Setter für die ID haben, was ich allerdings sehr begrüßen würde, siehe Form1.Customer.pushUserToGUITableAndDB() -> dummy
