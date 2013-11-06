@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tabs.cs" />
     <Compile Include="Exemplar.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Admin.cs" />
@@ -63,11 +64,11 @@
     <Compile Include="ExemplarDAO.cs" />
     <Compile Include="Form1.Books.cs">
       <SubType>Form</SubType>
-	  <DependentUpon>Form1.cs</DependentUpon>
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.Customer.cs">
       <SubType>Form</SubType>
-	  <DependentUpon>Form1.cs</DependentUpon>
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Library.cs" />
     <Compile Include="Validation.cs" />

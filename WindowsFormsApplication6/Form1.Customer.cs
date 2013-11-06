@@ -285,15 +285,13 @@ namespace BiBo
          */
 
 
+
         //search in data grid view and hide dismatched rows
-        private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
-        {
+        private void searchUserTable(String str){
+
             Customer tmp;
             ulong id;
             string sid;
-
-            //@todo if main tab on user
-            TextBox self = (TextBox)sender;
 
             //run througth rows
             for (int i = 0; i < userTableDataSet.Rows.Count; i++)
@@ -308,7 +306,7 @@ namespace BiBo
                 tmp = SqlCustomer.GetEntryById(id);
 
                 //check if search input is in toString value of customer
-                if (!tmp.ToString().ToUpper().Contains(self.Text.ToUpper()))
+                if (!tmp.ToString().ToUpper().Contains(str.ToUpper()))
                 {
                     //hide row
                     userTableDataSet.Rows[i].Visible = false;

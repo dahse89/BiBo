@@ -506,21 +506,21 @@ namespace BiBo
                 #endregion
 
                         #region groupBoxSearch
-                        this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
-                    this.groupBoxSearch.Name = "groupBoxSearch";
-                    this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
-                    this.groupBoxSearch.TabIndex = 1;
-                    this.groupBoxSearch.TabStop = false;
-                    this.groupBoxSearch.Text = "Suche";
+                            this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
+                            this.groupBoxSearch.Name = "groupBoxSearch";
+                            this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
+                            this.groupBoxSearch.TabIndex = 1;
+                            this.groupBoxSearch.TabStop = false;
+                            this.groupBoxSearch.Text = "Suche";
 
-                    #region textBoxSearch
-                this.textBoxSearch.Location = new System.Drawing.Point(6, 19);
-                this.textBoxSearch.Name = "textBoxSearch";
-                this.textBoxSearch.Size = new System.Drawing.Size(200, 20);
-                this.textBoxSearch.TabIndex = 0;
-                this.textBoxSearch.KeyUp += new KeyEventHandler(this.textBoxSearch_KeyUp);
-                #endregion
-                #endregion
+                            #region textBoxSearch
+                                this.textBoxSearch.Location = new System.Drawing.Point(6, 19);
+                                this.textBoxSearch.Name = "textBoxSearch";
+                                this.textBoxSearch.Size = new System.Drawing.Size(200, 20);
+                                this.textBoxSearch.TabIndex = 0;
+                                this.textBoxSearch.KeyUp += new KeyEventHandler(this.textBoxSearch_KeyUp);
+                            #endregion
+                        #endregion
                 #region  groupBoxSelectedRows
                     this.groupBoxSelectedRows.Location = new System.Drawing.Point(13, groupBoxSearch.Location.Y + groupBoxSearch.Height + 5);
                     this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";

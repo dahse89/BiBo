@@ -34,6 +34,15 @@ namespace BiBo
 
             //make table readonly
             setBooksTableReadOnly();
+           
+        }
+
+        //clear book add form
+        private void clearBookAddForm()
+        {
+            this.textBoxBookAddauthor.Text = "";
+            this.textBoxBookAddsubjectArea.Text = "";
+            this.textBoxBookAddTitel.Text = "";
         }
 
         //set all cells in datagridview readonly. except the checkbox cells
@@ -98,21 +107,54 @@ namespace BiBo
 
             //save book in SQLLite table
             addBookToTableAndDb(author, title, genre);
+            clearBookAddForm();
 
+        }
 
+        private void searchBookTable(String str)
+        {
+
+            Book tmp;
+            ulong id;
+            string sid;
+
+            //run througth rows
+            for (int i = 0; i < booksTableDataSet.Rows.Count; i++)
+            {
+                //get customer id as string
+                sid = booksTableDataSet.Rows[i].Cells[1].Value.ToString();
+
+                //convert id string to ulong
+                id = (ulong)Convert.ToInt64(sid);
+
+                //get customer form SQLLite table
+                tmp = SqlBook.GetEntryById(id);
+
+                //check if search input is in toString value of customer
+                if (!tmp.ToString().ToUpper().Contains(str.ToUpper()))
+                {
+                    //hide row
+                    booksTableDataSet.Rows[i].Visible = false;
+                }
+                else
+                {
+                    //show row
+                    booksTableDataSet.Rows[i].Visible = true;
+                }
+            }
         }
         
 
-            private void addBookToTableAndDb(String author,String title, String genre){
-                 Book dummy = new Book(0,author,title,genre);
-                 ulong bookID = SqlBook.AddEntryReturnId(dummy);
+        private void addBookToTableAndDb(String author,String title, String genre){
+                Book dummy = new Book(0,author,title,genre);
+                ulong bookID = SqlBook.AddEntryReturnId(dummy);
 
-                addBookToTable(new Book(
-                    bookID,
-                    author,
-                    title,
-                    genre
-                 ));
-            }
+            addBookToTable(new Book(
+                bookID,
+                author,
+                title,
+                genre
+                ));
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace BiBo
         private String LoginAsUserName; //name of current logged user
         private String   UserStatusText; //status of current logged user
 
+        private Tabs activTab = Tabs.CUSTOMER;
+
         //@todo remove this, it is only needed of testing
         private Random r = new Random();
 
@@ -92,6 +94,8 @@ namespace BiBo
             //show customer Main Panel hide others
             this.CustomerMainPanel.Visible = true;
             this.BooksMainPanel.Visible = false;
+
+            this.activTab = Tabs.CUSTOMER;
         }
 
         private void booksImage_Click(object sender, EventArgs e)
@@ -99,12 +103,29 @@ namespace BiBo
             //show books Main Panel hide others
             this.CustomerMainPanel.Visible = false;
             this.BooksMainPanel.Visible = true;
+
+            this.activTab = Tabs.BOOK;
         }
 
         //close application
         private void close_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        //search
+        private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+
+            //@todo if main tab on user
+            TextBox self = (TextBox)sender;
+
+            switch(this.activTab)
+            {
+                case Tabs.CUSTOMER: searchUserTable(self.Text); break;
+                case Tabs.BOOK: searchBookTable(self.Text); break;
+            }
+
         }
     } 
     
