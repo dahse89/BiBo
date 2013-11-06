@@ -440,6 +440,11 @@ namespace BiBo
                         this.userTableDataSet.Size = new System.Drawing.Size(UserTablePanel.Width - 15, UserTablePanel.Height - 25);
                         this.userTableDataSet.TabIndex = 0;
                         this.userTableDataSet.CellClick += new DataGridViewCellEventHandler(this.userTableDataSet_CellClick);
+                        //enable contentless left colum
+                        this.userTableDataSet.RowHeadersVisible = false;
+                        //enable empty last row
+                        this.userTableDataSet.AllowUserToAddRows = false;
+                        this.userTableDataSet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                         #endregion
                     #endregion
 
@@ -453,7 +458,7 @@ namespace BiBo
                     #region groupBoxAddBook
                             this.groupBoxAddBook.Text = "Buch hinzufügen";
                             this.groupBoxAddBook.Location = new Point(10, 10);
-                            this.groupBoxAddBook.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height / 6 - 20);
+                            this.groupBoxAddBook.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height / 4 - 20);
                                 #region Book Add Labels
                                     this.labelBookAddauthor.Location = new Point(10, 20);
                                     this.lableBookAddTitel.Location = new Point(labelBookAddauthor.Location.X, labelBookAddauthor.Location.Y + 30);
@@ -483,14 +488,19 @@ namespace BiBo
                     #region groupBoxBookTable
                         this.groupBoxBookTable.Text = "Bücher Tabelle";
                         this.groupBoxBookTable.Location = new Point(10, this.groupBoxAddBook.Location.Y + this.groupBoxAddBook.Height + 10);
-                        this.groupBoxBookTable.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height *5 / 6 );
+                        this.groupBoxBookTable.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height * 3 / 4 );
                         #region booksTableDataSet
                             this.booksTableDataSet.Location = new Point(10,20);
-
                             this.booksTableDataSet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
                             this.booksTableDataSet.Name = "booksTableDataSet";
                             this.booksTableDataSet.Size = new System.Drawing.Size(this.groupBoxBookTable.Width - 25, this.groupBoxBookTable.Height - 35);
                             this.booksTableDataSet.TabIndex = 0;
+                            this.booksTableDataSet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                            //enable contentless left colum
+                            this.booksTableDataSet.RowHeadersVisible = false;
+                            //enable empty last row
+                            this.booksTableDataSet.AllowUserToAddRows = false;
+                            
                         #endregion
                     #endregion
                 #endregion

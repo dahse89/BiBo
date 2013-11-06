@@ -22,13 +22,15 @@ namespace BiBo
         //@todo remove this, it is only needed of testing
         private Random r = new Random();
 
-        //SQLLite Adapter for Customers
+        //SQLLite Adapters
         private CustomerDAO SqlCustomer;
+        private BookDAO SqlBook;
 
         //constructor with getting SQLLite Adapters
-        public Form1(CustomerDAO CustCon)
+        public Form1(CustomerDAO CustSQL, BookDAO BookSQL)
         {
-            this.SqlCustomer = CustCon;
+            this.SqlCustomer = CustSQL;
+            this.SqlBook = BookSQL;
             __construct();
         }
 
@@ -74,6 +76,9 @@ namespace BiBo
             //fill content on customer tab
             //@see Form1.Customer
             this.publishCustomerContent();
+            //fill content on books tab
+            //@see Form1.Books
+            this.publishBookContent();
         }
 
 
@@ -100,8 +105,7 @@ namespace BiBo
         private void close_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }       
-
+        }
     } 
     
 }

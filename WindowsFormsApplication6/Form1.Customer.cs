@@ -228,15 +228,6 @@ namespace BiBo
              //userAddBirthDay Default;
             dateTimePickerAddUser.Value = userAddBirthDayDefault;
 
-            //create data table for datagridview
-            DataTable ds = new DataTable("UserTable");
-
-            //enable contentless left colum
-            userTableDataSet.RowHeadersVisible = false;
-
-            //enable empty last row
-            userTableDataSet.AllowUserToAddRows = false;
-
             //set number of culoms
             userTableDataSet.ColumnCount = 7;
 

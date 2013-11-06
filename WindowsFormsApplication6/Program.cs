@@ -18,13 +18,11 @@ namespace BiBo
         {
         
           CustomerDAO conCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
-          //Customer c = new Customer(1234, "Philipp", "Dahse", new DateTime(1989,12,4));
-          //conCustomer.DeleteEntry(c);
-          //conCustomer.AddEntry(c);
+          BookDAO conBooks = SqlConnector<Book>.GetBookSqlInstance();
           
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
-          Application.Run(new Form1(conCustomer));
+          Application.Run(new Form1(conCustomer,conBooks));
 
           
         }

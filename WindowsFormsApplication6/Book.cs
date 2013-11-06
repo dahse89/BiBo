@@ -16,7 +16,7 @@ namespace BiBo
 
     public ulong BookId
     {
-        get { return this.BookId; }
+        get { return this.bookId; }
     }
     public string Author
     {

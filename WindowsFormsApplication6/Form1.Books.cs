@@ -3,11 +3,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace BiBo
 {
     partial class Form1
     {
+
+        //fill GUI with content
+        private void publishBookContent()
+        {
+            //create data table for datagridview
+
+            //set number of culoms
+            this.booksTableDataSet.ColumnCount = 4;
+
+            //set colum names
+            this.booksTableDataSet.Columns[0].Name = "ID";
+            this.booksTableDataSet.Columns[1].Name = "Author";
+            this.booksTableDataSet.Columns[2].Name = "Title";
+            this.booksTableDataSet.Columns[3].Name = "Genre";
+
+            //insert a special colum for checkboxes
+            this.booksTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
+
+            foreach (Book book in SqlBook.GetAllEntrys())
+            {
+                addBookToTable(book);
+            }
+
+            //make table readonly
+            setBooksTableReadOnly();
+        }
+
+        //set all cells in datagridview readonly. except the checkbox cells
+        private void setBooksTableReadOnly()
+        {
+            //run through all rows
+            for (int i = 0; i < this.booksTableDataSet.Rows.Count; i++)
+            {
+                //run through all cells of row
+                for (int j = 0; j < this.booksTableDataSet.Rows[i].Cells.Count; j++)
+                {
+                    if (j != 0) // if not is checkbox cell
+                    {
+                        //set cell readonly
+                        this.booksTableDataSet.Rows[i].Cells[j].ReadOnly = true;
+                    }
+                }
+            }
+        }
+
+        private void addBookToTable(Book book)
+        {
+            this.booksTableDataSet.Rows.Add(
+                false,
+                book.BookId,
+                book.Author,
+                book.Titel,
+                book.SubjectArea
+             );
+        }
+
         //@todo add book to SQLLite Table
         private void addBooksActionButton_Click(object sender, EventArgs e)
         {
@@ -38,6 +95,24 @@ namespace BiBo
                 textBoxBookAddsubjectArea.BackColor = Color.Red;
                 return;
             }
+
+            //save book in SQLLite table
+            addBookToTableAndDb(author, title, genre);
+
+
         }
+        
+
+            private void addBookToTableAndDb(String author,String title, String genre){
+                 Book dummy = new Book(0,author,title,genre);
+                 ulong bookID = SqlBook.AddEntryReturnId(dummy);
+
+                addBookToTable(new Book(
+                    bookID,
+                    author,
+                    title,
+                    genre
+                 ));
+            }
     }
 }
