@@ -417,9 +417,7 @@ namespace BiBo
             clearUserAddFrom();
         }
 
-
-        //delete customer which are selected in datagrid view
-        private void buttonDeleteSelectedRows_Click(object sender, EventArgs e)
+        private void deleteSelectedCustomers()
         {
             //init a list for collecting id that should be deleted
             List<ulong> potentialDeletedIds = new List<ulong>();
@@ -487,7 +485,6 @@ namespace BiBo
                     }
                 }
             }
-
         }
     }
 }

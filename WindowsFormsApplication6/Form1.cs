@@ -113,6 +113,17 @@ namespace BiBo
             Application.Exit();
         }
 
+        //delete
+        //delete customer which are selected in datagrid view
+        private void buttonDeleteSelectedRows_Click(object sender, EventArgs e)
+        {
+            switch(this.activTab)
+            {
+                case Tabs.CUSTOMER: deleteSelectedCustomers(); break;
+                case Tabs.BOOK: deleteSelectedBooks(); break;
+            }
+        }
+
         //search
         private void textBoxSearch_KeyUp(object sender, KeyEventArgs e)
         {
