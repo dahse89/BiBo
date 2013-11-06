@@ -63,6 +63,7 @@ namespace BiBo
             }
         }
 
+        //add books to datagridview
         private void addBookToTable(Book book)
         {
             this.booksTableDataSet.Rows.Add(
@@ -74,7 +75,7 @@ namespace BiBo
              );
         }
 
-        //@todo add book to SQLLite Table
+        //add book to SQLLite Table
         private void addBooksActionButton_Click(object sender, EventArgs e)
         {
             //author
@@ -144,8 +145,9 @@ namespace BiBo
             }
         }
         
-
+        //summary of add book functions
         private void addBookToTableAndDb(String author,String title, String genre){
+
                 Book dummy = new Book(0,author,title,genre);
                 ulong bookID = SqlBook.AddEntryReturnId(dummy);
 
