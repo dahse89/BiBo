@@ -61,6 +61,12 @@
     <Compile Include="Employee.cs" />
     <Compile Include="Book.cs" />
     <Compile Include="ExemplarDAO.cs" />
+    <Compile Include="Form1.Books.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library.cs" />
     <Compile Include="Validation.cs" />
     <Compile Include="Form1.cs">
