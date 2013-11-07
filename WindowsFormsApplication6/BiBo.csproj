@@ -59,11 +59,9 @@
     <Compile Include="Book.cs" />
     <Compile Include="ExemplarDAO.cs" />
     <Compile Include="Form1.Books.cs">
-      <SubType>Form</SubType>
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.Customer.cs">
-      <SubType>Form</SubType>
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Library.cs" />
