@@ -55,10 +55,9 @@ namespace BiBo.DAO
         public override ulong AddEntryReturnId(Book book)
         {
             AddEntry(book);
-
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "select last_insert_rowid()";
-            UInt64 lastRowID64 = (UInt64)command.ExecuteScalar();
+            Int64 lastRowID64 = Convert.ToInt64(command.ExecuteScalar());
             return (ulong)lastRowID64;
         }
 
