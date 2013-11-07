@@ -1,6 +1,6 @@
 BiBo
 ====
-Wir sollten vielleicht auch mal drüber nachdenken, ob wir nicht die Konstruktoren generell ohne Parameter erstellen.
+Wir sollten vielleicht auch mal darüber nachdenken, ob wir nicht die Konstruktoren generell ohne Parameter erstellen.
 Konstruktoren mit Parametern sind generell ja nix schlechtes. Aber sie werden in aktuellen Frameworks nicht mehr verwendet,
 da immer der Zwang besteht diese auch so zu Benutzen, wie der Entwickler es vorgesehen hat.
 Sollten wir eventuell nochmal drüber nachdenken.
@@ -26,7 +26,7 @@ TODOs
 
 info
 ----
-Bis jetzt habe ich alles so gemacht wie Vico es ursprünglich vorgeschlagen hatte. Ich habe alle Änderungen direkt in der DB gemacht und im GUI, dann gibt es zwar, wie ursprünglich von mir vorgeschlagen keine Object Ebene die immer im RAM liegt, aber das ist ok. Bei den Classen Methoden sollen wir das also bei behalten.
+Bis jetzt habe ich alles so gemacht wie Vico es ursprünglich vorgeschlagen hatte. Ich habe alle Änderungen direkt in der DB gemacht und im GUI, dann gibt es zwar keine, wie ursprünglich von mir vorgeschlagen, Object-Ebene die immer im RAM liegt, aber das ist ok. Bei den Classen Methoden sollten wir das also bei behalten.
 
 create ChargeAccountDAO
 -----------------------
@@ -47,7 +47,7 @@ Erstmal hätte ich hier eine Grundlegende Frage:
 
 Wollen wir die DB Abfragen und die Objekte vermischen oder nicht. Was ich meine ist folgnedes:
 
-Kann der Object auf die DB zugreifen oder geift immer das DB Object auf das die Objecte zu. z.B:
+Kann das Object auf die DB zugreifen oder geift immer das DB Object auf die Objecte zu. z.B:
 ```cs
     /*
      * delete a customer
