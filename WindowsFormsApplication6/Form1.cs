@@ -203,7 +203,7 @@ namespace BiBo
 
             foreach (string tagname in tags.Keys)
             {
-                chartUserAge.Series[0].Points.AddXY(tagname, tags[tagname]);
+               // chartUserAge.Series[0].Points.AddXY(tagname, tags[tagname]);
             }
           
         }

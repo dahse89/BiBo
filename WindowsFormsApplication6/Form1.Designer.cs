@@ -39,7 +39,7 @@ namespace BiBo
             int windowWidth = w;
 
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            //System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.UserStatus = new System.Windows.Forms.Label();
             this.LoginAs = new System.Windows.Forms.Label();
@@ -385,12 +385,12 @@ namespace BiBo
             // 
             chartArea1.Name = "ChartArea1";
             this.chartUserAge.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartUserAge.Legends.Add(legend1);
+            //legend1.Name = "Legend1";
+           // this.chartUserAge.Legends.Add(legend1);
             this.chartUserAge.Location = new System.Drawing.Point(0, 0);
             this.chartUserAge.Name = "chartUserAge";
             series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
+            //series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chartUserAge.Series.Add(series1);
             this.chartUserAge.Width = ageChartPanel.Width;
@@ -400,12 +400,12 @@ namespace BiBo
 
           
             chartUserAge.Series[0].Points.Clear();
-            chartUserAge.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            //chartUserAge.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
             chartUserAge.BackColor = Color.Transparent;
 
 
-            chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
-            chartUserAge.Legends.RemoveAt(0);
+           // chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
+           // chartUserAge.Legends.RemoveAt(0);
 
             // 
             // userStatistic Adds
