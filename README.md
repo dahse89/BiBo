@@ -100,4 +100,19 @@ hier können dann die öffnungeszeiten gestezt werden und z.B Mahnungen gernerie
 *Das sind natürlich alles nur Vorschläge also lasst mich wissen was keinen Sinn macht*
 
 PS: macht echt Spass mit euch zu arbeiten =)
+
+
+Marcus:
+
+irgendwie kommt mir deine letzte aussage ironisch vor ... wenn ich mir die Commit-historie ansehe, sehe ich nur noch
+deine commits. mach mal ruhig junge, sonst sind wir in nem monat fertig und haben nichts mehr zu tun ^^
+
+Also im bezug auf die Frage, ob das Customer direkten zugriff auf die DB haben sollte, bin ich entschieden dagegen.
+genau für solch sachen sind ja solch DAO´s (Data Access Objects) da, um das eigentliche Objekt und seine Eigenschaften zu kapseln,
+und eine Eigenständige Klasse zu haben, die die Aufgaben für das schreiben und lesen übernehmen.
+OOD mäßig ist das denke ich, so wie wir das haben völlig ok. Aber ich kann mich da gerne nochmal schlau machen.
+Ansonsten würde ich mich das wochenende und am Montag (ich muss zwar arbeiten gehen, aber nur so lange wie wir unterricht
+haben und kann schulzeug erledigen) hinsetzen und alle Methoden, die du in den DAO´s braucht implementieren.
+Yevgen habe ich damit beauftragt, mal ordentliche Tests zu schreiben, da dürften wir auch bald eine 
+Rückmeldung bekommen.
     
