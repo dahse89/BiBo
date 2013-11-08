@@ -146,5 +146,21 @@ namespace BiBo
 
             return exemplar;
         }
+
+        //new methods TODO : IMPLEMENT THIS SHIT
+
+        
+        void extendLoanPeriodTo(DateTime dateBookWillBeBack)
+        {
+        }
+
+        void reduceLoanPeriodTo(DateTime dateBookWillBeBack)
+        {
+        }
+
+        bool borrow(DateTime dateBookWillBeBack, String cardId)
+        {
+            return true;
+        }
     }   
 }

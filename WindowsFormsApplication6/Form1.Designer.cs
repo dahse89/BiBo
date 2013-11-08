@@ -79,6 +79,7 @@ namespace BiBo
         #region init DataGridView
         private DataGridView userTableDataSet        = new DataGridView();
         private DataGridView booksTableDataSet       = new DataGridView();
+        
         #endregion
         #region init Chart
         private Chart chartUserAge                   = new Chart();

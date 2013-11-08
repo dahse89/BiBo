@@ -128,10 +128,40 @@ namespace BiBo.DAO
             return new Book(id, author, titel, subjectArea);
         }
 
-        
+        //new implemented methods TODO : IMPLEMENT THIS SHIT
 
         
+        public int GetNumberOfExemplars()
+        {
+            return 1;
+        }
 
-        
+        public int GetNumberOfAvailableExemplars()
+        {
+            return 1;
+        }
+
+        public int GetDateOfEarliestAvailable()
+        {
+            return 1;
+        }
+
+        public bool BorrowExemplar(DateTime dateBookWillBeBack, String signatur)
+        {
+            return true;
+        }
+
+        public void DelteAllExemplars()
+        {
+        }
+
+        public void AddExemplar(Exemplar x)
+        {
+        }
+
+        public void RemoveExemplar(String signatur)
+        {
+        }
+
     }
 }
