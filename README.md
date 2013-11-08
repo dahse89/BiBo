@@ -30,6 +30,7 @@ Bis jetzt habe ich alles so gemacht wie Vico es ursprünglich vorgeschlagen hatt
 
 create ChargeAccountDAO
 -----------------------
+--> Marcus: integriert, jedoch noch nicht implementiert, mach ich dieses WE
 Ich würde es gut finden wenn wir auch einen SQLLite Table für das Begührenknto hätten.
 Dann könnten wir die History des Kontos abbilden. Ich würde folgende Felder vorschlagen:
  
@@ -65,6 +66,7 @@ Kann das Object auf die DB zugreifen oder geift immer das DB Object auf die Obje
 Bisher haben wir ja die zweite Variante eingeschlagen. Was meint Ihr zu der Anderen?
 
 Wie auch immer wir das machen es müssen noch folgende Funktionalitäten fürs Customer Object abegedeckt werden:
+--> Marcus: integriert, jedoch noch nicht implementiert, mach ich dieses WE
 * bool borrowBook(ulong bookId)
 * bool noBooksBorrowed()
 * bool hasOwe()
@@ -73,8 +75,9 @@ Wie auch immer wir das machen es müssen noch folgende Funktionalitäten fürs C
 * extend IDCard
 * orderBookInAdvance(ulong bookId)
 
-Methods for Book[DAO] Object
+Methods for Book[DAO] Object 
 ============================
+--> Marcus: integriert, jedoch noch nicht implementiert, mach ich dieses WE
 * int getNumberOfExemplars()
 * int getNumberOfAvailableExemplars();
 * int getDateOfEarliestAvailable();
@@ -85,12 +88,14 @@ Methods for Book[DAO] Object
 
 Methods for Exemplar[DAO] Obejct
 ============
+--> Marcus: integriert, jedoch noch nicht implementiert, mach ich dieses WE
 * void extendLoanPeriodTo(DateTime dateBookWillBeBack)
 * void reduceLoanPeriodTo(DateTime dateBookWillBeBack)
 * bool borrow(DateTime dateBookWillBeBack,String cardId)
 
 create Class Library
 ====================
+--> Marcus: ist als Klasse schon lange vorhanden, benötigt nur noch eine sinnvolle Implementierung
 diese klasse stellt die ganze Bibliothek dar
 hier können dann die öffnungeszeiten gestezt werden und z.B Mahnungen gerneriert werden usw.
 
