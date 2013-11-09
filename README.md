@@ -120,4 +120,10 @@ Ansonsten würde ich mich das wochenende und am Montag (ich muss zwar arbeiten g
 haben und kann schulzeug erledigen) hinsetzen und alle Methoden, die du in den DAO´s braucht implementieren.
 Yevgen habe ich damit beauftragt, mal ordentliche Tests zu schreiben, da dürften wir auch bald eine 
 Rückmeldung bekommen.
+
+
+replace DataGridView with ListView
+====================
+An Philip, haste dir mal die ListView angesehen für die Tabelle ?
+scheint mir ein wenig simpler gestaltet zu sein ?
     
