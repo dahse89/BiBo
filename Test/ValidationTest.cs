@@ -9,72 +9,74 @@ namespace Test
     {
         [TestMethod()]
         public void NameTest()
-        {
-            string name = "";           // Test Namen einfügen
-            bool expected = false; 
-            bool actual;
-            actual = Validation.Name(name);
-            Assert.AreEqual(expected, actual);
+        {   
+            //test, if only letters ok
+            Assert.IsTrue(Validation.Name("Marcus"));
+
+            //test, if numbers give false result
+            Assert.IsFalse(Validation.Name("1234567890"));
         }
 
         [TestMethod()]
         public void StreetTest()
         {
-            string str = "";            // Straßennamen einfügen
-            bool expected = false; 
-            bool actual;
-            actual = Validation.Street(str);
-            Assert.AreEqual(expected, actual);
+            //test if validation of street strings is ok
+            Assert.IsTrue(Validation.Street("Königsstrasse"));
+            Assert.IsTrue(Validation.Street("Königsstrasse 15"));   // <--- Sollte eigentlich klappen !!
+
+            //test if validation of street strings failed
+            Assert.IsFalse(Validation.Street("Königsstra$$e"));
         }
 
         [TestMethod()]
         public void TelNumberTest()
         {
-            string telnr = "";          // Telefonnummer eingeben
-            bool expected = false; 
-            bool actual;
-            actual = Validation.TelNumber(telnr);
-            Assert.AreEqual(expected, actual);
+            //test if validation of telephonnumbers is ok
+            Assert.IsTrue(Validation.TelNumber("01721234567"));     // <--- Sollte eigentlich klappen !!
+            Assert.IsTrue(Validation.TelNumber("+49172/1234567"));  // <--- Sollte eigentlich klappen !! 
+
+            //test if validation of telephonnumbers failed
+            Assert.IsFalse(Validation.TelNumber("0172coolman"));
         }
 
         [TestMethod()]
         public void isAlphabeticTest()
         {
-            string alpha = "";          // Prüfen ob es alphabetisch ist
-            bool expected = false;
-            bool actual;
-            actual = Validation.isAlphabetic(alpha);
-            Assert.AreEqual(expected, actual);
+            //test if validation of alphabetic strings is ok
+            Assert.IsTrue(Validation.isAlphabetic("abcdefghijklmnopqrstuvwxyzäöü"));
+
+            //test if validation of alphabetic strings failed
+            Assert.IsFalse(Validation.isAlphabetic("abcdefghijklmnopqrstuvwxyzäöü123"));
         }
 
         [TestMethod()]
         public void isEmptyTest()
         {
-            string empty = "";  // Prüfen Leer oder NULL
-            bool expected = true;
-            bool actual;
-            actual = Validation.isEmpty(empty);
-            Assert.AreEqual(expected, actual);
+            //test if validation of empty strings is ok
+            Assert.IsTrue(Validation.isEmpty(""));
+
+            //test if validation of empty strings failed
+            Assert.IsFalse(Validation.isEmpty("a non empty string"));
         }
 
         [TestMethod()]
         public void isNumericTest()
         {
-            string num = "";          // Prüfen ob es numerisch ist
-            bool expected = false; 
-            bool actual;
-            actual = Validation.isNumeric(num);
-            Assert.AreEqual(expected, actual);
+            //test if validation of numeric string is ok
+            Assert.IsTrue(Validation.isNumeric("1234567890"));
+
+            //test if validation of numeric string failed
+            Assert.IsFalse(Validation.isNumeric("1234567890abc"));
         }
 
         [TestMethod()]
         public void zipCodeTest()
         {
-            string zip ="";         // Prüfen ob meine PLZ gültig ist
-            bool expected = false;
-            bool actual;
-            actual = Validation.zipCode(zip);
-            Assert.AreEqual(expected, actual);
+            //test if validation of zipCode string is ok
+            Assert.IsTrue(Validation.zipCode("15745"));         // <--- Sollte eigentlich klappen !!
+
+            //test if validation of zipCode string failed
+            Assert.IsFalse(Validation.zipCode("157454563354"));
         }
     }
 }
