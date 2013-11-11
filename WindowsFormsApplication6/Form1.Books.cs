@@ -27,7 +27,7 @@ namespace BiBo
             //insert a special colum for checkboxes
             this.booksTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
 
-            foreach (Book book in SqlBook.GetAllEntrys())
+            foreach (Book book in sqlBook.GetAllEntrys())
             {
                 addBookToTable(book);
             }
@@ -129,7 +129,7 @@ namespace BiBo
                 id = (ulong)Convert.ToInt64(sid);
 
                 //get customer form SQLLite table
-                tmp = SqlBook.GetEntryById(id);
+                tmp = sqlBook.GetEntryById(id);
 
                 //check if search input is in toString value of customer
                 if (!tmp.ToString().ToUpper().Contains(str.ToUpper()))
@@ -149,7 +149,7 @@ namespace BiBo
         private void addBookToTableAndDb(String author,String title, String genre){
 
                 Book dummy = new Book(0,author,title,genre);
-                ulong bookID = SqlBook.AddEntryReturnId(dummy);
+                ulong bookID = sqlBook.AddEntryReturnId(dummy);
 
             addBookToTable(new Book(
                 bookID,
@@ -183,7 +183,7 @@ namespace BiBo
             }
 
             //delete all books whose id is in the list
-            SqlBook.DeleteEntryByIdList(potentialDeletedIds);
+            sqlBook.DeleteEntryByIdList(potentialDeletedIds);
 
             //remove book from table
             foreach (ulong x in potentialDeletedIds)

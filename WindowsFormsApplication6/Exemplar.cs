@@ -21,6 +21,13 @@ namespace BiBo
     public Exemplar(Book buch)
     {
     	this.signatur = buch.CreateSignatur();
+    	this.bookId = buch.BookId;
+    	
+    	//only for test
+    	this.Accesser = Access.FREEHAND_LENDING;
+    	this.loanPeriod = new DateTime(2013,12,15);
+    	this.state = BookStates.OK;
+    	
     }
 
     public Exemplar()

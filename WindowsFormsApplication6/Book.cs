@@ -85,7 +85,7 @@ namespace BiBo
      public string CreateSignatur()
      {
      	string authorPrefix = this.Author[0].ToString();
-     	string subjectAreaPrefix = this.SubjectArea.Substring(0,2);
+     	string subjectAreaPrefix = this.SubjectArea.Substring(0,3);
      	return "[" +authorPrefix + subjectAreaPrefix + "]";
      }
      

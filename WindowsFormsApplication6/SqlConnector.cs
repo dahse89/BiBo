@@ -43,6 +43,11 @@ namespace BiBo.DAO
 			return new CustomerDAO();
 		}
 		
+		public static ExemplarDAO GetExemplarSqlInstance()
+		{
+			return new ExemplarDAO();
+		}
+		
 		public abstract bool AddEntry(T obj);
 
         public abstract ulong AddEntryReturnId(T obj);

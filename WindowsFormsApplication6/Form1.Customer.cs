@@ -163,7 +163,7 @@ namespace BiBo
             dummy.Country = Country;
 
             //add dummy to SQLLite Table and get customer id back
-            ulong id = this.SqlCustomer.AddEntryReturnId(dummy);
+            ulong id = this.sqlCustomer.AddEntryReturnId(dummy);
 
             //create final customer with right id
             Customer finalCustomer = new Customer(
@@ -244,7 +244,7 @@ namespace BiBo
             userTableDataSet.Columns.Insert(0, new DataGridViewCheckBoxColumn());
 
             //insert customers from SQLLite table
-            foreach (Customer customer in SqlCustomer.GetAllEntrys())
+            foreach (Customer customer in sqlCustomer.GetAllEntrys())
             {
                 //add user to datagrid view
                 addToUserTable(customer);
@@ -303,7 +303,7 @@ namespace BiBo
                 id = (ulong)Convert.ToInt64(sid);
 
                 //get customer form SQLLite table
-                tmp = SqlCustomer.GetEntryById(id);
+                tmp = sqlCustomer.GetEntryById(id);
 
                 //check if search input is in toString value of customer
                 if (!tmp.ToString().ToUpper().Contains(str.ToUpper()))
@@ -331,7 +331,7 @@ namespace BiBo
 
             //get  current user id and pass to show details method
             ulong custId = (ulong)Convert.ToInt64(userTableDataSet.Rows[e.RowIndex].Cells[1].Value.ToString());
-            Customer currCustomer = SqlCustomer.GetEntryById(custId);
+            Customer currCustomer = sqlCustomer.GetEntryById(custId);
             displayCustomerDetails(currCustomer);
         }
 
@@ -441,7 +441,7 @@ namespace BiBo
             }
 
             //delete all customers whose id is in the list
-            SqlCustomer.DeleteEntryByIdList(potentialDeletedIds);
+            sqlCustomer.DeleteEntryByIdList(potentialDeletedIds);
 
             /**
              * das hier ist echt lustig =)

@@ -1,7 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Diagnostics;
+
 using BiBo.Persons;
 using BiBo.Properties;
 using BiBo.DAO;
@@ -16,14 +18,26 @@ namespace BiBo
         [STAThread]
         static void Main()
         {
-        
-          CustomerDAO conCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
+     
+
+          //CustomerDAO conCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
           BookDAO conBooks = SqlConnector<Book>.GetBookSqlInstance();
+ 
+          Book book1 = new Book(1, "Gott", "Bibel", "Klassiker");
+          //Book book2 = new Book(3, "Tok", "X", "Langweiler");
+          //Book book3 = new Book(4, "El James", "Shades of Grey", "Sex Roman");
+          //Book book4 = new Book(6, "Sebastian Fitschek", "Der Augensammler", "Psychothriller");
           
+          conBooks.FillExemplarListOfBook(book1);
+          int numberOfExemplars = book1.Exemplare.Count;
+          Debug.WriteLine(numberOfExemplars);
+          Console.WriteLine(numberOfExemplars);
+          
+         /* 
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
-          Application.Run(new Form1(conCustomer,conBooks));
-
+          Application.Run(new Form1());
+            */
           
         }
     }

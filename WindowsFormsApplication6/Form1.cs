@@ -16,8 +16,8 @@ namespace BiBo
 {
     public partial class Form1 : Form
     {
-        private String LoginAsUserName; //name of current logged user
-        private String   UserStatusText; //status of current logged user
+        private String loginAsUserName; //name of current logged user
+        private String   userStatusText; //status of current logged user
 
         private Tabs activTab = Tabs.CUSTOMER;
 
@@ -25,20 +25,22 @@ namespace BiBo
         private Random r = new Random();
 
         //SQLLite Adapters
-        private CustomerDAO SqlCustomer;
-        private BookDAO SqlBook;
+        private CustomerDAO sqlCustomer;
+        private BookDAO sqlBook;
 
         //constructor with getting SQLLite Adapters
-        public Form1(CustomerDAO CustSQL, BookDAO BookSQL)
+       /* public Form1(CustomerDAO CustSQL, BookDAO BookSQL)
         {
             this.SqlCustomer = CustSQL;
             this.SqlBook = BookSQL;
             __construct();
-        }
+        }*/
 
         //default constructor
         public Form1()
         {
+        	this.sqlCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
+            this.sqlBook = SqlConnector<Book>.GetBookSqlInstance();
             __construct();
         }
 
@@ -55,14 +57,56 @@ namespace BiBo
             //init content
 
             //@todo this should come form login and SQLLite
-            this.LoginAsUserName = "Philipp Dahse";
-            this.UserStatusText = "Admin";
+            this.loginAsUserName = "Philipp Dahse";
+            this.userStatusText = "Admin";
 
             //fill GUI elemens with content
             publishContent();
 
             //@todo remove at the end is only for testing
             // randomPushUser();
+            this.SetFontsToBlack();
+            this.SetTablesFixed();
+        }
+        
+        //set font-color default to black for winXP OS
+        private void SetFontsToBlack() 
+        {
+        	//set Buttonfont to black
+        	this.buttonDeleteSelectedRows.ForeColor = Color.Black;
+            this.buttonUserAdd.ForeColor 			= Color.Black;
+            this.close.ForeColor 					= Color.Black;
+            this.addBooksActionButton.ForeColor		= Color.Black;
+            
+            //set labelfont to black
+            this.label1.ForeColor					= Color.Black;
+            this.label2.ForeColor					= Color.Black;
+            this.label3.ForeColor					= Color.Black;
+            this.label4.ForeColor					= Color.Black;
+            this.labelPLZ.ForeColor					= Color.Black;
+            this.labelUserCity.ForeColor			= Color.Black;
+            this.labelUserCoutry.ForeColor			= Color.Black;
+            this.labelUserDetails.ForeColor			= Color.Black;
+            this.labelUserDetailsAdress.ForeColor	= Color.Black;
+            this.labelUserDetailsName.ForeColor		= Color.Black;
+            this.labelUserStreetExtention.ForeColor	= Color.Black;
+            this.labelBookAddauthor.ForeColor		= Color.Black;
+            this.labelBookAddsubjectArea.ForeColor	= Color.Black;
+            this.lableBookAddTitel.ForeColor		= Color.Black;
+            
+            //set tablecolor to black
+            this.booksTableDataSet.ForeColor 		= Color.Black;
+            this.userTableDataSet.ForeColor 		= Color.Black;
+        }
+        
+        //set columns and rows fix, so that no one can change the size
+        private void SetTablesFixed()
+        {
+        	this.userTableDataSet.AllowUserToResizeColumns = false;
+            this.userTableDataSet.AllowUserToResizeRows = false;
+            
+            this.booksTableDataSet.AllowUserToResizeColumns = false;
+            this.booksTableDataSet.AllowUserToResizeRows = false;
         }
 
     
@@ -70,10 +114,10 @@ namespace BiBo
         private void publishContent()
         {
             //set name of current logged user
-            userName.Text += this.LoginAsUserName;
+            userName.Text += this.loginAsUserName;
 
             //set statis of current logged user
-            userStat.Text += this.UserStatusText;
+            userStat.Text += this.userStatusText;
 
             //fill content on customer tab
             //@see Form1.Customer

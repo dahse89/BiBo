@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Erstellt mit SharpDevelop.
  * Benutzer: m588
  * Datum: 30.10.2013
@@ -160,6 +160,42 @@ namespace BiBo.DAO
 
             return tmp;
         }
+		
+		bool borrowBook(ulong bookId)
+		{
+			return true;
+		}
+		
+		bool noBooksBorrowed()
+		{
+			return true;
+		}
+		
+		bool hasOwe()
+		{
+			return true;
+		}
+		
+		void mergeBlanaceWith(int value)
+		{
+			
+		}
+		
+		void createIDCard()
+		{
+			
+		}
+		
+		void extendIDCard()
+		{
+			
+		}
+		
+		void orderBookInAdvance(ulong bookId)
+		{
+			
+		}
+		
 	
 		
 	}

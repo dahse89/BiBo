@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Xml.Linq;
 
 namespace BiBo.DAO
 {
@@ -42,8 +43,8 @@ namespace BiBo.DAO
                                   )   
                                   VALUES (
                                       NULL,  
-                                      '" + book.Author + @"',
-                                      '" + book.Titel +  @"',
+                                      '" + book.Author 		+ @"',
+                                      '" + book.Titel 		+ @"',
                                       '" + book.SubjectArea + @"'
                                   );";
 
@@ -131,7 +132,25 @@ namespace BiBo.DAO
         //new implemented methods TODO : IMPLEMENT THIS SHIT
 
         
-        public int GetNumberOfExemplars()
+        public void FillExemplarListOfBook(Book book)
+        {
+            ExemplarDAO exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+        	List<Exemplar> exemplars = new List<Exemplar>();
+        	SQLiteCommand command = new SQLiteCommand(con);
+            command.CommandText = "select * FROM Exemplar where bookId = " + book.BookId;
+            SQLiteDataReader reader = command.ExecuteReader();
+            
+            if (reader.HasRows)
+          	{
+            	while (reader.Read()){
+                    Exemplar ex = exDAO.GetInitEntryByReader(reader);
+		            book.Exemplare.Add(ex);
+            	}
+            }
+            
+        }
+        
+        public int GetNumberOfExemplars(Book book)
         {
             return 1;
         }

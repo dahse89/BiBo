@@ -7,9 +7,9 @@ using BiBo.Persons;
 
 using BiBo.DAO;
 
-namespace BiBo
+namespace BiBo.DAO
 {
-    class ExemplarDAO : SqlConnector<Exemplar>
+    public class ExemplarDAO : SqlConnector<Exemplar>
     {
         //Member-Variablen Deklaration
         private DateTime loanPeriod;     //Ausleifrist 
@@ -29,7 +29,7 @@ namespace BiBo
                                        signatur VARCHAR(100) NOT NULL, 
                                        access VARCHAR(100) NOT NULL,
                                        customerID INTEGER,
-                                       bookID INTEGER,
+                                       bookID INTEGER
                                     );";
 
             SQLiteCommand command = new SQLiteCommand(exemplarSQL, con);
@@ -39,20 +39,28 @@ namespace BiBo
         public override bool AddEntry(Exemplar exemplar)
         {
             SQLiteCommand command = new SQLiteCommand(con);
-            command.CommandText = @"INSERT INTO Book (
+            if(command != null){
+            command.CommandText = @"INSERT INTO Exemplar (
                                       id, 
+                                      loanPeriod,
                                       state, 
                                       signatur, 
-                                      access
+                                      access,
+                                      customerID,
+                                      bookID
                                   )   
                                   VALUES (
                                       NULL,  
-                                      '" + exemplar.State + @"',
-                                      '" + exemplar.Signatur + @"',
-                                      '" + exemplar.Accesser.ToString() + @"'
+                                      '" + exemplar.LoanPeriod.ToShortDateString() 	+ @"',
+                                      '" + exemplar.State.ToString()				+ @"',
+                                      '" + exemplar.Signatur 						+ @"',
+                                      '" + exemplar.Accesser.ToString() 			+ @"',
+                                      '" + "5" 										+ @"', 
+                                      '" + exemplar.BookId.ToString() 				+ @"'
                                   );";
 
             command.ExecuteNonQuery();
+            }
             return true;
         }
 
@@ -145,6 +153,11 @@ namespace BiBo
             exemplar.BookId = bookId;
 
             return exemplar;
+        }
+
+        public Exemplar GetInitEntryByReader(SQLiteDataReader reader)
+        {
+            return InitEntryByReader(reader);
         }
 
         //new methods TODO : IMPLEMENT THIS SHIT
