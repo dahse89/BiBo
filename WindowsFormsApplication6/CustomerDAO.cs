@@ -161,37 +161,37 @@ namespace BiBo.DAO
             return tmp;
         }
 		
-		bool borrowBook(ulong bookId)
+		bool BorrowBook(ulong bookId)
 		{
 			return true;
 		}
 		
-		bool noBooksBorrowed()
+		bool NoBooksBorrowed()
 		{
 			return true;
 		}
 		
-		bool hasOwe()
+		bool HasOwe()
 		{
 			return true;
 		}
 		
-		void mergeBlanaceWith(int value)
+		void MergeBlanaceWith(int value)
 		{
 			
 		}
 		
-		void createIDCard()
+		void CreateIDCard()
 		{
 			
 		}
 		
-		void extendIDCard()
+		void ExtendIDCard()
 		{
 			
 		}
 		
-		void orderBookInAdvance(ulong bookId)
+		void OrderBookInAdvance(ulong bookId)
 		{
 			
 		}

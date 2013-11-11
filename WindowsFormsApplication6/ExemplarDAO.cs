@@ -155,6 +155,7 @@ namespace BiBo.DAO
             return exemplar;
         }
 
+        //to make it possile to call the method outside
         public Exemplar GetInitEntryByReader(SQLiteDataReader reader)
         {
             return InitEntryByReader(reader);
@@ -163,15 +164,15 @@ namespace BiBo.DAO
         //new methods TODO : IMPLEMENT THIS SHIT
 
         
-        void extendLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
+        public void ExtendLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
         {
         }
 
-        void reduceLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
+        public void ReduceLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
         {
         }
 
-        bool borrow(DateTime dateBookWillBeBack, String cardId) //<--- object von exemplar muss mit rein
+        public bool Borrow(DateTime dateBookWillBeBack, String cardId) //<--- object von exemplar muss mit rein
         {
             return true;
         }

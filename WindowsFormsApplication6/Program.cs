@@ -39,20 +39,7 @@ namespace BiBo
           Application.Run(new Form1());
           */
 
-          Blub blub = new Blub();
-          Debug.WriteLine(blub.a);
-          aender(blub);
-          Debug.WriteLine(blub.a);
-          foreach (int a in blub.intListe)
-              Debug.WriteLine(a);
         }
 
-        public static void aender(Blub blub)
-        {
-            blub.intListe = new List<int>();
-            blub.a = 2134;
-        }
-
-        
     }
 }

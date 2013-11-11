@@ -193,7 +193,7 @@ namespace BiBo.DAO
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "DELETE FROM Exemplar WHERE id = '" + book.BookId + "';";
             command.ExecuteNonQuery();
-            book.Exemplare = new List<Exemplar>();
+            book.Exemplare.Clear();
             
         }
 
