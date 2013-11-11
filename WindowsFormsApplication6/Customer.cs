@@ -10,7 +10,7 @@ namespace BiBo.Persons
     public class Customer
     {
         //Member-Variablen Deklaration
-        private ulong customerID;                  //Kunden-ID
+        private ulong customerID;                //Kunden-ID
 
         private string firstName;                //Vorname
         private string lastName;                 //Nachname

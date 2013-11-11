@@ -131,7 +131,7 @@ namespace BiBo.DAO
 
         //new implemented methods TODO : IMPLEMENT THIS SHIT
 
-        
+        //Get all Exemplars from an Book and save it in the object --> Wopat wollte ja, dass die Aktionen auf Objektebene ablaufen
         public void FillExemplarListOfBook(Book book)
         {
             ExemplarDAO exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
@@ -150,19 +150,36 @@ namespace BiBo.DAO
             
         }
         
+        //realy usefull ?
         public int GetNumberOfExemplars(Book book)
         {
-            return 1;
+            return book.Exemplare.Count;
         }
 
-        public int GetNumberOfAvailableExemplars()
+        //return the number of available exemplars of a book
+        //List of Exemplars in an object of Book must be filled --> method FillExemplarListOfBook must run before
+        public int GetNumberOfAvailableExemplars(Book book)
         {
-            return 1;
+            int numberOfAvailableExemplars = 0;
+            foreach (Exemplar exemplar in book.Exemplare)
+            {
+                if (exemplar.LoanPeriod != null)
+                    numberOfAvailableExemplars++;
+            }
+            return numberOfAvailableExemplars;
         }
 
-        public int GetDateOfEarliestAvailable()
+        //return the earliest available date of an exemplar
+        public DateTime GetDateOfEarliestAvailable(Book book)
         {
-            return 1;
+            DateTime earliest = new DateTime(9999,12,30);
+            
+            foreach (Exemplar exemplar in book.Exemplare)
+            {
+                if (exemplar.LoanPeriod.CompareTo(earliest) < 0)
+                    earliest = exemplar.LoanPeriod;
+            }
+            return earliest;
         }
 
         public bool BorrowExemplar(DateTime dateBookWillBeBack, String signatur)
@@ -170,16 +187,39 @@ namespace BiBo.DAO
             return true;
         }
 
-        public void DelteAllExemplars()
+        public void DeleteAllExemplars(Book book)
         {
+            ExemplarDAO exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+            SQLiteCommand command = new SQLiteCommand(con);
+            command.CommandText = "DELETE FROM Exemplar WHERE id = '" + book.BookId + "';";
+            command.ExecuteNonQuery();
+            book.Exemplare = new List<Exemplar>();
+            
         }
 
-        public void AddExemplar(Exemplar x)
+        public void AddExemplar(Exemplar x, Book book)
         {
+            ExemplarDAO exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+
+            //first add the exemplar into the db
+            exDAO.AddEntry(x);
+
+            //and then add the exemplar into the list in the specific book
+            book.Exemplare.Add(x);
+
         }
 
-        public void RemoveExemplar(String signatur)
+        public void RemoveExemplar(ulong exemplarId, Book book) // <-- Alle exemplare haben die selbe Signatur, dadurch ist dies der Falsche Parameter ... evtl. eher die ExemplarID als Kriterium wählen
         {
+            ExemplarDAO exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+
+            //first remove the exemplar(specified by the exemplarId)
+            Exemplar ex = new Exemplar();
+            ex.ExemplarId = exemplarId;
+            book.Exemplare.Remove(ex);
+
+            //and then delete from the db, specified by the exemplarId
+            exDAO.DeleteEntry(ex);
         }
 
     }

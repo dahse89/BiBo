@@ -77,7 +77,7 @@ namespace BiBo.DAO
         public override bool DeleteEntry(Exemplar exemplar)
         {
             SQLiteCommand command = new SQLiteCommand(con);
-            command.CommandText = "DELETE FROM Exemplar WHERE author='" + exemplar.ExemplarId + "';";
+            command.CommandText = "DELETE FROM Exemplar WHERE id = '" + exemplar.ExemplarId + "';";
             command.ExecuteNonQuery();
             return true;
         }
@@ -87,7 +87,7 @@ namespace BiBo.DAO
             foreach (ulong x in l)
             {
                 SQLiteCommand command = new SQLiteCommand(con);
-                command.CommandText = "DELETE FROM Customer WHERE id ='" + x + "';";
+                command.CommandText = "DELETE FROM Customer WHERE id = '" + x + "';";
                 command.ExecuteNonQuery();
 
             }
@@ -163,15 +163,15 @@ namespace BiBo.DAO
         //new methods TODO : IMPLEMENT THIS SHIT
 
         
-        void extendLoanPeriodTo(DateTime dateBookWillBeBack)
+        void extendLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
         {
         }
 
-        void reduceLoanPeriodTo(DateTime dateBookWillBeBack)
+        void reduceLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
         {
         }
 
-        bool borrow(DateTime dateBookWillBeBack, String cardId)
+        bool borrow(DateTime dateBookWillBeBack, String cardId) //<--- object von exemplar muss mit rein
         {
             return true;
         }

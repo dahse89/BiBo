@@ -28,17 +28,31 @@ namespace BiBo
           //Book book3 = new Book(4, "El James", "Shades of Grey", "Sex Roman");
           //Book book4 = new Book(6, "Sebastian Fitschek", "Der Augensammler", "Psychothriller");
           
-          conBooks.FillExemplarListOfBook(book1);
+         /* conBooks.FillExemplarListOfBook(book1);
           int numberOfExemplars = book1.Exemplare.Count;
           Debug.WriteLine(numberOfExemplars);
           Console.WriteLine(numberOfExemplars);
           
-         /* 
+          /* 
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new Form1());
-            */
-          
+          */
+
+          Blub blub = new Blub();
+          Debug.WriteLine(blub.a);
+          aender(blub);
+          Debug.WriteLine(blub.a);
+          foreach (int a in blub.intListe)
+              Debug.WriteLine(a);
         }
+
+        public static void aender(Blub blub)
+        {
+            blub.intListe = new List<int>();
+            blub.a = 2134;
+        }
+
+        
     }
 }
