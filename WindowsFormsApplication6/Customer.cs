@@ -10,28 +10,27 @@ namespace BiBo.Persons
     public class Customer
     {
         //Member-Variablen Deklaration
-        private ulong customerID;                //Kunden-ID
+        private ulong customerID;                       //Kunden-ID
 
-        private string firstName;                //Vorname
-        private string lastName;                 //Nachname
-        private DateTime birthDate;              //Geburtstag
+        private string firstName;                       //Vorname
+        private string lastName;                        //Nachname
+        private DateTime birthDate;                     //Geburtstag
 
-        private string street;                   //Strasse
-        private int streetNumber;                //
-        private string additionalRoad;           //
-        private int zipCode;                     //PLZ
-        private string town;                     //
-        private string country;                  //Land
+        private string street;                          //Strasse
+        private int streetNumber;                       //
+        private string additionalRoad;                  //
+        private int zipCode;                            //PLZ
+        private string town;                            //
+        private string country;                         //Land
 
-        private Rights right = Rights.CUSTOMER;  //Rechte
-        private int chargeAccountNumber;         //GebuehrenkontoNr
-        private float chargeAccount;             //Gebuehrenkonto
-        private int biboID;                      //Bibliotheks-ID
-        private int cardID;                      //Ausweis-
-        private string cardValidUntil;           //Gültigkeitdatum des 
-        private UserStates userState;            //Benutzer- 
-        private string mobileNumber;             //Handy-
-        private string eMailAddress;             //Email-Adresse
+        private Rights right = Rights.CUSTOMER;         //Rechte
+        private ChargeAccount chargeAccount;            //Gebuehrenkonto
+        private int biboID;                             //Bibliotheks-ID
+        private int cardID;                             //Ausweis-
+        private string cardValidUntil;                  //Gültigkeitdatum des 
+        private UserStates userState;                   //Benutzer- 
+        private string mobileNumber;                    //Handy-
+        private string eMailAddress;                    //Email-Adresse
 
 
         //Konstruktor
@@ -99,15 +98,15 @@ namespace BiBo.Persons
             get { return this.right; }
             set { this.right = value; }
         }
-        public int ChargeAccountNumber
+        public ChargeAccount ChargeAccountNumber
         {
-            get { return this.chargeAccountNumber; }
-            set { this.chargeAccountNumber = value; }
+          get { return this.chargeAccount; }
+          set { this.chargeAccount = value; }
         }
-        public float ChargeAccount
+        public ChargeAccount ChargeAccount
         {
-            get { return this.chargeAccount; }
-            set { this.chargeAccount = value; }
+          get { return this.chargeAccount; }
+          set { this.chargeAccount = value; }
         }
         public int BiboID
         {
