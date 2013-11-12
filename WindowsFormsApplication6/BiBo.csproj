@@ -81,7 +81,6 @@
     <Compile Include="UserStates.cs" />
     <Compile Include="BookStates.cs" />
     <Compile Include="Access.cs" />
-    <Compile Include="SQLCon.cs" />
     <Compile Include="SqlConnector.cs" />
     <Compile Include="BookSQL.cs" />
     <Compile Include="CustomerSQL.cs" />
