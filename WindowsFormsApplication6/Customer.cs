@@ -27,7 +27,7 @@ namespace BiBo.Persons
         private ChargeAccount chargeAccount;            //Gebuehrenkonto
         private int biboID;                             //Bibliotheks-ID
         private int cardID;                             //Ausweis-
-        private string cardValidUntil;                  //Gültigkeitdatum des 
+        private string cardValidUntil;                  //Gültigkeitdatum des Ausweises 
         private UserStates userState;                   //Benutzer- 
         private string mobileNumber;                    //Handy-
         private string eMailAddress;                    //Email-Adresse
