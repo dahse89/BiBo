@@ -356,8 +356,9 @@ namespace BiBo
             //set all textboxes background to white
             whilteUserAddInputs();
 
+          
 
-            //@todo validation task should be like this in val call
+           /* //@todo validation task should be like this in val call
             //validate UserFName
             if (!Validation.Name(UserFName))
             {
@@ -398,7 +399,15 @@ namespace BiBo
             {
                 textBoxUserPLZ.BackColor = Color.Red;
                 return;
+            }*/
+
+            Button su = (Button)sender;
+
+            if (!Validation.validateCustomerAddPanel(su.Parent))
+            {
+              return;
             }
+
 
             //here the user is valid and will be pushed to SQLLite Table and datagridview
             pushUserToGUITableAndDB(
@@ -414,7 +423,7 @@ namespace BiBo
             );
 
             //make textboxes for add user empty
-            clearUserAddFrom();
+          //clearUserAddFrom();
         }
 
         private void deleteSelectedCustomers()
