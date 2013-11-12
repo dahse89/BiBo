@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 
-namespace BiBo.DAO
+namespace BiBo.SQL
 {
 	/// <summary>
 	/// Description of SqlConnector.
@@ -33,33 +33,33 @@ namespace BiBo.DAO
          con.Close();
         }
 		
-		public static BookDAO GetBookSqlInstance()
+		public static BookSQL GetBookSqlInstance()
 		{
-			return new BookDAO();
+			return new BookSQL();
 		}
 		
-		public static CustomerDAO GetCustomerSqlInstance()
+		public static CustomerSQL GetCustomerSqlInstance()
 		{
-			return new CustomerDAO();
+			return new CustomerSQL();
 		}
 		
-		public static ExemplarDAO GetExemplarSqlInstance()
+		public static ExemplarSQL GetExemplarSqlInstance()
 		{
-			return new ExemplarDAO();
+			return new ExemplarSQL();
 		}
 		
 		public abstract bool AddEntry(T obj);
 
-        public abstract ulong AddEntryReturnId(T obj);
+    public abstract ulong AddEntryReturnId(T obj);
 		
 		public abstract bool DeleteEntry(T obj);
 
-        public abstract bool DeleteEntryByIdList(List<ulong> l);
+    public abstract bool DeleteEntryByIdList(List<ulong> l);
 
-        public abstract T GetEntryById(ulong id);
+    public abstract T GetEntryById(ulong id);
 		
 		public abstract List<T> GetAllEntrys();
 
-        protected abstract T InitEntryByReader(SQLiteDataReader reader);
+    protected abstract T InitEntryByReader(SQLiteDataReader reader);
 	}
 }

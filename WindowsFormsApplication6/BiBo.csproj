@@ -57,7 +57,8 @@
     <Compile Include="Admin.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Book.cs" />
-    <Compile Include="ExemplarDAO.cs" />
+    <Compile Include="ExemplarSQL.cs" />
+    <Compile Include="ChargeAccountSQL.cs" />
     <Compile Include="Form1.Books.cs">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Form</SubType>
@@ -82,8 +83,8 @@
     <Compile Include="Access.cs" />
     <Compile Include="SQLCon.cs" />
     <Compile Include="SqlConnector.cs" />
-    <Compile Include="BookDAO.cs" />
-    <Compile Include="CustomerDAO.cs" />
+    <Compile Include="BookSQL.cs" />
+    <Compile Include="CustomerSQL.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

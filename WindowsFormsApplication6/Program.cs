@@ -32,12 +32,11 @@ namespace BiBo
           int numberOfExemplars = book1.Exemplare.Count;
           Debug.WriteLine(numberOfExemplars);
           Console.WriteLine(numberOfExemplars);
-          
-          /* 
+          */
+
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new Form1());
-          */
 
         }
 
