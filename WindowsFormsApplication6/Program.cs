@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 using BiBo.Persons;
 using BiBo.Properties;
-using BiBo.DAO;
+using BiBo.SQL;
 
 namespace BiBo
 {
@@ -21,7 +21,7 @@ namespace BiBo
      
 
           //CustomerDAO conCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
-          BookDAO conBooks = SqlConnector<Book>.GetBookSqlInstance();
+          BookSQL conBooks = SqlConnector<Book>.GetBookSqlInstance();
  
           Book book1 = new Book(1, "Gott", "Bibel", "Klassiker");
           //Book book2 = new Book(3, "Tok", "X", "Langweiler");

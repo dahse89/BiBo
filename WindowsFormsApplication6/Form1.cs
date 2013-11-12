@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using BiBo.Persons;
-using BiBo.DAO;
+using BiBo.SQL;
 
 
 namespace BiBo
@@ -25,8 +25,8 @@ namespace BiBo
         private Random r = new Random();
 
         //SQLLite Adapters
-        private CustomerDAO sqlCustomer;
-        private BookDAO sqlBook;
+        private CustomerSQL sqlCustomer;
+        private BookSQL sqlBook;
 
         //constructor with getting SQLLite Adapters
        /* public Form1(CustomerDAO CustSQL, BookDAO BookSQL)

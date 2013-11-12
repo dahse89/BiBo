@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Drawing;
 
 
 //Shortcut to shut all nodes in visual studio is Ctrl + M + O
