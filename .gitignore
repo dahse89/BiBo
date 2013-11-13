@@ -1,8 +1,6 @@
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 
 [Oo]bj/
-*.exe
-*.dll
 
 # Ignore Visual Studio by Vico
 WindowsFormsApplication6/bin/Debug/*.exe
