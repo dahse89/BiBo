@@ -24,23 +24,17 @@ namespace BiBo.SQL
         {
             string exemplarSQL = @"CREATE TABLE IF NOT EXISTS Exemplar (
                                        ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                       bookId INTEGER
+                                       bookId INTEGER,
+                                       loanPeriod DateTime, 
+                                       state VARCHAR(100) NOT NULL,
+                                       signatur VARCHAR(100) NOT NULL, 
+                                       access VARCHAR(100) NOT NULL,
+                                       customerId INTEGER
                                     );";
 
             SQLiteCommand command = new SQLiteCommand(exemplarSQL, con);
             command.ExecuteNonQuery();
 
-            string customer_has_exemplarSQL = @"CREATE TABLE IF NOT EXISTS Customer_has_Exemplar (
-                                                  ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                                  loanPeriod DateTime, 
-                                                  state VARCHAR(100) NOT NULL,
-                                                  signatur VARCHAR(100) NOT NULL, 
-                                                  access VARCHAR(100) NOT NULL,
-                                                  customerId INTEGER,
-                                                  exemplarId INTEGER
-                                                );";
-            SQLiteCommand command_2 = new SQLiteCommand(customer_has_exemplarSQL, con);
-            command_2.ExecuteNonQuery();
         }
 
         public override bool AddEntry(Exemplar exemplar)
@@ -49,34 +43,24 @@ namespace BiBo.SQL
             if(command != null){
             command.CommandText = @"INSERT INTO Exemplar (
                                       id,
-                                      bookID
+                                      bookID,
+                                      loanPeriod DateTime,
+                                      state VARCHAR(100) NOT NULL,
+                                      signatur VARCHAR(100) NOT NULL,
+                                      access VARCHAR(100) NOT NULL,
+                                      customerId INTEGER
                                   )   
                                   VALUES (
                                       NULL,  
-                                      '" + exemplar.BookId.ToString() 				+ @"'
+                                      '" + exemplar.BookId.ToString() 				+ @"',
+                                      '" + exemplar.LoanPeriod.ToShortDateString() + @"',
+                                      '" + exemplar.State.ToString() + @"',
+                                      '" + exemplar.Signatur + @"',
+                                      '" + exemplar.Accesser.ToString() + @"',
+                                      '" + "5" + @"',
                                   );";
 
-            command.ExecuteNonQuery();
-
-            command.CommandText = @"INSERT INTO Customer_has_Exemplar (
-                                          id,
-                                          loanPeriod DateTime,
-                                          state VARCHAR(100) NOT NULL,
-                                          signatur VARCHAR(100) NOT NULL,
-                                          access VARCHAR(100) NOT NULL,
-                                          customerId INTEGER,
-                                          exemplarId INTEGER
-                                      )
-                                      VALUES (
-                                          NULL,
-                                          '" + exemplar.LoanPeriod.ToShortDateString() + @"',
-                                          '" + exemplar.State.ToString() + @"',
-                                          '" + exemplar.Signatur + @"',
-                                          '" + exemplar.Accesser.ToString() + @"',
-                                          '" + "5" + @"',
-                                          '" + exemplar.ExemplarId.ToString() + @"'
-                                      );";
-            command.ExecuteNonQuery();                             
+            command.ExecuteNonQuery();                           
             }
             return true;
         }
