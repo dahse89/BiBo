@@ -4,8 +4,10 @@
 *.exe
 *.dll
 
-# Ignore Visual Studio Debug Exe
+# Ignore Visual Studio by Vico
 WindowsFormsApplication6/bin/Debug/*.exe
+Test/bin/Debug/Test.dll
+Test/bin/Debug/*.exe
 
 # mstest test results
 TestResults
