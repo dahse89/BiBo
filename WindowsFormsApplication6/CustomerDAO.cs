@@ -10,9 +10,9 @@ namespace BiBo.DAO
 {
   public class CustomerDAO
   {
-    Form1 form;
-    Library lib;
-    public CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
+    private Form1 form;
+    private Library lib;
+    private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
 
     public CustomerDAO(Form1 form, Library lib)
     {
@@ -22,21 +22,42 @@ namespace BiBo.DAO
 
     public List<Customer> GetAllCustomer()
     {
-      return customerSql.GetAllEntrys();
+      if (lib.CustomerList == null)
+        return lib.CustomerList = customerSql.GetAllEntrys();
+
+      else
+        return lib.CustomerList;
     }
 
-    public void AddCustomer(Customer dummy){
-      //add user to DB
+    public void AddCustomer(Customer dummy)
+    {
+      //add user to DB and dummy get the right id
+      dummy.CustomerID = customerSql.AddEntryReturnId(dummy);
+      
       //add user in Objects
+      lib.CustomerList.Add(dummy);
+
+      //refresh GUI-View
       form.AddCustomer(dummy); //real instead of dummy
     }
 
     public void DeleteCustomersByIdList()
     {
         //removes all selected rows and return list of deleted customer ids
-        List<ulong> IdList = form.DeleteCustomersByIdList();
-        //delete in Object 
+        List<ulong> idList = form.DeleteCustomersByIdList();
+
+        //delete in Object <----- must be go better !!! SCHAU DA NOCHMAL NACH MARCUS !!!!!
+        foreach (Customer customer in lib.CustomerList)  //<----- InvalidOperationException Die Auflistung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+        {
+          foreach (ulong id in idList)
+          {
+            if (id == customer.CustomerID)
+              lib.CustomerList.Remove(customer);
+          }
+        }
+
         //delete in DB
+        customerSql.DeleteEntryByIdList(idList);
     }
 
 

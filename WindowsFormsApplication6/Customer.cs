@@ -47,6 +47,7 @@ namespace BiBo.Persons
         public ulong CustomerID
         {
             get { return this.customerID; }
+            set { this.customerID = value; }
         }
         public string FirstName
         {

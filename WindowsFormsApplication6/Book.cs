@@ -12,11 +12,12 @@ namespace BiBo
     private string author;       			//Autor des Buch
     private string titel;        			//Titel
     private string subjectArea;  			//Fachrichtung
-    private List<Exemplar> exemplare;	//Liste aller Exemplare
+    private List<Exemplar> exemplare;	    //Liste aller Exemplare
 
     public ulong BookId
     {
         get { return this.bookId; }
+        set { this.bookId = value; }
     }
     public string Author
     {
