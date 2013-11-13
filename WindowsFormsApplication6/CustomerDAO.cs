@@ -24,23 +24,22 @@ namespace BiBo.DAO
     {
       if (lib.CustomerList == null)
         return lib.CustomerList = customerSql.GetAllEntrys();
-
       else
         return lib.CustomerList;
     }
 
-    public void AddCustomer(Customer dummy)
+    public void AddCustomer(Customer customer)
     {
       //add user to DB and dummy get the right id
-      dummy.CustomerID = customerSql.AddEntryReturnId(dummy);
+        customer.CustomerID = customerSql.AddEntryReturnId(customer);
       
       //add user in Objects
-      lib.CustomerList.Add(dummy);
+        lib.CustomerList.Add(customer);
 
       //refresh GUI-View
-      form.AddCustomer(dummy); //real instead of dummy
+        form.AddCustomer(customer); //real instead of dummy
     }
-
+    //TODO: is not possible to delete single Customer?
     public void DeleteCustomersByIdList()
     {
         //removes all selected rows and return list of deleted customer ids

@@ -79,19 +79,21 @@ namespace BiBo.SQL
             AddEntry(customer);//da hier ja eh ne unique id erzeugt wird kann ich die ja auch gleich nutzen <Philipp>
 
             SQLiteCommand command = new SQLiteCommand(con);
-            command.CommandText = "select last_insert_rowid()";
+            command.CommandText = "SELECT last_insert_rowid()";
             Int64 LastRowID64 = (Int64)command.ExecuteScalar();
             return (ulong) LastRowID64;
         }
 
         public override bool DeleteEntryByIdList(List<ulong> l)
         {
+            SQLiteCommand command = new SQLiteCommand(con);
+            string listOfIds = "";
+
             foreach(ulong x in l){
-                SQLiteCommand command = new SQLiteCommand(con);
-                command.CommandText = "DELETE FROM Customer WHERE id ='" + x + "';";
-                command.ExecuteNonQuery();
-              
+                listOfIds = string.Join(",", x);
             }
+            command.CommandText = "DELETE FROM Customer WHERE id IN ('" + listOfIds + "');";
+            command.ExecuteNonQuery();
             return true;
         }
 		
