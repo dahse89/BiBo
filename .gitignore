@@ -5,7 +5,8 @@
 *.dll
 
 # Ignore Visual Studio Debug Exe
-WindowsFormsApplication6/bin/Debug/*.exe
+/WindowsFormsApplication6/bin/Debug/*.exe
+/WindowsFormsApplication6/bin/Debug/test.dll
 
 # mstest test results
 TestResults
