@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BiBo.SQL;
+using BiBo.DAO;
 
 namespace BiBo
 {
@@ -17,6 +18,8 @@ namespace BiBo
 
     //DAO's
     private TestDAO testDao;
+    private CustomerDAO customerDAO;
+    private BookDAO bookDAO;
   
     
 
@@ -24,12 +27,24 @@ namespace BiBo
 		public Library(Form1 gui)
 		{
       this.testDao = new TestDAO(gui);
+
+      this.customerDAO = new CustomerDAO(gui, this);
+      this.bookDAO = new BookDAO(gui, this);
       this.GUI = gui;
 		}
+
+    public CustomerDAO getCustomerDAO(){
+      return customerDAO;
+    }
 
     public TestDAO getTestDAO()
     {
       return this.testDao;
+    }
+
+    public BookDAO getBookDAO()
+    {
+      return this.bookDAO;
     }
 
     public Form1 getGuiApi()
