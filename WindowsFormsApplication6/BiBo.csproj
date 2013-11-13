@@ -51,6 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookDAO.cs" />
+    <Compile Include="ChargeAccountDAO.cs" />
+    <Compile Include="CustomerDAO.cs" />
+    <Compile Include="ExemplarDAO.cs" />
     <Compile Include="Tabs.cs" />
     <Compile Include="Exemplar.cs" />
     <Compile Include="Customer.cs" />
@@ -64,6 +68,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Customer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.API.cs">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
