@@ -43,12 +43,12 @@ namespace BiBo.SQL
             if(command != null){
             command.CommandText = @"INSERT INTO Exemplar (
                                       id,
-                                      bookID,
-                                      loanPeriod DateTime,
-                                      state VARCHAR(100) NOT NULL,
-                                      signatur VARCHAR(100) NOT NULL,
-                                      access VARCHAR(100) NOT NULL,
-                                      customerId INTEGER
+                                      bookId,
+                                      loanPeriod,
+                                      state,
+                                      signatur,
+                                      access,
+                                      customerId
                                   )   
                                   VALUES (
                                       NULL,  

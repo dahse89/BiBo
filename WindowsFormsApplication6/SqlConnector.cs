@@ -17,7 +17,7 @@ namespace BiBo.SQL
 	/// </summary>
 	public abstract class SqlConnector<T>
 	{
-		protected  static SQLiteConnection con;
+		protected static SQLiteConnection con;
 		private readonly string DATABASE_NAME= "Database.dat" ;
 		
 		protected SqlConnector()
@@ -47,6 +47,11 @@ namespace BiBo.SQL
 		{
 			return new ExemplarSQL();
 		}
+
+    public static ChargeAccountSQL GetChargeAccountSqlInstance()
+    {
+      return new ChargeAccountSQL();
+    }
 		
 		public abstract bool AddEntry(T obj);
 
