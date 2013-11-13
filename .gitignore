@@ -6,8 +6,7 @@
 
 # Ignore Visual Studio by Vico
 /WindowsFormsApplication6/bin/Debug/*.exe
-/WindowsFormsApplication6/bin/Debug/test.dll
-/Test/bin/Debug/test.dll
+/Test/bin/Debug/Test.dll
 /Test/bin/Debug/*.exe
 
 # mstest test results
