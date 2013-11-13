@@ -35,8 +35,45 @@ namespace BiBo
 
       //@todo remove at the end is only for testing
       // randomPushUser();
-      this.SetFontsToBlack();
-      this.SetTablesFixed();
+    }
+
+    //fill GUI elements with content
+    private void publishContent()
+    {
+      //set name of current logged user
+      userName.Text += this.loginAsUserName;
+
+      //set statis of current logged user
+      userStat.Text += this.userStatusText;
+
+      //fill content on customer tab
+      //@see Form1.Customer
+      this.publishCustomerContent();
+      //fill content on books tab
+      //@see Form1.Books
+      this.publishBookContent();
+    }
+
+
+    private void switchTabTo(Tabs tab)
+    {
+      switch (tab)
+      {
+        case Tabs.CUSTOMER:
+          //show customer Main Panel hide others
+          this.CustomerMainPanel.Visible = true;
+          this.BooksMainPanel.Visible = false;
+
+          this.activTab = Tabs.CUSTOMER;
+          break;
+        case Tabs.BOOK:
+          //show books Main Panel hide others
+          this.CustomerMainPanel.Visible = false;
+          this.BooksMainPanel.Visible = true;
+
+          this.activTab = Tabs.BOOK;
+          break;
+      }
     }
   }
 }

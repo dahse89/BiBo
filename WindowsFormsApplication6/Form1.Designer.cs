@@ -563,6 +563,8 @@ namespace BiBo
                     this.SuspendLayout();
                     #endregion
 
+                    quickFix();
+
                     /*
              * Controll Adds
              */
@@ -657,6 +659,46 @@ namespace BiBo
             base.Dispose(disposing);
         }
        
+      //quick fixes
+        //set font-color default to black for winXP OS
+        private void quickFix()
+        {
+          //set Buttonfont to black
+          this.buttonDeleteSelectedRows.ForeColor = Color.Black;
+          this.buttonUserAdd.ForeColor = Color.Black;
+          this.close.ForeColor = Color.Black;
+          this.addBooksActionButton.ForeColor = Color.Black;
+
+          //set labelfont to black
+          this.label1.ForeColor = Color.Black;
+          this.label2.ForeColor = Color.Black;
+          this.label3.ForeColor = Color.Black;
+          this.label4.ForeColor = Color.Black;
+          this.labelPLZ.ForeColor = Color.Black;
+          this.labelUserCity.ForeColor = Color.Black;
+          this.labelUserCoutry.ForeColor = Color.Black;
+          this.labelUserDetails.ForeColor = Color.Black;
+          this.labelUserDetailsAdress.ForeColor = Color.Black;
+          this.labelUserDetailsName.ForeColor = Color.Black;
+          this.labelUserStreetExtention.ForeColor = Color.Black;
+          this.labelBookAddauthor.ForeColor = Color.Black;
+          this.labelBookAddsubjectArea.ForeColor = Color.Black;
+          this.lableBookAddTitel.ForeColor = Color.Black;
+
+          //set tablecolor to black
+          this.booksTableDataSet.ForeColor = Color.Black;
+          this.userTableDataSet.ForeColor = Color.Black;
+
+          //set columns and rows fix, so that no one can change the size
+          this.userTableDataSet.AllowUserToResizeColumns = false;
+          this.userTableDataSet.AllowUserToResizeRows = false;
+
+          this.booksTableDataSet.AllowUserToResizeColumns = false;
+          this.booksTableDataSet.AllowUserToResizeRows = false;
+        }
+
+        
+      
     }
 }
 

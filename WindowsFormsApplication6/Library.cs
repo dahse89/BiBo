@@ -17,6 +17,7 @@ namespace BiBo
 
     //DAO's
     private TestDAO testDao;
+  
     
 
 		//Konstruktor
@@ -31,7 +32,7 @@ namespace BiBo
       return this.testDao;
     }
 
-    public Form1 getGUI()
+    public Form1 getGuiApi()
     {
       return this.GUI;
     }
