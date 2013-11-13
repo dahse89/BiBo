@@ -28,6 +28,8 @@ namespace BiBo
         private CustomerSQL sqlCustomer;
         private BookSQL sqlBook;
 
+        private Library lib;
+
         //constructor with getting SQLLite Adapters
        /* public Form1(CustomerDAO CustSQL, BookDAO BookSQL)
         {
@@ -42,31 +44,16 @@ namespace BiBo
         	this.sqlCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
             this.sqlBook = SqlConnector<Book>.GetBookSqlInstance();
             __construct();
+
         }
+
 
         //summary constructor
         private void __construct(){
-            //get current screen size
-            int width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
-            int height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
 
-            //load GUI elements, calculated by screen size (responsive)
-            //@see: Form1.Designer
-            InitializeComponent(width,height);
+          this.lib = new Library(this);
 
-            //init content
-
-            //@todo this should come form login and SQLLite
-            this.loginAsUserName = "Philipp Dahse";
-            this.userStatusText = "Admin";
-
-            //fill GUI elemens with content
-            publishContent();
-
-            //@todo remove at the end is only for testing
-            // randomPushUser();
-            this.SetFontsToBlack();
-            this.SetTablesFixed();
+          lib.getGUI().init();
         }
         
         //set font-color default to black for winXP OS
