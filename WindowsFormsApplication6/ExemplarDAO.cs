@@ -6,7 +6,7 @@ using BiBo.SQL;
 
 namespace BiBo.DAO
 {
-  class ExemplarDAO
+  public class ExemplarDAO
   {
     Form1 form;
     public ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();

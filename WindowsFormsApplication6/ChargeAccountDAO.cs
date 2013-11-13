@@ -7,7 +7,7 @@ using BiBo.SQL;
 
 namespace BiBo.DAO
 {
-  class ChargeAccountDAO
+  public class ChargeAccountDAO
   {
     Form1 form;
     //public ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();

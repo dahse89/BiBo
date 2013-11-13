@@ -12,7 +12,7 @@ namespace BiBo.DAO
   /// To save and restore objects in the DB and in the object-layer, you have to use this class.
   /// It also refresh the GUI-View
   /// </summary>
-  class BookDAO
+  public class BookDAO
   {
     Form1 form;
     public BookSQL bookSql = SqlConnector<Book>.GetBookSqlInstance();

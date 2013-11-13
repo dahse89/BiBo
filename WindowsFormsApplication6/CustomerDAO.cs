@@ -8,7 +8,7 @@ using BiBo.Persons;
 
 namespace BiBo.DAO
 {
-  class CustomerDAO
+  public class CustomerDAO
   {
     Form1 form;
     public CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
