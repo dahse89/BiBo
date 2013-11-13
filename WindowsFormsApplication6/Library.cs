@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BiBo.SQL;
 
 namespace BiBo
 {
@@ -11,20 +12,32 @@ namespace BiBo
     private double fee;           //Gebuehren
     private string openingTime;  //Oeffnungszeiten
 
+    //GUI Adapter
+    private Form1 GUI;
+
+    //DAO's
+    private TestDAO testDao;
+    
+
 		//Konstruktor
-		public Library(double fee, string openingTime)
+		public Library(Form1 gui)
 		{
-			this.fee = fee;
-			this.openingTime = openingTime;
+      this.testDao = new TestDAO(gui);
+      this.GUI = gui;
 		}
-		public Library(double fee)
-		{
-			this.fee = fee;
-		}
-		public Library(string openingTime)
-		{
-			this.openingTime = openingTime;
-		}
+
+    public TestDAO getTestDAO()
+    {
+      return this.testDao;
+    }
+
+    public Form1 getGUI()
+    {
+      return this.GUI;
+    }
+
+   
+
 
 		//Property Deklaration
     public double Fee

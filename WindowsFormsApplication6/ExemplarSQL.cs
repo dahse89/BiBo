@@ -30,7 +30,7 @@ namespace BiBo.SQL
             SQLiteCommand command = new SQLiteCommand(exemplarSQL, con);
             command.ExecuteNonQuery();
 
-            string customer_has_exemplarSQL = @"CREATE TABLE IF NOT EXIST Customer_has_Exemplar (
+            string customer_has_exemplarSQL = @"CREATE TABLE IF NOT EXISTS Customer_has_Exemplar (
                                                   ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                                                   loanPeriod DateTime, 
                                                   state VARCHAR(100) NOT NULL,
