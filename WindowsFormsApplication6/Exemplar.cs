@@ -10,10 +10,10 @@ namespace BiBo
   {
   	//Member-Variablen Deklaration
     private DateTime    loanPeriod;     //Ausleifrist 
-    private BookStates  state;		    //Status des Buches (only_visible, damaged, missing)
+    private BookStates  state;		      //Status des Buches (only_visible, damaged, missing)
     private string      signatur; 	    //signatur des buches
     private Access      accesser; 	    //Zugang zum Exemplar (magazin, freihandausleihe)
-    private Customer    borrower;	    //Ausleiher
+    private Customer    borrower;	      //Ausleiher
     private ulong       exemplarId;     //Exemplar-Nummer
     private ulong       bookId;         //dazugehörige Buch-ID
     

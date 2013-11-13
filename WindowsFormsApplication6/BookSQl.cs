@@ -48,7 +48,8 @@ namespace BiBo.SQL
                                       '" + book.SubjectArea + @"'
                                   );";
 
-            return (command.ExecuteNonQuery() == 1);
+            command.ExecuteNonQuery();
+            return true;
         }
 
         public override ulong AddEntryReturnId(Book book)

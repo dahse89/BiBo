@@ -46,6 +46,8 @@ namespace BiBo
 
         //summary constructor
         private void __construct(){
+         
+
             //get current screen size
             int width = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
             int height = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
