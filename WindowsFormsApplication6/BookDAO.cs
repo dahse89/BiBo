@@ -27,7 +27,11 @@ namespace BiBo.DAO
     }
 
     public List<Book> getAllBooks(){
-      return bookSql.GetAllEntrys();
+      if (lib.BookList == null)
+        return lib.BookList = bookSql.GetAllEntrys();
+
+      else
+        return lib.BookList;
     }
 
     public void AddBook(Book dummy)
@@ -48,7 +52,9 @@ namespace BiBo.DAO
         List<ulong> idList = form.DeleteBooksByIdList();
 
         //delete in Object <----- must be go better !!! SCHAU DA NOCHMAL NACH MARCUS !!!!!
-        foreach (Book book in lib.BookList)
+
+        List<Book> copyOfBookList = lib.BookList.ToList();//<----- ist nötig, sonst InvalidOperationException, weil die Liste, die durchlaufen wird, geändert wird
+        foreach (Book book in copyOfBookList) 
         {
           foreach (ulong id in idList)
           {

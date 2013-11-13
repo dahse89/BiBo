@@ -47,7 +47,8 @@ namespace BiBo.DAO
         List<ulong> idList = form.DeleteCustomersByIdList();
 
         //delete in Object <----- must be go better !!! SCHAU DA NOCHMAL NACH MARCUS !!!!!
-        foreach (Customer customer in lib.CustomerList)  //<----- InvalidOperationException Die Auflistung wurde geändert. Der Enumerationsvorgang kann möglicherweise nicht ausgeführt werden.
+        List<Customer> copyOfCustomerList = lib.CustomerList.ToList(); //<----- ist nötig, sonst InvalidOperationException, weil die Liste, die durchlaufen wird, geändert wird
+        foreach (Customer customer in copyOfCustomerList)  
         {
           foreach (ulong id in idList)
           {
