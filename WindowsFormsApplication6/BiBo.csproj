@@ -71,6 +71,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form1.Events.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.API.cs">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Form</SubType>
