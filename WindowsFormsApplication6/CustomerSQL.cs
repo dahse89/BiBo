@@ -63,6 +63,23 @@ namespace BiBo.SQL
             return (ulong) LastRowID64;
         }
 
+        public override bool UpdateEntry(Customer customer)
+        {
+          SQLiteCommand command = new SQLiteCommand(con);
+          command.CommandText = @"UPDATE Customer SET 
+                                    firstName = '" + customer.FirstName + @"',
+                                    lastName = '" + customer.LastName + @"',
+                                    street = '" + customer.Street + @"',
+                                    streetNumber = '" + customer.StreetNumber + @"',
+                                    additionalRoad = '" + customer.AdditionalRoad + @"',
+                                    zipCode = '" + customer.ZipCode + @"',
+                                    town = '" + customer.Town + @"',
+                                    country = '" + customer.Country + @"'
+                                  WHERE id = '" + customer.CustomerID + @"');";
+          command.ExecuteNonQuery();
+          return true;
+        }
+
         public override bool DeleteEntryByIdList(List<ulong> l)
         {
             SQLiteCommand command = new SQLiteCommand(con);
@@ -75,50 +92,26 @@ namespace BiBo.SQL
             command.ExecuteNonQuery();
             return true;
         }
+
 		
-		public override bool DeleteEntry(Customer customer)
-		{
-			if (customer.FirstName != "")
-            {
+		    public override List<Customer> GetAllEntrys()
+		    {
+		    List<Customer> customerList = new List<Customer>();
+
               SQLiteCommand command = new SQLiteCommand(con);
-              command.CommandText = "DELETE FROM Customer WHERE id='" + customer.CustomerID + "';";
-              command.ExecuteNonQuery();
-            }
-            return true;
-		}
+              command.CommandText = "SELECT * FROM Customer";
+              SQLiteDataReader reader = command.ExecuteReader();
 
-        public override Customer GetEntryById(ulong cid){
-          SQLiteCommand command = new SQLiteCommand(con);
-          command.CommandText = "SELECT * FROM Customer WHERE id = '" + cid + "'";
-          SQLiteDataReader reader = command.ExecuteReader();
-          if (reader.HasRows)
-          {
-              reader.Read();
-              return InitEntryByReader(reader);
-          }
-
-          else
-              throw new Exception("Eintrag nicht vorhanden");//für mich sinnvoller als ein leeres Objekt zurück zugeben
-        }
-		
-		public override List<Customer> GetAllEntrys()
-		{
-		List<Customer> customerList = new List<Customer>();
-
-          SQLiteCommand command = new SQLiteCommand(con);
-          command.CommandText = "SELECT * FROM Customer";
-          SQLiteDataReader reader = command.ExecuteReader();
-
-          if (reader.HasRows)
-          {
-              while (reader.Read())
+              if (reader.HasRows)
               {
-                  customerList.Add(InitEntryByReader(reader));
+                  while (reader.Read())
+                  {
+                      customerList.Add(InitEntryByReader(reader));
+                  }
               }
-          }
 
-          return customerList;
-		}
+              return customerList;
+		    }
 
         protected override Customer InitEntryByReader(SQLiteDataReader reader){
             Customer tmp;

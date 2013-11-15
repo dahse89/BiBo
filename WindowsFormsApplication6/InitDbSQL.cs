@@ -72,6 +72,12 @@ namespace BiBo.SQL
       command4.ExecuteNonQuery();
 
       con.Close();
+
+      if (con.State.ToString() == "Close")
+      {
+        return true;
+      }
+      return false;
     }
   }
 }

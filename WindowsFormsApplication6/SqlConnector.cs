@@ -56,13 +56,11 @@ namespace BiBo.SQL
 		public abstract bool AddEntry(T obj);
 
     public abstract ulong AddEntryReturnId(T obj);
-		
-		public abstract bool DeleteEntry(T obj);
 
     public abstract bool DeleteEntryByIdList(List<ulong> l);
 
-    public abstract T GetEntryById(ulong id);
-		
+    public abstract bool UpdateEntry(T obj);
+
 		public abstract List<T> GetAllEntrys();
 
     protected abstract T InitEntryByReader(SQLiteDataReader reader);
