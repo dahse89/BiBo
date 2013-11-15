@@ -5,6 +5,8 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
+using BiBo.DAO;
+
 namespace BiBo
 {
     partial class Form1
@@ -71,6 +73,8 @@ namespace BiBo
             ulong id;
             string sid;
 
+          BookDAO dao = new BookDAO(this, lib);
+
             //run througth rows
             for (int i = 0; i < booksTableDataSet.Rows.Count; i++)
             {
@@ -81,7 +85,7 @@ namespace BiBo
                 id = (ulong)Convert.ToInt64(sid);
 
                 //get customer form SQLLite table
-                tmp = sqlBook.GetEntryById(id);
+                tmp = dao.GetBookById(id);
 
                 //check if search input is in toString value of customer
                 if (!tmp.ToString().ToUpper().Contains(str.ToUpper()))

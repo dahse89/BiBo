@@ -60,9 +60,14 @@ namespace BiBo.DAO
         customerSql.DeleteEntryByIdList(idList);
     }
 
-    public void GetCustomerById(ulong id)
+    public Customer GetCustomerById(ulong id)
     {
-
+      foreach (Customer customer in lib.CustomerList)
+      {
+        if (customer.CustomerID == id)
+          return customer;
+      }
+      throw new Exception("Benutzer mit gegebener ID nicht vorhanden");
     }
 
 
