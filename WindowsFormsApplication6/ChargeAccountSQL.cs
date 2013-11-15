@@ -19,17 +19,12 @@ namespace BiBo.SQL
         throw new NotImplementedException();
       }
 
-      public override bool DeleteEntry(ChargeAccountSQL obj)
-      {
-        throw new NotImplementedException();
-      }
-
       public override bool DeleteEntryByIdList(List<ulong> l)
       {
         throw new NotImplementedException();
       }
 
-      public override ChargeAccountSQL GetEntryById(ulong id)
+      public override bool UpdateEntry(ChargeAccountSQL obj)
       {
         throw new NotImplementedException();
       }

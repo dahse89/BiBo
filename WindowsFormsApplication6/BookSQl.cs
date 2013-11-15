@@ -48,7 +48,7 @@ namespace BiBo.SQL
             return (ulong)lastRowID64;
         }
 
-		public override bool DeleteEntry(Book book)
+		public bool DeleteEntry(Book book)
         {
           if (book.Author != "")
           {
@@ -59,6 +59,10 @@ namespace BiBo.SQL
           return false;
         }
 
+    public override bool UpdateEntry(Book obj)
+    {
+      throw new NotImplementedException();
+    }
         public override bool DeleteEntryByIdList(List<ulong> l)  //Return wert ist schwachsinnig ... man müsste prüfen ob der Execute funktionierthat und nicht einfach true zurück geben ... dies ist an mehreren Stellen der Fall ..marcus
         {
             foreach (ulong x in l)
@@ -69,24 +73,7 @@ namespace BiBo.SQL
 
             }
             return true;
-        }
-
-        public override Book GetEntryById(ulong id)
-        {
-            SQLiteCommand command = new SQLiteCommand(con);
-            command.CommandText = "SELECT * FROM Book WHERE id = '" + id + "'";
-            SQLiteDataReader reader = command.ExecuteReader();
-            if (reader.HasRows)
-            {
-                reader.Read();
-                return InitEntryByReader(reader);
-            }
-
-            else
-                throw new Exception("Eintrag nicht vorhanden");
-         
-        }
-		
+        }		
 		public override List<Book> GetAllEntrys()
         {
           List<Book> bookList = new List<Book>();
