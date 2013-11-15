@@ -18,7 +18,7 @@ namespace BiBo
             {
                 case "only_visible": return BookStates.ONLY_VISIBLE;
             }
-            throw new Exception("Falschen Status angegeben");
+            throw new System.Exception("Falschen Status angegeben");
         }
     }
 }

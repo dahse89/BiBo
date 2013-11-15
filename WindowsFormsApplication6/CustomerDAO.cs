@@ -5,6 +5,7 @@ using System.Text;
 
 using BiBo.SQL;
 using BiBo.Persons;
+using BiBo.Exception;
 
 namespace BiBo.DAO
 {
@@ -67,7 +68,7 @@ namespace BiBo.DAO
         if (customer.CustomerID == id)
           return customer;
       }
-      throw new Exception("Benutzer mit gegebener ID nicht vorhanden");
+      throw new CustomerNotFoundException("Benutzer mit gegebener ID nicht vorhanden");
     }
 
 

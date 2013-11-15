@@ -76,7 +76,7 @@ namespace BiBo.DAO
         if (book.BookId == id)
           return book;
       }
-      throw new Exception("Buch mit gegebener ID nicht vorhanden");
+      throw new BookNotFoundException("Buch mit gegebener ID nicht vorhanden");
 
     }
 
