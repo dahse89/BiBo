@@ -68,8 +68,16 @@ namespace BiBo.DAO
         bookSql.DeleteEntryByIdList(idList);
     }
 
-    public void GetBookById(ulong id)
+    public Book GetBookById(ulong id)
     {
+
+      foreach (Book book in lib.BookList)
+      {
+        if (book.BookId == id)
+          return book;
+      }
+      throw new Exception("Buch mit gegebener ID nicht vorhanden");
+
     }
 
     public bool AddExemplar(Exemplar newExemplar)

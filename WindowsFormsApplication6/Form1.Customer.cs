@@ -8,6 +8,8 @@ using BiBo.Persons;
 using System.Windows.Forms;
 using System.Drawing;
 
+using BiBo.DAO;
+
 namespace BiBo
 {
     partial class Form1
@@ -193,6 +195,8 @@ namespace BiBo
             ulong id;
             string sid;
 
+            CustomerDAO dao = new CustomerDAO(this, lib);
+
             //run througth rows
             for (int i = 0; i < userTableDataSet.Rows.Count; i++)
             {
@@ -203,7 +207,7 @@ namespace BiBo
                 id = (ulong)Convert.ToInt64(sid);
 
                 //get customer form SQLLite table
-                tmp = sqlCustomer.GetEntryById(id);
+                tmp = dao.GetCustomerById(id);
 
                 //check if search input is in toString value of customer
                 if (!tmp.ToString().ToUpper().Contains(str.ToUpper()))
@@ -223,6 +227,8 @@ namespace BiBo
         //event by clicking cell this selects all cells in rows
         private void userTableDataSet_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+          CustomerDAO dao = new CustomerDAO(this, lib);
+
             //make all cells selected, so that it looks like the row is selected
             for (int i = 0; i < userTableDataSet.Rows[e.RowIndex].Cells.Count; i++) //IndexOutOfBoundException wenn man in der Tabelle auf de koopf klickt zum sortieren --> Marcus
             {
@@ -231,7 +237,7 @@ namespace BiBo
 
             //get  current user id and pass to show details method
             ulong custId = (ulong)Convert.ToInt64(userTableDataSet.Rows[e.RowIndex].Cells[1].Value.ToString());
-            Customer currCustomer = sqlCustomer.GetEntryById(custId);
+            Customer currCustomer = dao.GetCustomerById(custId);
             displayCustomerDetails(currCustomer);
         }
     }

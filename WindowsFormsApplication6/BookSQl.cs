@@ -181,18 +181,23 @@ namespace BiBo.SQL
             book.Exemplare.Add(x);
 
         }
-
+        
+    //TODO : Muss noch angepasst werden !!!!!!!!!!!!!!!!!!!!!
         public void RemoveExemplar(ulong exemplarId, Book book) // <-- Alle exemplare haben die selbe Signatur, dadurch ist dies der Falsche Parameter ... evtl. eher die ExemplarID als Kriterium wählen
         {
             ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+          
 
             //first remove the exemplar(specified by the exemplarId)
             Exemplar ex = new Exemplar();
             ex.ExemplarId = exemplarId;
             book.Exemplare.Remove(ex);
 
+            List<ulong> idList = new List<ulong>();
+            idList.Add(ex.ExemplarId);
+
             //and then delete from the db, specified by the exemplarId
-            exDAO.DeleteEntry(ex);
+            exDAO.DeleteEntryByIdList(idList);
         }
 
     }
