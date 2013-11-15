@@ -112,6 +112,22 @@ namespace BiBo.SQL
             return exemplarList;
         }
 
+        public List<Exemplar> GetAllEntrysByBook(Book book)
+        {
+          List<Exemplar> exemplarList = new List<Exemplar>();
+          SQLiteCommand command = new SQLiteCommand(con);
+          command.CommandText = "SELECT * FROM Exemplar WHERE bookId = '" + book.BookId + "'";
+
+          SQLiteDataReader reader = command.ExecuteReader();
+          if (reader.HasRows)
+          {
+            while (reader.Read())
+            {
+              exemplarList.Add(InitEntryByReader(reader));
+            }
+          }
+          return exemplarList;
+        }
         protected override Exemplar InitEntryByReader(System.Data.SQLite.SQLiteDataReader reader)
         {
             Exemplar exemplar = new Exemplar();
