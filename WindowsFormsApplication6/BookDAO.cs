@@ -5,6 +5,7 @@ using System.Text;
 
 using BiBo.SQL;
 using BiBo.Persons;
+using BiBo.Exception;
 
 namespace BiBo.DAO
 {
@@ -69,12 +70,14 @@ namespace BiBo.DAO
 
     public Book GetBookById(ulong id)
     {
+
       foreach (Book book in lib.BookList)
       {
         if (book.BookId == id)
           return book;
       }
       throw new Exception("Buch mit gegebener ID nicht vorhanden");
+
     }
 
     public bool AddExemplar(Exemplar newExemplar)
