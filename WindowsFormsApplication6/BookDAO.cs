@@ -5,6 +5,7 @@ using System.Text;
 
 using BiBo.SQL;
 using BiBo.Persons;
+using BiBo.Exception;
 
 namespace BiBo.DAO
 {
@@ -69,7 +70,6 @@ namespace BiBo.DAO
 
     public void GetBookById(ulong id)
     {
-
     }
 
     public bool AddExemplar(Exemplar newExemplar)
