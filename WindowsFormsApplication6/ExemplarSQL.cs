@@ -58,12 +58,9 @@ namespace BiBo.SQL
             return (ulong)lastRowID64;
         }
 
-        public override bool DeleteEntry(Exemplar exemplar)
+        public override bool UpdateEntry(Exemplar obj)
         {
-            SQLiteCommand command = new SQLiteCommand(con);
-            command.CommandText = "DELETE FROM Exemplar WHERE id = '" + exemplar.ExemplarId + "';";
-            command.ExecuteNonQuery();
-            return true;
+          throw new NotImplementedException();
         }
 
         public override bool DeleteEntryByIdList(List<ulong> l)
@@ -76,21 +73,6 @@ namespace BiBo.SQL
 
             }
             return true;
-        }
-
-        public override Exemplar GetEntryById(ulong id)
-        {
-            SQLiteCommand command = new SQLiteCommand(con);
-            command.CommandText = "SELECT * FROM Exemplar WHERE id = '" + id + "'";
-            SQLiteDataReader reader = command.ExecuteReader();
-            if (reader.HasRows)
-            {
-                reader.Read();
-                return InitEntryByReader(reader);
-            }
-
-            else
-                throw new Exception("Eintrag nicht vorhanden");
         }
 
         public override List<Exemplar> GetAllEntrys()

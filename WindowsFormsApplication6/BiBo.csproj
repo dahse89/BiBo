@@ -55,6 +55,7 @@
     <Compile Include="ChargeAccountDAO.cs" />
     <Compile Include="CustomerDAO.cs" />
     <Compile Include="ExemplarDAO.cs" />
+    <Compile Include="InitDbSQL.cs" />
     <Compile Include="Tabs.cs" />
     <Compile Include="Exemplar.cs" />
     <Compile Include="Customer.cs" />
