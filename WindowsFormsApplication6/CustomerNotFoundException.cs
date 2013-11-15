@@ -10,6 +10,7 @@ namespace BiBo.Exception
     public CustomerNotFoundException(string message)
       : base(message)
     {
+
     }
   }
 }
