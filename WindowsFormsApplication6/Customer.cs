@@ -32,6 +32,8 @@ namespace BiBo.Persons
         private string mobileNumber;                    //Handy-
         private string eMailAddress;                    //Email-Adresse
 
+        private List<Exemplar> exemplarList;            // Liste aller vom Customer ausgeliehen Buechern
+
 
         //Konstruktor
         public Customer(ulong customerID, string firstName, string lastName, DateTime birthDate)
@@ -133,6 +135,12 @@ namespace BiBo.Persons
         {
             get { return this.eMailAddress; }
             set { this.eMailAddress = value; }
+        }
+
+        public List<Exemplar> ExemplarList
+        {
+          get { return this.exemplarList; }
+          set { this.exemplarList = value; }
         }
 
         public String getFullAdress()
