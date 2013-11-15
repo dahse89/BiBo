@@ -19,28 +19,7 @@ namespace BiBo.SQL
 	/// Description of CustomerSql.
 	/// </summary>
 	public class CustomerSQL : SqlConnector<Customer>
-	{
-		public CustomerSQL()
-		{
-			string customerSQL = @"CREATE TABLE IF NOT EXISTS
-                                    Customer (
-                                        ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                        firstName VARCHAR(100) NOT NULL,
-                                        lastName VARCHAR(100) NOT NULL,
-                                        birthDate DATETIME,
-                                        street VARCHAR(100),
-                                        streetNumber VARCHAR(10),
-                                        additionalRoad VARCHAR(100), 
-                                        zipCode INTEGER(5), 
-                                        town VARCHAR(100), 
-                                        country VARCHAR(100), 
-                                        chargeAccount INTEGER(100)
-                                    );";
-
-          	SQLiteCommand command = new SQLiteCommand(customerSQL, con);
-          	command.ExecuteNonQuery();
-		}
-		
+	{		
 		public override bool AddEntry(Customer customer)
 		{
               SQLiteCommand command = new SQLiteCommand(con);

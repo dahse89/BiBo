@@ -19,23 +19,6 @@ namespace BiBo.SQL
         private Customer borrower;	    //Ausleiher
         private ulong exemplarId;     //Exemplar-Nummer
         private ulong bookId;         //dazugehörige Buch-ID
-    
-        public ExemplarSQL()
-        {
-            string exemplarSQL = @"CREATE TABLE IF NOT EXISTS Exemplar (
-                                       ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                       bookId INTEGER,
-                                       loanPeriod DateTime, 
-                                       state VARCHAR(100) NOT NULL,
-                                       signatur VARCHAR(100) NOT NULL, 
-                                       access VARCHAR(100) NOT NULL,
-                                       customerId INTEGER
-                                    );";
-
-            SQLiteCommand command = new SQLiteCommand(exemplarSQL, con);
-            command.ExecuteNonQuery();
-
-        }
 
         public override bool AddEntry(Exemplar exemplar)
         {

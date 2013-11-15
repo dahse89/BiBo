@@ -9,20 +9,6 @@ namespace BiBo.SQL
 {
   public class ChargeAccountSQL : SqlConnector<ChargeAccountSQL>
     {
-      public ChargeAccountSQL()
-      {
-        string customerSQL = @"CREATE TABLE IF NOT EXISTS
-                                    ChargeAccount (
-                                        ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                        customerId INTEGER NOT NULL,
-                                        changedAt DATETIME,
-                                        currentValue DECIMAL
-                                    );";
-
-        SQLiteCommand command = new SQLiteCommand(customerSQL, con);
-        command.ExecuteNonQuery();
-      }
-
       public override bool AddEntry(ChargeAccountSQL obj)
       {
         throw new NotImplementedException();

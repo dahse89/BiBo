@@ -18,20 +18,7 @@ namespace BiBo.SQL
 	/// </summary>
 		
 	public class BookSQL : SqlConnector<Book>
-	{
-		public BookSQL()
-		{
-            string bookSQL = @"CREATE TABLE IF NOT EXISTS Book (
-                                       ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,  
-                                       author VARCHAR(100) NOT NULL, 
-                                       titel VARCHAR(100) NOT NULL, 
-                                       subjectArea VARCHAR(100) NOT NULL
-                                    );";
-
-            SQLiteCommand command = new SQLiteCommand(bookSQL, con);
-            command.ExecuteNonQuery();
-		}
-		
+	{		
 		public override bool AddEntry(Book book)
         {
             SQLiteCommand command = new SQLiteCommand(con);
