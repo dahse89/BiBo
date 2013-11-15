@@ -9,7 +9,7 @@ namespace BiBo.Persons
   public class Employee : Customer    
   {
 		//Member-Variablen Deklaration
-    List<Customer> customerList = new List<Customer>(); //Liste mit allen Kunden
+
 
    //Konstruktor für Mitarbeiter
    public Employee(ulong customerID, string firstName, string lastName, DateTime birthDate)
@@ -33,12 +33,6 @@ namespace BiBo.Persons
       customer.ZipCode = zipCode;
       customer.Town = town;
       customer.Country = country;
-    }
-
-    public bool deleteCustomer(Customer customer)
-    {
-        customer.UserState = UserStates.DELETED;
-        return true;
     }
 
   }

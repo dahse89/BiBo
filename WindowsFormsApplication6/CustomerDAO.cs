@@ -60,6 +60,11 @@ namespace BiBo.DAO
         customerSql.DeleteEntryByIdList(idList);
     }
 
+    public void GetCustomerById(ulong id)
+    {
+
+    }
+
 
   }
 }

@@ -67,5 +67,25 @@ namespace BiBo.DAO
         bookSql.DeleteEntryByIdList(idList);
     }
 
+    public void GetBookById(ulong id)
+    {
+
+    }
+
+    public bool AddExemplar(Exemplar newExemplar)
+    {
+      return true;
+    }
+
+    public bool DeleteExemplar(Exemplar oldExemplar)
+    {
+      return false;
+    }
+
+    public ulong GetLastExemplarId()
+    {
+      return 0;
+    }
+
   }
 }
