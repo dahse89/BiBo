@@ -14,6 +14,7 @@ namespace BiBo
 
         
         #region init Panels
+        private Panel SuperPanelEmployee            = new Panel();
         private Panel customerImage                 = new Panel();
         private Panel panel1                        = new Panel();
         private Panel CustomerMainPanel             = new Panel();
@@ -99,8 +100,16 @@ namespace BiBo
             int windowWidth = w;
 
             #region Form1
-                #region Form1 Values
-                this.ClientSize = new System.Drawing.Size(w, h);
+            #region Super Panel Employee
+            this.SuperPanelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            //this.SuperPanelEmployee.BackColor = System.Drawing.Color.Blue;
+            this.SuperPanelEmployee.Location = new System.Drawing.Point(0, 0);
+            this.SuperPanelEmployee.Name = "SuperPanelEmployee";
+            this.SuperPanelEmployee.Size = new System.Drawing.Size(windowWidth, windowHeight);
+            this.SuperPanelEmployee.TabIndex = 3;
+            #endregion
+            #region Form1 Values
+            this.ClientSize = new System.Drawing.Size(w, h);
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
                 this.AutoScaleMode = AutoScaleMode.Font;
                 this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -648,21 +657,24 @@ namespace BiBo
             #region Adds to groupBoxSelectedRows
             this.groupBoxSelectedRows.Controls.Add(this.buttonDeleteSelectedRows);
             #endregion
+            #region Add to Super Panel Employee
+            this.SuperPanelEmployee.Controls.Add(this.groupBoxSelectedRows);
+            this.SuperPanelEmployee.Controls.Add(this.groupBoxSearch);
+            this.SuperPanelEmployee.Controls.Add(this.CustomerMainPanel);
+            this.SuperPanelEmployee.Controls.Add(this.BooksMainPanel);
+            this.SuperPanelEmployee.Controls.Add(this.BorrowMainPanel);
+            this.SuperPanelEmployee.Controls.Add(this.userStat);
+            this.SuperPanelEmployee.Controls.Add(this.UserStatus);
+            this.SuperPanelEmployee.Controls.Add(this.userName);
+            this.SuperPanelEmployee.Controls.Add(this.LoginAs);
+            //this.SuperPanelEmployee.Controls.Add(this.panel1);
+            this.SuperPanelEmployee.Controls.Add(this.booksImage);
+            this.SuperPanelEmployee.Controls.Add(this.customerImage);
+            this.SuperPanelEmployee.Controls.Add(this.borrowImage);
+            this.SuperPanelEmployee.Controls.Add(this.close);
+            #endregion
             #region Add to From 1 (main window)
-            this.Controls.Add(this.groupBoxSelectedRows);
-            this.Controls.Add(this.groupBoxSearch);
-            this.Controls.Add(this.CustomerMainPanel);
-            this.Controls.Add(this.BooksMainPanel);
-            this.Controls.Add(this.BorrowMainPanel);
-            this.Controls.Add(this.userStat);
-            this.Controls.Add(this.UserStatus);
-            this.Controls.Add(this.userName);
-            this.Controls.Add(this.LoginAs);
-            //this.Controls.Add(this.panel1);
-            this.Controls.Add(this.booksImage);
-            this.Controls.Add(this.customerImage);
-            this.Controls.Add(this.borrowImage);
-            this.Controls.Add(this.close);
+            this.Controls.Add(this.SuperPanelEmployee);
             #endregion
 
 
