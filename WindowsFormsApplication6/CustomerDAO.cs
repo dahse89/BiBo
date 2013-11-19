@@ -63,12 +63,26 @@ namespace BiBo.DAO
 
     public Customer GetCustomerById(ulong id)
     {
+
+        /*
+        @Marcus: hier nur mal ein Beispiel mit LINQ, nur falls du lust hast das zu benutzen
+        try
+        {
+            return (from Customer c in lib.CustomerList where c.CustomerID == id select c).ToList()[0];
+        }
+        catch (ArgumentOutOfRangeException aoore)
+        {
+            throw new CustomerNotFoundException("Benutzer mit gegebener ID nicht vorhanden");
+        }
+        */
+       
       foreach (Customer customer in lib.CustomerList)
       {
         if (customer.CustomerID == id)
           return customer;
       }
       throw new CustomerNotFoundException("Benutzer mit gegebener ID nicht vorhanden");
+       
     }
 
 

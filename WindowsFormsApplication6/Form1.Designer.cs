@@ -270,6 +270,7 @@ namespace BiBo
 
                 #region customer search textbox
                 this.textBoxCustomerSearch.Location = new Point(100, 20);
+                this.textBoxCustomerSearch.KeyUp += new KeyEventHandler(this.CustomerSearchBook_KeyUp);
                 #endregion
 
                 #region data grid view

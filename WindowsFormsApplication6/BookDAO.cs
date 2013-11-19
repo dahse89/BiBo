@@ -70,6 +70,7 @@ namespace BiBo.DAO
 
     public Book GetBookById(ulong id)
     {
+  
 
       foreach (Book book in lib.BookList)
       {
