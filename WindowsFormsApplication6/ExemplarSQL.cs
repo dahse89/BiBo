@@ -22,9 +22,12 @@ namespace BiBo.SQL
 
         public override bool AddEntry(Exemplar exemplar)
         {
-            SQLiteCommand command = new SQLiteCommand(con);
-            if(command != null){
-            command.CommandText = @"INSERT INTO Exemplar (
+            try
+            {
+                SQLiteCommand command = new SQLiteCommand(con);
+                if (command != null)
+                {
+                    command.CommandText = @"INSERT INTO Exemplar (
                                       id,
                                       bookId,
                                       loanPeriod,
@@ -35,7 +38,7 @@ namespace BiBo.SQL
                                   )   
                                   VALUES (
                                       NULL,  
-                                      '" + exemplar.BookId.ToString() 				+ @"',
+                                      '" + exemplar.BookId.ToString() + @"',
                                       '" + exemplar.LoanPeriod.ToShortDateString() + @"',
                                       '" + exemplar.State.ToString() + @"',
                                       '" + exemplar.Signatur + @"',
@@ -43,9 +46,14 @@ namespace BiBo.SQL
                                       '" + "5" + @"',
                                   );";
 
-            command.ExecuteNonQuery();                           
+                    command.ExecuteNonQuery();
+                }
+                return true;
             }
-            return true;
+            catch (System.Exception)
+            {
+                return false;
+            }
         }
 
         public override ulong AddEntryReturnId(Exemplar exemplar)

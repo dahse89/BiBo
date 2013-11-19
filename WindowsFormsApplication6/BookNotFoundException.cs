@@ -5,11 +5,12 @@ using System.Text;
 
 namespace BiBo.Exception
 {
-  class BookNotFoundException : System.Exception
-  {
-    public BookNotFoundException(string message)
-      : base(message)
+    [Serializable()] 
+    class BookNotFoundException : System.Exception
     {
+        public BookNotFoundException(string message): base(message)
+        {
+        
+        }
     }
-  }
 }
