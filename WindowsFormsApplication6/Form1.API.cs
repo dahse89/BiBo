@@ -487,6 +487,9 @@ namespace BiBo
     private void UserLogin(Customer logginUser){
         this.SuperPanelLogin.Visible = false;
         this.SuperPanelCustomer.Visible = true;
+
+        this.loggedInAs_Name.Text = "Name: " + logginUser.FirstName + " " + logginUser.LastName;
+        this.loggedInAs_Adress.Text = "Adresse: " + logginUser.getFullAdress();
     }
 
     private void EmployeeLogin(Customer logginUser)

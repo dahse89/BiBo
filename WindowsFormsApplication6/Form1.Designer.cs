@@ -18,6 +18,8 @@ namespace BiBo
         private Panel SuperPanelEmployee            = new Panel();
         private Panel SuperPanelCustomer            = new Panel();
         private Panel customerImage                 = new Panel();
+        private Panel customerSearchBookPanel = new Panel();
+        private Panel imageSearch = new Panel();
         private Panel panel1                        = new Panel();
         private Panel CustomerMainPanel             = new Panel();
         private Panel BooksMainPanel                = new Panel();
@@ -57,6 +59,12 @@ namespace BiBo
         private Label labelUserLoginName            = new Label();
         private Label labelUserLoginPass            = new Label();
 
+        private Label labelCustomerSearch            = new Label();
+
+        private Label loggedInAs_Name               = new Label();
+        private Label loggedInAs_Adress             = new Label();
+
+
         private Label labelUserCoutry               = new Label();
         private Label labelUserCity                 = new Label();
         private Label labelPLZ                      = new Label();
@@ -79,6 +87,7 @@ namespace BiBo
         #region init TextBox
         private TextBox textBoxUserLoginName         = new TextBox();
         private TextBox textBoxUserLoginPass         = new TextBox();
+        private TextBox textBoxCustomerSearch        = new TextBox();
 
         private TextBox textBoxUserCity              = new TextBox();
         private TextBox textBoxUserPLZ               = new TextBox();
@@ -103,6 +112,10 @@ namespace BiBo
         #endregion
         #region init Chart
         private Chart chartUserAge                   = new Chart();
+        #endregion
+        #region init CheckBox
+        private CheckBox checkBoxCustomerSearchTitle = new CheckBox();
+        private CheckBox checkBoxCustomerSearchAutor = new CheckBox();
         #endregion
 
         private void InitializeComponent(int w, int h)
@@ -199,18 +212,68 @@ namespace BiBo
 
                 #region customerSideBarGroupeBox
                 this.customerSideBarGroupeBox.Location = new Point(10, 10);
-                this.customerSideBarGroupeBox.Size = new Size(windowWidth / 6, windowHeight - 20);                
-                #endregion              
+                this.customerSideBarGroupeBox.Size = new Size(200, windowHeight - 20);
+
+                #region labels
+                this.loggedInAs_Name.Name = "LoggedInAsCustomer";
+                this.loggedInAs_Name.Location = new Point(10, 10);
+                this.loggedInAs_Name.AutoSize = true;
+
+                this.loggedInAs_Adress.Name = "LoggedInAsCustomerAdress";
+                this.loggedInAs_Adress.Location = new Point(10, 30);
+                this.loggedInAs_Adress.AutoSize = true;
+                #endregion
+                #endregion
 
                 #region customerTabsGroupeBox
-                this.customerTabsGroupeBox.Location = new Point(windowWidth / 6 + 20, 10);
-                this.customerTabsGroupeBox.Size = new Size(windowWidth / 6 * 5 - 30, windowHeight / 6);
+                this.customerTabsGroupeBox.Location = new Point(220, 10);
+                this.customerTabsGroupeBox.Size = new Size(windowWidth - 230, 80);
+
+                #region seach image
+                this.imageSearch.BackgroundImage = global::BiBo.Properties.Resources.Search;
+                this.imageSearch.Location = new System.Drawing.Point(20, 10);
+                this.imageSearch.Name = "searchImage";
+                this.imageSearch.Size = new System.Drawing.Size(64, 64);
+                this.imageSearch.TabIndex = 2;
+                //this.imageSearch.Click += new System.EventHandler(this.booksImage_Click);
+                #endregion
                 #endregion
 
                 #region customerMainGroupeBox
-                this.customerMainGroupeBox.Location = new Point(windowWidth / 6 + 20, windowHeight / 6 + 10);
-                this.customerMainGroupeBox.Size = new Size(windowWidth / 6 * 5 - 30, windowHeight / 6 * 5 - 20);
-                
+                this.customerMainGroupeBox.Location = new Point(220, 94);
+                this.customerMainGroupeBox.Size = new Size(windowWidth - 230, windowHeight - 104);
+
+
+                #region customer sreach book panel
+                this.customerSearchBookPanel.Location = new Point(0, 0);
+                this.customerSearchBookPanel.Size = this.customerMainGroupeBox.Size;
+
+                #region customer search checkboxes
+                this.checkBoxCustomerSearchAutor.Location = new Point(250, 20);
+                this.checkBoxCustomerSearchAutor.Text = "Autor";
+                this.checkBoxCustomerSearchTitle.Location = new Point(400, 20);
+                this.checkBoxCustomerSearchTitle.Text = "Title";
+                #endregion
+
+                #region customer search label
+                this.labelCustomerSearch.Text = "Suche: ";
+                this.labelCustomerSearch.AutoSize = true;
+                this.labelCustomerSearch.Location = new Point(50, 20);
+
+           
+
+                #endregion
+
+                #region customer search textbox
+                this.textBoxCustomerSearch.Location = new Point(100, 20);
+                #endregion
+
+               
+
+
+
+
+                #endregion
                 #endregion
 
                 #endregion
@@ -776,6 +839,26 @@ namespace BiBo
             #region Add to SuperPanelLogin
             this.SuperPanelLogin.Controls.Add(this.groupBoxLogin);
             this.SuperPanelLogin.Controls.Add(this.close);
+            #endregion
+
+            #region Add to customerSideBarGroupeBox
+            this.customerSideBarGroupeBox.Controls.Add(this.loggedInAs_Name);
+            this.customerSideBarGroupeBox.Controls.Add(this.loggedInAs_Adress);
+            #endregion
+
+            #region customerTabsGroupeBox
+            this.customerTabsGroupeBox.Controls.Add(this.imageSearch);
+            #endregion
+
+            #region customerMainGroupeBox
+            this.customerMainGroupeBox.Controls.Add(this.customerSearchBookPanel);
+            #endregion
+
+            #region add to customerSearchBookPanel
+            this.customerSearchBookPanel.Controls.Add(this.labelCustomerSearch);
+            this.customerSearchBookPanel.Controls.Add(this.textBoxCustomerSearch);
+            this.customerSearchBookPanel.Controls.Add(this.checkBoxCustomerSearchAutor);
+            this.customerSearchBookPanel.Controls.Add(this.checkBoxCustomerSearchTitle);
             #endregion
             #region Add to SuperPanelCustomer
             this.SuperPanelCustomer.Controls.Add(this.customerSideBarGroupeBox);
