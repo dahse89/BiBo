@@ -21,6 +21,9 @@ namespace BiBo
         private Panel imageAccount                  = new Panel();
 
         private Panel customerSearchBookPanel = new Panel();
+        private Panel customerAccountPanel = new Panel();
+
+
         private Panel imageSearch = new Panel();
         private Panel panel1                        = new Panel();
         private Panel CustomerMainPanel             = new Panel();
@@ -238,7 +241,7 @@ namespace BiBo
                 this.imageSearch.Name = "searchImage";
                 this.imageSearch.Size = new System.Drawing.Size(64, 64);
                 this.imageSearch.TabIndex = 2;
-                //this.imageSearch.Click += new System.EventHandler(this.booksImage_Click);
+                this.imageSearch.Click += new System.EventHandler(this.imageSearch_Click);
                 #endregion
 
                 #region account image
@@ -247,7 +250,7 @@ namespace BiBo
                 this.imageAccount.Name = "accountImage";
                 this.imageAccount.Size = new System.Drawing.Size(64, 64);
                 this.imageAccount.TabIndex = 2;
-                //this.imageAccount.Click += new System.EventHandler(this.booksImage_Click);
+                this.imageAccount.Click += new System.EventHandler(this.imageAccount_Click);
                 #endregion
 
                 #endregion
@@ -299,6 +302,14 @@ namespace BiBo
 
 
 
+
+                #endregion
+
+                #region customer account panel
+                this.customerAccountPanel.Location = this.customerSearchBookPanel.Location;
+                this.customerAccountPanel.Size = this.customerSearchBookPanel.Size;
+                this.customerAccountPanel.BackColor = System.Drawing.Color.Blue;
+                this.customerAccountPanel.Visible = false;
 
                 #endregion
 
@@ -882,6 +893,8 @@ namespace BiBo
 
             #region customerMainGroupeBox
             this.customerMainGroupeBox.Controls.Add(this.customerSearchBookPanel);
+            this.customerMainGroupeBox.Controls.Add(this.customerAccountPanel);
+            
             #endregion
 
             #region add to customerSearchBookPanel

@@ -297,6 +297,19 @@ namespace BiBo
                                                         customerSearchBook.Rows[i].Cells[2].Value.ToString().ToUpper().Contains(search));                
             }
         }
+
+        private void imageSearch_Click(object sender, EventArgs e)
+        {
+            this.customerSearchBookPanel.Visible = true;
+            this.customerAccountPanel.Visible = false;
+
+        }
+
+        private void imageAccount_Click(object sender, EventArgs e)
+        {
+            this.customerSearchBookPanel.Visible = false;
+            this.customerAccountPanel.Visible = true;
+        }
     }
  
   }
