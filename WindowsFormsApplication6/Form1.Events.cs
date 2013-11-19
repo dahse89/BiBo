@@ -192,5 +192,21 @@ namespace BiBo
       clearBookAddForm();
 
     }
+
+      
+        //event by clicking cell this selects all cells in rows
+        private void userTableDataSet_CellClick(object sender, DataGridViewCellEventArgs e)
+        {        
+            //make all cells selected, so that it looks like the row is selected
+            for (int i = 0; i < userTableDataSet.Rows[e.RowIndex].Cells.Count; i++) //IndexOutOfBoundException wenn man in der Tabelle auf de koopf klickt zum sortieren --> Marcus
+            {
+                userTableDataSet.Rows[e.RowIndex].Cells[i].Selected = true;
+            }
+
+            //get  current user id and pass to show details method
+            ulong custId = (ulong)Convert.ToInt64(userTableDataSet.Rows[e.RowIndex].Cells[1].Value.ToString());
+            Customer currCustomer = lib.getCustomerDAO().GetCustomerById(custId);
+            displayCustomerDetails(currCustomer);
+        }
+    }
   }
-}

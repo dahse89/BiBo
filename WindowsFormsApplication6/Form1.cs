@@ -21,6 +21,13 @@ namespace BiBo
 
         private Tabs activTab = Tabs.CUSTOMER;
 
+        //default value of DatePicker for user add birthday
+        private DateTime userAddBirthDayDefault = new DateTime(1980, 1, 1);
+
+        //Source file of Countries
+        //@todo this could be stored in SQLLite Table
+        private String countriesSource = "../../countries.txt";
+
         //@todo remove this, it is only needed of testing
         private Random r = new Random();
 
