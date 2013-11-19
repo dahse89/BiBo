@@ -39,6 +39,10 @@ namespace BiBo
         private GroupBox customerMainGroupeBox      = new GroupBox();
         private GroupBox customerTabsGroupeBox = new GroupBox();
 
+        private GroupBox customerChargeAccountGroupBox = new GroupBox();
+        private GroupBox customerBooksGroupeBox = new GroupBox();
+
+
         private GroupBox UserAddPanel               = new GroupBox();
         private GroupBox groupBoxAddBook            = new GroupBox();
         private GroupBox userDetails                = new GroupBox();
@@ -123,6 +127,8 @@ namespace BiBo
         private CheckBox checkBoxCustomerSearchTitle = new CheckBox();
         private CheckBox checkBoxCustomerSearchAutor = new CheckBox();
         #endregion
+
+        
 
         private void InitializeComponent(int w, int h)
         {
@@ -308,8 +314,20 @@ namespace BiBo
                 #region customer account panel
                 this.customerAccountPanel.Location = this.customerSearchBookPanel.Location;
                 this.customerAccountPanel.Size = this.customerSearchBookPanel.Size;
-                this.customerAccountPanel.BackColor = System.Drawing.Color.Blue;
+        
                 this.customerAccountPanel.Visible = false;
+
+                #region account group box
+                this.customerChargeAccountGroupBox.Location = new Point(10, 10);
+                this.customerChargeAccountGroupBox.Size = new Size(customerAccountPanel.Width - 20, customerAccountPanel.Height / 2 - 5);
+                this.customerChargeAccountGroupBox.Text = "Gebührenkonto";
+                #endregion
+
+                #region books group box
+                this.customerBooksGroupeBox.Location = new Point(10, customerAccountPanel.Height / 2 + 5);
+                this.customerBooksGroupeBox.Size = new Size(customerAccountPanel.Width - 20, customerAccountPanel.Height / 2 - 15);
+                this.customerBooksGroupeBox.Text = "ausgeliehende Bücher";
+                #endregion
 
                 #endregion
 
@@ -903,6 +921,11 @@ namespace BiBo
             this.customerSearchBookPanel.Controls.Add(this.checkBoxCustomerSearchAutor);
             this.customerSearchBookPanel.Controls.Add(this.checkBoxCustomerSearchTitle);
             this.customerSearchBookPanel.Controls.Add(this.customerSearchBook);
+            #endregion
+            #region add to customerAccountPanel
+            this.customerAccountPanel.Controls.Add(this.customerChargeAccountGroupBox);
+            this.customerAccountPanel.Controls.Add(this.customerBooksGroupeBox);
+
             #endregion
             #region Add to SuperPanelCustomer
             this.SuperPanelCustomer.Controls.Add(this.customerSideBarGroupeBox);
