@@ -45,13 +45,49 @@ namespace BiBo
 
     public static bool validateCustomerAddPanel(Control x)
     {
-      TextBox firstName = (TextBox)x.Controls.Find("textBoxUserFirstname", true)[0];
 
+      TextBox firstName = (TextBox)x.Controls.Find("textBoxUserFirstname", true)[0];
       if (!Validation.Name(firstName.Text))
       {
         firstName.BackColor = Color.Red;
         return false;
       }
+
+      TextBox lastName = (TextBox)x.Controls.Find("textBoxUserLastname", true)[0];
+      if (!Validation.Name(lastName.Text))
+      {
+          lastName.BackColor = Color.Red;
+          return false;
+      }
+
+      TextBox UserStreet = (TextBox)x.Controls.Find("textBoxUserStreet", true)[0];
+      if (!Validation.Name(lastName.Text))
+      {
+          UserStreet.BackColor = Color.Red;
+          return false;
+      }
+
+      TextBox HomeNumber = (TextBox)x.Controls.Find("textBoxUserHomeNumber", true)[0];
+      if (!Validation.Name(lastName.Text))
+      {
+          HomeNumber.BackColor = Color.Red;
+          return false;
+      }
+
+      TextBox UserCity = (TextBox)x.Controls.Find("textBoxUserCity", true)[0];
+      if (!Validation.Name(lastName.Text))
+      {
+          UserCity.BackColor = Color.Red;
+          return false;
+      }
+
+      TextBox UserPLZ = (TextBox)x.Controls.Find("textBoxUserPLZ", true)[0];
+      if (!Validation.Name(lastName.Text))
+      {
+          UserPLZ.BackColor = Color.Red;
+          return false;
+      }
+
       return true;
     }
 
