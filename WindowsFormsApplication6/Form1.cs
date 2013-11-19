@@ -10,6 +10,9 @@ using System.Threading;
 using System.IO;
 using BiBo.Persons;
 using BiBo.SQL;
+using System.Net;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 
 namespace BiBo
@@ -48,6 +51,7 @@ namespace BiBo
         //default constructor
         public Form1()
         {
+            //createRandomBooks();return;
         	this.sqlCustomer = SqlConnector<Customer>.GetCustomerSqlInstance();
             this.sqlBook = SqlConnector<Book>.GetBookSqlInstance();
             __construct();
@@ -60,6 +64,37 @@ namespace BiBo
         {
           this.lib = new Library(this);
           lib.getGuiApi().init();
+        }
+
+        private void createRandomBooks()
+        {
+            BookSQL db = new BookSQL();
+
+            String Source = "http://www.lovelybooks.de/buecher/romane/Schr%C3%A4ge-Buchtitel-582954334/";
+            WebClient client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+            string downloadString = client.DownloadString(Source);
+
+	
+            
+            Regex regex = new Regex(@">([^<]+)</span></a></h3");
+            var listTitle = (from Match m in regex.Matches(downloadString) select m).ToList();
+
+
+            regex = new Regex(@"von\s<a[^>]+>([^<]+)<");
+            var listAuthor = (from Match m in regex.Matches(downloadString) select m).ToList();
+
+
+            for (int i = 0; i < listTitle.Count; i++)
+            {
+               
+                    db.AddEntryReturnId(new Book(0, listAuthor[i].Groups[1].Value, listTitle[i].Groups[1].Value, "Roman"));
+               
+             
+            }
+
+            
+            
         }
     }     
 }

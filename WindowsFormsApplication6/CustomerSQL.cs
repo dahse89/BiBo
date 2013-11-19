@@ -48,6 +48,7 @@ namespace BiBo.SQL
                                                 '" + customer.Town + @"',
                                                 '" + customer.Country + @"'
                                              );";
+
               command.ExecuteNonQuery();
 
             return true;

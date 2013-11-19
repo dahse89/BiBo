@@ -123,7 +123,9 @@ namespace BiBo
        );
 
       //set read only again
-      setUserTableReadOnly();
+      List<int> exceptions = new List<int>();
+      exceptions.Add(0); //checkbox colum
+      setDataGridViewReadOnly(userTableDataSet, exceptions);   
     }
 
     public List<ulong> DeleteCustomersByIdList()
@@ -203,23 +205,6 @@ namespace BiBo
       return potentialDeletedIds;
     }
 
-    //set all cells in datagridview readonly. except the checkbox cells
-    private void setUserTableReadOnly()
-    {
-        //run through all rows
-        for (int i = 0; i < userTableDataSet.Rows.Count; i++)
-        {
-            //run through all cells of row
-            for (int j = 0; j < userTableDataSet.Rows[i].Cells.Count; j++)
-            {
-                if (j != 0) // if not is checkbox cell
-                {
-                    //set cell readonly
-                    userTableDataSet.Rows[i].Cells[j].ReadOnly = true;
-                }
-            }
-        }
-    }
 
     //fill age chart with values
     private void initAgeChart()
@@ -330,7 +315,9 @@ namespace BiBo
         }
 
         //set customer table to read only
-        setUserTableReadOnly();
+        List<int> exceptions = new List<int>();
+        exceptions.Add(0); //checkbox colum
+        setDataGridViewReadOnly(userTableDataSet, exceptions);   
 
         //insert all countries to comboBox
         initCourtries();
@@ -420,9 +407,12 @@ namespace BiBo
         }
 
         //make table readonly
-        setBooksTableReadOnly();
+        List<int> exceptions = new List<int>();
+        exceptions.Add(0); //checkbox colum
+        setDataGridViewReadOnly(this.booksTableDataSet, exceptions);  
 
     }
+
 
     //clear book add form
     private void clearBookAddForm()
@@ -432,19 +422,25 @@ namespace BiBo
         this.textBoxBookAddTitel.Text = "";
     }
 
-    //set all cells in datagridview readonly. except the checkbox cells
-    private void setBooksTableReadOnly()
+
+
+    private void setDataGridViewReadOnly(DataGridView dgv)
+    {
+        setDataGridViewReadOnly(dgv, new List<int>());
+    }
+
+    private void setDataGridViewReadOnly(DataGridView dgv, List<int> excludedColums)
     {
         //run through all rows
-        for (int i = 0; i < this.booksTableDataSet.Rows.Count; i++)
+        for (int i = 0; i < dgv.Rows.Count; i++)
         {
             //run through all cells of row
-            for (int j = 0; j < this.booksTableDataSet.Rows[i].Cells.Count; j++)
+            for (int j = 0; j < dgv.Rows[i].Cells.Count; j++)
             {
-                if (j != 0) // if not is checkbox cell
+                if (excludedColums.IndexOf(j) == -1) // exclude exceptions
                 {
                     //set cell readonly
-                    this.booksTableDataSet.Rows[i].Cells[j].ReadOnly = true;
+                    dgv.Rows[i].Cells[j].ReadOnly = true;
                 }
             }
         }
@@ -488,8 +484,7 @@ namespace BiBo
         this.SuperPanelLogin.Visible = false;
         this.SuperPanelCustomer.Visible = true;
 
-        this.loggedInAs_Name.Text = "Name: " + logginUser.FirstName + " " + logginUser.LastName;
-        this.loggedInAs_Adress.Text = "Adresse: " + logginUser.getFullAdress();
+        publishCustomerSearchLogin(logginUser);
     }
 
     private void EmployeeLogin(Customer logginUser)
@@ -501,6 +496,39 @@ namespace BiBo
     {
         MessageBox.Show("logged in as admin");
     }
+
+    private void publishCustomerSearchLogin(Customer logginUser)
+    {
+
+        this.loggedInAs_Name.Text = "Name: " + logginUser.FirstName + " " + logginUser.LastName;
+        this.loggedInAs_Adress.Text = "Adresse: " + logginUser.getFullAdress();
+
+        this.customerSearchBook.ColumnCount = 4;
+
+        //set colum names
+        this.customerSearchBook.Columns[0].Name = "ID";
+        this.customerSearchBook.Columns[1].Name = "Author";
+        this.customerSearchBook.Columns[2].Name = "Title";
+        this.customerSearchBook.Columns[3].Name = "Genre";
+
+        foreach (Book book in lib.getBookDAO().getAllBooks())
+        {
+            lib.getGuiApi().AddBookCustomerSearch(book);
+        }
+
+        //make table readonly
+        setDataGridViewReadOnly(customerSearchBook);  
+    }
+
+      public void AddBookCustomerSearch(Book book){
+          customerSearchBook.Rows.Add(
+          book.BookId,
+          book.Author,
+          book.Titel,
+          book.SubjectArea
+       );
+      }
+
 
   }
 }

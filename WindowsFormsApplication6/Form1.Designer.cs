@@ -108,6 +108,7 @@ namespace BiBo
         #region init DataGridView
         private DataGridView userTableDataSet        = new DataGridView();
         private DataGridView booksTableDataSet       = new DataGridView();
+        private DataGridView customerSearchBook      = new DataGridView();
         
         #endregion
         #region init Chart
@@ -251,8 +252,11 @@ namespace BiBo
                 #region customer search checkboxes
                 this.checkBoxCustomerSearchAutor.Location = new Point(250, 20);
                 this.checkBoxCustomerSearchAutor.Text = "Autor";
+                this.checkBoxCustomerSearchAutor.Checked = true;
+
                 this.checkBoxCustomerSearchTitle.Location = new Point(400, 20);
                 this.checkBoxCustomerSearchTitle.Text = "Title";
+                this.checkBoxCustomerSearchTitle.Checked = true;
                 #endregion
 
                 #region customer search label
@@ -268,12 +272,24 @@ namespace BiBo
                 this.textBoxCustomerSearch.Location = new Point(100, 20);
                 #endregion
 
-               
+                #region data grid view
+                this.customerSearchBook.Location = new Point(20, 50);
+                this.customerSearchBook.Size = new Size(this.customerSearchBookPanel.Width - 40, this.customerSearchBookPanel.Height - 70);
+                this.customerSearchBook.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                //enable contentless left colum
+                this.customerSearchBook.RowHeadersVisible = false;
+                //enable empty last row
+                this.customerSearchBook.AllowUserToAddRows = false;
+                
+                
+                #endregion
 
 
 
 
                 #endregion
+
+
                 #endregion
 
                 #endregion
@@ -859,6 +875,7 @@ namespace BiBo
             this.customerSearchBookPanel.Controls.Add(this.textBoxCustomerSearch);
             this.customerSearchBookPanel.Controls.Add(this.checkBoxCustomerSearchAutor);
             this.customerSearchBookPanel.Controls.Add(this.checkBoxCustomerSearchTitle);
+            this.customerSearchBookPanel.Controls.Add(this.customerSearchBook);
             #endregion
             #region Add to SuperPanelCustomer
             this.SuperPanelCustomer.Controls.Add(this.customerSideBarGroupeBox);
