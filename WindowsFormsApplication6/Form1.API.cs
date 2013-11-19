@@ -486,7 +486,7 @@ namespace BiBo
 
     private void UserLogin(Customer logginUser){
         this.SuperPanelLogin.Visible = false;
-        this.SuperPanelEmployee.Visible = true;
+        this.SuperPanelCustomer.Visible = true;
     }
 
     private void EmployeeLogin(Customer logginUser)

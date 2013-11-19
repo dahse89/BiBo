@@ -16,6 +16,7 @@ namespace BiBo
         #region init Panels
         private Panel SuperPanelLogin               = new Panel();
         private Panel SuperPanelEmployee            = new Panel();
+        private Panel SuperPanelCustomer            = new Panel();
         private Panel customerImage                 = new Panel();
         private Panel panel1                        = new Panel();
         private Panel CustomerMainPanel             = new Panel();
@@ -162,6 +163,7 @@ namespace BiBo
 
                 #region text Box login name
                 this.textBoxUserLoginName.Name = "UserLoginName";
+                this.textBoxUserLoginName.Text = "103"; //@todo remove
                 this.textBoxUserLoginName.Location = new Point(70, 20);
                 this.textBoxUserLoginName.Width = 100;
                 
@@ -181,6 +183,15 @@ namespace BiBo
                 #endregion
 
                 #endregion
+                #endregion
+                #region super panel customer
+                //this.SuperPanelCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                this.SuperPanelCustomer.BackColor = System.Drawing.Color.Blue;
+                this.SuperPanelCustomer.Location = new System.Drawing.Point(0, 0);
+                this.SuperPanelCustomer.Name = "SuperPanelCustomer";
+                this.SuperPanelCustomer.Size = new System.Drawing.Size(windowWidth, windowHeight);
+                this.SuperPanelCustomer.TabIndex = 3;
+                this.SuperPanelCustomer.Visible = false;
                 #endregion
                 #region Super Panel Employee
                 this.SuperPanelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -748,6 +759,7 @@ namespace BiBo
             #region Add to From 1 (main window)
             this.Controls.Add(this.SuperPanelEmployee);
             this.Controls.Add(this.SuperPanelLogin);
+            this.Controls.Add(this.SuperPanelCustomer);
             #endregion
 
 
