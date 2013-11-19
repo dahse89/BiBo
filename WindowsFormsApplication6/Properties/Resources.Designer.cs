@@ -60,13 +60,6 @@ namespace BiBo.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _400_F_10672746_5YhQlKKFh64IVYCZVR2rFViWFvUFGRJC {
-            get {
-                object obj = ResourceManager.GetObject("400_F_10672746_5YhQlKKFh64IVYCZVR2rFViWFvUFGRJC", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap bibibg {
             get {
                 object obj = ResourceManager.GetObject("bibibg", resourceCulture);

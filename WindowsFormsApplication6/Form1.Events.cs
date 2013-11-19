@@ -5,6 +5,8 @@ using System.Text;
 using System.Windows.Forms;
 using BiBo.Persons;
 using System.Drawing;
+using System.Diagnostics;
+using BiBo.Exception;
 
 namespace BiBo
 {
@@ -213,5 +215,73 @@ namespace BiBo
             Customer currCustomer = lib.getCustomerDAO().GetCustomerById(custId);
             displayCustomerDetails(currCustomer);
         }
+
+        //login
+        private void login_Click(object sender, EventArgs e)
+        {
+            Control container = ((Control)sender).Parent;
+            String sid = container.Controls.Find("UserLoginName",true)[0].Text;
+            String pass = container.Controls.Find("UserLoginPass", true)[0].Text;
+
+            ulong id;
+            Customer potentialUser;
+
+            if (Validation.isNumeric(sid))
+            {
+                id = (ulong)Convert.ToInt64(sid);
+            }
+            else
+            {
+                MessageBox.Show("Die ID muss eine Zahl sein");
+                return;
+            }
+
+            try
+            {
+                potentialUser = lib.getCustomerDAO().GetCustomerById(id);
+            }
+            catch (CustomerNotFoundException err)
+            {
+                MessageBox.Show(err.Message);
+                return;
+            }
+
+            //@todo check password
+
+
+            if (potentialUser != null)
+            {
+                if (potentialUser.UserState == UserStates.DELETED)
+                {
+                    MessageBox.Show("Dieser Benuter wurde aus dem System entfernt. Bitte wenden Sie sich an die Rezeption");
+                    return;
+                }
+                if (potentialUser.UserState == UserStates.BANNED)
+                {
+                    MessageBox.Show("Dieser Benuter ist gesperrt. Bitte wenden Sie sich an die Rezeption");
+                    return;
+                }
+
+                switch (potentialUser.Right)
+                {
+                    case Rights.CUSTOMER:
+                        this.UserLogin(potentialUser);
+                        break;
+                    case Rights.EMPLOYEE:
+                        this.EmployeeLogin(potentialUser);
+                        break;
+                    case Rights.ADMINISTRATOR:
+                        this.AdminLogin(potentialUser);
+                        break;
+
+                }
+
+                
+            }
+
+            return;
+
+        }
     }
+ 
   }

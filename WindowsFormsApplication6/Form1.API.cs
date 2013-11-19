@@ -484,5 +484,20 @@ namespace BiBo
         }
     }
 
+    private void UserLogin(Customer logginUser){
+        this.SuperPanelLogin.Visible = false;
+        this.SuperPanelEmployee.Visible = true;
+    }
+
+    private void EmployeeLogin(Customer logginUser)
+    {
+        MessageBox.Show("logged in as employee");
+    }
+
+    private void AdminLogin(Customer logginUser)
+    {
+        MessageBox.Show("logged in as admin");
+    }
+
   }
 }

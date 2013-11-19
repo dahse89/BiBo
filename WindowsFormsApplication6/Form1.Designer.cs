@@ -14,6 +14,7 @@ namespace BiBo
 
         
         #region init Panels
+        private Panel SuperPanelLogin               = new Panel();
         private Panel SuperPanelEmployee            = new Panel();
         private Panel customerImage                 = new Panel();
         private Panel panel1                        = new Panel();
@@ -24,6 +25,8 @@ namespace BiBo
         private Panel borrowImage                   = new Panel();
         #endregion
         #region init GroupBox
+        private GroupBox groupBoxLogin              = new GroupBox();
+
         private GroupBox UserAddPanel               = new GroupBox();
         private GroupBox groupBoxAddBook            = new GroupBox();
         private GroupBox userDetails                = new GroupBox();
@@ -33,8 +36,10 @@ namespace BiBo
         private GroupBox groupBoxSelectedRows       = new GroupBox();
         private GroupBox ageChartPanel              = new GroupBox();
         private GroupBox groupBoxBookTable          = new GroupBox();
+
         #endregion
         #region init Button
+        private Button login                        = new Button();
         private Button buttonUserAdd                = new Button();
         private Button buttonDeleteSelectedRows     = new Button();
         private Button close                        = new Button();
@@ -44,6 +49,9 @@ namespace BiBo
         private ComboBox comboBoxUserCountries      = new ComboBox();
         #endregion
         #region init Label
+        private Label labelUserLoginName            = new Label();
+        private Label labelUserLoginPass            = new Label();
+
         private Label labelUserCoutry               = new Label();
         private Label labelUserCity                 = new Label();
         private Label labelPLZ                      = new Label();
@@ -64,6 +72,9 @@ namespace BiBo
         private Label labelBookAddsubjectArea       = new Label();
         #endregion
         #region init TextBox
+        private TextBox textBoxUserLoginName         = new TextBox();
+        private TextBox textBoxUserLoginPass         = new TextBox();
+
         private TextBox textBoxUserCity              = new TextBox();
         private TextBox textBoxUserPLZ               = new TextBox();
         private TextBox textBoxUserAdressExtention   = new TextBox();           
@@ -75,7 +86,8 @@ namespace BiBo
         private TextBox textBoxBookAddauthor         = new TextBox();
         private TextBox textBoxBookAddTitel          = new TextBox();
         private TextBox textBoxBookAddsubjectArea    = new TextBox();
-        #endregion
+
+        #endregion        
         #region init DateTimePicker
         private DateTimePicker dateTimePickerAddUser = new DateTimePicker();
         #endregion
@@ -100,14 +112,7 @@ namespace BiBo
             int windowWidth = w;
 
             #region Form1
-            #region Super Panel Employee
-            this.SuperPanelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            //this.SuperPanelEmployee.BackColor = System.Drawing.Color.Blue;
-            this.SuperPanelEmployee.Location = new System.Drawing.Point(0, 0);
-            this.SuperPanelEmployee.Name = "SuperPanelEmployee";
-            this.SuperPanelEmployee.Size = new System.Drawing.Size(windowWidth, windowHeight);
-            this.SuperPanelEmployee.TabIndex = 3;
-            #endregion
+
             #region Form1 Values
             this.ClientSize = new System.Drawing.Size(w, h);
                 this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,6 +137,60 @@ namespace BiBo
                 this.PerformLayout();
                 #endregion
 
+                #region Super Panel Login
+                this.SuperPanelLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                //this.SuperPanelEmployee.BackColor = System.Drawing.Color.Blue;
+                this.SuperPanelLogin.Location = new System.Drawing.Point(0, 0);
+                this.SuperPanelLogin.Name = "SuperPanelLogin";
+                this.SuperPanelLogin.Size = new System.Drawing.Size(windowWidth, windowHeight);
+                this.SuperPanelLogin.TabIndex = 3;
+                this.SuperPanelLogin.Visible = true;
+
+
+                #region login Group Box
+                this.groupBoxLogin.Text = "Login";
+                this.groupBoxLogin.Location = new Point(50, 50);
+                this.groupBoxLogin.Size = new Size(200, 120);
+
+                #region login lables
+                this.labelUserLoginName.Text = "ID: ";
+      
+                this.labelUserLoginName.Location = new Point(10, 20);
+                this.labelUserLoginPass.Text = "Password";
+                this.labelUserLoginPass.Location = new Point(10, 45);
+                #endregion
+
+                #region text Box login name
+                this.textBoxUserLoginName.Name = "UserLoginName";
+                this.textBoxUserLoginName.Location = new Point(70, 20);
+                this.textBoxUserLoginName.Width = 100;
+                
+                #endregion
+                #region text Box login pass
+                this.textBoxUserLoginPass.Location = new Point(70, 45);
+                this.textBoxUserLoginPass.Name = "UserLoginPass";
+                this.textBoxUserLoginPass.PasswordChar = '°';
+                this.textBoxUserLoginPass.Width = 100;
+                #endregion
+
+                #region login button
+                this.login.Location = new Point(70, 75);
+                this.login.Text = "einloggen";
+                this.login.Click += new System.EventHandler(this.login_Click);
+                
+                #endregion
+
+                #endregion
+                #endregion
+                #region Super Panel Employee
+                this.SuperPanelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                //this.SuperPanelEmployee.BackColor = System.Drawing.Color.Blue;
+                this.SuperPanelEmployee.Location = new System.Drawing.Point(0, 0);
+                this.SuperPanelEmployee.Name = "SuperPanelEmployee";
+                this.SuperPanelEmployee.Size = new System.Drawing.Size(windowWidth, windowHeight);
+                this.SuperPanelEmployee.TabIndex = 3;
+                this.SuperPanelEmployee.Visible = false;
+               
                 #region LoginAs Label
                 this.LoginAs.AutoSize = true;
                 this.LoginAs.BackColor = System.Drawing.SystemColors.Window;
@@ -573,10 +632,11 @@ namespace BiBo
                 this.close.Size = new Size(30, 30);
                 this.close.Click += new System.EventHandler(close_Click);
                 #endregion
-            #endregion 
+                #endregion
+            #endregion
 
-            #region Layouts
-                    this.CustomerMainPanel.SuspendLayout();
+                #region Layouts
+                this.CustomerMainPanel.SuspendLayout();
                     this.BooksMainPanel.SuspendLayout();
                     this.UserAddPanel.SuspendLayout();
                     this.userDetails.SuspendLayout();
@@ -673,8 +733,21 @@ namespace BiBo
             this.SuperPanelEmployee.Controls.Add(this.borrowImage);
             this.SuperPanelEmployee.Controls.Add(this.close);
             #endregion
+            #region Add to groupBoxLogin
+            this.groupBoxLogin.Controls.Add(this.textBoxUserLoginName);
+            this.groupBoxLogin.Controls.Add(this.textBoxUserLoginPass);
+            this.groupBoxLogin.Controls.Add(this.labelUserLoginName);
+            this.groupBoxLogin.Controls.Add(this.labelUserLoginPass);
+            this.groupBoxLogin.Controls.Add(this.login);
+
+            #endregion
+            #region Add to SuperPanelLogin
+            this.SuperPanelLogin.Controls.Add(this.groupBoxLogin);
+            this.SuperPanelLogin.Controls.Add(this.close);
+            #endregion
             #region Add to From 1 (main window)
             this.Controls.Add(this.SuperPanelEmployee);
+            this.Controls.Add(this.SuperPanelLogin);
             #endregion
 
 
