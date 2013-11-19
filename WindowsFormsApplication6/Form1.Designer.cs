@@ -28,6 +28,10 @@ namespace BiBo
         #region init GroupBox
         private GroupBox groupBoxLogin              = new GroupBox();
 
+        private GroupBox customerSideBarGroupeBox   = new GroupBox();
+        private GroupBox customerMainGroupeBox      = new GroupBox();
+        private GroupBox customerTabsGroupeBox = new GroupBox();
+
         private GroupBox UserAddPanel               = new GroupBox();
         private GroupBox groupBoxAddBook            = new GroupBox();
         private GroupBox userDetails                = new GroupBox();
@@ -185,13 +189,30 @@ namespace BiBo
                 #endregion
                 #endregion
                 #region super panel customer
-                //this.SuperPanelCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-                this.SuperPanelCustomer.BackColor = System.Drawing.Color.Blue;
+                this.SuperPanelCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                //this.SuperPanelCustomer.BackColor = System.Drawing.Color.Blue;
                 this.SuperPanelCustomer.Location = new System.Drawing.Point(0, 0);
                 this.SuperPanelCustomer.Name = "SuperPanelCustomer";
                 this.SuperPanelCustomer.Size = new System.Drawing.Size(windowWidth, windowHeight);
                 this.SuperPanelCustomer.TabIndex = 3;
                 this.SuperPanelCustomer.Visible = false;
+
+                #region customerSideBarGroupeBox
+                this.customerSideBarGroupeBox.Location = new Point(10, 10);
+                this.customerSideBarGroupeBox.Size = new Size(windowWidth / 6, windowHeight - 20);                
+                #endregion              
+
+                #region customerTabsGroupeBox
+                this.customerTabsGroupeBox.Location = new Point(windowWidth / 6 + 20, 10);
+                this.customerTabsGroupeBox.Size = new Size(windowWidth / 6 * 5 - 30, windowHeight / 6);
+                #endregion
+
+                #region customerMainGroupeBox
+                this.customerMainGroupeBox.Location = new Point(windowWidth / 6 + 20, windowHeight / 6 + 10);
+                this.customerMainGroupeBox.Size = new Size(windowWidth / 6 * 5 - 30, windowHeight / 6 * 5 - 20);
+                
+                #endregion
+
                 #endregion
                 #region Super Panel Employee
                 this.SuperPanelEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -755,6 +776,11 @@ namespace BiBo
             #region Add to SuperPanelLogin
             this.SuperPanelLogin.Controls.Add(this.groupBoxLogin);
             this.SuperPanelLogin.Controls.Add(this.close);
+            #endregion
+            #region Add to SuperPanelCustomer
+            this.SuperPanelCustomer.Controls.Add(this.customerSideBarGroupeBox);
+            this.SuperPanelCustomer.Controls.Add(this.customerTabsGroupeBox);
+            this.SuperPanelCustomer.Controls.Add(this.customerMainGroupeBox);
             #endregion
             #region Add to From 1 (main window)
             this.Controls.Add(this.SuperPanelEmployee);
