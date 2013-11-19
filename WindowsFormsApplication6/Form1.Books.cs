@@ -71,9 +71,7 @@ namespace BiBo
 
             Book tmp;
             ulong id;
-            string sid;
-
-          BookDAO dao = new BookDAO(this, lib);
+            string sid;        
 
             //run througth rows
             for (int i = 0; i < booksTableDataSet.Rows.Count; i++)
@@ -85,7 +83,7 @@ namespace BiBo
                 id = (ulong)Convert.ToInt64(sid);
 
                 //get customer form SQLLite table
-                tmp = dao.GetBookById(id);
+                tmp = lib.getBookDAO().GetBookById(id);
 
                 //check if search input is in toString value of customer
                 if (!tmp.ToString().ToUpper().Contains(str.ToUpper()))
