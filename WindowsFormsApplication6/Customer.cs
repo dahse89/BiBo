@@ -17,9 +17,9 @@ namespace BiBo.Persons
         private DateTime birthDate;                     //Geburtstag
 
         private string street;                          //Strasse
-        private int streetNumber;                       //
+        private string streetNumber;                    //
         private string additionalRoad;                  //
-        private int zipCode;                            //PLZ
+        private string zipCode;                         //PLZ 
         private string town;                            //
         private string country;                         //Land
 
@@ -70,7 +70,7 @@ namespace BiBo.Persons
             get { return this.street; }
             set { this.street = value; }
         }
-        public int StreetNumber
+        public string StreetNumber
         {
             get { return this.streetNumber; }
             set { this.streetNumber = value; }
@@ -80,7 +80,7 @@ namespace BiBo.Persons
             get { return this.additionalRoad; }
             set { this.additionalRoad = value; }
         }
-        public int ZipCode
+        public string ZipCode
         {
             get { return this.zipCode; }
             set { this.zipCode = value; }
@@ -150,9 +150,9 @@ namespace BiBo.Persons
                     this.ZipCode + " " +
                     this.Town + "\n" +
                     this.Country;
-    }
+        }
 
-				//Methoden
+		//Methoden
         public DataSet getDataSet()
         {
           return new DataSet();

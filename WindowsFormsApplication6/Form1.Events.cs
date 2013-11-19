@@ -148,9 +148,9 @@ namespace BiBo
 
       //init dummy
       dummy.Street = Street;
-      dummy.StreetNumber = Convert.ToInt32(StreetNumber);
+      dummy.StreetNumber = StreetNumber;
       dummy.AdditionalRoad = StreetExtention;
-      dummy.ZipCode = Convert.ToInt32(zipCode);
+      dummy.ZipCode = zipCode;
       dummy.Town = City;
       dummy.Country = Country;
 

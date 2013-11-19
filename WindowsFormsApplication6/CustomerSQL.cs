@@ -127,9 +127,9 @@ namespace BiBo.SQL
                   
             string street = reader.GetString(reader.GetOrdinal("street"));
             tmp.Street = street;
-            tmp.StreetNumber = Convert.ToInt32(reader.GetString(reader.GetOrdinal("streetNumber")));
+            tmp.StreetNumber = reader.GetString(reader.GetOrdinal("streetNumber"));
             tmp.AdditionalRoad = reader.GetString(reader.GetOrdinal("additionalRoad"));
-            tmp.ZipCode = reader.GetInt32(reader.GetOrdinal("zipCode"));
+            tmp.ZipCode = reader.GetOrdinal("zipCode").ToString();
             tmp.Town = reader.GetString(reader.GetOrdinal("town"));
             tmp.Country = reader.GetString(reader.GetOrdinal("country"));
 

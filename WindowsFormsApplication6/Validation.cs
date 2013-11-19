@@ -28,7 +28,10 @@ namespace BiBo
     }
     public static bool Street(string s)
     {
-      return Regex.IsMatch(s, "[0-9A-Za-zäÄöÖüÜß\\s \\.]+");
+        // Straße-Hausnummer-Kombinationen nach folgenden Regeln für gültig: 
+        // Straße muss mit einem dt. Buchstaben beginnen, vor der Hausnummer muss (mind.) 
+        // ein Whitespace stehen, der Nummer dürfen andere Zeichen folgen ("1/2", "c" etc.).
+      return Regex.IsMatch(s, "^(([a-zA-ZäöüÄÖÜ]\\D*)\\s+\\d+?\\s*.*)$");
     }
     public static bool zipCode(string s)
     {
