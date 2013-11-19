@@ -8,7 +8,7 @@ namespace BiBo
 {
     public enum Tabs
     {
-        CUSTOMER, BOOK
+        CUSTOMER, BOOK, BORROW
     }
 }
 

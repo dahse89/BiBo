@@ -21,6 +21,11 @@ namespace BiBo
       lib.getGuiApi().switchTabTo(Tabs.BOOK);
     }
 
+    private void borrowImage_Click(object sender, EventArgs e)
+    {
+        lib.getGuiApi().switchTabTo(Tabs.BORROW);
+    }
+
     //close application
     private void close_Click(object sender, EventArgs e)
     {

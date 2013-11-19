@@ -67,16 +67,25 @@ namespace BiBo
           //show customer Main Panel hide others
           this.CustomerMainPanel.Visible = true;
           this.BooksMainPanel.Visible = false;
+          this.BorrowMainPanel.Visible = false;
 
           this.activTab = Tabs.CUSTOMER;
           break;
         case Tabs.BOOK:
           //show books Main Panel hide others
           this.CustomerMainPanel.Visible = false;
+          this.BorrowMainPanel.Visible = false;
           this.BooksMainPanel.Visible = true;
 
           this.activTab = Tabs.BOOK;
           break;
+        case Tabs.BORROW:
+          //show borrow panel hide otheres
+          this.CustomerMainPanel.Visible = false;
+          this.BooksMainPanel.Visible = false;
+          this.BorrowMainPanel.Visible = true;
+          break;
+            
       }
     }
 

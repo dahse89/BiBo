@@ -18,6 +18,7 @@ namespace BiBo
         private Panel panel1                        = new Panel();
         private Panel CustomerMainPanel             = new Panel();
         private Panel BooksMainPanel                = new Panel();
+        private Panel BorrowMainPanel               = new Panel();
         private Panel booksImage                    = new Panel();
         private Panel borrowImage                   = new Panel();
         #endregion
@@ -191,7 +192,7 @@ namespace BiBo
                 this.borrowImage.Name = "borrowBookImage";
                 this.borrowImage.Size = new System.Drawing.Size(64, 64);
                 this.borrowImage.TabIndex = 2;
-                //this.borrowImage.Click += new System.EventHandler(this.customerImage_Click);
+                this.borrowImage.Click += new System.EventHandler(this.borrowImage_Click);
                 #endregion
                 #region currently panel1 not used
                 this.panel1.BackgroundImage = global::BiBo.Properties.Resources.icon2;
@@ -514,6 +515,13 @@ namespace BiBo
                         #endregion
                     #endregion
                 #endregion
+                #region booksMainPanel
+                    //this.BorrowMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                    this.BorrowMainPanel.BackColor = System.Drawing.Color.Red;
+                    this.BorrowMainPanel.Location = this.CustomerMainPanel.Location;
+                    this.BorrowMainPanel.Size = this.CustomerMainPanel.Size;
+                    this.BorrowMainPanel.Visible = false;
+                #endregion
 
                         #region groupBoxSearch
                             this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
@@ -645,6 +653,7 @@ namespace BiBo
             this.Controls.Add(this.groupBoxSearch);
             this.Controls.Add(this.CustomerMainPanel);
             this.Controls.Add(this.BooksMainPanel);
+            this.Controls.Add(this.BorrowMainPanel);
             this.Controls.Add(this.userStat);
             this.Controls.Add(this.UserStatus);
             this.Controls.Add(this.userName);

@@ -95,13 +95,6 @@ namespace BiBo.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap borrow {
-            get {
-                object obj = ResourceManager.GetObject("borrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap borrow2 {
             get {
                 object obj = ResourceManager.GetObject("borrow2", resourceCulture);
