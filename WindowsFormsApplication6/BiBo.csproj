@@ -154,9 +154,11 @@
     <None Include="Resources\customer.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\borrow.gif" />
     <None Include="Resources\Search.png" />
     <None Include="Resources\borrow2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\account.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

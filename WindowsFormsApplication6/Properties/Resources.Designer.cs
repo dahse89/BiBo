@@ -60,6 +60,13 @@ namespace BiBo.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap account {
+            get {
+                object obj = ResourceManager.GetObject("account", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap bibibg {
             get {
                 object obj = ResourceManager.GetObject("bibibg", resourceCulture);

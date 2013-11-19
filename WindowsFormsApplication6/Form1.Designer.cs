@@ -18,6 +18,8 @@ namespace BiBo
         private Panel SuperPanelEmployee            = new Panel();
         private Panel SuperPanelCustomer            = new Panel();
         private Panel customerImage                 = new Panel();
+        private Panel imageAccount                  = new Panel();
+
         private Panel customerSearchBookPanel = new Panel();
         private Panel imageSearch = new Panel();
         private Panel panel1                        = new Panel();
@@ -238,6 +240,16 @@ namespace BiBo
                 this.imageSearch.TabIndex = 2;
                 //this.imageSearch.Click += new System.EventHandler(this.booksImage_Click);
                 #endregion
+
+                #region account image
+                this.imageAccount.BackgroundImage = global::BiBo.Properties.Resources.account;
+                this.imageAccount.Location = new System.Drawing.Point(84, 10);
+                this.imageAccount.Name = "accountImage";
+                this.imageAccount.Size = new System.Drawing.Size(64, 64);
+                this.imageAccount.TabIndex = 2;
+                //this.imageAccount.Click += new System.EventHandler(this.booksImage_Click);
+                #endregion
+
                 #endregion
 
                 #region customerMainGroupeBox
@@ -865,6 +877,7 @@ namespace BiBo
 
             #region customerTabsGroupeBox
             this.customerTabsGroupeBox.Controls.Add(this.imageSearch);
+            this.customerTabsGroupeBox.Controls.Add(this.imageAccount);
             #endregion
 
             #region customerMainGroupeBox
