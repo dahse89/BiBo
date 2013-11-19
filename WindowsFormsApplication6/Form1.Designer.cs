@@ -19,6 +19,7 @@ namespace BiBo
         private Panel CustomerMainPanel             = new Panel();
         private Panel BooksMainPanel                = new Panel();
         private Panel booksImage                    = new Panel();
+        private Panel borrowImage                   = new Panel();
         #endregion
         #region init GroupBox
         private GroupBox UserAddPanel               = new GroupBox();
@@ -183,6 +184,14 @@ namespace BiBo
                 this.booksImage.Size = new System.Drawing.Size(64, 64);
                 this.booksImage.TabIndex = 2;
                 this.booksImage.Click += new System.EventHandler(this.booksImage_Click);
+                #endregion
+                #region borrow image
+                this.borrowImage.BackgroundImage = global::BiBo.Properties.Resources.borrow2;
+                this.borrowImage.Location = new System.Drawing.Point(350, 19);
+                this.borrowImage.Name = "borrowBookImage";
+                this.borrowImage.Size = new System.Drawing.Size(64, 64);
+                this.borrowImage.TabIndex = 2;
+                //this.borrowImage.Click += new System.EventHandler(this.customerImage_Click);
                 #endregion
                 #region currently panel1 not used
                 this.panel1.BackgroundImage = global::BiBo.Properties.Resources.icon2;
@@ -643,6 +652,7 @@ namespace BiBo
             //this.Controls.Add(this.panel1);
             this.Controls.Add(this.booksImage);
             this.Controls.Add(this.customerImage);
+            this.Controls.Add(this.borrowImage);
             this.Controls.Add(this.close);
             #endregion
 
