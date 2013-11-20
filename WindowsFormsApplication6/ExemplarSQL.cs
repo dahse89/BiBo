@@ -154,15 +154,15 @@ namespace BiBo.SQL
         //new methods TODO : IMPLEMENT THIS SHIT
 
         
-        public void ExtendLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
+        public void ExtendLoanPeriodTo(Exemplar exemplar, DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
         {
         }
 
-        public void ReduceLoanPeriodTo(DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
+        public void ReduceLoanPeriodTo(Exemplar exemplar, DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
         {
         }
 
-        public bool Borrow(DateTime dateBookWillBeBack, String cardId) //<--- object von exemplar muss mit rein
+        public bool Borrow(Exemplar exemplar, DateTime dateBookWillBeBack, String cardId) //<--- object von exemplar muss mit rein
         {
             return true;
         }

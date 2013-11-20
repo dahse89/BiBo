@@ -25,7 +25,6 @@ namespace BiBo
     	
     	//only for test
     	this.Accesser = Access.FREEHAND_LENDING;
-    	this.loanPeriod = new DateTime(2013,12,15);
     	this.state = BookStates.OK;
     	
     }

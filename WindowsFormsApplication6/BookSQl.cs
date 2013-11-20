@@ -124,8 +124,8 @@ namespace BiBo.SQL
 
         //new implemented methods TODO : IMPLEMENT THIS SHIT
 
-        //Get all Exemplars from an Book and save it in the object --> Wopat wollte ja, dass die Aktionen auf Objektebene ablaufen
-        public void FillExemplarListOfBook(Book book)
+        //Get all Exemplars from an Book and save it in the object --> denke nicht notwendig, da wir Änderungen auf der ObjektEbene vollziehen und diese in die DB liefern
+        public List<Exemplar> GetExemplarListOfBook(Book book)
         {
             ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
         	  List<Exemplar> exemplars = new List<Exemplar>();
@@ -135,51 +135,16 @@ namespace BiBo.SQL
             
             if (reader.HasRows)
           	{
-            	while (reader.Read()){
-                Exemplar ex = exDAO.GetInitEntryByReader(reader);
-		            book.Exemplare.Add(ex);
+            	while (reader.Read())
+                {
+                  Exemplar ex = exDAO.GetInitEntryByReader(reader);
+		          exemplars.Add(ex);
             	}
             }
+            return exemplars;
             
         }
-        
-        //realy usefull ?
-        public int GetNumberOfExemplars(Book book)
-        {
-            return book.Exemplare.Count;
-        }
-
-        //return the number of available exemplars of a book
-        //List of Exemplars in an object of Book must be filled --> method FillExemplarListOfBook must run before
-        public int GetNumberOfAvailableExemplars(Book book)
-        {
-            int numberOfAvailableExemplars = 0;
-            foreach (Exemplar exemplar in book.Exemplare)
-            {
-                if (exemplar.LoanPeriod != null)
-                    numberOfAvailableExemplars++;
-            }
-            return numberOfAvailableExemplars;
-        }
-
-        //return the earliest available date of an exemplar
-        public DateTime GetDateOfEarliestAvailable(Book book)
-        {
-            DateTime earliest = new DateTime(9999,12,30);
-            
-            foreach (Exemplar exemplar in book.Exemplare)
-            {
-                if (exemplar.LoanPeriod.CompareTo(earliest) < 0)
-                    earliest = exemplar.LoanPeriod;
-            }
-            return earliest;
-        }
-
-        public bool BorrowExemplar(DateTime dateBookWillBeBack, String signatur)
-        {
-            return true;
-        }
-
+      
         public void DeleteAllExemplars(Book book)
         {
             ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
@@ -190,35 +155,7 @@ namespace BiBo.SQL
             
         }
 
-        public void AddExemplar(Exemplar x, Book book)
-        {
-            ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
-
-            //first add the exemplar into the db
-            exDAO.AddEntry(x);
-
-            //and then add the exemplar into the list in the specific book
-            book.Exemplare.Add(x);
-
-        }
-        
-    //TODO : Muss noch angepasst werden !!!!!!!!!!!!!!!!!!!!!
-        public void RemoveExemplar(ulong exemplarId, Book book) // <-- Alle exemplare haben die selbe Signatur, dadurch ist dies der Falsche Parameter ... evtl. eher die ExemplarID als Kriterium wählen
-        {
-            ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
-          
-
-            //first remove the exemplar(specified by the exemplarId)
-            Exemplar ex = new Exemplar();
-            ex.ExemplarId = exemplarId;
-            book.Exemplare.Remove(ex);
-
-            List<ulong> idList = new List<ulong>();
-            idList.Add(ex.ExemplarId);
-
-            //and then delete from the db, specified by the exemplarId
-            exDAO.DeleteEntryByIdList(idList);
-        }
+       
 
     }
 }
