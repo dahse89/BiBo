@@ -45,6 +45,10 @@ namespace BiBo
     {
       return Regex.IsMatch(s, "(015[1|2|7|9])\\d{7,9}|(016[0|2|3])\\d{7,9}|(017[0-9])\\d{7,9}");   // alle deutschen Handynummern
     }
+    public static bool OpeningTime(string s)
+    {
+        return Regex.IsMatch(s, "(([0-1][0-9])|([2][0-3])):([0-5][0-9]):([0-5][0-9])");
+    }
 
     public static bool validateCustomerAddPanel(Control x)
     {
