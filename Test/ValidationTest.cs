@@ -80,18 +80,31 @@ namespace Test
             Assert.IsTrue(Validation.zipCode("12394"));
 
             Assert.IsTrue(Validation.zipCode("K7P3K6"));
+            Assert.IsTrue(Validation.zipCode("W7P3K6"));
 
             Assert.IsTrue(Validation.zipCode("123456789"));
             Assert.IsTrue(Validation.zipCode("12345-6789"));
+            Assert.IsTrue(Validation.zipCode("12345-0000"));
+            Assert.IsTrue(Validation.zipCode("00000-0000"));
 
 
             //test if validation of zipCode string failed
             Assert.IsFalse(Validation.zipCode("3520"));
 
-            Assert.IsTrue(Validation.zipCode("W7P3K6"));
 
-            Assert.IsTrue(Validation.zipCode("12345-0000"));
-            Assert.IsTrue(Validation.zipCode("00000-0000"));
         }
+
+        [TestMethod()]
+        public void OpeningTimeTest()
+        {
+            //test if validation of OpeningTime string is ok
+            Assert.IsTrue(Validation.OpeningTime("09:30:00"));
+            Assert.IsTrue(Validation.OpeningTime("17:45:20"));
+            Assert.IsTrue(Validation.OpeningTime("23:59:59"));
+
+            //test if validation of OpeningTime string failed
+            Assert.IsFalse(Validation.OpeningTime("24:00:00"));
+        }
+
     }
 }
