@@ -33,11 +33,11 @@ namespace BiBo
           Debug.WriteLine(numberOfExemplars);
           Console.WriteLine(numberOfExemplars);
           */
-
+          /*
           Application.EnableVisualStyles();
           Application.SetCompatibleTextRenderingDefault(false);
           Application.Run(new Form1());
-
+          */
         }
 
     }

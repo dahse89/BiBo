@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Security.Cryptography;
+
 using BiBo.SQL;
 using BiBo.Persons;
 using BiBo.Exception;
@@ -83,6 +85,19 @@ namespace BiBo.DAO
       }
       throw new CustomerNotFoundException("Benutzer mit gegebener ID nicht vorhanden");
        
+    }
+
+    public void SetPassword(Customer cust, string password)
+    {
+      MD5 md5 = MD5.Create();
+      byte[] output = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
+      StringBuilder builder = new StringBuilder();
+
+      foreach (byte by in output)
+      {
+        builder.Append(by.ToString("x2"));
+      }
+      cust.Password = builder.ToString();
     }
 
 

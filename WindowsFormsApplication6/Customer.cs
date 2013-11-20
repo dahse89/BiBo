@@ -32,6 +32,8 @@ namespace BiBo.Persons
         private string mobileNumber;                    //Handy-
         private string eMailAddress;                    //Email-Adresse
 
+        private string password;                        //Passwort des Nutzers
+
         private List<Exemplar> exemplarList;            // Liste aller vom Customer ausgeliehen Buechern
 
 
@@ -42,8 +44,12 @@ namespace BiBo.Persons
             this.firstName = firstName;
             this.lastName = lastName;
             this.birthDate = birthDate;
+            this.password = "";
         }
-        public Customer() { }
+        public Customer() 
+        {
+          this.password = "";
+        }
 
         //Property Deklaration
         public ulong CustomerID
@@ -141,6 +147,12 @@ namespace BiBo.Persons
         {
           get { return this.exemplarList; }
           set { this.exemplarList = value; }
+        }
+
+        public string Password
+        {
+          get { return this.password; }
+          set { this.password = value; }
         }
 
         public String getFullAdress()
