@@ -16,6 +16,7 @@ namespace BiBo
     private Customer    borrower;	      //Ausleiher
     private ulong       exemplarId;     //Exemplar-Nummer
     private ulong       bookId;         //dazugehörige Buch-ID
+    private int         countBorrow;     //wie oft ausgeliehen
     
     //Konstruktor
     public Exemplar(Book buch)
@@ -69,6 +70,12 @@ namespace BiBo
     {
         get { return this.bookId; }
         set { this.bookId = value; }
+    }
+
+    public int CountBorrow
+    {
+      get { return this.countBorrow; }
+      set { this.countBorrow = value; }
     }
 
     //Methoden

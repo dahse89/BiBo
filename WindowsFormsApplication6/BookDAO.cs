@@ -105,13 +105,19 @@ namespace BiBo.DAO
     }
 
     //expand loanPeriod of an exemplar 
-    public void SetExemplarBorrowedTill(Exemplar exemplar, DateTime borrowTill)
+    public void ExtendLend(Exemplar exemplar, DateTime borrowTill)
     {
-      //on object-layer
-      exemplar.LoanPeriod = borrowTill;
+      if (exemplar.CountBorrow < 4)
+      {
+        //on object-layer
+        exemplar.LoanPeriod = borrowTill;
 
-      //on db-layer
-      exemplarSql.ExtendLoanPeriodTo(exemplar, borrowTill); //<-- noch nicht implementiert
+        //on db-layer
+        exemplarSql.ExtendLoanPeriodTo(exemplar, borrowTill); //<-- noch nicht implementiert
+
+        //increment countBorrow
+        exemplar.CountBorrow++;
+      }
     }
 
     //new implemented methods TODO : IMPLEMENT THIS SHIT
@@ -181,6 +187,20 @@ namespace BiBo.DAO
     public bool BorrowExemplar(DateTime dateBookWillBeBack, String signatur)
     {
       return true;
+    }
+
+    //mehod that a customer can bring back a book
+    public void BringBookBack(Customer customer ,Exemplar exemplar, BookStates newState)
+    {
+      //bring exemplar to the default state with new BookState
+      exemplar.CountBorrow = 0;
+      exemplar.Borrower = null;
+      exemplar.LoanPeriod = DateTime.MinValue; // da DateTime nicht auf null gesetzt werden kann, wird hier das ausleihdatum einfach auf den niedrigsten Wert gesetzt
+      exemplar.State = newState;
+      customer.ExemplarList.Remove(exemplar);
+
+      //update in db
+      //<---  muss Vico noch funktion liefern
     }
 
     public ulong GetLastExemplarId()
