@@ -223,6 +223,8 @@ namespace BiBo
             String sid = container.Controls.Find("UserLoginName", true)[0].Text;
             String pass = container.Controls.Find("UserLoginPass", true)[0].Text;
 
+            lib.getCustomerDAO().GetAllCustomer();
+
             ulong id;
             Customer potentialUser;
 
@@ -247,6 +249,11 @@ namespace BiBo
             }
 
             //@todo check password
+
+            //@todo remove (force some rights)
+            if(potentialUser.CustomerID == 103){
+                potentialUser.Right = Rights.ADMINISTRATOR;
+            }
 
 
             if (potentialUser != null)

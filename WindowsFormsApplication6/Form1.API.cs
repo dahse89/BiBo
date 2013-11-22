@@ -25,30 +25,13 @@ namespace BiBo
       //load GUI elements, calculated by screen size (responsive)
       //@see: Form1.Designer
       InitializeComponent(width, height);
-
-      //init content
-
-      //@todo this should come form login and SQLLite
-      this.loginAsUserName = "Philipp Dahse";
-      this.userStatusText = "Admin";
-
-      //fill GUI elemens with content
-      publishContent();
-
-      this.lib.getTestDAO().changeLoggedUserName("Lol");
-
-      //@todo remove at the end is only for testing
-      // randomPushUser();
     }
 
     //fill GUI elements with content
-    private void publishContent()
+    private void publishContent(Customer logginUser)
     {
       //set name of current logged user
-      userName.Text += this.loginAsUserName;
-
-      //set statis of current logged user
-      userStat.Text += this.userStatusText;
+      userName.Text += logginUser.FirstName + " " + logginUser.LastName;
 
       //fill content on customer tab
       //@see Form1.Customer
@@ -489,12 +472,22 @@ namespace BiBo
 
     private void EmployeeLogin(Customer logginUser)
     {
-        MessageBox.Show("logged in as employee");
+        this.SuperPanelLogin.Visible = false;
+        this.SuperPanelEmployee.Visible = true;
+
+        //init content
+        //fill GUI elemens with content
+        publishContent(logginUser);        
     }
 
     private void AdminLogin(Customer logginUser)
     {
-        MessageBox.Show("logged in as admin");
+        this.SuperPanelLogin.Visible = false;
+        this.SuperPanelEmployee.Visible = true;
+
+        //init content
+        //fill GUI elemens with content
+        publishContent(logginUser);   
     }
 
     private void publishCustomerSearchLogin(Customer logginUser)
