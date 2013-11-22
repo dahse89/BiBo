@@ -26,6 +26,8 @@ namespace BiBo
     private TestDAO testDao;
     private CustomerDAO customerDAO;
     private BookDAO bookDAO;
+
+    private bool isEmployeeGUILoaded = false;
   
     
 
@@ -45,6 +47,11 @@ namespace BiBo
     {
       get { return fee; }
       set { fee = value; }
+    }
+
+    public bool IsEmployeeGUILoaded {
+        get { return this.isEmployeeGUILoaded; }
+        set { this.isEmployeeGUILoaded = value; }
     }
 
     public string OpeningTime

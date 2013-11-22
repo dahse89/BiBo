@@ -28,10 +28,10 @@ namespace BiBo
     }
 
     //fill GUI elements with content
-    private void publishContent(Customer logginUser)
+    private bool publishContent(Customer logginUser)
     {
       //set name of current logged user
-      userName.Text += logginUser.FirstName + " " + logginUser.LastName;
+      userName.Text = logginUser.FirstName + " " + logginUser.LastName;
       switch(logginUser.Right){
           case Rights.ADMINISTRATOR:
               userStat.Text = "Admin";
@@ -51,6 +51,8 @@ namespace BiBo
       //fill content on books tab
       //@see Form1.Books
       this.publishBookContent();
+
+      return true;
     }
 
 
@@ -493,7 +495,10 @@ namespace BiBo
 
         //init content
         //fill GUI elemens with content
-        publishContent(logginUser);        
+        if (!lib.IsEmployeeGUILoaded)
+        {
+            lib.IsEmployeeGUILoaded = publishContent(logginUser); ;
+        }
     }
 
     private void AdminLogin(Customer logginUser)
@@ -503,7 +508,10 @@ namespace BiBo
 
         //init content
         //fill GUI elemens with content
-        publishContent(logginUser);   
+        if (!lib.IsEmployeeGUILoaded)
+        {
+            lib.IsEmployeeGUILoaded = publishContent(logginUser); ;
+        } 
     }
 
     private void publishCustomerSearchLogin(Customer logginUser)
