@@ -323,6 +323,14 @@ namespace BiBo
             this.SuperPanelCustomer.Visible = false;
             this.SuperPanelLogin.Visible = true;
         }
+
+        private void EmployeeLogout_Click(object sender, EventArgs e)
+        {
+            this.SuperPanelEmployee.Visible = false;
+            this.SuperPanelLogin.Visible = true;
+        }
+
+        
     }
  
   }

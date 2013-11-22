@@ -65,6 +65,7 @@ namespace BiBo
         private Button close                        = new Button();
         private Button addBooksActionButton         = new Button();
         private Button Logout = new Button();
+        private Button EmployeeLogout = new Button();
         #endregion
         #region init ComboBox
         private ComboBox comboBoxUserCountries      = new ComboBox();
@@ -356,12 +357,101 @@ namespace BiBo
                 this.SuperPanelEmployee.Visible = false;
 
 
-
-
-
                 #region employee side bar
                 this.employeeSideBarGroupeBox.Location = new Point(10, 10);
                 this.employeeSideBarGroupeBox.Size = new Size(200, windowHeight - 20);
+
+                #region LoginAs Label
+                this.LoginAs.AutoSize = true;
+                this.LoginAs.BackColor = System.Drawing.SystemColors.Control;
+                this.LoginAs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.LoginAs.ForeColor = System.Drawing.Color.Black;
+                this.LoginAs.Location = new System.Drawing.Point(10, 20);
+                this.LoginAs.Name = "LoginAs";
+                this.LoginAs.Size = new System.Drawing.Size(95, 13);
+                this.LoginAs.TabIndex = 0;
+                this.LoginAs.Text = "Angemeldet: ";
+                #endregion
+                #region userName
+                this.userName.AutoSize = true;
+                this.userName.BackColor = System.Drawing.SystemColors.Control;
+                this.userName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.userName.ForeColor = System.Drawing.Color.Black;
+                this.userName.Location = new System.Drawing.Point(90, 20);
+                this.userName.Margin = new Padding(0);
+                this.userName.Name = "userName";
+                this.userName.Size = new System.Drawing.Size(11, 13);
+                this.userName.TabIndex = 0;
+                this.userName.Text = " ";
+                #endregion
+
+                #region logout button
+                this.EmployeeLogout.Location = new Point(10, 80);
+                this.EmployeeLogout.Text = "Abmelden";
+                this.EmployeeLogout.Click += new System.EventHandler(this.EmployeeLogout_Click);
+                #endregion
+
+                #region UserStatus Label
+                this.UserStatus.AutoSize = true;
+                this.UserStatus.BackColor = System.Drawing.SystemColors.Control;
+                this.UserStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.UserStatus.ForeColor = System.Drawing.Color.Black;
+                this.UserStatus.Location = new System.Drawing.Point(10, 50);
+                this.UserStatus.Name = "UserStatus";
+                this.UserStatus.Size = new System.Drawing.Size(52, 13);
+                this.UserStatus.TabIndex = 1;
+                this.UserStatus.Text = "Status: ";
+                #endregion
+
+                #region userStat
+                this.userStat.AutoSize = true;
+                this.userStat.BackColor = System.Drawing.SystemColors.Control;
+                this.userStat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.userStat.ForeColor = System.Drawing.Color.Black;
+                this.userStat.Location = new System.Drawing.Point(90, 50);
+                this.userStat.Name = "userStat";
+                this.userStat.Size = new System.Drawing.Size(11, 13);
+                this.userStat.TabIndex = 1;
+                this.userStat.Text = " ";
+                #endregion
+
+                #region groupBoxSearch
+                this.groupBoxSearch.Location = new System.Drawing.Point(10, 300);
+                this.groupBoxSearch.Name = "groupBoxSearch";
+                this.groupBoxSearch.Size = new System.Drawing.Size(175, 175);
+                this.groupBoxSearch.TabIndex = 1;
+                this.groupBoxSearch.TabStop = false;
+                this.groupBoxSearch.Text = "Suche";
+
+                #region textBoxSearch
+                this.textBoxSearch.Location = new System.Drawing.Point(6, 19);
+                this.textBoxSearch.Name = "textBoxSearch";
+                this.textBoxSearch.Size = new System.Drawing.Size(200, 20);
+                this.textBoxSearch.TabIndex = 0;
+                this.textBoxSearch.KeyUp += new KeyEventHandler(this.textBoxSearch_KeyUp);
+                #endregion
+                #endregion
+
+                #region  groupBoxSelectedRows          
+                this.groupBoxSelectedRows.Location = new System.Drawing.Point(10, this.groupBoxSearch.Location.Y + this.groupBoxSearch.Height + 20);
+                this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";
+                this.groupBoxSelectedRows.Size = new System.Drawing.Size(120, 120);
+                this.groupBoxSelectedRows.TabIndex = 4;
+                this.groupBoxSelectedRows.TabStop = false;
+                this.groupBoxSelectedRows.Text = "Markierte";
+                this.groupBoxSelectedRows.Visible = true;
+
+                #region buttonDeleteSelectedRows
+                this.buttonDeleteSelectedRows.Location = new System.Drawing.Point(6, 19);
+                this.buttonDeleteSelectedRows.Name = "buttonDeleteSelectedRows";
+                this.buttonDeleteSelectedRows.Size = new System.Drawing.Size(75, 23);
+                this.buttonDeleteSelectedRows.TabIndex = 0;
+                this.buttonDeleteSelectedRows.Text = "löschen";
+                this.buttonDeleteSelectedRows.UseVisualStyleBackColor = true;
+                this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);
+                #endregion
+                #endregion
+
                 #endregion
 
                 #region employee tabs
@@ -401,66 +491,328 @@ namespace BiBo
                 #region employee main
                 this.employeeMainGroupeBox.Location = new Point(220, 94);
                 this.employeeMainGroupeBox.Size = new Size(windowWidth - 230, windowHeight - 104);
+
+                //Main Panel
+                #region CutomerMainPanel
+                #region CutomerMainPanel Values
+                this.CustomerMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                this.CustomerMainPanel.Location = new System.Drawing.Point(5, 5);
+                this.CustomerMainPanel.Name = "MainPanel";
+                this.CustomerMainPanel.Size = new System.Drawing.Size(windowWidth - 235, windowHeight - 115);
+                this.CustomerMainPanel.TabIndex = 3;
                 #endregion
 
-
-
-
-
-
-
-
-
-
-                #region LoginAs Label
-                this.LoginAs.AutoSize = true;
-                this.LoginAs.BackColor = System.Drawing.SystemColors.Window;
-                this.LoginAs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.LoginAs.ForeColor = System.Drawing.Color.Black;
-                this.LoginAs.Location = new System.Drawing.Point(21, 32);
-                this.LoginAs.Name = "LoginAs";
-                this.LoginAs.Size = new System.Drawing.Size(95, 13);
-                this.LoginAs.TabIndex = 0;
-                this.LoginAs.Text = "eingeloggt als: ";
+                #region UserAddPanel
+                #region UserAddPanel VAlues
+                this.UserAddPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                this.UserAddPanel.Location = new System.Drawing.Point(12, 13);
+                this.UserAddPanel.Name = "UserAddPanel";
+                this.UserAddPanel.Size = new System.Drawing.Size(CustomerMainPanel.Width / 3 - 25, CustomerMainPanel.Height / 2 - 25);
+                this.UserAddPanel.TabIndex = 0;
+                this.UserAddPanel.TabStop = false;
+                this.UserAddPanel.Text = "Kunde hinzufügen";
                 #endregion
-                    #region userName
-                    this.userName.AutoSize = true;
-                    this.userName.BackColor = System.Drawing.SystemColors.Window;
-                    this.userName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    this.userName.ForeColor = System.Drawing.Color.Black;
-                    this.userName.Location = new System.Drawing.Point(106, 32);
-                    this.userName.Margin = new Padding(0);
-                    this.userName.Name = "userName";
-                    this.userName.Size = new System.Drawing.Size(11, 13);
-                    this.userName.TabIndex = 0;
-                    this.userName.Text = " ";
-                    #endregion
 
-                #region UserStatus Label
-                this.UserStatus.AutoSize = true;
-                this.UserStatus.BackColor = System.Drawing.SystemColors.Window;
-                this.UserStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.UserStatus.ForeColor = System.Drawing.Color.Black;
-                this.UserStatus.Location = new System.Drawing.Point(21, 51);
-                this.UserStatus.Name = "UserStatus";
-                this.UserStatus.Size = new System.Drawing.Size(52, 13);
-                this.UserStatus.TabIndex = 1;
-                this.UserStatus.Text = "Status: ";
+                #region labelFirstname
+                this.label3.AutoSize = true;
+                this.label3.Location = new System.Drawing.Point(11, 32);
+                this.label3.Name = "label3";
+                this.label3.Size = new System.Drawing.Size(52, 13);
+                this.label3.TabIndex = 1;
+                this.label3.Text = "Vorname:";
                 #endregion
-                    #region userStat
-                    this.userStat.AutoSize = true;
-                    this.userStat.BackColor = System.Drawing.SystemColors.Window;
-                    this.userStat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    this.userStat.ForeColor = System.Drawing.Color.Black;
-                    this.userStat.Location = new System.Drawing.Point(64, 51);
-                    this.userStat.Name = "userStat";
-                    this.userStat.Size = new System.Drawing.Size(11, 13);
-                    this.userStat.TabIndex = 1;
-                    this.userStat.Text = " ";
-                    #endregion
+                #region textBoxUserFirstname
+                this.textBoxUserFirstname.Location = new System.Drawing.Point(77, 28);
+                this.textBoxUserFirstname.Name = "textBoxUserFirstname";
+                this.textBoxUserFirstname.Size = new System.Drawing.Size(200, 20);
+                this.textBoxUserFirstname.TabIndex = 0;
+                #endregion
+
+                #region labelLastname
+                this.label1.AutoSize = true;
+                this.label1.Location = new System.Drawing.Point(11, 58);
+                this.label1.Name = "label1";
+                this.label1.Size = new System.Drawing.Size(62, 13);
+                this.label1.TabIndex = 1;
+                this.label1.Text = "Nachname:";
+                #endregion
+                #region textBoxUserLastname
+                this.textBoxUserLastname.Location = new System.Drawing.Point(77, 55);
+                this.textBoxUserLastname.Name = "textBoxUserLastname";
+                this.textBoxUserLastname.Size = new System.Drawing.Size(200, 20);
+                this.textBoxUserLastname.TabIndex = 0;
+                #endregion
+
+                #region  labelBirthday
+                this.label2.AutoSize = true;
+                this.label2.Location = new System.Drawing.Point(11, 90);
+                this.label2.Name = "label2";
+                this.label2.Size = new System.Drawing.Size(65, 13);
+                this.label2.TabIndex = 1;
+                this.label2.Text = "Geburtstag: ";
+                #endregion
+                #region dateTimePickerAddUser
+                this.dateTimePickerAddUser.Location = new System.Drawing.Point(77, 84);
+                this.dateTimePickerAddUser.Name = "dateTimePickerAddUser";
+                this.dateTimePickerAddUser.Size = new System.Drawing.Size(200, 20);
+                this.dateTimePickerAddUser.TabIndex = 2;
+                #endregion
+
+                #region labelStreet
+                this.label4.AutoSize = true;
+                this.label4.Location = new System.Drawing.Point(11, 118);
+                this.label4.Name = "label4";
+                this.label4.Size = new System.Drawing.Size(48, 13);
+                this.label4.TabIndex = 4;
+                this.label4.Text = "Strasse: ";
+                #endregion
+                #region textBoxUserStreet
+                this.textBoxUserStreet.Location = new System.Drawing.Point(77, 115);
+                this.textBoxUserStreet.Name = "textBoxUserStreet";
+                this.textBoxUserStreet.Size = new System.Drawing.Size(164, 20);
+                this.textBoxUserStreet.TabIndex = 5;
+                #endregion
+                #region  textBoxUserHomeNumber
+                this.textBoxUserHomeNumber.Location = new System.Drawing.Point(248, 115);
+                this.textBoxUserHomeNumber.Name = "textBoxUserHomeNumber";
+                this.textBoxUserHomeNumber.Size = new System.Drawing.Size(29, 20);
+                this.textBoxUserHomeNumber.TabIndex = 6;
+                #endregion
+
+                #region labelUserStreetExtention
+                this.labelUserStreetExtention.AutoSize = true;
+                this.labelUserStreetExtention.Location = new System.Drawing.Point(12, 145);
+                this.labelUserStreetExtention.Name = "labelUserStreetExtention";
+                this.labelUserStreetExtention.Size = new System.Drawing.Size(42, 13);
+                this.labelUserStreetExtention.TabIndex = 7;
+                this.labelUserStreetExtention.Text = "Zusatz:";
+                #endregion
+                #region textBoxUserAdressExtention
+                this.textBoxUserAdressExtention.Location = new System.Drawing.Point(77, 145);
+                this.textBoxUserAdressExtention.Name = "textBoxUserAdressExtention";
+                this.textBoxUserAdressExtention.Size = new System.Drawing.Size(200, 20);
+                this.textBoxUserAdressExtention.TabIndex = 8;
+                #endregion
+
+                #region labelPLZ
+                this.labelPLZ.AutoSize = true;
+                this.labelPLZ.Location = new System.Drawing.Point(12, 175);
+                this.labelPLZ.Name = "labelPLZ";
+                this.labelPLZ.Size = new System.Drawing.Size(30, 13);
+                this.labelPLZ.TabIndex = 9;
+                this.labelPLZ.Text = "PLZ:";
+                #endregion
+                #region textBoxUserPLZ
+                this.textBoxUserPLZ.Location = new System.Drawing.Point(77, 172);
+                this.textBoxUserPLZ.Name = "textBoxUserPLZ";
+                this.textBoxUserPLZ.Size = new System.Drawing.Size(58, 20);
+                this.textBoxUserPLZ.TabIndex = 10;
+                #endregion
+
+                #region labelUserCity
+                this.labelUserCity.AutoSize = true;
+                this.labelUserCity.Location = new System.Drawing.Point(146, 178);
+                this.labelUserCity.Name = "labelUserCity";
+                this.labelUserCity.Size = new System.Drawing.Size(35, 13);
+                this.labelUserCity.TabIndex = 11;
+                this.labelUserCity.Text = "Stadt:";
+                #endregion
+                #region textBoxUserCity
+                this.textBoxUserCity.Location = new System.Drawing.Point(187, 171);
+                this.textBoxUserCity.Name = "textBoxUserCity";
+                this.textBoxUserCity.Size = new System.Drawing.Size(90, 20);
+                this.textBoxUserCity.TabIndex = 12;
+                #endregion
+
+                #region  labelUserCoutry
+                this.labelUserCoutry.AutoSize = true;
+                this.labelUserCoutry.Location = new System.Drawing.Point(12, 207);
+                this.labelUserCoutry.Name = "labelUserCoutry";
+                this.labelUserCoutry.Size = new System.Drawing.Size(34, 13);
+                this.labelUserCoutry.TabIndex = 13;
+                this.labelUserCoutry.Text = "Land:";
+                #endregion
+
+                #region comboBoxUserCountries
+                this.comboBoxUserCountries.FormattingEnabled = true;
+                this.comboBoxUserCountries.Location = new System.Drawing.Point(77, 207);
+                this.comboBoxUserCountries.Name = "comboBoxUserCountries";
+                this.comboBoxUserCountries.Size = new System.Drawing.Size(200, 21);
+                this.comboBoxUserCountries.TabIndex = 14;
+                #endregion
+                #region buttonUserAdd
+                this.buttonUserAdd.Location = new System.Drawing.Point(14, 240);
+                this.buttonUserAdd.Name = "buttonUserAdd";
+                this.buttonUserAdd.Size = new System.Drawing.Size(75, 23);
+                this.buttonUserAdd.TabIndex = 15;
+                this.buttonUserAdd.Text = "hinzufügen";
+                this.buttonUserAdd.UseVisualStyleBackColor = true;
+                this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
+                #endregion
+                #endregion
+                #region userDetails Panel
+                #region userDetails Panel Value
+                this.userDetails.ForeColor = System.Drawing.Color.Black;
+                this.userDetails.Location = new System.Drawing.Point(CustomerMainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
+                this.userDetails.Name = "userDetails";
+                this.userDetails.Size = new System.Drawing.Size(CustomerMainPanel.Width / 4 - 10, CustomerMainPanel.Height - UserAddPanel.Height - 15);
+                this.userDetails.TabIndex = 3;
+                this.userDetails.TabStop = false;
+                this.userDetails.Text = "Kunden Details";
+                #endregion
+                #region labelUserDetailsName
+                this.labelUserDetailsName.AutoSize = true;
+                this.labelUserDetailsName.Location = new System.Drawing.Point(10, 19);
+                this.labelUserDetailsName.Name = "labelUserDetailsName";
+                this.labelUserDetailsName.Size = new System.Drawing.Size(41, 13);
+                this.labelUserDetailsName.TabIndex = 1;
+                this.labelUserDetailsName.Text = "Name: ";
+                #endregion
+                #region labelUserDetailsAdress
+                this.labelUserDetailsAdress.AutoSize = true;
+                this.labelUserDetailsAdress.Location = new System.Drawing.Point(10, 37);
+                this.labelUserDetailsAdress.Name = "labelUserDetailsAdress";
+                this.labelUserDetailsAdress.Size = new System.Drawing.Size(51, 13);
+                this.labelUserDetailsAdress.TabIndex = 2;
+                this.labelUserDetailsAdress.Text = "Adresse: ";
+                #endregion
+                #endregion
+                #region userStatistic Panel
+                #region userStatistic Panel Values
+                this.userStatistic.ForeColor = System.Drawing.Color.Black;
+                this.userStatistic.Location = new System.Drawing.Point(CustomerMainPanel.Width / 3 - 4, 13);
+                this.userStatistic.Name = "userStatistic";
+                this.userStatistic.Size = new System.Drawing.Size(CustomerMainPanel.Width * 2 / 3 - 7, UserAddPanel.Height);
+                this.userStatistic.TabIndex = 2;
+                this.userStatistic.TabStop = false;
+                this.userStatistic.Text = "Statistic";
+                #endregion
+
+                #region ageChartPanel
+                this.ageChartPanel.Location = new System.Drawing.Point(15, 15);
+                this.ageChartPanel.Text = "Altersverteilung";
+                this.ageChartPanel.Size = new Size(this.userStatistic.Width / 2, this.userStatistic.Height - 30);
+
+                #region chartUserAge
+                ChartArea chartArea1 = new ChartArea();
+                Legend legend1 = new Legend();
+                Series series1 = new Series();
+                chartArea1.Name = "ChartArea1";
+                this.chartUserAge.ChartAreas.Add(chartArea1);
+                legend1.Name = "Legend1";
+                this.chartUserAge.Legends.Add(legend1);
+                this.chartUserAge.Location = new System.Drawing.Point(0, 0);
+                this.chartUserAge.Name = "chartUserAge";
+                series1.ChartArea = "ChartArea1";
+                series1.Legend = "Legend1";
+                series1.Name = "Series1";
+                this.chartUserAge.Series.Add(series1);
+                this.chartUserAge.Width = ageChartPanel.Width;
+                this.chartUserAge.Height = ageChartPanel.Height;
+                this.chartUserAge.TabIndex = 1;
+                this.chartUserAge.Text = "chart1";
 
 
+                chartUserAge.Series[0].Points.Clear();
+                chartUserAge.Series[0].ChartType = SeriesChartType.Doughnut;
+                chartUserAge.BackColor = Color.Transparent;
 
+
+                chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
+                chartUserAge.Legends.RemoveAt(0);
+                #endregion
+                #endregion
+                #endregion
+                #region UserTablePanel
+                #region UserTablePanel Values
+                this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
+                this.UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15);
+                this.UserTablePanel.Name = "UserTablePanel";
+                this.UserTablePanel.Size = new System.Drawing.Size(CustomerMainPanel.Width * 3 / 4 - 25, CustomerMainPanel.Height - UserAddPanel.Height - 15);
+                this.UserTablePanel.TabIndex = 1;
+                this.UserTablePanel.TabStop = false;
+                this.UserTablePanel.Text = "Kunden";
+                #endregion
+
+                #region  userTableDataSet
+                this.userTableDataSet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                this.userTableDataSet.Location = new System.Drawing.Point(6, 19);
+                this.userTableDataSet.Name = "userTableDataSet";
+                this.userTableDataSet.Size = new System.Drawing.Size(UserTablePanel.Width - 15, UserTablePanel.Height - 25);
+                this.userTableDataSet.TabIndex = 0;
+                this.userTableDataSet.CellClick += new DataGridViewCellEventHandler(this.userTableDataSet_CellClick);
+                //enable contentless left colum
+                this.userTableDataSet.RowHeadersVisible = false;
+                //enable empty last row
+                this.userTableDataSet.AllowUserToAddRows = false;
+                this.userTableDataSet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                #endregion
+                #endregion
+
+                #endregion
+                #region booksMainPanel
+                this.BooksMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                this.BooksMainPanel.Location = this.CustomerMainPanel.Location;
+                this.BooksMainPanel.Size = this.CustomerMainPanel.Size;
+                this.BooksMainPanel.Visible = false;
+
+                #region groupBoxAddBook
+                this.groupBoxAddBook.Text = "Buch hinzufügen";
+                this.groupBoxAddBook.Location = new Point(10, 10);
+                this.groupBoxAddBook.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height / 4 - 20);
+                #region Book Add Labels
+                this.labelBookAddauthor.Location = new Point(10, 20);
+                this.lableBookAddTitel.Location = new Point(labelBookAddauthor.Location.X, labelBookAddauthor.Location.Y + 30);
+                this.labelBookAddsubjectArea.Location = new Point(labelBookAddauthor.Location.X, labelBookAddauthor.Location.Y + 60);
+
+
+                this.labelBookAddauthor.Text = "Author:";
+                this.lableBookAddTitel.Text = "Title";
+                this.labelBookAddsubjectArea.Text = "Genre:";
+                #endregion
+                #region Book Add TextBoxes;
+                this.textBoxBookAddauthor.Location = new Point(labelBookAddauthor.Location.X + 50, labelBookAddauthor.Location.Y);
+                this.textBoxBookAddTitel.Location = new Point(labelBookAddauthor.Location.X + 50, labelBookAddauthor.Location.Y + 30);
+                this.textBoxBookAddsubjectArea.Location = new Point(labelBookAddauthor.Location.X + 50, labelBookAddauthor.Location.Y + 60);
+
+                this.textBoxBookAddauthor.Size = new Size(200, 20);
+                this.textBoxBookAddTitel.Size = this.textBoxBookAddauthor.Size;
+                this.textBoxBookAddsubjectArea.Size = this.textBoxBookAddauthor.Size;
+                #endregion
+                #region addBooksActionButton
+                this.addBooksActionButton.Location = new Point(10, 110);
+                this.addBooksActionButton.Size = new Size(95, 25);
+                this.addBooksActionButton.Text = "Buch hinzufügen";
+                this.addBooksActionButton.Click += new System.EventHandler(addBooksActionButton_Click);
+                #endregion
+                #endregion
+                #region groupBoxBookTable
+                this.groupBoxBookTable.Text = "Bücher Tabelle";
+                this.groupBoxBookTable.Location = new Point(10, this.groupBoxAddBook.Location.Y + this.groupBoxAddBook.Height + 10);
+                this.groupBoxBookTable.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height * 3 / 4);
+                #region booksTableDataSet
+                this.booksTableDataSet.Location = new Point(10, 20);
+                this.booksTableDataSet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+                this.booksTableDataSet.Name = "booksTableDataSet";
+                this.booksTableDataSet.Size = new System.Drawing.Size(this.groupBoxBookTable.Width - 25, this.groupBoxBookTable.Height - 35);
+                this.booksTableDataSet.TabIndex = 0;
+                this.booksTableDataSet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                //enable contentless left colum
+                this.booksTableDataSet.RowHeadersVisible = false;
+                //enable empty last row
+                this.booksTableDataSet.AllowUserToAddRows = false;
+
+                #endregion
+                #endregion
+                #endregion
+                #region BorrowMainPanel
+                //this.BorrowMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                this.BorrowMainPanel.BackColor = System.Drawing.Color.Red;
+                this.BorrowMainPanel.Location = this.CustomerMainPanel.Location;
+                this.BorrowMainPanel.Size = this.CustomerMainPanel.Size;
+                this.BorrowMainPanel.Visible = false;
+                #endregion
+                #endregion
                 
                 #region currently panel1 not used
                 this.panel1.BackgroundImage = global::BiBo.Properties.Resources.icon2;
@@ -470,361 +822,10 @@ namespace BiBo
                 this.panel1.TabIndex = 2;
                 #endregion
 
-                //Main Panel
-                #region CutomerMainPanel
-                    #region CutomerMainPanel Values
-                    this.CustomerMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-                    this.CustomerMainPanel.Location = new System.Drawing.Point(220, 77);
-                    this.CustomerMainPanel.Name = "MainPanel";
-                    this.CustomerMainPanel.Size = new System.Drawing.Size(windowWidth - 235, windowHeight - 115);
-                    this.CustomerMainPanel.TabIndex = 3;
-                    #endregion
-
-                    #region UserAddPanel
-                        #region UserAddPanel VAlues
-                        this.UserAddPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-                        this.UserAddPanel.Location = new System.Drawing.Point(12, 13);
-                        this.UserAddPanel.Name = "UserAddPanel";
-                        this.UserAddPanel.Size = new System.Drawing.Size(CustomerMainPanel.Width / 3 - 25, CustomerMainPanel.Height / 2 - 25);
-                        this.UserAddPanel.TabIndex = 0;
-                        this.UserAddPanel.TabStop = false;
-                        this.UserAddPanel.Text = "Kunde hinzufügen";
-                        #endregion
-
-                        #region labelFirstname
-                        this.label3.AutoSize = true;
-                        this.label3.Location = new System.Drawing.Point(11, 32);
-                        this.label3.Name = "label3";
-                        this.label3.Size = new System.Drawing.Size(52, 13);
-                        this.label3.TabIndex = 1;
-                        this.label3.Text = "Vorname:";
-                        #endregion
-                            #region textBoxUserFirstname
-                            this.textBoxUserFirstname.Location = new System.Drawing.Point(77, 28);
-                            this.textBoxUserFirstname.Name = "textBoxUserFirstname";
-                            this.textBoxUserFirstname.Size = new System.Drawing.Size(200, 20);
-                            this.textBoxUserFirstname.TabIndex = 0;
-                            #endregion
-
-                        #region labelLastname
-                        this.label1.AutoSize = true;
-                        this.label1.Location = new System.Drawing.Point(11, 58);
-                        this.label1.Name = "label1";
-                        this.label1.Size = new System.Drawing.Size(62, 13);
-                        this.label1.TabIndex = 1;
-                        this.label1.Text = "Nachname:";
-                        #endregion
-                            #region textBoxUserLastname
-                            this.textBoxUserLastname.Location = new System.Drawing.Point(77, 55);
-                            this.textBoxUserLastname.Name = "textBoxUserLastname";
-                            this.textBoxUserLastname.Size = new System.Drawing.Size(200, 20);
-                            this.textBoxUserLastname.TabIndex = 0;
-                            #endregion
-
-                        #region  labelBirthday
-                        this.label2.AutoSize = true;
-                        this.label2.Location = new System.Drawing.Point(11, 90);
-                        this.label2.Name = "label2";
-                        this.label2.Size = new System.Drawing.Size(65, 13);
-                        this.label2.TabIndex = 1;
-                        this.label2.Text = "Geburtstag: ";
-                        #endregion
-                            #region dateTimePickerAddUser
-                            this.dateTimePickerAddUser.Location = new System.Drawing.Point(77, 84);
-                            this.dateTimePickerAddUser.Name = "dateTimePickerAddUser";
-                            this.dateTimePickerAddUser.Size = new System.Drawing.Size(200, 20);
-                            this.dateTimePickerAddUser.TabIndex = 2;
-                            #endregion
-
-                        #region labelStreet
-                        this.label4.AutoSize = true;
-                        this.label4.Location = new System.Drawing.Point(11, 118);
-                        this.label4.Name = "label4";
-                        this.label4.Size = new System.Drawing.Size(48, 13);
-                        this.label4.TabIndex = 4;
-                        this.label4.Text = "Strasse: ";
-                        #endregion
-                            #region textBoxUserStreet
-                            this.textBoxUserStreet.Location = new System.Drawing.Point(77, 115);
-                            this.textBoxUserStreet.Name = "textBoxUserStreet";
-                            this.textBoxUserStreet.Size = new System.Drawing.Size(164, 20);
-                            this.textBoxUserStreet.TabIndex = 5;
-                            #endregion
-                            #region  textBoxUserHomeNumber
-                            this.textBoxUserHomeNumber.Location = new System.Drawing.Point(248, 115);
-                            this.textBoxUserHomeNumber.Name = "textBoxUserHomeNumber";
-                            this.textBoxUserHomeNumber.Size = new System.Drawing.Size(29, 20);
-                            this.textBoxUserHomeNumber.TabIndex = 6;
-                            #endregion
-
-                        #region labelUserStreetExtention
-                        this.labelUserStreetExtention.AutoSize = true;
-                        this.labelUserStreetExtention.Location = new System.Drawing.Point(12, 145);
-                        this.labelUserStreetExtention.Name = "labelUserStreetExtention";
-                        this.labelUserStreetExtention.Size = new System.Drawing.Size(42, 13);
-                        this.labelUserStreetExtention.TabIndex = 7;
-                        this.labelUserStreetExtention.Text = "Zusatz:";
-                        #endregion
-                            #region textBoxUserAdressExtention
-                            this.textBoxUserAdressExtention.Location = new System.Drawing.Point(77, 145);
-                            this.textBoxUserAdressExtention.Name = "textBoxUserAdressExtention";
-                            this.textBoxUserAdressExtention.Size = new System.Drawing.Size(200, 20);
-                            this.textBoxUserAdressExtention.TabIndex = 8;
-                            #endregion
-
-                        #region labelPLZ
-                        this.labelPLZ.AutoSize = true;
-                        this.labelPLZ.Location = new System.Drawing.Point(12, 175);
-                        this.labelPLZ.Name = "labelPLZ";
-                        this.labelPLZ.Size = new System.Drawing.Size(30, 13);
-                        this.labelPLZ.TabIndex = 9;
-                        this.labelPLZ.Text = "PLZ:";
-                        #endregion
-                            #region textBoxUserPLZ
-                            this.textBoxUserPLZ.Location = new System.Drawing.Point(77, 172);
-                            this.textBoxUserPLZ.Name = "textBoxUserPLZ";
-                            this.textBoxUserPLZ.Size = new System.Drawing.Size(58, 20);
-                            this.textBoxUserPLZ.TabIndex = 10;
-                            #endregion
-
-                        #region labelUserCity
-                        this.labelUserCity.AutoSize = true;
-                        this.labelUserCity.Location = new System.Drawing.Point(146, 178);
-                        this.labelUserCity.Name = "labelUserCity";
-                        this.labelUserCity.Size = new System.Drawing.Size(35, 13);
-                        this.labelUserCity.TabIndex = 11;
-                        this.labelUserCity.Text = "Stadt:";
-                        #endregion
-                            #region textBoxUserCity
-                            this.textBoxUserCity.Location = new System.Drawing.Point(187, 171);
-                            this.textBoxUserCity.Name = "textBoxUserCity";
-                            this.textBoxUserCity.Size = new System.Drawing.Size(90, 20);
-                            this.textBoxUserCity.TabIndex = 12;
-                            #endregion
-
-                        #region  labelUserCoutry
-                        this.labelUserCoutry.AutoSize = true;
-                        this.labelUserCoutry.Location = new System.Drawing.Point(12, 207);
-                        this.labelUserCoutry.Name = "labelUserCoutry";
-                        this.labelUserCoutry.Size = new System.Drawing.Size(34, 13);
-                        this.labelUserCoutry.TabIndex = 13;
-                        this.labelUserCoutry.Text = "Land:";
-                        #endregion
-
-                        #region comboBoxUserCountries
-                        this.comboBoxUserCountries.FormattingEnabled = true;
-                        this.comboBoxUserCountries.Location = new System.Drawing.Point(77, 207);
-                        this.comboBoxUserCountries.Name = "comboBoxUserCountries";
-                        this.comboBoxUserCountries.Size = new System.Drawing.Size(200, 21);
-                        this.comboBoxUserCountries.TabIndex = 14;
-                        #endregion
-                        #region buttonUserAdd
-                        this.buttonUserAdd.Location = new System.Drawing.Point(14, 240);
-                        this.buttonUserAdd.Name = "buttonUserAdd";
-                        this.buttonUserAdd.Size = new System.Drawing.Size(75, 23);
-                        this.buttonUserAdd.TabIndex = 15;
-                        this.buttonUserAdd.Text = "hinzufügen";
-                        this.buttonUserAdd.UseVisualStyleBackColor = true;
-                        this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
-                        #endregion
-                    #endregion
-                    #region userDetails Panel
-                        #region userDetails Panel Value
-                        this.userDetails.ForeColor = System.Drawing.Color.Black;
-                        this.userDetails.Location = new System.Drawing.Point(CustomerMainPanel.Width * 3 / 4 - 2, UserAddPanel.Height + 15);
-                        this.userDetails.Name = "userDetails";
-                        this.userDetails.Size = new System.Drawing.Size(CustomerMainPanel.Width / 4 - 10, CustomerMainPanel.Height - UserAddPanel.Height - 15);
-                        this.userDetails.TabIndex = 3;
-                        this.userDetails.TabStop = false;
-                        this.userDetails.Text = "Kunden Details";
-                        #endregion
-                        #region labelUserDetailsName
-                        this.labelUserDetailsName.AutoSize = true;
-                        this.labelUserDetailsName.Location = new System.Drawing.Point(10, 19);
-                        this.labelUserDetailsName.Name = "labelUserDetailsName";
-                        this.labelUserDetailsName.Size = new System.Drawing.Size(41, 13);
-                        this.labelUserDetailsName.TabIndex = 1;
-                        this.labelUserDetailsName.Text = "Name: ";
-                        #endregion
-                        #region labelUserDetailsAdress
-                        this.labelUserDetailsAdress.AutoSize = true;
-                        this.labelUserDetailsAdress.Location = new System.Drawing.Point(10, 37);
-                        this.labelUserDetailsAdress.Name = "labelUserDetailsAdress";
-                        this.labelUserDetailsAdress.Size = new System.Drawing.Size(51, 13);
-                        this.labelUserDetailsAdress.TabIndex = 2;
-                        this.labelUserDetailsAdress.Text = "Adresse: ";
-                        #endregion
-                    #endregion
-                    #region userStatistic Panel
-                        #region userStatistic Panel Values
-                        this.userStatistic.ForeColor = System.Drawing.Color.Black;
-                        this.userStatistic.Location = new System.Drawing.Point(CustomerMainPanel.Width / 3 - 4, 13);
-                        this.userStatistic.Name = "userStatistic";
-                        this.userStatistic.Size = new System.Drawing.Size(CustomerMainPanel.Width * 2 / 3 - 7, UserAddPanel.Height);
-                        this.userStatistic.TabIndex = 2;
-                        this.userStatistic.TabStop = false;
-                        this.userStatistic.Text = "Statistic";
-                        #endregion
-
-                        #region ageChartPanel
-                        this.ageChartPanel.Location = new System.Drawing.Point(15, 15);
-                        this.ageChartPanel.Text = "Altersverteilung";
-                        this.ageChartPanel.Size = new Size(this.userStatistic.Width / 2, this.userStatistic.Height - 30);
-
-                        #region chartUserAge
-                        ChartArea chartArea1 = new ChartArea();
-                        Legend legend1 = new Legend();
-                        Series series1 = new Series();
-                        chartArea1.Name = "ChartArea1";
-                        this.chartUserAge.ChartAreas.Add(chartArea1);
-                        legend1.Name = "Legend1";
-                        this.chartUserAge.Legends.Add(legend1);
-                        this.chartUserAge.Location = new System.Drawing.Point(0, 0);
-                        this.chartUserAge.Name = "chartUserAge";
-                        series1.ChartArea = "ChartArea1";
-                        series1.Legend = "Legend1";
-                        series1.Name = "Series1";
-                        this.chartUserAge.Series.Add(series1);
-                        this.chartUserAge.Width = ageChartPanel.Width;
-                        this.chartUserAge.Height = ageChartPanel.Height;
-                        this.chartUserAge.TabIndex = 1;
-                        this.chartUserAge.Text = "chart1";
 
 
-                        chartUserAge.Series[0].Points.Clear();
-                        chartUserAge.Series[0].ChartType = SeriesChartType.Doughnut;
-                        chartUserAge.BackColor = Color.Transparent;
 
 
-                        chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
-                        chartUserAge.Legends.RemoveAt(0);
-                        #endregion
-                        #endregion
-                    #endregion
-                    #region UserTablePanel
-                        #region UserTablePanel Values
-                        this.UserTablePanel.ForeColor = System.Drawing.Color.Black;
-                        this.UserTablePanel.Location = new System.Drawing.Point(13, UserAddPanel.Height + 15);
-                        this.UserTablePanel.Name = "UserTablePanel";
-                        this.UserTablePanel.Size = new System.Drawing.Size(CustomerMainPanel.Width * 3 / 4 - 25, CustomerMainPanel.Height - UserAddPanel.Height - 15);
-                        this.UserTablePanel.TabIndex = 1;
-                        this.UserTablePanel.TabStop = false;
-                        this.UserTablePanel.Text = "Kunden";
-                        #endregion
-
-                        #region  userTableDataSet
-                        this.userTableDataSet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-                        this.userTableDataSet.Location = new System.Drawing.Point(6, 19);
-                        this.userTableDataSet.Name = "userTableDataSet";
-                        this.userTableDataSet.Size = new System.Drawing.Size(UserTablePanel.Width - 15, UserTablePanel.Height - 25);
-                        this.userTableDataSet.TabIndex = 0;
-                        this.userTableDataSet.CellClick += new DataGridViewCellEventHandler(this.userTableDataSet_CellClick);
-                        //enable contentless left colum
-                        this.userTableDataSet.RowHeadersVisible = false;
-                        //enable empty last row
-                        this.userTableDataSet.AllowUserToAddRows = false;
-                        this.userTableDataSet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                        #endregion
-                    #endregion
-
-                #endregion
-                #region booksMainPanel
-                    this.BooksMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-                    this.BooksMainPanel.Location = this.CustomerMainPanel.Location;
-                    this.BooksMainPanel.Size = this.CustomerMainPanel.Size;
-                    this.BooksMainPanel.Visible = false;
-                  
-                    #region groupBoxAddBook
-                            this.groupBoxAddBook.Text = "Buch hinzufügen";
-                            this.groupBoxAddBook.Location = new Point(10, 10);
-                            this.groupBoxAddBook.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height / 4 - 20);
-                                #region Book Add Labels
-                                    this.labelBookAddauthor.Location = new Point(10, 20);
-                                    this.lableBookAddTitel.Location = new Point(labelBookAddauthor.Location.X, labelBookAddauthor.Location.Y + 30);
-                                    this.labelBookAddsubjectArea.Location = new Point(labelBookAddauthor.Location.X, labelBookAddauthor.Location.Y + 60);
-
-
-                                    this.labelBookAddauthor.Text = "Author:";
-                                    this.lableBookAddTitel.Text = "Title";
-                                    this.labelBookAddsubjectArea.Text = "Genre:";
-                                 #endregion
-                                #region Book Add TextBoxes;
-                                    this.textBoxBookAddauthor.Location = new Point(labelBookAddauthor.Location.X + 50, labelBookAddauthor.Location.Y);
-                                    this.textBoxBookAddTitel.Location = new Point(labelBookAddauthor.Location.X + 50, labelBookAddauthor.Location.Y + 30);
-                                    this.textBoxBookAddsubjectArea.Location = new Point(labelBookAddauthor.Location.X + 50, labelBookAddauthor.Location.Y + 60);
-
-                                    this.textBoxBookAddauthor.Size = new Size(200, 20);
-                                    this.textBoxBookAddTitel.Size = this.textBoxBookAddauthor.Size;
-                                    this.textBoxBookAddsubjectArea.Size = this.textBoxBookAddauthor.Size;
-                                #endregion
-                                #region addBooksActionButton
-                                    this.addBooksActionButton.Location = new Point(10, 110);
-                                    this.addBooksActionButton.Size = new Size(95,25);
-                                    this.addBooksActionButton.Text = "Buch hinzufügen";
-                                    this.addBooksActionButton.Click += new System.EventHandler(addBooksActionButton_Click);
-                                #endregion
-                    #endregion
-                    #region groupBoxBookTable
-                        this.groupBoxBookTable.Text = "Bücher Tabelle";
-                        this.groupBoxBookTable.Location = new Point(10, this.groupBoxAddBook.Location.Y + this.groupBoxAddBook.Height + 10);
-                        this.groupBoxBookTable.Size = new Size(this.BooksMainPanel.Width / 3 - 20, this.BooksMainPanel.Height * 3 / 4 );
-                        #region booksTableDataSet
-                            this.booksTableDataSet.Location = new Point(10,20);
-                            this.booksTableDataSet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-                            this.booksTableDataSet.Name = "booksTableDataSet";
-                            this.booksTableDataSet.Size = new System.Drawing.Size(this.groupBoxBookTable.Width - 25, this.groupBoxBookTable.Height - 35);
-                            this.booksTableDataSet.TabIndex = 0;
-                            this.booksTableDataSet.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                            //enable contentless left colum
-                            this.booksTableDataSet.RowHeadersVisible = false;
-                            //enable empty last row
-                            this.booksTableDataSet.AllowUserToAddRows = false;
-                            
-                        #endregion
-                    #endregion
-                #endregion
-                #region booksMainPanel
-                    //this.BorrowMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-                    this.BorrowMainPanel.BackColor = System.Drawing.Color.Red;
-                    this.BorrowMainPanel.Location = this.CustomerMainPanel.Location;
-                    this.BorrowMainPanel.Size = this.CustomerMainPanel.Size;
-                    this.BorrowMainPanel.Visible = false;
-                #endregion
-
-                        #region groupBoxSearch
-                            this.groupBoxSearch.Location = new System.Drawing.Point(13, CustomerMainPanel.Location.Y + UserTablePanel.Location.Y);
-                            this.groupBoxSearch.Name = "groupBoxSearch";
-                            this.groupBoxSearch.Size = new System.Drawing.Size(212, 56);
-                            this.groupBoxSearch.TabIndex = 1;
-                            this.groupBoxSearch.TabStop = false;
-                            this.groupBoxSearch.Text = "Suche";
-
-                            #region textBoxSearch
-                                this.textBoxSearch.Location = new System.Drawing.Point(6, 19);
-                                this.textBoxSearch.Name = "textBoxSearch";
-                                this.textBoxSearch.Size = new System.Drawing.Size(200, 20);
-                                this.textBoxSearch.TabIndex = 0;
-                                this.textBoxSearch.KeyUp += new KeyEventHandler(this.textBoxSearch_KeyUp);
-                            #endregion
-                        #endregion
-                #region  groupBoxSelectedRows
-                    this.groupBoxSelectedRows.Location = new System.Drawing.Point(13, groupBoxSearch.Location.Y + groupBoxSearch.Height + 5);
-                    this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";
-                    this.groupBoxSelectedRows.Size = new System.Drawing.Size(groupBoxSearch.Width, 120);
-                    this.groupBoxSelectedRows.TabIndex = 4;
-                    this.groupBoxSelectedRows.TabStop = false;
-                    this.groupBoxSelectedRows.Text = "Markierte";
-
-                    #region buttonDeleteSelectedRows
-                this.buttonDeleteSelectedRows.Location = new System.Drawing.Point(6, 19);
-                this.buttonDeleteSelectedRows.Name = "buttonDeleteSelectedRows";
-                this.buttonDeleteSelectedRows.Size = new System.Drawing.Size(75, 23);
-                this.buttonDeleteSelectedRows.TabIndex = 0;
-                this.buttonDeleteSelectedRows.Text = "löschen";
-                this.buttonDeleteSelectedRows.UseVisualStyleBackColor = true;
-                this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);
-                #endregion
-                #endregion
 
                 #region close Button
                 this.close.Text = "x";
@@ -925,9 +926,27 @@ namespace BiBo
             #endregion
             this.SuperPanelEmployee.Controls.Add(this.employeeTabsGroupeBox);
             #region adds
+            this.employeeMainGroupeBox.Controls.Add(this.CustomerMainPanel);
+            this.employeeMainGroupeBox.Controls.Add(this.BooksMainPanel);
+            this.employeeMainGroupeBox.Controls.Add(this.BorrowMainPanel);
+            
+                       
             #endregion
             this.SuperPanelEmployee.Controls.Add(this.employeeMainGroupeBox);
+ 
             #region adds
+            this.employeeSideBarGroupeBox.Controls.Add(this.userName);
+            this.employeeSideBarGroupeBox.Controls.Add(this.LoginAs);
+
+            this.employeeSideBarGroupeBox.Controls.Add(this.EmployeeLogout);
+
+            this.employeeSideBarGroupeBox.Controls.Add(this.UserStatus);
+            this.employeeSideBarGroupeBox.Controls.Add(this.userStat);
+
+            this.employeeSideBarGroupeBox.Controls.Add(this.groupBoxSearch);
+            this.employeeSideBarGroupeBox.Controls.Add(this.groupBoxSelectedRows);
+            
+            
             #endregion
             this.SuperPanelEmployee.Controls.Add(this.employeeSideBarGroupeBox);
 
@@ -966,6 +985,7 @@ namespace BiBo
             this.customerSideBarGroupeBox.Controls.Add(this.loggedInAs_Name);
             this.customerSideBarGroupeBox.Controls.Add(this.loggedInAs_Adress);
             this.customerSideBarGroupeBox.Controls.Add(this.Logout);
+            
             #endregion
 
             #region customerTabsGroupeBox

@@ -32,6 +32,18 @@ namespace BiBo
     {
       //set name of current logged user
       userName.Text += logginUser.FirstName + " " + logginUser.LastName;
+      switch(logginUser.Right){
+          case Rights.ADMINISTRATOR:
+              userStat.Text = "Admin";
+              break;
+          case Rights.EMPLOYEE:
+              userStat.Text = "Mitarbeiter";
+              break;
+          case Rights.CUSTOMER:
+              userStat.Text = "Kunde";
+              break;
+      }
+      
 
       //fill content on customer tab
       //@see Form1.Customer
@@ -193,7 +205,7 @@ namespace BiBo
     private void initAgeChart()
     {
         //init age tmp and counter vars
-        int age;
+        int age = 0;
         int count_less18 = 0;
         int count_less25 = 0;
         int count_less35 = 0;
@@ -205,7 +217,11 @@ namespace BiBo
         foreach (DataGridViewRow row in userTableDataSet.Rows)
         {
             //get age
-            age = Convert.ToInt32(row.Cells[4].Value.ToString());
+            try
+            {
+                age = Convert.ToInt32(row.Cells[4].Value.ToString());
+            }
+            catch (FormatException err) { }
 
             //increase the right counter
             if (age < 18) { count_less18++; }
