@@ -317,6 +317,12 @@ namespace BiBo
             this.customerSearchBookPanel.Visible = false;
             this.customerAccountPanel.Visible = true;
         }
+
+        private void Logout_Click(object sender, EventArgs e)
+        {
+            this.SuperPanelCustomer.Visible = false;
+            this.SuperPanelLogin.Visible = true;
+        }
     }
  
   }

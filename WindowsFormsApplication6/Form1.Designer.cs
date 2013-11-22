@@ -60,6 +60,7 @@ namespace BiBo
         private Button buttonDeleteSelectedRows     = new Button();
         private Button close                        = new Button();
         private Button addBooksActionButton         = new Button();
+        private Button Logout = new Button();
         #endregion
         #region init ComboBox
         private ComboBox comboBoxUserCountries      = new ComboBox();
@@ -225,6 +226,7 @@ namespace BiBo
                 #region customerSideBarGroupeBox
                 this.customerSideBarGroupeBox.Location = new Point(10, 10);
                 this.customerSideBarGroupeBox.Size = new Size(200, windowHeight - 20);
+                
 
                 #region labels
                 this.loggedInAs_Name.Name = "LoggedInAsCustomer";
@@ -234,6 +236,11 @@ namespace BiBo
                 this.loggedInAs_Adress.Name = "LoggedInAsCustomerAdress";
                 this.loggedInAs_Adress.Location = new Point(10, 30);
                 this.loggedInAs_Adress.AutoSize = true;
+                #endregion
+                #region logout button
+                    this.Logout.Location = new Point(10, 80);
+                    this.Logout.Text = "Abmelden";
+                    this.Logout.Click += new System.EventHandler(this.Logout_Click);
                 #endregion
                 #endregion
 
@@ -902,6 +909,7 @@ namespace BiBo
             #region Add to customerSideBarGroupeBox
             this.customerSideBarGroupeBox.Controls.Add(this.loggedInAs_Name);
             this.customerSideBarGroupeBox.Controls.Add(this.loggedInAs_Adress);
+            this.customerSideBarGroupeBox.Controls.Add(this.Logout);
             #endregion
 
             #region customerTabsGroupeBox
