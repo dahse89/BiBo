@@ -39,6 +39,10 @@ namespace BiBo
         private GroupBox customerMainGroupeBox      = new GroupBox();
         private GroupBox customerTabsGroupeBox = new GroupBox();
 
+        private GroupBox employeeSideBarGroupeBox = new GroupBox();
+        private GroupBox employeeMainGroupeBox = new GroupBox();
+        private GroupBox employeeTabsGroupeBox = new GroupBox();
+
         private GroupBox customerChargeAccountGroupBox = new GroupBox();
         private GroupBox customerBooksGroupeBox = new GroupBox();
 
@@ -350,6 +354,26 @@ namespace BiBo
                 this.SuperPanelEmployee.Size = new System.Drawing.Size(windowWidth, windowHeight);
                 this.SuperPanelEmployee.TabIndex = 3;
                 this.SuperPanelEmployee.Visible = false;
+
+                this.employeeSideBarGroupeBox.Location = new Point(10, 10);
+                this.employeeSideBarGroupeBox.Size = new Size(200, windowHeight - 20);
+
+
+                this.employeeTabsGroupeBox.Location = new Point(220, 10);
+                this.employeeTabsGroupeBox.Size = new Size(windowWidth - 230, 80);
+
+
+                this.employeeMainGroupeBox.Location = new Point(220, 94);
+                this.employeeMainGroupeBox.Size = new Size(windowWidth - 230, windowHeight - 104);
+
+
+
+
+
+
+
+
+
                
                 #region LoginAs Label
                 this.LoginAs.AutoSize = true;
@@ -878,6 +902,11 @@ namespace BiBo
             this.groupBoxSelectedRows.Controls.Add(this.buttonDeleteSelectedRows);
             #endregion
             #region Add to Super Panel Employee
+            this.SuperPanelEmployee.Controls.Add(this.employeeMainGroupeBox);
+            this.SuperPanelEmployee.Controls.Add(this.employeeTabsGroupeBox);
+            this.SuperPanelEmployee.Controls.Add(this.employeeSideBarGroupeBox);
+
+            /*
             this.SuperPanelEmployee.Controls.Add(this.groupBoxSelectedRows);
             this.SuperPanelEmployee.Controls.Add(this.groupBoxSearch);
             this.SuperPanelEmployee.Controls.Add(this.CustomerMainPanel);
@@ -892,6 +921,7 @@ namespace BiBo
             this.SuperPanelEmployee.Controls.Add(this.customerImage);
             this.SuperPanelEmployee.Controls.Add(this.borrowImage);
             this.SuperPanelEmployee.Controls.Add(this.close);
+             * */
             #endregion
             #region Add to groupBoxLogin
             this.groupBoxLogin.Controls.Add(this.textBoxUserLoginName);
