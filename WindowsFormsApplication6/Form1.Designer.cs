@@ -355,16 +355,53 @@ namespace BiBo
                 this.SuperPanelEmployee.TabIndex = 3;
                 this.SuperPanelEmployee.Visible = false;
 
+
+
+
+
+                #region employee side bar
                 this.employeeSideBarGroupeBox.Location = new Point(10, 10);
                 this.employeeSideBarGroupeBox.Size = new Size(200, windowHeight - 20);
+                #endregion
 
-
+                #region employee tabs
                 this.employeeTabsGroupeBox.Location = new Point(220, 10);
                 this.employeeTabsGroupeBox.Size = new Size(windowWidth - 230, 80);
+                
 
+                #region customer user image
+                this.customerImage.BackgroundImage = global::BiBo.Properties.Resources.customer;
+                this.customerImage.Location = new System.Drawing.Point(20, 10);
+                this.customerImage.Name = "customer image";
+                this.customerImage.Size = new System.Drawing.Size(64, 64);
+                this.customerImage.TabIndex = 2;
+                this.customerImage.Click += new System.EventHandler(this.customerImage_Click);
+                #endregion
 
+                #region books image
+                this.booksImage.BackgroundImage = global::BiBo.Properties.Resources.booksicon;
+                this.booksImage.Location = new System.Drawing.Point(84, 10);
+                this.booksImage.Name = "books image";
+                this.booksImage.Size = new System.Drawing.Size(64, 64);
+                this.booksImage.TabIndex = 2;
+                this.booksImage.Click += new System.EventHandler(this.booksImage_Click);
+                #endregion
+
+                #region borrow image
+                this.borrowImage.BackgroundImage = global::BiBo.Properties.Resources.borrow2;
+                this.borrowImage.Location = new System.Drawing.Point(148, 10);
+                this.borrowImage.Name = "borrowBookImage";
+                this.borrowImage.Size = new System.Drawing.Size(64, 64);
+                this.borrowImage.TabIndex = 2;
+                this.borrowImage.Click += new System.EventHandler(this.borrowImage_Click);
+                #endregion
+
+                #endregion
+
+                #region employee main
                 this.employeeMainGroupeBox.Location = new Point(220, 94);
                 this.employeeMainGroupeBox.Size = new Size(windowWidth - 230, windowHeight - 104);
+                #endregion
 
 
 
@@ -374,7 +411,7 @@ namespace BiBo
 
 
 
-               
+
                 #region LoginAs Label
                 this.LoginAs.AutoSize = true;
                 this.LoginAs.BackColor = System.Drawing.SystemColors.Window;
@@ -422,30 +459,9 @@ namespace BiBo
                     this.userStat.Text = " ";
                     #endregion
 
-                #region customer user image
-                this.customerImage.BackgroundImage = global::BiBo.Properties.Resources.customer;
-                this.customerImage.Location = new System.Drawing.Point(221, 19);
-                this.customerImage.Name = "panel2";
-                this.customerImage.Size = new System.Drawing.Size(64, 64);
-                this.customerImage.TabIndex = 2;
-                this.customerImage.Click += new System.EventHandler(this.customerImage_Click);
-                #endregion
-                #region books image
-                this.booksImage.BackgroundImage = global::BiBo.Properties.Resources.booksicon;
-                this.booksImage.Location = new System.Drawing.Point(286, 18);
-                this.booksImage.Name = "panel3";
-                this.booksImage.Size = new System.Drawing.Size(64, 64);
-                this.booksImage.TabIndex = 2;
-                this.booksImage.Click += new System.EventHandler(this.booksImage_Click);
-                #endregion
-                #region borrow image
-                this.borrowImage.BackgroundImage = global::BiBo.Properties.Resources.borrow2;
-                this.borrowImage.Location = new System.Drawing.Point(350, 19);
-                this.borrowImage.Name = "borrowBookImage";
-                this.borrowImage.Size = new System.Drawing.Size(64, 64);
-                this.borrowImage.TabIndex = 2;
-                this.borrowImage.Click += new System.EventHandler(this.borrowImage_Click);
-                #endregion
+
+
+                
                 #region currently panel1 not used
                 this.panel1.BackgroundImage = global::BiBo.Properties.Resources.icon2;
                 this.panel1.Location = new System.Drawing.Point(352, 18);
@@ -902,9 +918,19 @@ namespace BiBo
             this.groupBoxSelectedRows.Controls.Add(this.buttonDeleteSelectedRows);
             #endregion
             #region Add to Super Panel Employee
-            this.SuperPanelEmployee.Controls.Add(this.employeeMainGroupeBox);
+            #region adds
+                 this.employeeTabsGroupeBox.Controls.Add(this.customerImage);
+                 this.employeeTabsGroupeBox.Controls.Add(this.booksImage);
+                 this.employeeTabsGroupeBox.Controls.Add(this.borrowImage);
+            #endregion
             this.SuperPanelEmployee.Controls.Add(this.employeeTabsGroupeBox);
+            #region adds
+            #endregion
+            this.SuperPanelEmployee.Controls.Add(this.employeeMainGroupeBox);
+            #region adds
+            #endregion
             this.SuperPanelEmployee.Controls.Add(this.employeeSideBarGroupeBox);
+
 
             /*
             this.SuperPanelEmployee.Controls.Add(this.groupBoxSelectedRows);
@@ -918,7 +944,7 @@ namespace BiBo
             this.SuperPanelEmployee.Controls.Add(this.LoginAs);
             //this.SuperPanelEmployee.Controls.Add(this.panel1);
             this.SuperPanelEmployee.Controls.Add(this.booksImage);
-            this.SuperPanelEmployee.Controls.Add(this.customerImage);
+            this.SuperPanelEmployee.Controls.Add();
             this.SuperPanelEmployee.Controls.Add(this.borrowImage);
             this.SuperPanelEmployee.Controls.Add(this.close);
              * */
