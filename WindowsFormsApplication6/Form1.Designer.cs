@@ -54,7 +54,6 @@ namespace BiBo
         private GroupBox UserTablePanel             = new GroupBox();
         private GroupBox groupBoxSearch             = new GroupBox();
         private GroupBox groupBoxSelectedRows       = new GroupBox();
-        private GroupBox ageChartPanel              = new GroupBox();
         private GroupBox groupBoxBookTable          = new GroupBox();
 
         #endregion
@@ -356,111 +355,13 @@ namespace BiBo
                 this.SuperPanelEmployee.TabIndex = 3;
                 this.SuperPanelEmployee.Visible = false;
 
-
-                #region employee side bar
-                this.employeeSideBarGroupeBox.Location = new Point(10, 10);
-                this.employeeSideBarGroupeBox.Size = new Size(200, windowHeight - 20);
-
-                #region LoginAs Label
-                this.LoginAs.AutoSize = true;
-                this.LoginAs.BackColor = System.Drawing.SystemColors.Control;
-                this.LoginAs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.LoginAs.ForeColor = System.Drawing.Color.Black;
-                this.LoginAs.Location = new System.Drawing.Point(10, 20);
-                this.LoginAs.Name = "LoginAs";
-                this.LoginAs.Size = new System.Drawing.Size(95, 13);
-                this.LoginAs.TabIndex = 0;
-                this.LoginAs.Text = "Angemeldet: ";
-                #endregion
-                #region userName
-                this.userName.AutoSize = true;
-                this.userName.BackColor = System.Drawing.SystemColors.Control;
-                this.userName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.userName.ForeColor = System.Drawing.Color.Black;
-                this.userName.Location = new System.Drawing.Point(90, 20);
-                this.userName.Margin = new Padding(0);
-                this.userName.Name = "userName";
-                this.userName.Size = new System.Drawing.Size(11, 13);
-                this.userName.TabIndex = 0;
-                this.userName.Text = " ";
-                #endregion
-
-                #region logout button
-                this.EmployeeLogout.Location = new Point(10, 80);
-                this.EmployeeLogout.Text = "Abmelden";
-                this.EmployeeLogout.Click += new System.EventHandler(this.EmployeeLogout_Click);
-                #endregion
-
-                #region UserStatus Label
-                this.UserStatus.AutoSize = true;
-                this.UserStatus.BackColor = System.Drawing.SystemColors.Control;
-                this.UserStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.UserStatus.ForeColor = System.Drawing.Color.Black;
-                this.UserStatus.Location = new System.Drawing.Point(10, 50);
-                this.UserStatus.Name = "UserStatus";
-                this.UserStatus.Size = new System.Drawing.Size(52, 13);
-                this.UserStatus.TabIndex = 1;
-                this.UserStatus.Text = "Status: ";
-                #endregion
-
-                #region userStat
-                this.userStat.AutoSize = true;
-                this.userStat.BackColor = System.Drawing.SystemColors.Control;
-                this.userStat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.userStat.ForeColor = System.Drawing.Color.Black;
-                this.userStat.Location = new System.Drawing.Point(90, 50);
-                this.userStat.Name = "userStat";
-                this.userStat.Size = new System.Drawing.Size(11, 13);
-                this.userStat.TabIndex = 1;
-                this.userStat.Text = " ";
-                #endregion
-
-                #region groupBoxSearch
-                this.groupBoxSearch.Location = new System.Drawing.Point(10, 300);
-                this.groupBoxSearch.Name = "groupBoxSearch";
-                this.groupBoxSearch.Size = new System.Drawing.Size(175, 175);
-                this.groupBoxSearch.TabIndex = 1;
-                this.groupBoxSearch.TabStop = false;
-                this.groupBoxSearch.Text = "Suche";
-
-                #region textBoxSearch
-                this.textBoxSearch.Location = new System.Drawing.Point(6, 19);
-                this.textBoxSearch.Name = "textBoxSearch";
-                this.textBoxSearch.Size = new System.Drawing.Size(200, 20);
-                this.textBoxSearch.TabIndex = 0;
-                this.textBoxSearch.KeyUp += new KeyEventHandler(this.textBoxSearch_KeyUp);
-                #endregion
-                #endregion
-
-                #region  groupBoxSelectedRows          
-                this.groupBoxSelectedRows.Location = new System.Drawing.Point(10, this.groupBoxSearch.Location.Y + this.groupBoxSearch.Height + 20);
-                this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";
-                this.groupBoxSelectedRows.Size = new System.Drawing.Size(120, 120);
-                this.groupBoxSelectedRows.TabIndex = 4;
-                this.groupBoxSelectedRows.TabStop = false;
-                this.groupBoxSelectedRows.Text = "Markierte";
-                this.groupBoxSelectedRows.Visible = true;
-
-                #region buttonDeleteSelectedRows
-                this.buttonDeleteSelectedRows.Location = new System.Drawing.Point(6, 19);
-                this.buttonDeleteSelectedRows.Name = "buttonDeleteSelectedRows";
-                this.buttonDeleteSelectedRows.Size = new System.Drawing.Size(75, 23);
-                this.buttonDeleteSelectedRows.TabIndex = 0;
-                this.buttonDeleteSelectedRows.Text = "löschen";
-                this.buttonDeleteSelectedRows.UseVisualStyleBackColor = true;
-                this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);
-                #endregion
-                #endregion
-
-                #endregion
-
                 #region employee tabs
                 this.employeeTabsGroupeBox.Location = new Point(220, 10);
                 this.employeeTabsGroupeBox.Size = new Size(windowWidth - 230, 80);
-                
+
 
                 #region customer user image
-                this.customerImage.BackgroundImage = global::BiBo.Properties.Resources.customer;
+                this.customerImage.BackgroundImage = global::BiBo.Properties.Resources.account;
                 this.customerImage.Location = new System.Drawing.Point(20, 10);
                 this.customerImage.Name = "customer image";
                 this.customerImage.Size = new System.Drawing.Size(64, 64);
@@ -469,7 +370,7 @@ namespace BiBo
                 #endregion
 
                 #region books image
-                this.booksImage.BackgroundImage = global::BiBo.Properties.Resources.booksicon;
+                this.booksImage.BackgroundImage = global::BiBo.Properties.Resources.books;
                 this.booksImage.Location = new System.Drawing.Point(84, 10);
                 this.booksImage.Name = "books image";
                 this.booksImage.Size = new System.Drawing.Size(64, 64);
@@ -478,7 +379,7 @@ namespace BiBo
                 #endregion
 
                 #region borrow image
-                this.borrowImage.BackgroundImage = global::BiBo.Properties.Resources.borrow2;
+                this.borrowImage.BackgroundImage = global::BiBo.Properties.Resources.borrowicon;
                 this.borrowImage.Location = new System.Drawing.Point(148, 10);
                 this.borrowImage.Name = "borrowBookImage";
                 this.borrowImage.Size = new System.Drawing.Size(64, 64);
@@ -511,6 +412,7 @@ namespace BiBo
                 this.UserAddPanel.TabIndex = 0;
                 this.UserAddPanel.TabStop = false;
                 this.UserAddPanel.Text = "Kunde hinzufügen";
+                //this.UserAddPanel
                 #endregion
 
                 #region labelFirstname
@@ -688,10 +590,7 @@ namespace BiBo
                 this.userStatistic.Text = "Statistic";
                 #endregion
 
-                #region ageChartPanel
-                this.ageChartPanel.Location = new System.Drawing.Point(15, 15);
-                this.ageChartPanel.Text = "Altersverteilung";
-                this.ageChartPanel.Size = new Size(this.userStatistic.Width / 2, this.userStatistic.Height - 30);
+
 
                 #region chartUserAge
                 ChartArea chartArea1 = new ChartArea();
@@ -707,8 +606,8 @@ namespace BiBo
                 series1.Legend = "Legend1";
                 series1.Name = "Series1";
                 this.chartUserAge.Series.Add(series1);
-                this.chartUserAge.Width = ageChartPanel.Width;
-                this.chartUserAge.Height = ageChartPanel.Height;
+                this.chartUserAge.Width = this.userStatistic.Width / 2;
+                this.chartUserAge.Height = this.userStatistic.Height;
                 this.chartUserAge.TabIndex = 1;
                 this.chartUserAge.Text = "chart1";
 
@@ -720,7 +619,6 @@ namespace BiBo
 
                 chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
                 chartUserAge.Legends.RemoveAt(0);
-                #endregion
                 #endregion
                 #endregion
                 #region UserTablePanel
@@ -813,6 +711,106 @@ namespace BiBo
                 this.BorrowMainPanel.Visible = false;
                 #endregion
                 #endregion
+
+                #region employee side bar
+                this.employeeSideBarGroupeBox.Location = new Point(10, 10);
+                this.employeeSideBarGroupeBox.Size = new Size(200, windowHeight - 20);
+
+                #region LoginAs Label
+                this.LoginAs.AutoSize = true;
+                this.LoginAs.BackColor = System.Drawing.SystemColors.Control;
+                this.LoginAs.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.LoginAs.ForeColor = System.Drawing.Color.Black;
+                this.LoginAs.Location = new System.Drawing.Point(10, 20);
+                this.LoginAs.Name = "LoginAs";
+                this.LoginAs.Size = new System.Drawing.Size(95, 13);
+                this.LoginAs.TabIndex = 0;
+                this.LoginAs.Text = "Angemeldet: ";
+                #endregion
+                #region userName
+                this.userName.AutoSize = true;
+                this.userName.BackColor = System.Drawing.SystemColors.Control;
+                this.userName.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.userName.ForeColor = System.Drawing.Color.Black;
+                this.userName.Location = new System.Drawing.Point(90, 20);
+                this.userName.Margin = new Padding(0);
+                this.userName.Name = "userName";
+                this.userName.Size = new System.Drawing.Size(11, 13);
+                this.userName.TabIndex = 0;
+                this.userName.Text = " ";
+                #endregion
+
+                #region logout button
+                this.EmployeeLogout.Location = new Point(10, 80);
+                this.EmployeeLogout.Text = "Abmelden";
+                this.EmployeeLogout.Click += new System.EventHandler(this.EmployeeLogout_Click);
+                #endregion
+
+                #region UserStatus Label
+                this.UserStatus.AutoSize = true;
+                this.UserStatus.BackColor = System.Drawing.SystemColors.Control;
+                this.UserStatus.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.UserStatus.ForeColor = System.Drawing.Color.Black;
+                this.UserStatus.Location = new System.Drawing.Point(10, 50);
+                this.UserStatus.Name = "UserStatus";
+                this.UserStatus.Size = new System.Drawing.Size(52, 13);
+                this.UserStatus.TabIndex = 1;
+                this.UserStatus.Text = "Status: ";
+                #endregion
+
+                #region userStat
+                this.userStat.AutoSize = true;
+                this.userStat.BackColor = System.Drawing.SystemColors.Control;
+                this.userStat.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.userStat.ForeColor = System.Drawing.Color.Black;
+                this.userStat.Location = new System.Drawing.Point(90, 50);
+                this.userStat.Name = "userStat";
+                this.userStat.Size = new System.Drawing.Size(11, 13);
+                this.userStat.TabIndex = 1;
+                this.userStat.Text = " ";
+                #endregion
+
+                #region groupBoxSearch
+                int groupBoxSearchY = employeeMainGroupeBox.Location.Y + UserTablePanel.Location.Y - 5;
+                 this.groupBoxSearch.Location = new System.Drawing.Point(10, groupBoxSearchY);
+                this.groupBoxSearch.Name = "groupBoxSearch";
+                this.groupBoxSearch.Size = new System.Drawing.Size(175, 55);
+                this.groupBoxSearch.TabIndex = 1;
+                this.groupBoxSearch.TabStop = false;
+                this.groupBoxSearch.Text = "Suche";
+
+                #region textBoxSearch
+                this.textBoxSearch.Location = new System.Drawing.Point(10, 20);
+                this.textBoxSearch.Name = "textBoxSearch";
+                this.textBoxSearch.Size = new System.Drawing.Size(this.groupBoxSearch.Width - 25, 20);
+                this.textBoxSearch.TabIndex = 0;
+                this.textBoxSearch.KeyUp += new KeyEventHandler(this.textBoxSearch_KeyUp);
+                #endregion
+                #endregion
+
+                #region  groupBoxSelectedRows          
+                this.groupBoxSelectedRows.Location = new System.Drawing.Point(10, this.groupBoxSearch.Location.Y + this.groupBoxSearch.Height + 10);
+                this.groupBoxSelectedRows.Name = "groupBoxSelectedRows";
+                this.groupBoxSelectedRows.Size = new System.Drawing.Size(this.groupBoxSearch.Width, 55);
+                this.groupBoxSelectedRows.TabIndex = 4;
+                this.groupBoxSelectedRows.TabStop = false;
+                this.groupBoxSelectedRows.Text = "Markierte";
+                this.groupBoxSelectedRows.Visible = true;
+
+                #region buttonDeleteSelectedRows
+                this.buttonDeleteSelectedRows.Location = new System.Drawing.Point(6, 19);
+                this.buttonDeleteSelectedRows.Name = "buttonDeleteSelectedRows";
+                this.buttonDeleteSelectedRows.Size = new System.Drawing.Size(75, 23);
+                this.buttonDeleteSelectedRows.TabIndex = 0;
+                this.buttonDeleteSelectedRows.Text = "löschen";
+                this.buttonDeleteSelectedRows.UseVisualStyleBackColor = true;
+                this.buttonDeleteSelectedRows.Click += new System.EventHandler(this.buttonDeleteSelectedRows_Click);
+                #endregion
+                #endregion
+
+                #endregion
+
+
                 
                 #region currently panel1 not used
                 this.panel1.BackgroundImage = global::BiBo.Properties.Resources.icon2;
@@ -904,10 +902,7 @@ namespace BiBo
             this.userDetails.Controls.Add(this.labelUserDetails);
             #endregion
             #region Adds to userStatistic panel
-            this.userStatistic.Controls.Add(this.ageChartPanel);
-            #endregion
-            #region Adds to ageChartPanel
-            this.ageChartPanel.Controls.Add(this.chartUserAge);
+            this.userStatistic.Controls.Add(this.chartUserAge);
             #endregion
             #region Adds to userTabelPanel
             this.UserTablePanel.Controls.Add(this.userTableDataSet);

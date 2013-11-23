@@ -88,6 +88,13 @@ namespace BiBo.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap books {
+            get {
+                object obj = ResourceManager.GetObject("books", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap booksicon {
             get {
                 object obj = ResourceManager.GetObject("booksicon", resourceCulture);
@@ -98,6 +105,13 @@ namespace BiBo.Properties {
         internal static System.Drawing.Bitmap borrow2 {
             get {
                 object obj = ResourceManager.GetObject("borrow2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap borrowicon {
+            get {
+                object obj = ResourceManager.GetObject("borrowicon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -6,6 +6,7 @@ using BiBo.Persons;
 using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BiBo
 {
@@ -206,6 +207,15 @@ namespace BiBo
     //fill age chart with values
     private void initAgeChart()
     {
+        //colors
+        Color[] colors = new Color[] { 
+            ColorTranslator.FromHtml("#4140A8"),
+            ColorTranslator.FromHtml("#605DF5"),
+            ColorTranslator.FromHtml("#8483A8"),
+            ColorTranslator.FromHtml("#C0BFF5"),
+            ColorTranslator.FromHtml("#575757"),
+            ColorTranslator.FromHtml("#A8A8A8")
+        };
         //init age tmp and counter vars
         int age = 0;
         int count_less18 = 0;
@@ -249,6 +259,14 @@ namespace BiBo
         foreach (string tagname in tags.Keys)
         {
             chartUserAge.Series[0].Points.AddXY(tagname, tags[tagname]);
+        }
+
+        foreach (Series series in chartUserAge.Series)
+        {
+            foreach (DataPoint point in series.Points)
+            {
+                point.Color = colors[series.Points.IndexOf(point)];
+            }
         }
     }
 
