@@ -276,16 +276,21 @@ namespace BiBo
     {
 
         //Random reg dates
-        List<DateTime> RegDates = new List<DateTime>();
+        List<fakeCustomer> customers = new List<fakeCustomer>();
         for (int i = 0; i < 100; i++)
         {
-            RegDates.Add(new DateTime(r.Next(2010, 2012), r.Next(1, 12), r.Next(1, 28)));
+            customers.Add(new fakeCustomer(new DateTime(r.Next(2010, 2012), r.Next(1, 12), r.Next(1, 28))));
+
+            if (r.Next(2) == 1)
+            {
+                customers[i].DeletedAt = customers[i].CreatedAt.Add(TimeSpan.FromDays(r.Next(1,14)));
+            }
         }
 
-        RegDates.Sort();
+        customers.Sort( (cust1,cust2) => cust1.CreatedAt.CompareTo(cust2.CreatedAt) );
 
-        DateTime oldesRegDate = RegDates[0];
-        DateTime latesRegDate = RegDates[RegDates.Count - 1];
+        DateTime oldesRegDate = customers[0].CreatedAt;
+        DateTime latesRegDate = customers[customers.Count - 1].CreatedAt;
 
         DateTime startDate = new DateTime(oldesRegDate.Year, oldesRegDate.Month, 1);
         DateTime endDate = new DateTime(latesRegDate.Year, latesRegDate.Month, 1);
@@ -296,12 +301,21 @@ namespace BiBo
         {
             count += (
                 from 
-                    date in RegDates 
+                    cust in customers 
                 where 
-                    date.Year  == it.Year && 
-                    date.Month == it.Month 
+                    cust.CreatedAt.Year  == it.Year && 
+                    cust.CreatedAt.Month == it.Month 
                 select 
-                    date
+                    cust
+             ).Count() - (
+                 from
+                        cust in customers
+                 where
+                     cust.DeletedAt != null &&
+                     cust.DeletedAt.Year == it.Year &&
+                     cust.DeletedAt.Month == it.Month
+                 select
+                     cust
              ).Count();
 
             chartRegDate.Series[0].Points.AddXY(it.Day + "." + it.Month + "." + it.Year, count);   
@@ -603,6 +617,28 @@ namespace BiBo
        );
       }
 
+
+  }
+
+  class fakeCustomer
+  {
+      private DateTime createdAt;
+      private DateTime deletedAt;
+
+      public fakeCustomer(DateTime cd){
+          this.CreatedAt = cd;
+      }
+
+      public DateTime CreatedAt{
+          get { return createdAt; }
+          set { createdAt = value; }
+      }
+
+      public DateTime DeletedAt
+      {
+          get { return deletedAt; }
+          set { deletedAt = value; }
+      }
 
   }
 }
