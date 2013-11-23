@@ -209,12 +209,13 @@ namespace BiBo
     {
         //colors
         Color[] colors = new Color[] { 
-            ColorTranslator.FromHtml("#4140A8"),
-            ColorTranslator.FromHtml("#605DF5"),
+            ColorTranslator.FromHtml("#4140A8"),            
             ColorTranslator.FromHtml("#8483A8"),
             ColorTranslator.FromHtml("#C0BFF5"),
-            ColorTranslator.FromHtml("#575757"),
-            ColorTranslator.FromHtml("#A8A8A8")
+            ColorTranslator.FromHtml("#A8A8A8"),
+            ColorTranslator.FromHtml("#605DF5"),
+            ColorTranslator.FromHtml("#575757")
+            
         };
         //init age tmp and counter vars
         int age = 0;

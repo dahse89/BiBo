@@ -97,6 +97,8 @@ namespace BiBo
         private Label labelBookAddauthor            = new Label();
         private Label lableBookAddTitel             = new Label();
         private Label labelBookAddsubjectArea       = new Label();
+
+        private Label ChartLabel = new Label();
         #endregion
         #region init TextBox
         private TextBox textBoxUserLoginName         = new TextBox();
@@ -620,6 +622,13 @@ namespace BiBo
                 chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
                 chartUserAge.Legends.RemoveAt(0);
                 #endregion
+
+                #region ChartLabel
+                ChartLabel.Text = "Altersverteilung";
+                ChartLabel.Location = new Point(135, 140);
+                ChartLabel.Font = new Font("Tahoma", 11.0F);
+                ChartLabel.AutoSize = true;
+                #endregion
                 #endregion
                 #region UserTablePanel
                 #region UserTablePanel Values
@@ -902,6 +911,7 @@ namespace BiBo
             this.userDetails.Controls.Add(this.labelUserDetails);
             #endregion
             #region Adds to userStatistic panel
+            this.chartUserAge.Controls.Add(this.ChartLabel);
             this.userStatistic.Controls.Add(this.chartUserAge);
             #endregion
             #region Adds to userTabelPanel
