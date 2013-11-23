@@ -633,7 +633,7 @@ namespace BiBo
                 chartArea2.Name = "ChartArea2";
                 this.chartRegDate.ChartAreas.Add(chartArea2);
 
-                this.chartRegDate.Location = new System.Drawing.Point(this.userStatistic.Width / 2, 0);
+                this.chartRegDate.Location = new System.Drawing.Point(this.userStatistic.Width / 2 , 0);
                 this.chartRegDate.Name = "chartUserAge";
                 series2.ChartArea = "ChartArea2";
                 series2.Legend = "Legend2";
@@ -644,6 +644,12 @@ namespace BiBo
                 this.chartRegDate.TabIndex = 1;
                 this.chartRegDate.Text = "chart2";
 
+                this.chartRegDate.ChartAreas[0].AxisX.LineColor = Color.LightGray;
+                this.chartRegDate.ChartAreas[0].AxisY.LineColor = Color.LightGray;
+                this.chartRegDate.ChartAreas[0].AxisX.MajorGrid.LineColor = Color.LightGray;
+                this.chartRegDate.ChartAreas[0].AxisY.MajorGrid.LineColor = Color.LightGray;
+                this.chartRegDate.ChartAreas[0].AxisX.MajorGrid.Interval = 1;
+                this.chartRegDate.ChartAreas[0].AxisY.MajorGrid.Interval = 5;
 
                 chartRegDate.Series[0].Points.Clear();
                 chartRegDate.Series[0].ChartType = SeriesChartType.Line;

@@ -215,7 +215,8 @@ namespace BiBo
             ColorTranslator.FromHtml("#C0BFF5"),
             ColorTranslator.FromHtml("#A8A8A8"),
             ColorTranslator.FromHtml("#605DF5"),
-            ColorTranslator.FromHtml("#575757")
+            ColorTranslator.FromHtml("#cccccc")
+            //ColorTranslator.FromHtml("#575757")
             
         };
         //init age tmp and counter vars
@@ -279,7 +280,7 @@ namespace BiBo
         List<fakeCustomer> customers = new List<fakeCustomer>();
         for (int i = 0; i < 100; i++)
         {
-            customers.Add(new fakeCustomer(new DateTime(r.Next(2010, 2012), r.Next(1, 12), r.Next(1, 28))));
+            customers.Add(new fakeCustomer(new DateTime(r.Next(2012,2014), r.Next(1, 12), r.Next(1, 28))));
 
             if (r.Next(2) == 1)
             {
