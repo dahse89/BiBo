@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Diagnostics;
 
 namespace BiBo
 {
@@ -271,6 +272,42 @@ namespace BiBo
         }
     }
 
+    private void initRegDateChart()
+    {
+
+        //Random reg dates
+        List<DateTime> RegDates = new List<DateTime>();
+        for (int i = 0; i < 100; i++)
+        {
+            RegDates.Add(new DateTime(r.Next(2010, 2012), r.Next(1, 12), r.Next(1, 28)));
+        }
+
+        RegDates.Sort();
+
+        DateTime oldesRegDate = RegDates[0];
+        DateTime latesRegDate = RegDates[RegDates.Count - 1];
+
+        DateTime startDate = new DateTime(oldesRegDate.Year, oldesRegDate.Month, 1);
+        DateTime endDate = new DateTime(latesRegDate.Year, latesRegDate.Month, 1);
+
+        int count = 0;
+
+        for (DateTime it = startDate; it < endDate;it = it.AddMonths(1))
+        {
+            count += (
+                from 
+                    date in RegDates 
+                where 
+                    date.Year  == it.Year && 
+                    date.Month == it.Month 
+                select 
+                    date
+             ).Count();
+
+            chartRegDate.Series[0].Points.AddXY(it.Day + "." + it.Month + "." + it.Year, count);   
+        }
+    }
+
     //set background of all textboxes for user add to white
     //is is like a clear for validation errors
     private void whilteUserAddInputs()
@@ -344,6 +381,7 @@ namespace BiBo
 
         //calculate and insert values to age chart
         initAgeChart();
+        initRegDateChart();
     }
 
     //read country names source and insert to comboBox

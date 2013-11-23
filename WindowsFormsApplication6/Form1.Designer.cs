@@ -1,6 +1,8 @@
 ﻿using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Drawing;
+using System;
+using System.IO;
 
 
 //Shortcut to shut all nodes in visual studio is Ctrl + M + O
@@ -129,11 +131,14 @@ namespace BiBo
         #endregion
         #region init Chart
         private Chart chartUserAge                   = new Chart();
+        private Chart chartRegDate                   = new Chart();
         #endregion
         #region init CheckBox
         private CheckBox checkBoxCustomerSearchTitle = new CheckBox();
         private CheckBox checkBoxCustomerSearchAutor = new CheckBox();
         #endregion
+
+ 
 
         
 
@@ -596,12 +601,9 @@ namespace BiBo
 
                 #region chartUserAge
                 ChartArea chartArea1 = new ChartArea();
-                Legend legend1 = new Legend();
                 Series series1 = new Series();
                 chartArea1.Name = "ChartArea1";
                 this.chartUserAge.ChartAreas.Add(chartArea1);
-                legend1.Name = "Legend1";
-                this.chartUserAge.Legends.Add(legend1);
                 this.chartUserAge.Location = new System.Drawing.Point(0, 0);
                 this.chartUserAge.Name = "chartUserAge";
                 series1.ChartArea = "ChartArea1";
@@ -620,8 +622,37 @@ namespace BiBo
 
 
                 chartUserAge.ChartAreas[0].BackColor = Color.Transparent;
-                chartUserAge.Legends.RemoveAt(0);
+                //chartUserAge.Legends.RemoveAt(0);
                 #endregion
+
+                #region chart reg date
+                ChartArea chartArea2 = new ChartArea();
+                Legend legend2 = new Legend();
+                Series series2 = new Series();
+
+                chartArea2.Name = "ChartArea2";
+                this.chartRegDate.ChartAreas.Add(chartArea2);
+
+                this.chartRegDate.Location = new System.Drawing.Point(this.userStatistic.Width / 2, 0);
+                this.chartRegDate.Name = "chartUserAge";
+                series2.ChartArea = "ChartArea2";
+                series2.Legend = "Legend2";
+                series2.Name = "Series2";
+                this.chartRegDate.Series.Add(series2);
+                this.chartRegDate.Width = this.userStatistic.Width / 2;
+                this.chartRegDate.Height = this.userStatistic.Height;
+                this.chartRegDate.TabIndex = 1;
+                this.chartRegDate.Text = "chart2";
+
+
+                chartRegDate.Series[0].Points.Clear();
+                chartRegDate.Series[0].ChartType = SeriesChartType.Line;
+                chartRegDate.BackColor = Color.Transparent;
+
+
+                chartRegDate.ChartAreas[0].BackColor = Color.Transparent;
+                #endregion
+
 
                 #region ChartLabel
                 ChartLabel.Text = "Altersverteilung";
@@ -913,6 +944,8 @@ namespace BiBo
             #region Adds to userStatistic panel
             this.chartUserAge.Controls.Add(this.ChartLabel);
             this.userStatistic.Controls.Add(this.chartUserAge);
+            this.userStatistic.Controls.Add(this.chartRegDate);
+
             #endregion
             #region Adds to userTabelPanel
             this.UserTablePanel.Controls.Add(this.userTableDataSet);
