@@ -67,6 +67,8 @@ namespace BiBo
         private Button addBooksActionButton         = new Button();
         private Button Logout = new Button();
         private Button EmployeeLogout = new Button();
+        private Button EditUser = new Button();
+        private Button clearCancel = new Button();
         #endregion
         #region init ComboBox
         private ComboBox comboBoxUserCountries      = new ComboBox();
@@ -558,6 +560,11 @@ namespace BiBo
                 this.buttonUserAdd.UseVisualStyleBackColor = true;
                 this.buttonUserAdd.Click += new System.EventHandler(this.buttonUserAdd_Click);
                 #endregion
+                #region clear cancle button
+                this.clearCancel.Text = "Leeren";
+                this.clearCancel.Location = new Point(100, 240);
+                this.clearCancel.Click += new EventHandler(this.clearCancel_Click);
+                #endregion
                 #endregion
                 #region userDetails Panel
                 #region userDetails Panel Value
@@ -584,6 +591,11 @@ namespace BiBo
                 this.labelUserDetailsAdress.Size = new System.Drawing.Size(51, 13);
                 this.labelUserDetailsAdress.TabIndex = 2;
                 this.labelUserDetailsAdress.Text = "Adresse: ";
+                #endregion
+                #region edit user button
+                this.EditUser.Text = "bearbeiten";
+                this.EditUser.Location = new Point(10, 100);
+                this.EditUser.Click += new EventHandler(this.EditUser_Click);
                 #endregion
                 #endregion
                 #region userStatistic Panel
@@ -941,11 +953,13 @@ namespace BiBo
             this.UserAddPanel.Controls.Add(this.label1);
             this.UserAddPanel.Controls.Add(this.textBoxUserFirstname);
             this.UserAddPanel.Controls.Add(this.textBoxUserLastname);
+            this.UserAddPanel.Controls.Add(this.clearCancel);
             #endregion
             #region Adds to userDetails panel
             this.userDetails.Controls.Add(this.labelUserDetailsAdress);
             this.userDetails.Controls.Add(this.labelUserDetailsName);
             this.userDetails.Controls.Add(this.labelUserDetails);
+            this.userDetails.Controls.Add(this.EditUser);
             #endregion
             #region Adds to userStatistic panel
             this.chartUserAge.Controls.Add(this.ChartLabel);

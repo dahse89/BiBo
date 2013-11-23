@@ -87,51 +87,6 @@ namespace BiBo
             //set all textboxes background to white
             whilteUserAddInputs();
 
-
-
-            /* //@todo validation task should be like this in val call
-             //validate UserFName
-             if (!Validation.Name(UserFName))
-             {
-                 textBoxUserFirstname.BackColor = Color.Red;
-                 return;
-             }
-
-             //validate UserName
-             if (!Validation.Name(UserName))
-             {
-                 textBoxUserLastname.BackColor = Color.Red;
-                 return;
-             }
-
-             //validate Street
-             if (!Validation.Street(Street))
-             {
-                 textBoxUserStreet.BackColor = Color.Red;
-                 return;
-             }
-
-             //validate StreetNumber
-             if (!Validation.isNumeric(StreetNumber) || Validation.isEmpty(StreetNumber))
-             {
-                 textBoxUserHomeNumber.BackColor = Color.Red;
-                 return;
-             }
-
-             //validate City
-             if (!Validation.Name(City))
-             {
-                 textBoxUserCity.BackColor = Color.Red;
-                 return;
-             }
-
-             //validate zipCode
-             if (!Validation.isNumeric(zipCode) || Validation.isEmpty(zipCode))
-             {
-                 textBoxUserPLZ.BackColor = Color.Red;
-                 return;
-             }*/
-
             Button su = (Button)sender;
 
             if (!Validation.validateCustomerAddPanel(su.Parent))
@@ -139,26 +94,50 @@ namespace BiBo
                 return;
             }
 
-            Customer dummy = new Customer(
+           
+
+            if (su.Text == "hinzufügen")
+            {
+                 Customer dummy = new Customer(
                    0,
                    UserFName,
                    UserName,
                    Birthday
                 );
 
-            //init dummy
-            dummy.Street = Street;
-            dummy.StreetNumber = StreetNumber;
-            dummy.AdditionalRoad = StreetExtention;
-            dummy.ZipCode = zipCode;
-            dummy.Town = City;
-            dummy.Country = Country;
+                //init dummy
+                dummy.Street = Street;
+                dummy.StreetNumber = StreetNumber;
+                dummy.AdditionalRoad = StreetExtention;
+                dummy.ZipCode = zipCode;
+                dummy.Town = City;
+                dummy.Country = Country;
+                lib.getCustomerDAO().AddCustomer(dummy);
+            }
+            else
+            {
+                Customer newCustomer = new Customer(
+                   this.selectedUser.CustomerID,
+                   UserFName,
+                   UserName,
+                   Birthday
+                );
 
-
-            lib.getCustomerDAO().AddCustomer(dummy);
+                //init dummy
+                newCustomer.Street = Street;
+                newCustomer.StreetNumber = StreetNumber;
+                newCustomer.AdditionalRoad = StreetExtention;
+                newCustomer.ZipCode = zipCode;
+                newCustomer.Town = City;
+                newCustomer.Country = Country;
+                MessageBox.Show(newCustomer.ToString());
+                this.clearCancel.Text = "Leeren";
+                this.buttonUserAdd.Text = "hinzufügen";
+                //@todo update customer by DAO
+            }
 
             //make textboxes for add user empty
-            //clearUserAddFrom();
+            clearUserAddFrom();
         }
 
         //add book to SQLLite Table
@@ -214,6 +193,7 @@ namespace BiBo
             ulong custId = (ulong)Convert.ToInt64(userTableDataSet.Rows[e.RowIndex].Cells[1].Value.ToString());
             Customer currCustomer = lib.getCustomerDAO().GetCustomerById(custId);
             displayCustomerDetails(currCustomer);
+            this.selectedUser = currCustomer;
         }
 
         //login
@@ -328,6 +308,35 @@ namespace BiBo
         {
             this.SuperPanelEmployee.Visible = false;
             this.SuperPanelLogin.Visible = true;
+        }
+
+        private void EditUser_Click(object sender, EventArgs e){
+            if (this.selectedUser != null)
+            {
+                this.textBoxUserFirstname.Text = this.selectedUser.FirstName;
+                this.textBoxUserLastname.Text = this.selectedUser.LastName;
+                this.dateTimePickerAddUser.Value = this.selectedUser.BirthDate;
+                this.textBoxUserStreet.Text = this.selectedUser.Street;
+                this.textBoxUserHomeNumber.Text = this.selectedUser.StreetNumber;
+                this.textBoxUserAdressExtention.Text = this.selectedUser.AdditionalRoad;
+                this.textBoxUserPLZ.Text = this.selectedUser.ZipCode;
+                this.textBoxUserCity.Text = this.selectedUser.Town;
+                //@todo this.comboBoxUserCountries
+
+                this.buttonUserAdd.Text = "bearbeiten";
+                this.clearCancel.Text = "abbrechen";
+            }
+        }
+
+        private void clearCancel_Click(object sender, EventArgs e)
+        {
+            Button self = (Button)sender;
+
+            if (self.Text != "Leeren"){       
+                self.Text = "Leeren";
+                this.buttonUserAdd.Text = "hinzufügen";
+            }
+            clearUserAddFrom();
         }
 
         

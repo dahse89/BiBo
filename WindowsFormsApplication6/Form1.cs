@@ -34,6 +34,8 @@ namespace BiBo
         //@todo remove this, it is only needed of testing
         private Random r = new Random();
 
+        private Customer selectedUser;
+
         //SQLLite Adapters
         private CustomerSQL sqlCustomer;
         private BookSQL sqlBook;
