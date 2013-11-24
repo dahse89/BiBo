@@ -352,6 +352,8 @@ namespace BiBo
         private void borrowCustomerIDTextBox_KeyUp(object sender, KeyEventArgs ke)
         {
             String value = ((TextBox)sender).Text;
+            this.borrowCustomerInfoLabel.Text = "";
+            this.imageCustomerCardValidation.BackgroundImage = null;
             if (value.Trim() == "")
             {
                 this.imageCustomerFound.BackgroundImage = null;
@@ -362,19 +364,28 @@ namespace BiBo
                 try
                 {
                     Customer x = lib.getCustomerDAO().GetCustomerById((ulong)Convert.ToInt64(value));
+                    //test: x.UserState = UserStates.BANNED;
                     this.borrowCustomerInfoLabel.Text = x.FirstName + " " + x.LastName + " " + x.Street + " " + x.StreetNumber + " " +
                         x.ZipCode + " " + x.Town;
                     this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_found;
+
+                    if (x.UserState == UserStates.ACTIVE)
+                    {
+                        this.imageCustomerCardValidation.BackgroundImage = global::BiBo.Properties.Resources.card_valid;
+                        return;
+                    }
+
+                    this.imageCustomerCardValidation.BackgroundImage = global::BiBo.Properties.Resources.card_invalid;
                     return;
                 }
                 catch (CustomerNotFoundException cnfe)
                 {
-
+                    this.borrowCustomerInfoLabel.Text = cnfe.Message;
                 }
             }
            
             this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_not_found;
-            this.borrowCustomerInfoLabel.Text = "";
+            
             
         }
 

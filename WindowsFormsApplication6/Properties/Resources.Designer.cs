@@ -116,6 +116,20 @@ namespace BiBo.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap card_invalid {
+            get {
+                object obj = ResourceManager.GetObject("card_invalid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap card_valid {
+            get {
+                object obj = ResourceManager.GetObject("card_valid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap customer {
             get {
                 object obj = ResourceManager.GetObject("customer", resourceCulture);

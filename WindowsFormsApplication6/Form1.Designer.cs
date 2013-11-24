@@ -35,6 +35,7 @@ namespace BiBo
         private Panel borrowImage                   = new Panel();
 
         private Panel imageCustomerFound = new Panel();
+        private Panel imageCustomerCardValidation = new Panel();
         #endregion
         #region init GroupBox
         private GroupBox groupBoxLogin              = new GroupBox();
@@ -108,6 +109,7 @@ namespace BiBo
         private Label labelBookAddsubjectArea       = new Label();
         private Label borrowCustomerIDLabel = new Label();
         private Label borrowCustomerInfoLabel = new Label();
+        private Label borrowCustomerCardValidLabel = new Label();
 
 
         private Label ChartLabel = new Label();
@@ -791,6 +793,10 @@ namespace BiBo
                 this.borrowCustomerInfoLabel.Text = "";
                 this.borrowCustomerInfoLabel.AutoSize = true;
                 this.borrowCustomerInfoLabel.Location = new Point(260,45);
+
+                this.borrowCustomerCardValidLabel.Text = "überprüfe Ausweis: ";
+                this.borrowCustomerCardValidLabel.AutoSize = true;
+                this.borrowCustomerCardValidLabel.Location = new Point(20,95);
                 
                 #endregion
 
@@ -804,6 +810,10 @@ namespace BiBo
                 //this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_found;
                 this.imageCustomerFound.Size = new Size(48, 48);
                 this.imageCustomerFound.Location = new Point(200,20);
+
+                this.imageCustomerCardValidation.Size = new Size(48, 48);
+                this.imageCustomerCardValidation.Location = new Point(120,80);
+               
                 #endregion
 
                 #endregion
@@ -1088,6 +1098,9 @@ namespace BiBo
             this.borrowCustomer.Controls.Add(this.borrowCustomerIDTextBox);
             this.borrowCustomer.Controls.Add(this.imageCustomerFound);
             this.borrowCustomer.Controls.Add(this.borrowCustomerInfoLabel);
+            this.borrowCustomer.Controls.Add(this.borrowCustomerCardValidLabel);
+            this.borrowCustomer.Controls.Add(this.imageCustomerCardValidation);
+            
             
 
             #endregion
