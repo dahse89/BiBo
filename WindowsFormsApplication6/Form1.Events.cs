@@ -361,7 +361,9 @@ namespace BiBo
             {
                 try
                 {
-                    lib.getCustomerDAO().GetCustomerById((ulong)Convert.ToInt64(value));
+                    Customer x = lib.getCustomerDAO().GetCustomerById((ulong)Convert.ToInt64(value));
+                    this.borrowCustomerInfoLabel.Text = x.FirstName + " " + x.LastName + " " + x.Street + " " + x.StreetNumber + " " +
+                        x.ZipCode + " " + x.Town;
                     this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_found;
                     return;
                 }
@@ -372,6 +374,7 @@ namespace BiBo
             }
            
             this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_not_found;
+            this.borrowCustomerInfoLabel.Text = "";
             
         }
 

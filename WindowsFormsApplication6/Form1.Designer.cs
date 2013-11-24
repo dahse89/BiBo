@@ -107,6 +107,8 @@ namespace BiBo
         private Label lableBookAddTitel             = new Label();
         private Label labelBookAddsubjectArea       = new Label();
         private Label borrowCustomerIDLabel = new Label();
+        private Label borrowCustomerInfoLabel = new Label();
+
 
         private Label ChartLabel = new Label();
         #endregion
@@ -785,6 +787,11 @@ namespace BiBo
                 this.borrowCustomerIDLabel.Text = "Kunden ID: ";
                 this.borrowCustomerIDLabel.AutoSize = true;
                 this.borrowCustomerIDLabel.Location = new Point(20, 45);
+
+                this.borrowCustomerInfoLabel.Text = "";
+                this.borrowCustomerInfoLabel.AutoSize = true;
+                this.borrowCustomerInfoLabel.Location = new Point(260,45);
+                
                 #endregion
 
                 #region textbox
@@ -1080,6 +1087,8 @@ namespace BiBo
             this.borrowCustomer.Controls.Add(this.borrowCustomerIDLabel);
             this.borrowCustomer.Controls.Add(this.borrowCustomerIDTextBox);
             this.borrowCustomer.Controls.Add(this.imageCustomerFound);
+            this.borrowCustomer.Controls.Add(this.borrowCustomerInfoLabel);
+            
 
             #endregion
             #region add to borrowBooks groupbox
