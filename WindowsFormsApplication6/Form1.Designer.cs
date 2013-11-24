@@ -33,6 +33,8 @@ namespace BiBo
         private Panel BorrowMainPanel               = new Panel();
         private Panel booksImage                    = new Panel();
         private Panel borrowImage                   = new Panel();
+
+        private Panel imageCustomerFound = new Panel();
         #endregion
         #region init GroupBox
         private GroupBox groupBoxLogin              = new GroupBox();
@@ -57,6 +59,9 @@ namespace BiBo
         private GroupBox groupBoxSearch             = new GroupBox();
         private GroupBox groupBoxSelectedRows       = new GroupBox();
         private GroupBox groupBoxBookTable          = new GroupBox();
+
+        private GroupBox borrowCustomer = new GroupBox();
+        private GroupBox borrowBooks = new GroupBox();
 
         #endregion
         #region init Button
@@ -101,10 +106,12 @@ namespace BiBo
         private Label labelBookAddauthor            = new Label();
         private Label lableBookAddTitel             = new Label();
         private Label labelBookAddsubjectArea       = new Label();
+        private Label borrowCustomerIDLabel = new Label();
 
         private Label ChartLabel = new Label();
         #endregion
         #region init TextBox
+        private TextBox borrowCustomerIDTextBox = new TextBox(); 
         private TextBox textBoxUserLoginName         = new TextBox();
         private TextBox textBoxUserLoginPass         = new TextBox();
         private TextBox textBoxCustomerSearch        = new TextBox();
@@ -420,7 +427,7 @@ namespace BiBo
                 this.UserAddPanel.Size = new System.Drawing.Size(CustomerMainPanel.Width / 3 - 25, CustomerMainPanel.Height / 2 - 25);
                 this.UserAddPanel.TabIndex = 0;
                 this.UserAddPanel.TabStop = false;
-                this.UserAddPanel.Text = "Kunde hinzufügen";
+                this.UserAddPanel.Text = "Kunde hinzufügen/ bearbeiten";
                 //this.UserAddPanel
                 #endregion
 
@@ -762,11 +769,42 @@ namespace BiBo
                 #endregion
                 #endregion
                 #region BorrowMainPanel
-                //this.BorrowMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-                this.BorrowMainPanel.BackColor = System.Drawing.Color.Red;
+                this.BorrowMainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                //this.BorrowMainPanel.BackColor = System.Drawing.Color.Red;
                 this.BorrowMainPanel.Location = this.CustomerMainPanel.Location;
                 this.BorrowMainPanel.Size = this.CustomerMainPanel.Size;
                 this.BorrowMainPanel.Visible = false;
+
+                #region GroupBox Customer
+                this.borrowCustomer.Location = new Point(10, 10);
+                this.borrowCustomer.Text = "Kunde";
+                this.borrowCustomer.Size = new Size(this.BorrowMainPanel.Width - 20, this.BorrowMainPanel.Height/3 - 10);
+
+
+                #region label
+                this.borrowCustomerIDLabel.Text = "Kunden ID: ";
+                this.borrowCustomerIDLabel.AutoSize = true;
+                this.borrowCustomerIDLabel.Location = new Point(20, 45);
+                #endregion
+
+                #region textbox
+                this.borrowCustomerIDTextBox.Location = new Point(85,40);
+                this.borrowCustomerIDTextBox.TabIndex = 99;
+                this.borrowCustomerIDTextBox.KeyUp += new KeyEventHandler(this.borrowCustomerIDTextBox_KeyUp);
+                #endregion
+
+                #region images
+                //this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_found;
+                this.imageCustomerFound.Size = new Size(48, 48);
+                this.imageCustomerFound.Location = new Point(200,20);
+                #endregion
+
+                #endregion
+                #region GroupBox Books
+                this.borrowBooks.Location = new Point(10, this.BorrowMainPanel.Height / 3);
+                this.borrowBooks.Text = "Bücher";
+                this.borrowBooks.Size = new Size(this.BorrowMainPanel.Width - 20, this.BorrowMainPanel.Height/ 3 - 10);
+                #endregion
                 #endregion
                 #endregion
 
@@ -1033,6 +1071,18 @@ namespace BiBo
             this.groupBoxLogin.Controls.Add(this.labelUserLoginPass);
             this.groupBoxLogin.Controls.Add(this.login);
 
+            #endregion
+            #region add to borrowMainPanel
+            this.BorrowMainPanel.Controls.Add(this.borrowCustomer);
+            this.BorrowMainPanel.Controls.Add(this.borrowBooks);
+            #endregion
+            #region add to borrowCustomer groupbox
+            this.borrowCustomer.Controls.Add(this.borrowCustomerIDLabel);
+            this.borrowCustomer.Controls.Add(this.borrowCustomerIDTextBox);
+            this.borrowCustomer.Controls.Add(this.imageCustomerFound);
+
+            #endregion
+            #region add to borrowBooks groupbox
             #endregion
             #region Add to SuperPanelLogin
             this.SuperPanelLogin.Controls.Add(this.groupBoxLogin);

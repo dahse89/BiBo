@@ -131,13 +131,25 @@ namespace BiBo
                 newCustomer.Town = City;
                 newCustomer.Country = Country;
                 MessageBox.Show(newCustomer.ToString());
-                this.clearCancel.Text = "Leeren";
-                this.buttonUserAdd.Text = "hinzufügen";
+                CustomerAddEditToggle();
                 //@todo update customer by DAO
             }
 
             //make textboxes for add user empty
             clearUserAddFrom();
+        }
+
+        private void CustomerAddEditToggle()
+        {
+            if(this.buttonUserAdd.Text == "bearbeiten"){
+                this.UserAddPanel.BackColor = SystemColors.Control;
+                this.clearCancel.Text = "Leeren";
+                this.buttonUserAdd.Text = "hinzufügen";
+            }else{
+                this.UserAddPanel.BackColor = SystemColors.ControlLight;
+                this.buttonUserAdd.Text = "bearbeiten";
+                this.clearCancel.Text = "abbrechen";
+            }
         }
 
         //add book to SQLLite Table
@@ -323,8 +335,7 @@ namespace BiBo
                 this.textBoxUserCity.Text = this.selectedUser.Town;
                 //@todo this.comboBoxUserCountries
 
-                this.buttonUserAdd.Text = "bearbeiten";
-                this.clearCancel.Text = "abbrechen";
+                CustomerAddEditToggle();
             }
         }
 
@@ -332,11 +343,36 @@ namespace BiBo
         {
             Button self = (Button)sender;
 
-            if (self.Text != "Leeren"){       
-                self.Text = "Leeren";
-                this.buttonUserAdd.Text = "hinzufügen";
+            if (self.Text != "Leeren"){
+                CustomerAddEditToggle();
             }
             clearUserAddFrom();
+        }
+
+        private void borrowCustomerIDTextBox_KeyUp(object sender, KeyEventArgs ke)
+        {
+            String value = ((TextBox)sender).Text;
+            if (value.Trim() == "")
+            {
+                this.imageCustomerFound.BackgroundImage = null;
+                return;
+            }
+            if (Validation.isNumeric(value))
+            {
+                try
+                {
+                    lib.getCustomerDAO().GetCustomerById((ulong)Convert.ToInt64(value));
+                    this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_found;
+                    return;
+                }
+                catch (CustomerNotFoundException cnfe)
+                {
+
+                }
+            }
+           
+            this.imageCustomerFound.BackgroundImage = global::BiBo.Properties.Resources.user_not_found;
+            
         }
 
         

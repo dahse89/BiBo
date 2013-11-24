@@ -151,6 +151,20 @@ namespace BiBo.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap user_found {
+            get {
+                object obj = ResourceManager.GetObject("user_found", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap user_not_found {
+            get {
+                object obj = ResourceManager.GetObject("user_not_found", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap user1 {
             get {
                 object obj = ResourceManager.GetObject("user1", resourceCulture);
