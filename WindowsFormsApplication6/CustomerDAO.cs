@@ -62,6 +62,23 @@ namespace BiBo.DAO
         //delete in DB
         customerSql.DeleteEntryByIdList(idList);
     }
+    
+    //method to edit a customer
+    public void UpdateCustomer(Customer customer)
+    {
+    	//on object-layer
+    	foreach(Customer customerInList in lib.CustomerList)
+    	{
+    		if(customerInList.CustomerID == customer.CustomerID)
+    		{
+    			lib.CustomerList.Remove(customerInList);
+    			lib.CustomerList.Add(customer);
+    		}
+    	}
+    	
+    	//on db layer
+    	customerSql.UpdateEntry(customer);
+    }
 
     public Customer GetCustomerById(ulong id)
     {
