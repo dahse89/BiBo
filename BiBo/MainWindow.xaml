@@ -32,7 +32,7 @@
             <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
-                <RowDefinition Height="270"></RowDefinition>
+                <RowDefinition Height="350"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
                 <!-- Header-->
@@ -69,6 +69,8 @@
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
+
+                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0" Grid.Row="0">Vorname:</Label>
                     <Label Grid.Column="0" Grid.Row="1">Nachname:</Label>
@@ -76,21 +78,23 @@
                     <Label Grid.Column="0" Grid.Row="3">PLZ:</Label>
                     <Label Grid.Column="0" Grid.Row="4">Stadt:</Label>
                     <Label Grid.Column="0" Grid.Row="5">Tel.:</Label>
-                    <Label Grid.Column="0" Grid.Row="6">Land:</Label>
+                    <Label Grid.Column="0" Grid.Row="6">Geburtstag:</Label>
+                    <Label Grid.Column="0" Grid.Row="7">Land:</Label>
                     
-                    <TextBox Margin="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>                    
-                    <TextBox Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Name="Employee_UserAdd_Firstname" Margin="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Name="Employee_UserAdd_Lastname" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"></TextBox>
+
+                    <TextBox Name="Employee_UserAdd_Street" Margin="5" Grid.Column="1" HorizontalAlignment="Left" Width="160" Grid.Row="2" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Name="Employee_UserAdd_StreetNumber" Margin="5" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" Width="40" Grid.ColumnSpan="2"></TextBox>
+
+                    <TextBox Name="Employee_UserAdd_ZipCode" Margin="5" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Name="Employee_UserAdd_Town" Margin="5" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>
+                    <TextBox Name="Employee_UserAdd_Phone" Margin="5" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"></TextBox>
+                    <DatePicker Name="Employee_UserAdd_Birthday" Margin="5" Grid.Column="1" Grid.Row="6"></DatePicker>
+                    <ComboBox Name="Employee_UserAdd_Country" Margin="5" Grid.Column="1" Grid.Row="7"></ComboBox>
                     
-                    <TextBox Margin="5" Grid.Column="1" HorizontalAlignment="Left" Width="160" Grid.Row="2" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Margin="5" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" Width="40" Grid.ColumnSpan="2"></TextBox>
-                    
-                    <TextBox Margin="5" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Margin="5" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Margin="5" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Margin="5" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2"></TextBox>
-                    
-                    <Button HorizontalAlignment="Left" Grid.Column="0" Grid.Row="7" Margin="5,2">hinzufügen</Button>
-                    <Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="7" Margin="5,2">zurücksetzten</Button>
+                    <Button HorizontalAlignment="Left" Grid.Column="0" Grid.Row="8" Margin="5,2" Click="UserAdd_Click">hinzufügen</Button>
+                    <Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" Margin="5,2">zurücksetzten</Button>
                 </Grid>
                 <!-- -->
             </Grid>
