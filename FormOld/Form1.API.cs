@@ -15,7 +15,7 @@ namespace BiBo
   {
     public void SetLoggedUserName(String name)
     {
-      this.userName.Text = name;
+      this.userName.Text = name;//hj
     }
 
     public void init()
