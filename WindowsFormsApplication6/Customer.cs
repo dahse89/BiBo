@@ -49,6 +49,7 @@ namespace BiBo.Persons
             this.lastName = lastName;
             this.birthDate = birthDate;
             this.password = "";
+            this.createdAt = DateTime.Now;
         }
         public Customer() 
         {
