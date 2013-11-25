@@ -18,15 +18,11 @@
                 </VisualBrush>
             </Border.BorderBrush>
         </Border>
-        <Label Name="MainUserName" Grid.Column="0" Margin="5" HorizontalAlignment="Left" Width="170" ClipToBounds="True">
-            <Span FontWeight="Bold">
-                Philipp Dahse
-            </Span>
+        <Label FontWeight="Bold"  Name="MainUserName" Grid.Column="0" Margin="5" HorizontalAlignment="Left" Width="170" ClipToBounds="True">
+         
         </Label>
-        <Label Name="MainUserRights" Grid.Column="0" Margin="5,30,0,5" HorizontalAlignment="Left" Width="170" ClipToBounds="True">
-            <Span FontWeight="Bold">
-                Admin
-            </Span>
+        <Label FontWeight="Bold" Name="MainUserRights" Grid.Column="0" Margin="5,30,0,5" HorizontalAlignment="Left" Width="170" ClipToBounds="True">
+               
         </Label>
        
             <Grid Grid.Column="2">
@@ -80,7 +76,7 @@
                     <Label Grid.Column="0" Grid.Row="5">Tel.:</Label>
                     <Label Grid.Column="0" Grid.Row="6">Geburtstag:</Label>
                     <Label Grid.Column="0" Grid.Row="7">Land:</Label>
-                    
+      
                     <TextBox Name="Employee_UserAdd_Firstname" Margin="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
                     <TextBox Name="Employee_UserAdd_Lastname" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"></TextBox>
 
@@ -96,8 +92,11 @@
                     <Button HorizontalAlignment="Left" Grid.Column="0" Grid.Row="8" Margin="5,2" Click="UserAdd_Click">hinzufügen</Button>
                     <Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" Margin="5,2">zurücksetzten</Button>
                 </Grid>
-                <!-- -->
+                
+                
             </Grid>
+            <!-- Main secoud row-->
+            <DataGrid Name="CustomerTable" Grid.Row="2" ItemsSource="{Binding}"></DataGrid>
         </Grid>
        
 

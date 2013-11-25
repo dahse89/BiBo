@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BiBo.Persons;
 using System.IO;
+using System.Data;
 
 namespace BiBo
 {
@@ -21,17 +22,32 @@ namespace BiBo
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Library lib;
+        Library lib;
         private String CountriesSource = "../../countries.txt";
 
         public MainWindow()
         {
-            //this.lib = new Library(this);
             InitializeComponent();
+            initMainWindow();
+        }
+
+        public void initMainWindow()
+        {
             initElements();
+            lib = new Library();
+            foreach (Customer cust in lib.CustomerList)
+            {
+                this.lib.getGuiApi().AddCustomer(cust);
+            }
         }
 
         private void initElements()
+        {
+            initCoutriesComboBox();
+            initCustomerTable();
+        }
+
+        private void initCoutriesComboBox()
         {
             //init Employee_UserAdd_Country
             ComboBox comBox = this.FindName("Employee_UserAdd_Country") as ComboBox;
@@ -41,6 +57,7 @@ namespace BiBo
 
             // Read the file and display it line by line.
             StreamReader file = new System.IO.StreamReader(this.CountriesSource);
+            
             while ((line = file.ReadLine()) != null)
             {
                 //add to country dataTable
@@ -49,6 +66,20 @@ namespace BiBo
             file.Close();
 
             comBox.SelectedIndex = 0;
+        }
+
+        private void initCustomerTable()
+        {
+            DataTable CustomerTable = new DataTable("Customers");
+            CustomerTable.Columns.Add("ID");
+            CustomerTable.Columns.Add("Vorname");
+            CustomerTable.Columns.Add("Nachname");
+            CustomerTable.Columns.Add("Strasse");
+            CustomerTable.Columns.Add("Nr.");
+            CustomerTable.Columns.Add("PLZ");
+            CustomerTable.Columns.Add("Stadt");
+            CustomerTable.Columns.Add("Land");
+            (FindName("CustomerTable") as DataGrid).DataContext = CustomerTable;
         }
             
             
