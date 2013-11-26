@@ -62,7 +62,8 @@ namespace BiBo.SQL
 
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "select last_insert_rowid()";
-            UInt64 lastRowID64 = (UInt64)command.ExecuteScalar();
+            UInt64 lastRowID64 = Convert.ToUInt64(command.ExecuteScalar());
+            // UInt64 lastRowID64 = (UInt64)command.ExecuteScalar(); // Fehler	System.InvalidCastException: Die angegebene Umwandlung ist ungültig.	
             return (ulong)lastRowID64;
         }
 

@@ -36,7 +36,7 @@ namespace BiBo.DAO
         return lib.BookList;
     }
 
-    //Add only a book without Examples <--- eigentlich nicht sinnvoll oder ?
+    //Add only a book without Examples <--- eigentlich nicht sinnvoll oder ? // Yevgen: Doch, wenn man sowas wie bestellen kann
     public void AddBook(Book dummy)
     {
       //insert in db and dummy get the right id

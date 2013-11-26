@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BiBo.Persons;
 using BiBo;
 using System;
 
