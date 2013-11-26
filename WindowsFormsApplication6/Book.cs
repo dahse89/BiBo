@@ -62,7 +62,7 @@ namespace BiBo
      
 	public override string ToString()
 	{
-		return this.Author + " " + this.Titel + " " + this. subjectArea;
+		return this.Author + " " + this.Titel + " " + this.subjectArea;
 	}
   }
 }
