@@ -195,7 +195,7 @@ namespace BiBo.Persons
         
         public override string ToString()
 		{
-			return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate + " " + Street + " " + Town;
+			return CustomerID + " " + FirstName + " " + LastName + " " + BirthDate + " " + Street + " " + StreetNumber + " " + Town;
 		}
 
         public override bool Equals(object obj)

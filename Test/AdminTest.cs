@@ -52,5 +52,16 @@ namespace Test
 
 
         }
+
+        [TestMethod()]
+        public void changeFeeTest()
+        {
+            double fee = 1.00;
+            Form1 gui = new Form1();
+            Library lib = new Library(gui);
+
+            Assert.IsTrue(lib.Fee == fee);
+
+        }
     }
 }
