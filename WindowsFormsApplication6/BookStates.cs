@@ -17,6 +17,9 @@ namespace BiBo
             switch (stateString)
             {
                 case "only_visible": return BookStates.ONLY_VISIBLE;
+                case "damaged": return BookStates.DAMAGED;
+                case "missing": return BookStates.MISSING;
+                case "ok": return BookStates.OK;
             }
             throw new System.Exception("Falschen Status angegeben");
         }
