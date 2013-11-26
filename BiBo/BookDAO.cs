@@ -16,15 +16,15 @@ namespace BiBo.DAO
   /// </summary>
   public class BookDAO
   {
-    MainWindow form;
+    GUIApi GUI;
     private Library lib;
     public BookSQL bookSql = SqlConnector<Book>.GetBookSqlInstance();
     private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
 
 
-    public BookDAO(MainWindow form, Library lib)
+    public BookDAO(GUIApi gui, Library lib)
     {
-      this.form = form;
+      this.GUI = gui;
       this.lib = lib;
     }
 

@@ -13,21 +13,24 @@ namespace BiBo.DAO
 {
   public class CustomerDAO
   {
-    private MainWindow form;
+    private GUIApi GUI;
     private Library lib;
     private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
 
-    public CustomerDAO(MainWindow form, Library lib)
+    public CustomerDAO(GUIApi gui, Library lib)
     {
-      this.form = form;
+      this.GUI = gui;
       this.lib = lib;
     }
 
     public List<Customer> GetAllCustomer()
     {
-      if (lib.CustomerList == null)
-        return lib.CustomerList = customerSql.GetAllEntrys();
-      else
+        if (lib.CustomerList == null)
+        {
+            //init
+            lib.CustomerList = customerSql.GetAllEntrys();
+            
+        }
         return lib.CustomerList;
     }
 
