@@ -12,7 +12,14 @@ namespace BiBo.Persons
       private List<decimal> changeValues;
       private decimal currentValue;
 
-      public ChargeAccount() { }
+      //Konstruktor
+      public ChargeAccount(Customer customer, DateTime changedAt, List<decimal> changeValues, decimal currentValue) 
+      {
+          this.customer = customer;
+          this.changedAt = changedAt;
+          this.changeValues = changeValues;
+          this.currentValue = currentValue;
+      }
 
       public Customer Customer
       {
