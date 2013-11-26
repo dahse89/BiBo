@@ -21,14 +21,19 @@ namespace BiBo
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Library lib;
+        private MainWindow lib;
         private String CountriesSource = "../../countries.txt";
 
         public MainWindow()
         {
             //this.lib = new Library(this);
             InitializeComponent();
+            initObjects();
             initElements();
+        }
+
+        private void initObjects(){
+            //lib = 0;
         }
 
         private void initElements()
