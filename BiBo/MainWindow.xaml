@@ -56,7 +56,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="300"></RowDefinition><!-- -->
+                        <RowDefinition Height="30"></RowDefinition><!-- -->
                         <RowDefinition></RowDefinition>                        
                     </Grid.RowDefinitions>
                     <!-- MainPanel inner Grid Definitions END-->
