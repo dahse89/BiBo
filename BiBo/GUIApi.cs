@@ -57,6 +57,12 @@ namespace BiBo
            
         }
 
+        public void DeleteCustomer(int index)
+        {
+            DataGrid table = GUI.FindName("CustomerTable") as DataGrid;
+            (table.DataContext as DataTable).Rows[table.SelectedIndex].Delete();
+        }
+
        
 
         private object load(String Name)

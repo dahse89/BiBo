@@ -136,6 +136,27 @@ namespace BiBo
             showUnderToolBar(true);
         }
 
+        private void ToolBarDelte_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid table = FindName("CustomerTable") as DataGrid;
+            DataRowView row;
+            try
+            {
+                row = (DataRowView)table.SelectedItems[0];
+            }
+            catch (ArgumentOutOfRangeException aoore)
+            {
+                return;
+            }
+
+            ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
+
+            Customer customer = lib.getCustomerDAO().GetCustomerById(id);
+
+            (table.DataContext as DataTable).Rows[table.SelectedIndex].Delete();
+
+        }
+
         private void showUnderToolBar(bool s)
         {
             if (s)

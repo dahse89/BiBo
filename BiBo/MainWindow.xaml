@@ -67,6 +67,7 @@
                              <TextBox Name="ToolBarSearch" Width="100" BorderBrush="Gray"></TextBox>
                         <Image Margin="5,0" Height="16" Width="16" Source="/BiBo;component/Images/search.png" MouseUp="ToolBarSearch_MouseUp"></Image>
                         <Image Margin="5,0" Height="16" Width="16" ToolTip="Zeige alle Kunden" Source="/BiBo;component/Images/all.png" MouseUp="ToolBarShowAll_MouseUp"></Image>
+                        <Image Margin="5,0" Height="16" Width="16" ToolTip="Zeige alle Kunden" Source="/BiBo;component/Images/delete.png" MouseUp="ToolBarDelte_MouseUp"></Image>
                     </ToolBar>
                     <Grid Grid.ColumnSpan="2" Width="600" Margin="0,30,0,0" Name="CustomerAddGrid" Grid.Column="0" Height="120" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
