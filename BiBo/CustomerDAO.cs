@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using BiBo.SQL;
 using BiBo.Persons;
 using BiBo.Exception;
+using System.Windows;
 
 namespace BiBo.DAO
 {
@@ -29,6 +30,7 @@ namespace BiBo.DAO
         {
             //init
             lib.CustomerList = customerSql.GetAllEntrys();
+            MessageBox.Show(lib.CustomerList[3].ZipCode);
             
         }
         return lib.CustomerList;

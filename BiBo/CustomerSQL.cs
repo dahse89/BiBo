@@ -11,6 +11,7 @@ using System.Data.SQLite;
 using System.Data.SqlTypes;
 using BiBo.Persons;
 using System.Collections.Generic;
+using System.Windows;
 
 
 namespace BiBo.SQL
@@ -124,15 +125,16 @@ namespace BiBo.SQL
             DateTime birthDate = DateTime.Parse(reader.GetString(reader.GetOrdinal("birthDate")));
 
             tmp = new Customer(id, firstName, lastName, birthDate);
-                  
+
             string street = reader.GetString(reader.GetOrdinal("street"));
             tmp.Street = street;
             tmp.StreetNumber = reader.GetString(reader.GetOrdinal("streetNumber"));
             tmp.AdditionalRoad = reader.GetString(reader.GetOrdinal("additionalRoad"));
-            tmp.ZipCode = reader.GetOrdinal("zipCode").ToString();
+
+            tmp.ZipCode = reader.GetOrdinal("zipCode").ToString();//@todo fix GetInt32 do not work
             tmp.Town = reader.GetString(reader.GetOrdinal("town"));
             tmp.Country = reader.GetString(reader.GetOrdinal("country"));
-
+           
             return tmp;
         }
 		
