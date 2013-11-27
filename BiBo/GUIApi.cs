@@ -41,6 +41,8 @@ namespace BiBo
 
             //CustomerTable.DataContext
             DataTable test = (CustomerTable.DataContext as DataTable);
+            
+
             test.Rows.Add(
                 customer.CustomerID.ToString(),
                 customer.FirstName,

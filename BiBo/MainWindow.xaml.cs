@@ -77,7 +77,7 @@ namespace BiBo
             New.Columns.Add("Vorname");
             New.Columns.Add("Nachname");
             New.Columns.Add("Strasse");
-            New.Columns.Add("Nr.");
+            New.Columns.Add("Nummer");
             New.Columns.Add("PLZ");
             New.Columns.Add("Stadt");
             New.Columns.Add("Land");
@@ -103,6 +103,8 @@ namespace BiBo
             String Lastname     = (FindName("Employee_UserAdd_Lastname")     as TextBox).Text;
             String Street       = (FindName("Employee_UserAdd_Street")       as TextBox).Text;
             String StreetNumber = (FindName("Employee_UserAdd_StreetNumber") as TextBox).Text;
+            String zipCode = (FindName("Employee_UserAdd_ZipCode") as TextBox).Text;
+            
             String Phone        = (FindName("Employee_UserAdd_Phone")        as TextBox).Text;
             var bday            = (FindName("Employee_UserAdd_Birthday")     as DatePicker).SelectedDate;
 
@@ -115,16 +117,16 @@ namespace BiBo
 
             Customer dummy = new Customer(0,Firstname,Lastname,Birthday);
 
-            MessageBox.Show(
-                Firstname + "\n" +
-                Lastname + "\n" +
-                Street + " " +
-                StreetNumber + "\n" +
-                Phone + "\n" +
-                Birthday + "\n" +
-                Town + "\n" +
-                Country
-            );
+            dummy.Street = Street;
+            dummy.StreetNumber = StreetNumber;
+            dummy.MobileNumber = Phone;
+            dummy.ZipCode = zipCode;
+            dummy.Town = Town;
+            dummy.Country = Country;
+           
+
+            lib.getCustomerDAO().AddCustomer(dummy);
+            clearAddCustomer();
            
         }
 

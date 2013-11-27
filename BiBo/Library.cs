@@ -34,9 +34,10 @@ namespace BiBo
 		//Konstruktor
 		public Library()
 		{
+            this.GUI = new GUIApi();
           this.customerDAO = new CustomerDAO(GUI, this);
           this.bookDAO = new BookDAO(GUI, this);
-          this.GUI = new GUIApi();
+          
 
           //init Customer list
           customerDAO.GetAllCustomer();

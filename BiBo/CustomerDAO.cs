@@ -43,7 +43,7 @@ namespace BiBo.DAO
         lib.CustomerList.Add(customer);
 
       //refresh GUI-View
-        //form.AddCustomer(customer); //real instead of dummy
+        GUI.AddCustomer(customer);
     }
     //TODO: is not possible to delete single Customer?
     public void DeleteCustomersByIdList()
