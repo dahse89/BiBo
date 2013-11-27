@@ -81,12 +81,8 @@ namespace BiBo
             CustomerTable.Columns.Add("Land");
             (FindName("CustomerTable") as DataGrid).DataContext = CustomerTable;
         }
-
-        private void MouseUp_BooksImage(object sender, MouseButtonEventArgs e)
-        {
-            (FindName("CustomerPanel") as Grid).Visibility = Visibility.Hidden;
-            (FindName("BookPanel") as Grid).Visibility = Visibility.Visible;
-        }
+            
+            
 
         private void UserAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -103,7 +99,7 @@ namespace BiBo
             String Town         = (FindName("Employee_UserAdd_Town")         as TextBox).Text;
             String Country      = (FindName("Employee_UserAdd_Country")      as ComboBox).SelectedValue as String;
 
-            
+            Birthday = Birthday == null ? new DateTime(0, 0, 0) : Birthday;
 
             Customer dummy = new Customer(0,Firstname,Lastname,Birthday);
 

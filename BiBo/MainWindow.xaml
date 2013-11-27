@@ -28,29 +28,37 @@
             <Grid Grid.Column="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"></RowDefinition>
-                <RowDefinition Height="350"></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>                
             </Grid.RowDefinitions>
                 <!-- Header-->
-            <Border BorderThickness="0,0,0,1"  Background="#eeeeeeee">
-                <Border.BorderBrush>
-                    <VisualBrush>
-                        <VisualBrush.Visual>
-                            <Rectangle Stroke="Gray" Name="Head" Height="100" HorizontalAlignment="Stretch" Fill="#eeeeeeee" Visibility="Visible" Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" />
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Border.BorderBrush>
-            </Border>
-            <Image Grid.Row="0" Margin="19" Height="64" HorizontalAlignment="Left" Name="CustomerMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/account.png" />
-            <Image Grid.Row="0" Margin="88 19 0 19" Height="64" HorizontalAlignment="Left" Name="BooksMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/books.png" />
-            <Image Grid.Row="0" Margin="157 19 0 19" Height="64" HorizontalAlignment="Left" Name="BorrowMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/borrowicon.png" />
-            <!--Main first row-->
-            <Grid Margin="10"  Grid.Column="1" Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <Border BorderThickness="0,0,0,1"  Background="#eeeeeeee">
+                    <Border.BorderBrush>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Rectangle Stroke="Gray" Name="Head" Height="100" HorizontalAlignment="Stretch" Fill="#eeeeeeee" Visibility="Visible" Grid.Column="2" Grid.Row="0" VerticalAlignment="Top" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Image Grid.Row="0" Margin="19" Height="64" HorizontalAlignment="Left" Name="CustomerMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/account.png" />
+                <Image MouseUp="MouseUp_BooksImage" Grid.Row="0" Margin="88 19 0 19" Height="64" HorizontalAlignment="Left" Name="BooksMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/books.png" />
+                <Image Grid.Row="0" Margin="157 19 0 19" Height="64" HorizontalAlignment="Left" Name="BorrowMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/borrowicon.png" />
+               
+                <!--Main row-->
+            <Grid  Name="MainPanel" Grid.Row="1">
+                <!-- MainPanel inner Grid Definitions -->
+                <Grid Name="CustomerPanel">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="320"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>                        
+                    </Grid.RowDefinitions>
+                    <!-- MainPanel inner Grid Definitions END-->
+                    <!-- MainPanel inner Grid pos 0 0-->
+                    <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Name="UserAddLables" Width="80*"></ColumnDefinition>
                         <ColumnDefinition Name="UserAddTextBoxes" Width="220*"></ColumnDefinition>
@@ -92,11 +100,19 @@
                     <Button HorizontalAlignment="Left" Grid.Column="0" Grid.Row="8" Margin="5,2" Click="UserAdd_Click">hinzufügen</Button>
                     <Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" Margin="5,2">zurücksetzten</Button>
                 </Grid>
-                
-                
+                    <!-- MainPanel inner Grid pos 0 0 END-->
+
+
+                    <!-- MainPanel inner Grid pos 0-1 1 END-->
+                    <DataGrid Grid.ColumnSpan="2" Name="CustomerTable" Grid.Row="2" ItemsSource="{Binding}"></DataGrid>
+                    <!-- MainPanel inner Grid pos 0-1 1 END-->
+                </Grid>
+                <!-- MainPanel inner Grid -END-->
+                <Grid Name="BookPanel" Visibility="Hidden">
+                    <Label >test</Label>
+                </Grid>
             </Grid>
-            <!-- Main secoud row-->
-            <DataGrid Name="CustomerTable" Grid.Row="2" ItemsSource="{Binding}"></DataGrid>
+           
         </Grid>
        
 

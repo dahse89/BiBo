@@ -22,23 +22,35 @@ namespace BiBo
     /// </summary>
     public partial class MainWindow : Window
     {
+<<<<<<< HEAD
+        private MainWindow lib;
+=======
         Library lib;
+>>>>>>> 603584b54558d1d921a97b410e4d3d8ab7f1cd2f
         private String CountriesSource = "../../countries.txt";
 
         public MainWindow()
         {
             InitializeComponent();
+<<<<<<< HEAD
+            initObjects();
+=======
             initMainWindow();
         }
 
         public void initMainWindow()
         {
+>>>>>>> 603584b54558d1d921a97b410e4d3d8ab7f1cd2f
             initElements();
             lib = new Library();
             foreach (Customer cust in lib.CustomerList)
             {
                 this.lib.getGuiApi().AddCustomer(cust);
             }
+        }
+
+        private void initObjects(){
+            //lib = 0;
         }
 
         private void initElements()
@@ -81,12 +93,8 @@ namespace BiBo
             CustomerTable.Columns.Add("Land");
             (FindName("CustomerTable") as DataGrid).DataContext = CustomerTable;
         }
-
-        private void MouseUp_BooksImage(object sender, MouseButtonEventArgs e)
-        {
-            (FindName("CustomerPanel") as Grid).Visibility = Visibility.Hidden;
-            (FindName("BookPanel") as Grid).Visibility = Visibility.Visible;
-        }
+            
+            
 
         private void UserAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -103,7 +111,7 @@ namespace BiBo
             String Town         = (FindName("Employee_UserAdd_Town")         as TextBox).Text;
             String Country      = (FindName("Employee_UserAdd_Country")      as ComboBox).SelectedValue as String;
 
-            
+            Birthday = Birthday == null ? new DateTime(0, 0, 0) : Birthday;
 
             Customer dummy = new Customer(0,Firstname,Lastname,Birthday);
 
