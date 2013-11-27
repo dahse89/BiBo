@@ -4,6 +4,9 @@
         Title="MainWindow" Height="1000" Width="1300"
         WindowStyle="None" ResizeMode="NoResize"  
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Window.Resources>
+        <SolidColorBrush x:Key="GrayGridLine" Color="#cccccccc" />
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -53,63 +56,76 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="300"></RowDefinition><!-- -->
                         <RowDefinition></RowDefinition>                        
                     </Grid.RowDefinitions>
                     <!-- MainPanel inner Grid Definitions END-->
                     <!-- MainPanel inner Grid pos 0 0-->
-                    <Grid Grid.Column="0">
+                    <ToolBar Grid.ColumnSpan="2" Grid.Column="0" Height="30" HorizontalAlignment="Stretch" Name="toolBar1" VerticalAlignment="Top"  >                     
+                            <Image MouseUp="ToolBarUserAdd_Click" Margin="5,0" Height="16" Width="16" Source="/BiBo;component/Images/add.png"></Image>
+                            <Image Margin="5,0" Height="16" Width="16" Source="/BiBo;component/Images/edit.png" MouseUp="Image_MouseUp"></Image>
+                             <TextBox Name="ToolBarSearch" Width="100" BorderBrush="Gray"></TextBox>
+                        <Image Margin="5,0" Height="16" Width="16" Source="/BiBo;component/Images/search.png" MouseUp="ToolBarSearch_MouseUp"></Image>
+                        <Image Margin="5,0" Height="16" Width="16" ToolTip="Zeige alle Kunden" Source="/BiBo;component/Images/all.png" MouseUp="ToolBarShowAll_MouseUp"></Image>
+                    </ToolBar>
+                    <Grid Grid.ColumnSpan="2" Width="600" Margin="0,30,0,0" Name="CustomerAddGrid" Grid.Column="0" Height="120" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Name="UserAddLables" Width="80*"></ColumnDefinition>
-                        <ColumnDefinition Name="UserAddTextBoxes" Width="220*"></ColumnDefinition>
-                        <ColumnDefinition Width="2*" />
-                    </Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-
-                        <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="0" Grid.Row="0">Vorname:</Label>
-                    <Label Grid.Column="0" Grid.Row="1">Nachname:</Label>
-                    <Label Grid.Column="0" Grid.Row="2">Stasse:</Label>
-                    <Label Grid.Column="0" Grid.Row="3">PLZ:</Label>
-                    <Label Grid.Column="0" Grid.Row="4">Stadt:</Label>
-                    <Label Grid.Column="0" Grid.Row="5">Tel.:</Label>
-                    <Label Grid.Column="0" Grid.Row="6">Geburtstag:</Label>
-                    <Label Grid.Column="0" Grid.Row="7">Land:</Label>
-      
-                    <TextBox Name="Employee_UserAdd_Firstname" Margin="5" Grid.Column="1" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Name="Employee_UserAdd_Lastname" Margin="5" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"></TextBox>
 
-                    <TextBox Name="Employee_UserAdd_Street" Margin="5" Grid.Column="1" HorizontalAlignment="Left" Width="160" Grid.Row="2" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Name="Employee_UserAdd_StreetNumber" Margin="5" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="2" Width="40" Grid.ColumnSpan="2"></TextBox>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0">Vorname:</Label>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="0">Nachname:</Label>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1">Stasse:</Label>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1">PLZ:</Label>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="4" Grid.Row="1">Stadt:</Label>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="2" Grid.Row="2">Tel.:</Label>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2">Geburtstag:</Label>
+                        <Label FontSize="10" HorizontalAlignment="Right" Grid.Column="6" Grid.Row="1">Land:</Label>
+                        
+                    <TextBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_Firstname" Margin="5" Grid.Column="1"></TextBox>
+                        <TextBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_Lastname" Margin="5" Grid.Column="3" Grid.Row="0"></TextBox>
 
-                    <TextBox Name="Employee_UserAdd_ZipCode" Margin="5" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Name="Employee_UserAdd_Town" Margin="5" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"></TextBox>
-                    <TextBox Name="Employee_UserAdd_Phone" Margin="5" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2"></TextBox>
-                    <DatePicker Name="Employee_UserAdd_Birthday" Margin="5" Grid.Column="1" Grid.Row="6"></DatePicker>
-                    <ComboBox Name="Employee_UserAdd_Country" Margin="5" Grid.Column="1" Grid.Row="7"></ComboBox>
-                    
-                    <Button HorizontalAlignment="Left" Grid.Column="0" Grid.Row="8" Margin="5,2" Click="UserAdd_Click">hinzufügen</Button>
-                    <Button HorizontalAlignment="Left" Grid.Column="1" Grid.Row="8" Margin="5,2">zurücksetzten</Button>
+                        <TextBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_Street" Margin="5" Grid.Column="1" HorizontalAlignment="Left" Width="60" Grid.Row="1"></TextBox>
+                        <TextBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_StreetNumber" Margin="5" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="1" Width="40"></TextBox>
+
+                        <TextBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_ZipCode" Margin="5" Grid.Column="3" Grid.Row="1"></TextBox>
+                        <TextBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_Town" Margin="5" Grid.Column="5" Grid.Row="1"></TextBox>
+                        <TextBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_Phone" Margin="5" Grid.Column="3" Grid.Row="2"></TextBox>
+                        <DatePicker Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_Birthday" Margin="5" Grid.Column="1" Grid.Row="2"></DatePicker>
+                        <ComboBox Height="20" VerticalAlignment="Top" FontSize="10" Name="Employee_UserAdd_Country" Margin="5" Grid.Column="7" Grid.Row="1"></ComboBox>
+                 
+                    <Button HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="3" Margin="5,2" Click="UserAdd_Click">hinzufügen</Button>
+                        <Button HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="3" Margin="5,2" Click="ClearUserAdd_Click">zurücksetzten</Button>
+                        <Button HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="3" Margin="5,2" Click="Button_Click">abbrechen</Button>
+                      
                 </Grid>
                     <!-- MainPanel inner Grid pos 0 0 END-->
 
 
                     <!-- MainPanel inner Grid pos 0-1 1 END-->
-                    <DataGrid Grid.ColumnSpan="2" Name="CustomerTable" Grid.Row="2" ItemsSource="{Binding}"></DataGrid>
+                    <DataGrid Grid.ColumnSpan="2" Name="CustomerTable" Grid.Row="2" ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single"
+                              VerticalGridLinesBrush="{StaticResource GrayGridLine}"
+                              HorizontalGridLinesBrush="{StaticResource GrayGridLine}"
+                              ></DataGrid>
                     <!-- MainPanel inner Grid pos 0-1 1 END-->
                 </Grid>
                 <!-- MainPanel inner Grid -END-->
                 <Grid Name="BookPanel" Visibility="Hidden">
                     <Label >test</Label>
+                    
                 </Grid>
             </Grid>
            

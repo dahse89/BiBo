@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using BiBo.Persons;
 using System.IO;
 using System.Data;
+using System.Collections;
+using System.Windows.Controls.Primitives;
 
 namespace BiBo
 {
@@ -68,17 +70,23 @@ namespace BiBo
             comBox.SelectedIndex = 0;
         }
 
+        private DataTable getCustomerDataTable()
+        {
+            DataTable New = new DataTable("Customers");
+            New.Columns.Add("ID");
+            New.Columns.Add("Vorname");
+            New.Columns.Add("Nachname");
+            New.Columns.Add("Strasse");
+            New.Columns.Add("Nr.");
+            New.Columns.Add("PLZ");
+            New.Columns.Add("Stadt");
+            New.Columns.Add("Land");
+            return New;
+        }
+
         private void initCustomerTable()
         {
-            DataTable CustomerTable = new DataTable("Customers");
-            CustomerTable.Columns.Add("ID");
-            CustomerTable.Columns.Add("Vorname");
-            CustomerTable.Columns.Add("Nachname");
-            CustomerTable.Columns.Add("Strasse");
-            CustomerTable.Columns.Add("Nr.");
-            CustomerTable.Columns.Add("PLZ");
-            CustomerTable.Columns.Add("Stadt");
-            CustomerTable.Columns.Add("Land");
+            DataTable CustomerTable = getCustomerDataTable();
             (FindName("CustomerTable") as DataGrid).DataContext = CustomerTable;
         }
 
@@ -120,6 +128,144 @@ namespace BiBo
            
         }
 
+        private void ToolBarUserAdd_Click(object sender, MouseButtonEventArgs e)
+        {
+            clearAddCustomer();
+            showUnderToolBar(true);
+        }
+
+        private void showUnderToolBar(bool s)
+        {
+            if (s)
+            {
+                Grid grid = FindName("CustomerPanel") as Grid;
+                grid.RowDefinitions[0].Height = new GridLength(150);
+
+                Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
+                CustomerAddGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Grid grid = FindName("CustomerPanel") as Grid;
+                grid.RowDefinitions[0].Height = new GridLength(30);
+
+                Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
+                CustomerAddGrid.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            showUnderToolBar(false);
+        }
+
+        private void Image_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            showUnderToolBar(true);
+
+            DataGrid table = FindName("CustomerTable") as DataGrid;
+            DataRowView row;
+            try
+            {
+                row = (DataRowView)table.SelectedItems[0];
+            }
+            catch (ArgumentOutOfRangeException aoore)
+            {
+                return;
+            }
+
+            ulong id = (ulong) Convert.ToInt64( row["ID"] as String );
+
+            Customer customer = lib.getCustomerDAO().GetCustomerById(id);
+
+            (FindName("Employee_UserAdd_Firstname") as TextBox).Text = customer.FirstName;
+            (FindName("Employee_UserAdd_Lastname") as TextBox).Text = customer.LastName;
+            (FindName("Employee_UserAdd_Street") as TextBox).Text = customer.Street;
+            (FindName("Employee_UserAdd_StreetNumber") as TextBox).Text = customer.StreetNumber;
+            (FindName("Employee_UserAdd_Phone") as TextBox).Text = customer.MobileNumber;
+            (FindName("Employee_UserAdd_Birthday") as DatePicker).SelectedDate = customer.BirthDate;
+            (FindName("Employee_UserAdd_Town") as TextBox).Text = customer.Town;
+            (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = customer.Country;
+
+        }
+
+        private void clearAddCustomer()
+        {
+            (FindName("Employee_UserAdd_Firstname") as TextBox).Text = "";
+            (FindName("Employee_UserAdd_Lastname") as TextBox).Text = "";
+            (FindName("Employee_UserAdd_Street") as TextBox).Text = "";
+            (FindName("Employee_UserAdd_StreetNumber") as TextBox).Text = "";
+            (FindName("Employee_UserAdd_Phone") as TextBox).Text = "";
+            (FindName("Employee_UserAdd_Birthday") as DatePicker).SelectedDate = DateTime.Now;
+            (FindName("Employee_UserAdd_Town") as TextBox).Text = "";
+            (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = "Deutschland";
+        }
+
+        private void ClearUserAdd_Click(object sender, RoutedEventArgs e)
+        {
+            clearAddCustomer();
+        }
+        
+
+
+        private void ToolBarShowAll_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            (FindName("ToolBarSearch") as TextBox).Text = "";
+            DataGrid table = FindName("CustomerTable") as DataGrid;
+
+            table.DataContext = getCustomerDataTable();
+
+            foreach (Customer cust in lib.CustomerList)
+            {
+                this.lib.getGuiApi().AddCustomer(cust);
+            }            
+        }
+
+        private void ToolBarSearch_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            String searchFor = (FindName("ToolBarSearch") as TextBox).Text;
+
+            
+
+            DataGrid table = FindName("CustomerTable") as DataGrid;
+
+            table.DataContext = getCustomerDataTable();
+
+            foreach (Customer cust in lib.CustomerList)
+            {
+                this.lib.getGuiApi().AddCustomer(cust);
+            }
+
+            DataTable dt = table.DataContext as DataTable;
+            DataTable newDt = getCustomerDataTable();
+
+            ulong id;
+            Customer tmp;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                id = (ulong)Convert.ToInt64(dt.Rows[i]["ID"] as String);
+                tmp = lib.getCustomerDAO().GetCustomerById(id);
+                if (tmp.ToString().ToUpper().Contains(searchFor.ToUpper()))
+                {
+                    newDt.Rows.Add(
+                        tmp.CustomerID.ToString(),
+                        tmp.FirstName,
+                        tmp.LastName,
+                        tmp.Street,
+                        tmp.StreetNumber,
+                        tmp.ZipCode,
+                        tmp.Town,
+                        tmp.Country
+                    );
+                }
+
+            }
+            table.DataContext = newDt;
+
+        }
+
+     
        
     }
 
