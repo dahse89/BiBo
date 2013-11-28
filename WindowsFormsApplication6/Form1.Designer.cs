@@ -1201,6 +1201,25 @@ namespace BiBo
 
           this.booksTableDataSet.AllowUserToResizeColumns = false;
           this.booksTableDataSet.AllowUserToResizeRows = false;
+          
+          //other labels @TODO richtig einordnen
+          this.borrowCustomerCardValidLabel.ForeColor = Color.Black;
+          this.borrowCustomerIDLabel.ForeColor = Color.Black;
+          this.borrowCustomerInfoLabel.ForeColor = Color.Black;
+          this.checkBoxCustomerSearchAutor.ForeColor = Color.Black;
+          this.checkBoxCustomerSearchTitle.ForeColor = Color.Black;
+          this.clearCancel.ForeColor = Color.Black;
+          this.close.ForeColor = Color.Black;
+          this.customerSearchBook.ForeColor = Color.Black;
+          this.labelCustomerSearch.ForeColor = Color.Black;
+          this.LoginAs.ForeColor = Color.Black;
+          this.loggedInAs_Adress.ForeColor = Color.Black;
+          this.loggedInAs_Name.ForeColor = Color.Black;
+          this.login.ForeColor = Color.Black;
+          this.Logout.ForeColor = Color.Black;
+          this.EmployeeLogout.ForeColor = Color.Black;
+          this.labelUserLoginName.ForeColor = Color.Black;
+          this.labelUserLoginPass.ForeColor = Color.Black;
         }
 
         
