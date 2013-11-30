@@ -184,11 +184,6 @@ namespace BiBo.DAO
       exDAO.DeleteEntryByIdList(idList);
     }
 
-    public bool BorrowExemplar(DateTime dateBookWillBeBack, String signatur)
-    {
-      return true;
-    }
-
     //mehod that a customer can bring back a book
     public void BringBookBack(Customer customer ,Exemplar exemplar, BookStates newState)
     {
@@ -203,9 +198,20 @@ namespace BiBo.DAO
       //<---  muss Vico noch funktion liefern
     }
 
+    //TODO <-- Implement
     public ulong GetLastExemplarId()
     {
       return 0;
+    }
+
+    public Exemplar GetFirstAvailableExemplar(Book book)
+    {
+      foreach (Exemplar exemplar in book.Exemplare)
+      {
+        if (exemplar.Accesser == Access.FREEHAND_LENDING && exemplar.State != BookStates.MISSING && exemplar.State != BookStates.ONLY_VISIBLE)
+          return exemplar;
+      }
+      return null;
     }
 
   }

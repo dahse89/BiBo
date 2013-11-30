@@ -16,11 +16,14 @@ namespace BiBo.DAO
     private Form1 form;
     private Library lib;
     private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
+    private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+    private BookDAO bookDAO;
 
     public CustomerDAO(Form1 form, Library lib)
     {
       this.form = form;
       this.lib = lib;
+      this.bookDAO = new BookDAO(form, lib);
     }
 
     public List<Customer> GetAllCustomer()
@@ -117,6 +120,32 @@ namespace BiBo.DAO
       cust.Password = builder.ToString();
     }
 
+    public bool BorrowExemplar(DateTime dateBookWillBeBack, Book book, Customer customer)
+    {
+      //get the first exemplar who is available
+      Exemplar borrowExemplar = bookDAO.GetFirstAvailableExemplar(book);
+      //on object-layer
+      //if exemplar not null, borrow it
+      if (borrowExemplar != null)
+      {
+        borrowExemplar.LoanPeriod = dateBookWillBeBack;
+        customer.ExemplarList.Add(borrowExemplar);
+      }
+      else
+      {
+        return false;
+      }
+      //on db-layer update the customer
+      customerSql.UpdateEntry(customer);
 
+      //on db-layer update the exemplar
+      exemplarSql.UpdateEntry(borrowExemplar);
+      return true;
+    }
+
+    public List<Exemplar> GetBorrowedBooks(Customer customer)
+    {
+      return customer.ExemplarList;
+    }
   }
 }
