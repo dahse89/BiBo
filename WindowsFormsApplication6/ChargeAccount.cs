@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BiBo.Persons
+using BiBo.Persons;
+
+namespace BiBo
 {
     public class ChargeAccount
     {
       private Customer customer;
-      private DateTime changedAt;
-      private List<decimal> changeValues;
-      private decimal currentValue;
+      private List<Charge> charges;
 
       //Konstruktor
-      public ChargeAccount(Customer customer, DateTime changedAt, List<decimal> changeValues, decimal currentValue) 
+      public ChargeAccount(Customer customer) 
       {
           this.customer = customer;
-          this.changedAt = changedAt;
-          this.changeValues = changeValues;
-          this.currentValue = currentValue;
       }
 
       public Customer Customer
@@ -27,22 +24,10 @@ namespace BiBo.Persons
         set { this.customer = value; }
       }
 
-      public DateTime ChangeAt
+      public List<Charge> Charges
       {
-        get { return this.changedAt; }
-        set { this.changedAt = value; }
-      }
-
-      public List<decimal> ChangeValues
-      {
-        get { return this.changeValues; }
-        set { this.changeValues = value; }
-      }
-
-      public decimal CurrentValue
-      {
-        get { return this.currentValue; }
-        set { this.currentValue = value; }
+        get { return this.charges; }
+        set { this.charges = value; }
       }
     }
 }

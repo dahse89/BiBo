@@ -66,6 +66,7 @@
     <Compile Include="Book.cs" />
     <Compile Include="ExemplarSQL.cs" />
     <Compile Include="ChargeAccountSQL.cs" />
+	<Compile Include="Charge.cs" />
     <Compile Include="Form1.Events.cs">
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Form</SubType>
