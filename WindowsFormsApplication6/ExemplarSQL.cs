@@ -87,7 +87,7 @@ namespace BiBo.SQL
             foreach (ulong x in l)
             {
                 SQLiteCommand command = new SQLiteCommand(con);
-                command.CommandText = "DELETE FROM Customer WHERE id = '" + x + "';";
+                command.CommandText = "DELETE FROM Exemplar WHERE id = '" + x + "';";
                 command.ExecuteNonQuery();
 
             }
