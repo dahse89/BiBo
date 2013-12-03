@@ -64,10 +64,12 @@ namespace Test
 
             em.changeAddress(cus, street, streetNumber, additionalRoad, zipCode, town, country);
 
-
-            Assert.IsTrue(em.Street == street);
-            Assert.IsTrue(em.StreetNumber == streetNumber);
-            Assert.IsTrue(em.BirthDate == birthDate);
+            Assert.IsTrue(cus.Street == street);
+            Assert.IsTrue(cus.StreetNumber == streetNumber);
+            Assert.IsTrue(cus.AdditionalRoad == additionalRoad);
+            Assert.IsTrue(cus.ZipCode == zipCode);
+            Assert.IsTrue(cus.Town == town);
+            Assert.IsTrue(cus.Country == country);
 
         }        
 
