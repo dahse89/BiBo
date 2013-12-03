@@ -57,6 +57,8 @@ namespace Test
             double fee = 1.00;
             Library lib = new Library();
 
+            lib.Fee = fee;
+
             Assert.IsTrue(lib.Fee == fee);
 
         }

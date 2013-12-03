@@ -93,7 +93,7 @@ namespace Test
 
             string sString = cusID + " " + firstName + " " + lastName + " " + birthDate + " " + street + " " + streetNumber + " " + town;
 
-            Assert.AreEqual(cus.ToString(), sString);
+            Assert.AreEqual(sString, cus.ToString());
         }
     }
 }
