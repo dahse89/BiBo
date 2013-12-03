@@ -17,16 +17,17 @@ namespace BiBo.SQL
                 SQLiteCommand command = new SQLiteCommand(con);
                 if (command != null)
                 {
-                    command.CommandText = @"INSERT INTO Exemplar (
-                                      customerId,
-                                      changedAt,
-                                      currentValue
+                  command.CommandText = @"INSERT INTO ChargeTransactions (
+                                      ChargeAccountID,
+                                      change,
+                                      newValue,
+                                      changedAt
                                   )   
                                   VALUES (
-                                      NULL,  
+                                      NULL,
+                                      '""',  
                                       '" + obj.Customer.CustomerID + @"',
-                                      '" + DateTime.Now + @"',
-                                      '0',
+                                      '" + DateTime.Now + @"'
                                   );";
 
                     command.ExecuteNonQuery();
@@ -37,6 +38,11 @@ namespace BiBo.SQL
             {
                 return false;
             }
+      }
+
+      public override bool UpdateEntry(ChargeAccount customer)
+      {
+        throw new NotImplementedException();
       }
 
       public override ulong AddEntryReturnId(ChargeAccount obj)
@@ -53,18 +59,6 @@ namespace BiBo.SQL
       public override bool DeleteEntryByIdList(List<ulong> l)
       {
         throw new NotImplementedException();
-      }
-
-      public override bool UpdateEntry(ChargeAccount obj)
-      {
-        SQLiteCommand command = new SQLiteCommand(con);
-        command.CommandText = @"UPDATE Exemplar SET
-                                    customerId = '" + obj.Customer.CustomerID + @"',
-                                    changedAt = '" + DateTime.Now + @"',
-                                    currentValue = '0',
-                                  WHERE ID = '1');";
-        command.ExecuteNonQuery();
-        return true;
       }
 
       public override List<ChargeAccount> GetAllEntrys()
