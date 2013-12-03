@@ -90,6 +90,7 @@
     <Compile Include="ChargeAccount.cs" />
     <Compile Include="ChargeAccountDAO.cs" />
     <Compile Include="ChargeAccountSQL.cs" />
+    <Compile Include="InitDbSQL.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerDAO.cs" />
     <Compile Include="CustomerNotFoundException.cs" />
