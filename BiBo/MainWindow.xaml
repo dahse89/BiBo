@@ -1,13 +1,18 @@
 ﻿<Window x:Class="BiBo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="1000" Width="1300"
+        Title="MainWindow" Height="200" Width="200"
         WindowStyle="None" ResizeMode="NoResize"  
-        WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
     <Window.Resources>
         <SolidColorBrush x:Key="GrayGridLine" Color="#cccccccc" />
     </Window.Resources>
+  <Grid>
     <Grid>
+      <Image Width="200" Height="200" Name="LoaderImage" Source="/BiBo;component/Images/library.png"></Image>
+    </Grid>
+   <!--
+    <Grid Visibility="Collapsed">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
@@ -33,7 +38,7 @@
                 <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition></RowDefinition>                
             </Grid.RowDefinitions>
-                <!-- Header-->
+              
                 <Border BorderThickness="0,0,0,1"  Background="#eeeeeeee">
                     <Border.BorderBrush>
                         <VisualBrush>
@@ -46,21 +51,19 @@
                 <Image Grid.Row="0" Margin="19" Height="64" HorizontalAlignment="Left" Name="CustomerMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/account.png" />
                 <Image MouseUp="MouseUp_BooksImage" Grid.Row="0" Margin="88 19 0 19" Height="64" HorizontalAlignment="Left" Name="BooksMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/books.png" />
                 <Image Grid.Row="0" Margin="157 19 0 19" Height="64" HorizontalAlignment="Left" Name="BorrowMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/WpfApplication1;component/Images/borrowicon.png" />
-               
-                <!--Main row-->
+  
             <Grid  Name="MainPanel" Grid.Row="1">
-                <!-- MainPanel inner Grid Definitions -->
+       
                 <Grid Name="CustomerPanel">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="320"></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"></RowDefinition><!-- -->
+                        <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition></RowDefinition>                        
                     </Grid.RowDefinitions>
-                    <!-- MainPanel inner Grid Definitions END-->
-                    <!-- MainPanel inner Grid pos 0 0-->
+             
                     <ToolBar Grid.ColumnSpan="2" Grid.Column="0" Height="30" HorizontalAlignment="Stretch" Name="toolBar1" VerticalAlignment="Top"  >                     
                             <Image MouseUp="ToolBarUserAdd_Click" Margin="5,0" Height="16" Width="16" Source="/BiBo;component/Images/add.png"></Image>
                             <Image Margin="5,0" Height="16" Width="16" Source="/BiBo;component/Images/edit.png" MouseUp="Image_MouseUp"></Image>
@@ -113,17 +116,17 @@
                         <Button HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="3" Margin="5,2" Click="Button_Click">abbrechen</Button>
                       
                 </Grid>
-                    <!-- MainPanel inner Grid pos 0 0 END-->
+          
 
 
-                    <!-- MainPanel inner Grid pos 0-1 1 END-->
+             
                     <DataGrid Grid.ColumnSpan="2" Name="CustomerTable" Grid.Row="2" ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single"
                               VerticalGridLinesBrush="{StaticResource GrayGridLine}"
                               HorizontalGridLinesBrush="{StaticResource GrayGridLine}"
                               ></DataGrid>
-                    <!-- MainPanel inner Grid pos 0-1 1 END-->
+               
                 </Grid>
-                <!-- MainPanel inner Grid -END-->
+              
                 <Grid Name="BookPanel" Visibility="Hidden">
                     <Label >test</Label>
                     
@@ -131,8 +134,9 @@
             </Grid>
            
         </Grid>
-       
+    
 
     </Grid>
-  
+    -->
+  </Grid>
 </Window>
