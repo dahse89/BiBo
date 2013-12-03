@@ -8,10 +8,9 @@
         <SolidColorBrush x:Key="GrayGridLine" Color="#cccccccc" />
     </Window.Resources>
   <Grid>
-    <Grid>
-      <Image Width="200" Height="200" Name="LoaderImage" Source="/BiBo;component/Images/library.png"></Image>
-    </Grid>
-   <!--
+   
+   
+  
     <Grid Visibility="Collapsed">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -137,6 +136,6 @@
     
 
     </Grid>
-    -->
+    
   </Grid>
 </Window>

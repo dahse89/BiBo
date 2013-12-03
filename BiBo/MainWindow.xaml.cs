@@ -29,6 +29,10 @@ namespace BiBo
 
         public MainWindow()
         {
+          SQL.InitDbSQL x = new SQL.InitDbSQL();
+          x.createAllTables();
+
+
             InitializeComponent();
             initMainWindow();
         }
