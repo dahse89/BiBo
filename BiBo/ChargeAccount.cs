@@ -27,5 +27,6 @@ namespace BiBo.Persons
       get { return this.charges; }
       set { this.charges = value; }
     }
+
   }
 }
