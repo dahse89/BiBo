@@ -8,25 +8,12 @@ namespace BiBo.SQL
         /// <summary>
         /// Description of BookSql.
     /// </summary>
-
-    // Yevgen: Mein Studio wird sämtliche Warnungen hier: 
-    // To fix a violation of this rule, call Dispose on the object before all references to it are out of scope.
-    // Im großen und ganzen musst du eine Fehleranalyse machen, das z.B. kein Objekt vorhanden ist apfangen
-
         public class BookSQL : SqlConnector<Book>
         {                
                 public override bool AddEntry(Book book)
         {
             try
             {
-// Schau dir hier nochmal die Seite hier an: http://msdn.microsoft.com/de-de/library/ms182310.aspx
-// SQL-Abfragen auf Sicherheitsrisiken überprüfen
-// .... Eine aus Benutzereingaben erstellte SQL-Befehlszeichenfolge ist anfällig für SQL-Injection-Angriffe. 
-// Bei einem SQL-Injection-Angriff stellt ein böswilliger Benutzer Eingaben bereit, die das Design der Abfrage 
-// so ändern, dass die zugrunde liegende Datenbank beschädigt wird oder der Benutzer unbefugten Zugriff auf die 
-// zugrunde liegende Datenbank erhält. 
-
-// Versuch es mal mit der sicheren Methode!
                 SQLiteCommand command = new SQLiteCommand(con);
                 command.CommandText = @"INSERT INTO Book (
                                       id, 
