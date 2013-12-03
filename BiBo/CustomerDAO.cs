@@ -14,24 +14,25 @@ namespace BiBo.DAO
 {
   public class CustomerDAO
   {
-    private GUIApi GUI;
+    private GUIApi gui;
     private Library lib;
     private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
+    private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+    private BookDAO bookDAO;
 
     public CustomerDAO(GUIApi gui, Library lib)
     {
-      this.GUI = gui;
+      this.gui = gui;
       this.lib = lib;
+      this.bookDAO = new BookDAO(gui, lib);
     }
 
     public List<Customer> GetAllCustomer()
     {
         if (lib.CustomerList == null)
         {
-            //init
-            lib.CustomerList = customerSql.GetAllEntrys();
-            MessageBox.Show(lib.CustomerList[3].ZipCode);
-            
+          //init
+          lib.CustomerList = customerSql.GetAllEntrys();            
         }
         return lib.CustomerList;
     }
@@ -45,13 +46,13 @@ namespace BiBo.DAO
         lib.CustomerList.Add(customer);
 
       //refresh GUI-View
-        GUI.AddCustomer(customer);
+        gui.AddCustomer(customer);
     }
     //TODO: is not possible to delete single Customer?
     public void DeleteCustomersByIdList()
     {
-        //removes all selected rows and return list of deleted customer ids
-       /* List<ulong> idList = form.DeleteCustomersByIdList();
+       //removes all selected rows and return list of deleted customer ids
+       /*List<ulong> idList = gui.DeleteCustomer();
 
         //delete in Object <----- must be go better !!! SCHAU DA NOCHMAL NACH MARCUS !!!!!
         List<Customer> copyOfCustomerList = lib.CustomerList.ToList(); //<----- ist nötig, sonst InvalidOperationException, weil die Liste, die durchlaufen wird, geändert wird
@@ -66,6 +67,26 @@ namespace BiBo.DAO
 
         //delete in DB
         customerSql.DeleteEntryByIdList(idList);*/
+    }
+
+    //method to edit a customer
+    public void UpdateCustomer(Customer customer)
+    {
+      //on object-layer
+      foreach (Customer customerInList in lib.CustomerList)
+      {
+        if (customerInList.CustomerID == customer.CustomerID)
+        {
+          lib.CustomerList.Remove(customerInList);
+          lib.CustomerList.Add(customer);
+        }
+      }
+
+      //on db layer
+      customerSql.UpdateEntry(customer);
+
+      //on view
+      gui.UpdateCustomer(customer);
     }
 
     public Customer GetCustomerById(ulong id)
@@ -105,6 +126,32 @@ namespace BiBo.DAO
       cust.Password = builder.ToString();
     }
 
+    public bool BorrowExemplar(DateTime dateBookWillBeBack, Book book, Customer customer)
+    {
+      //get the first exemplar who is available
+      Exemplar borrowExemplar = bookDAO.GetFirstAvailableExemplar(book);
+      //on object-layer
+      //if exemplar not null, borrow it
+      if (borrowExemplar != null)
+      {
+        borrowExemplar.LoanPeriod = dateBookWillBeBack;
+        customer.ExemplarList.Add(borrowExemplar);
+      }
+      else
+      {
+        return false;
+      }
+      //on db-layer update the customer
+      customerSql.UpdateEntry(customer);
 
+      //on db-layer update the exemplar
+      exemplarSql.UpdateEntry(borrowExemplar);
+      return true;
+    }
+
+    public List<Exemplar> GetBorrowedBooks(Customer customer)
+    {
+      return customer.ExemplarList;
+    }
   }
 }

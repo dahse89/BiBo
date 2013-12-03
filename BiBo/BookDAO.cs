@@ -16,7 +16,7 @@ namespace BiBo.DAO
   /// </summary>
   public class BookDAO
   {
-    GUIApi GUI;
+    GUIApi gui;
     private Library lib;
     public BookSQL bookSql = SqlConnector<Book>.GetBookSqlInstance();
     private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
@@ -24,7 +24,7 @@ namespace BiBo.DAO
 
     public BookDAO(GUIApi gui, Library lib)
     {
-      this.GUI = gui;
+      this.gui = gui;
       this.lib = lib;
     }
 
@@ -46,7 +46,7 @@ namespace BiBo.DAO
       lib.BookList.Add(dummy);
 
       //refresh GUI-View
-      //form.AddBook(dummy);
+      gui.AddBook(dummy);
     }
 
     //Add a book with a given number of examples
@@ -67,7 +67,7 @@ namespace BiBo.DAO
       lib.BookList.Add(book);
 
       //refresh GUI-View
-      //form.AddBook(book);
+      gui.AddBook(book);
     }
 
     public void DeleteBooksByIdList()
@@ -93,8 +93,6 @@ namespace BiBo.DAO
 
     public Book GetBookById(ulong id)
     {
-  
-
       foreach (Book book in lib.BookList)
       {
         if (book.BookId == id)
@@ -203,10 +201,20 @@ namespace BiBo.DAO
       //<---  muss Vico noch funktion liefern
     }
 
+    //TODO <-- Implement
     public ulong GetLastExemplarId()
     {
       return 0;
     }
 
+    public Exemplar GetFirstAvailableExemplar(Book book)
+    {
+      foreach (Exemplar exemplar in book.Exemplare)
+      {
+        if (exemplar.Accesser == Access.FREEHAND_LENDING && exemplar.State != BookStates.MISSING && exemplar.State != BookStates.ONLY_VISIBLE)
+          return exemplar;
+      }
+      return null;
+    }
   }
 }

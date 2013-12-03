@@ -64,12 +64,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Charge.cs" />
     <Compile Include="GUIApi.cs" />
     <Compile Include="Rights.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SqlConnector.cs" />
     <Compile Include="Tabs.cs" />
-    <Compile Include="TestDAO.cs" />
     <Compile Include="UserStates.cs" />
     <Compile Include="Validation.cs" />
     <Page Include="MainWindow.xaml">

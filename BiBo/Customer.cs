@@ -34,6 +34,10 @@ namespace BiBo.Persons
 
         private string password;                        //Passwort des Nutzers
 
+        private DateTime createdAt;                        //Kunde erstellt am
+        private DateTime lastUpdate;                        //Kunde geändert am
+        private DateTime deletedAt;                        //Kunde ausgetreten am  
+
         private List<Exemplar> exemplarList;            // Liste aller vom Customer ausgeliehen Buechern
 
 
@@ -153,6 +157,24 @@ namespace BiBo.Persons
         {
           get { return this.password; }
           set { this.password = value; }
+        }
+
+        public DateTime CreatedAt
+        {
+          get { return this.createdAt; }
+          set { this.createdAt = value; }
+        }
+
+        public DateTime LastUpdate
+        {
+          get { return this.lastUpdate; }
+          set { this.lastUpdate = value; }
+        }
+
+        public DateTime DeletedAt
+        {
+          get { return this.deletedAt; }
+          set { this.deletedAt = value; }
         }
 
         public String getFullAdress()

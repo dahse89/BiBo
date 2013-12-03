@@ -69,5 +69,15 @@ namespace BiBo
         {
             return GUI.FindName(Name);
         }
+
+        public void UpdateCustomer(Customer customer)
+        {
+          //TODO : implement ^^
+        }
+
+        public void AddBook(Book book)
+        {
+          //TODO : implement ^^
+        }
     }
 }

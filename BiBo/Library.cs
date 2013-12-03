@@ -20,10 +20,9 @@ namespace BiBo
     private List<Book> bookList;
 
     //GUI Adapter
-    private GUIApi GUI;
+    private GUIApi gui;
 
     //DAO's
-    private TestDAO testDao;
     private CustomerDAO customerDAO;
     private BookDAO bookDAO;
 
@@ -34,13 +33,15 @@ namespace BiBo
 		//Konstruktor
 		public Library()
 		{
-            this.GUI = new GUIApi();
-          this.customerDAO = new CustomerDAO(GUI, this);
-          this.bookDAO = new BookDAO(GUI, this);
-          
+      this.gui = new GUIApi();
+      this.customerDAO = new CustomerDAO(gui, this);
+      this.bookDAO = new BookDAO(gui, this);   
 
-          //init Customer list
-          customerDAO.GetAllCustomer();
+      //init Customer list
+      customerDAO.GetAllCustomer();
+
+      //init Book list
+      bookDAO.getAllBooks();
 		}
 
 
@@ -81,11 +82,6 @@ namespace BiBo
       return customerDAO;
     }
 
-    public TestDAO getTestDAO()
-    {
-      return this.testDao;
-    }
-
     public BookDAO getBookDAO()
     {
       return this.bookDAO;
@@ -93,7 +89,7 @@ namespace BiBo
 
     public GUIApi getGuiApi()
     {
-      return this.GUI;
+      return this.gui;
     }
 
 
