@@ -1,11 +1,3 @@
-﻿/*
- * Erstellt mit SharpDevelop.
- * Benutzer: m588
- * Datum: 30.10.2013
- * Zeit: 16:55
- * 
- * Sie können diese Vorlage unter Extras > Optionen > Codeerstellung > Standardheader ändern.
- */
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -13,17 +5,17 @@ using System.Xml.Linq;
 
 namespace BiBo.SQL
 {
-	/// <summary>
-	/// Description of BookSql.
+        /// <summary>
+        /// Description of BookSql.
     /// </summary>
 
     // Yevgen: Mein Studio wird sämtliche Warnungen hier: 
     // To fix a violation of this rule, call Dispose on the object before all references to it are out of scope.
     // Im großen und ganzen musst du eine Fehleranalyse machen, das z.B. kein Objekt vorhanden ist apfangen
 
-	public class BookSQL : SqlConnector<Book>
-	{		
-		public override bool AddEntry(Book book)
+        public class BookSQL : SqlConnector<Book>
+        {                
+                public override bool AddEntry(Book book)
         {
             try
             {
@@ -44,8 +36,8 @@ namespace BiBo.SQL
                                   )   
                                   VALUES (
                                       NULL,  
-                                      '" + book.Author 		+ @"',
-                                      '" + book.Titel 		+ @"',
+                                      '" + book.Author                 + @"',
+                                      '" + book.Titel                 + @"',
                                       '" + book.SubjectArea + @"'
                                   );";
 
@@ -68,7 +60,7 @@ namespace BiBo.SQL
             return (ulong)lastRowID64;
         }
 
-		public bool DeleteEntry(Book book)
+                public bool DeleteEntry(Book book)
         {
           if (book.Author != "")
           {
@@ -93,8 +85,8 @@ namespace BiBo.SQL
 
             }
             return true;
-        }		
-		public override List<Book> GetAllEntrys()
+        }                
+                public override List<Book> GetAllEntrys()
         {
           List<Book> bookList = new List<Book>();
 
@@ -128,18 +120,18 @@ namespace BiBo.SQL
         public List<Exemplar> GetExemplarListOfBook(Book book)
         {
             ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
-        	  List<Exemplar> exemplars = new List<Exemplar>();
-        	  SQLiteCommand command = new SQLiteCommand(con);
+                  List<Exemplar> exemplars = new List<Exemplar>();
+                  SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "SELECT * FROM Exemplar WHERE bookId = " + book.BookId;
             SQLiteDataReader reader = command.ExecuteReader();
             
             if (reader.HasRows)
-          	{
-            	while (reader.Read())
+                  {
+                    while (reader.Read())
                 {
                   Exemplar ex = exDAO.GetInitEntryByReader(reader);
-		          exemplars.Add(ex);
-            	}
+                          exemplars.Add(ex);
+                    }
             }
             return exemplars;
             

@@ -43,7 +43,7 @@ namespace BiBo.SQL
                                       '" + exemplar.State.ToString() + @"',
                                       '" + exemplar.Signatur + @"',
                                       '" + exemplar.Accesser.ToString() + @"',
-                                      '" + "5" + @"',
+                                      '" + exemplar.Borrower.CustomerID + @"',
                                   );";
 
                     command.ExecuteNonQuery();
@@ -62,13 +62,24 @@ namespace BiBo.SQL
 
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "select last_insert_rowid()";
-            UInt64 lastRowID64 = (UInt64)command.ExecuteScalar();
+            UInt64 lastRowID64 = Convert.ToUInt64(command.ExecuteScalar());
+            // UInt64 lastRowID64 = (UInt64)command.ExecuteScalar(); // Fehler	System.InvalidCastException: Die angegebene Umwandlung ist ungültig.	
             return (ulong)lastRowID64;
         }
 
         public override bool UpdateEntry(Exemplar obj)
         {
-          throw new NotImplementedException();
+          SQLiteCommand command = new SQLiteCommand(con);
+          command.CommandText = @"UPDATE Exemplar SET
+                                    bookId = '" + obj.BookId + @"',
+                                    loanPeriod = '" + obj.LoanPeriod + @"',
+                                    state = '" + obj.State + @"',
+                                    signatur = '" + obj.Signatur + @"',
+                                    access = '" + obj.Accesser.ToString() + @"',
+                                    customerId = '" + obj.Borrower.CustomerID + @"',
+                                  WHERE id = '" + obj.ExemplarId + @"');";
+          command.ExecuteNonQuery();
+          return true;
         }
 
         public override bool DeleteEntryByIdList(List<ulong> l)
@@ -76,7 +87,7 @@ namespace BiBo.SQL
             foreach (ulong x in l)
             {
                 SQLiteCommand command = new SQLiteCommand(con);
-                command.CommandText = "DELETE FROM Customer WHERE id = '" + x + "';";
+                command.CommandText = "DELETE FROM Exemplar WHERE id = '" + x + "';";
                 command.ExecuteNonQuery();
 
             }
@@ -118,6 +129,23 @@ namespace BiBo.SQL
           }
           return exemplarList;
         }
+
+        public List<Exemplar> GetAllEntrysByCustomer(Customer customer)
+        {
+          List<Exemplar> exemplarList = new List<Exemplar>();
+          SQLiteCommand command = new SQLiteCommand(con);
+          command.CommandText = "SELECT * FROM Exemplar WHERE customerId = '" + customer.CustomerID + "'";
+          
+          SQLiteDataReader reader = command.ExecuteReader();
+          if (reader.HasRows)
+          {
+            while (reader.Read())
+            {
+              exemplarList.Add(InitEntryByReader(reader));
+            }
+          }
+          return exemplarList;
+        }
         protected override Exemplar InitEntryByReader(System.Data.SQLite.SQLiteDataReader reader)
         {
             Exemplar exemplar = new Exemplar();
@@ -149,22 +177,6 @@ namespace BiBo.SQL
         public Exemplar GetInitEntryByReader(SQLiteDataReader reader)
         {
             return InitEntryByReader(reader);
-        }
-
-        //new methods TODO : IMPLEMENT THIS SHIT
-
-        
-        public void ExtendLoanPeriodTo(Exemplar exemplar, DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
-        {
-        }
-
-        public void ReduceLoanPeriodTo(Exemplar exemplar, DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
-        {
-        }
-
-        public bool Borrow(Exemplar exemplar, DateTime dateBookWillBeBack, String cardId) //<--- object von exemplar muss mit rein
-        {
-            return true;
         }
     }   
 }
