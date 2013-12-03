@@ -30,8 +30,10 @@ namespace BiBo.SQL
                                         additionalRoad VARCHAR(100), 
                                         zipCode INTEGER(5), 
                                         town VARCHAR(100), 
-                                        country VARCHAR(100), 
-                                        chargeAccount INTEGER(100)
+                                        country VARCHAR(100),
+                                        rights VARCHAR(100),
+                                        password VARCHAR(100), 
+                                        chargeAccount INTEGER(100),
                                     );";
 
       SQLiteCommand command = new SQLiteCommand(customerSQL, con);

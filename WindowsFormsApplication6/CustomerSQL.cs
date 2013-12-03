@@ -34,7 +34,9 @@ namespace BiBo.SQL
                                                 additionalRoad,
                                                 zipCode,
                                                 town,
-                                                country
+                                                country,
+                                                rights,
+                                                password
                                             ) 
                                             VALUES (
                                                 NULL,
@@ -46,7 +48,9 @@ namespace BiBo.SQL
                                                 '" + customer.AdditionalRoad + @"',
                                                 '" + customer.ZipCode + @"',
                                                 '" + customer.Town + @"',
-                                                '" + customer.Country + @"'
+                                                '" + customer.Country + @"',
+                                                '" + customer.Right.ToString() + @"',
+                                                '" + customer.Password + @"'
                                              );";
 
               command.ExecuteNonQuery();
@@ -75,7 +79,9 @@ namespace BiBo.SQL
                                     additionalRoad = '" + customer.AdditionalRoad + @"',
                                     zipCode = '" + customer.ZipCode + @"',
                                     town = '" + customer.Town + @"',
-                                    country = '" + customer.Country + @"'
+                                    country = '" + customer.Country + @"',
+                                    rights = '" + customer.Right.ToString() + @"'
+                                    password = '" + customer.Password + @"'
                                   WHERE id = '" + customer.CustomerID + @"');";
           command.ExecuteNonQuery();
           return true;
@@ -132,6 +138,12 @@ namespace BiBo.SQL
             tmp.ZipCode = reader.GetOrdinal("zipCode").ToString();
             tmp.Town = reader.GetString(reader.GetOrdinal("town"));
             tmp.Country = reader.GetString(reader.GetOrdinal("country"));
+
+            string rightString = reader.GetString(reader.GetOrdinal("rights"));
+            Rights right = (Rights)Enum.Parse(typeof(Rights), rightString, true);
+            tmp.Right = right;
+
+            tmp.Password = reader.GetString(reader.GetOrdinal("password"));
 
             return tmp;
         }

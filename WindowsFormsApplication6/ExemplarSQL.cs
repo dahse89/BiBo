@@ -43,7 +43,7 @@ namespace BiBo.SQL
                                       '" + exemplar.State.ToString() + @"',
                                       '" + exemplar.Signatur + @"',
                                       '" + exemplar.Accesser.ToString() + @"',
-                                      '" + "5" + @"',
+                                      '" + exemplar.Borrower.CustomerID + @"',
                                   );";
 
                     command.ExecuteNonQuery();
@@ -69,7 +69,17 @@ namespace BiBo.SQL
 
         public override bool UpdateEntry(Exemplar obj)
         {
-          throw new NotImplementedException();
+          SQLiteCommand command = new SQLiteCommand(con);
+          command.CommandText = @"UPDATE Exemplar SET
+                                    bookId = '" + obj.BookId + @"',
+                                    loanPeriod = '" + obj.LoanPeriod + @"',
+                                    state = '" + obj.State + @"',
+                                    signatur = '" + obj.Signatur + @"',
+                                    access = '" + obj.Accesser.ToString() + @"',
+                                    customerId = '" + obj.Borrower.CustomerID + @"',
+                                  WHERE id = '" + obj.ExemplarId + @"');";
+          command.ExecuteNonQuery();
+          return true;
         }
 
         public override bool DeleteEntryByIdList(List<ulong> l)
@@ -150,22 +160,6 @@ namespace BiBo.SQL
         public Exemplar GetInitEntryByReader(SQLiteDataReader reader)
         {
             return InitEntryByReader(reader);
-        }
-
-        //new methods TODO : IMPLEMENT THIS SHIT
-
-        
-        public void ExtendLoanPeriodTo(Exemplar exemplar, DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
-        {
-        }
-
-        public void ReduceLoanPeriodTo(Exemplar exemplar, DateTime dateBookWillBeBack) //<--- object von exemplar muss mit rein
-        {
-        }
-
-        public bool Borrow(Exemplar exemplar, DateTime dateBookWillBeBack, String cardId) //<--- object von exemplar muss mit rein
-        {
-            return true;
         }
     }   
 }
