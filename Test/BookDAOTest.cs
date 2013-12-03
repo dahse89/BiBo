@@ -13,8 +13,8 @@ namespace Test
         [TestMethod()]
         public void AddBookTest()
         {
-            Form1 gui = new Form1();
-            Library lib = new Library(gui);
+            GUIApi gui = new GUIApi();
+            Library lib = new Library();
             BookDAO dao = new BookDAO(gui, lib);
 
             ulong bookId = 100;                           // ID

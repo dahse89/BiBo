@@ -5,6 +5,7 @@
 # Ignore Visual Studio by Vico
 WindowsFormsApplication6/bin/Debug/*.exe
 BiBo/bin/Debug/*.exe
+BiBo/bin/Debug/BiBo.vshost.exe.manifest
 Test/bin/Debug/Test.dll
 Test/bin/Debug/*.exe
 

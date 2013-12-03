@@ -27,6 +27,10 @@ namespace BiBo.DAO
       this.bookDAO = new BookDAO(gui, lib);
     }
 
+    public CustomerDAO()
+    {
+    }
+
     public List<Customer> GetAllCustomer()
     {
         if (lib.CustomerList == null)

@@ -9,6 +9,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using BiBo;
 
 namespace BiBo.SQL
 {
@@ -42,7 +43,12 @@ namespace BiBo.SQL
 		{
 			return new CustomerSQL();
 		}
-		
+
+    public static ChargeSQL GetChargeSqlInstance()
+    {
+      return new ChargeSQL();
+    }
+
 		public static ExemplarSQL GetExemplarSqlInstance()
 		{
 			return new ExemplarSQL();
