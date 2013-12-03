@@ -64,6 +64,7 @@ namespace BiBo.Persons
         public string FirstName
         {
             get { return this.firstName; }
+            set { this.firstName = value; }
         }
         public string LastName
         {
@@ -73,6 +74,7 @@ namespace BiBo.Persons
         public DateTime BirthDate
         {
             get { return this.birthDate; }
+            set { this.birthDate = value; }
         }
 
         public string Street

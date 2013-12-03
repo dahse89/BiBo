@@ -111,7 +111,7 @@ namespace BiBo.DAO
         exemplar.LoanPeriod = borrowTill;
 
         //on db-layer
-        // exemplarSql.ExtendLoanPeriodTo(exemplar, borrowTill); //<-- noch nicht implementiert
+        //exemplarSql.ExtendLoanPeriodTo(exemplar, borrowTill); //<-- noch nicht implementiert
 
         //increment countBorrow
         exemplar.CountBorrow++;
