@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 using System.Data.SqlTypes;
+using BiBo.Persons;
 
 namespace BiBo.SQL
 {
-  public class ChargeAccountSQL : SqlConnector<ChargeAccountSQL>
+  public class ChargeAccountSQL : SqlConnector<ChargeAccount>
     {
       public override bool AddEntry(ChargeAccount obj)
       {
@@ -61,7 +62,7 @@ namespace BiBo.SQL
                                     customerId = '" + obj.Customer.CustomerID + @"',
                                     changedAt = '" + DateTime.Now + @"',
                                     currentValue = '0',
-                                  WHERE ID = '" + obj.id + @"');";
+                                  WHERE ID = '1');";
         command.ExecuteNonQuery();
         return true;
       }
@@ -73,7 +74,7 @@ namespace BiBo.SQL
 
       protected override ChargeAccount InitEntryByReader(SQLiteDataReader reader)
       {
-        ChargeAccount account;
+        ChargeAccount account = new ChargeAccount(null);
         return account;
       }
     }
