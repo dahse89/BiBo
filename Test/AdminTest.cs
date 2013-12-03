@@ -44,9 +44,7 @@ namespace Test
         public void changeOpeningTimeTest()
         {
             string openingTime = "";
-
-            Form1 gui = new Form1();
-            Library lib = new Library(gui);
+            Library lib = new Library();
 
             Assert.IsTrue(lib.OpeningTime == openingTime);
 
@@ -57,8 +55,7 @@ namespace Test
         public void changeFeeTest()
         {
             double fee = 1.00;
-            Form1 gui = new Form1();
-            Library lib = new Library(gui);
+            Library lib = new Library();
 
             Assert.IsTrue(lib.Fee == fee);
 

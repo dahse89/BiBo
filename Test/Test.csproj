@@ -70,16 +70,19 @@
     <Compile Include="ValidationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WindowsFormsApplication6\BiBo.csproj">
-      <Project>{78F3E53A-49E8-41E1-9215-5E1E053897C4}</Project>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Testverweise\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BiBo\BiBo.csproj">
+      <Project>{57F6030E-E910-40DF-9D36-EDF0DFC8076A}</Project>
       <Name>BiBo</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Shadow Include="Testverweise\WindowsFormsApplication6.accessor" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
