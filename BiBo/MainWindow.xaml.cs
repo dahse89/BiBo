@@ -29,9 +29,6 @@ namespace BiBo
 
         public MainWindow()
         {
-          SQL.InitDbSQL x = new SQL.InitDbSQL();
-          x.createAllTables();
-
             //TODO: Only uncomment for first start!!!
             //SQL.InitDbSQL x = new SQL.InitDbSQL();
             //x.createAllTables();
