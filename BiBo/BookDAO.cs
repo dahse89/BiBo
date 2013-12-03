@@ -111,7 +111,7 @@ namespace BiBo.DAO
         exemplar.LoanPeriod = borrowTill;
 
         //on db-layer
-        //exemplarSql.ExtendLoanPeriodTo(exemplar, borrowTill); //<-- noch nicht implementiert
+        exemplarSql.UpdateEntry(exemplar);
 
         //increment countBorrow
         exemplar.CountBorrow++;
@@ -128,6 +128,7 @@ namespace BiBo.DAO
 
     //return the number of available exemplars of a book
     //List of Exemplars in an object of Book must be filled --> method FillExemplarListOfBook must run before
+    //TODO: noch falsche Logik
     public int GetNumberOfAvailableExemplars(Book book)
     {
       int numberOfAvailableExemplars = 0;
