@@ -23,11 +23,7 @@ namespace Test
             Assert.IsTrue(cus.LastName == lastName);
             Assert.IsTrue(cus.BirthDate == birthDate);
 
-            // string street = "Straße 342";
-            // string streetNumber = "1a";
-            // string town = "Berlin";
-
-            string hashString = firstName + lastName + birthDate; //+ street + streetNumber + town;
+            string hashString = firstName + lastName + birthDate;
             hashString.GetHashCode();
 
             Assert.AreEqual(cus.GetHashCode(), hashString.GetHashCode());
@@ -54,6 +50,20 @@ namespace Test
             string zipCode = "13589";
             string town = "Berlin";
             string country = "Deutschland";
+
+            cus.Street = street;
+            cus.StreetNumber = streetNumber;
+            cus.AdditionalRoad = additionalRoad;
+            cus.ZipCode = zipCode;
+            cus.Town = town;
+            cus.Country = country;
+
+            Assert.IsTrue(cus.Street == street);
+            Assert.IsTrue(cus.StreetNumber == streetNumber);
+            Assert.IsTrue(cus.AdditionalRoad == additionalRoad);
+            Assert.IsTrue(cus.ZipCode == zipCode);
+            Assert.IsTrue(cus.Town == town);
+            Assert.IsTrue(cus.Country == country);
 
             string adress = street + " " + streetNumber + "\n" +
                 (additionalRoad == "" ? "" : (additionalRoad + "\n")) +
