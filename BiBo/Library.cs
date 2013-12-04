@@ -44,6 +44,19 @@ namespace BiBo
       bookDAO.getAllBooks();
 		}
 
+    public Library(GUIApi api)
+    {
+      this.gui = api;
+      this.customerDAO = new CustomerDAO(gui, this);
+      this.bookDAO = new BookDAO(gui, this);
+
+      //init Customer list
+      customerDAO.GetAllCustomer();
+
+      //init Book list
+      bookDAO.getAllBooks();
+    }
+
 
     //Property Deklaration
     public double Fee

@@ -38,6 +38,17 @@ namespace BiBo
             initMainWindow();
         }
 
+        public MainWindow(GUIApi api)
+        {
+          InitializeComponent();
+          initElements();
+          lib = new Library(api);
+          foreach (Customer cust in lib.CustomerList)
+          {
+            this.lib.getGuiApi().AddCustomer(cust);
+          }
+        }
+
         public void initMainWindow()
         {
             initElements();

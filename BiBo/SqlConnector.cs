@@ -9,6 +9,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
+
 using BiBo;
 
 namespace BiBo.SQL
@@ -24,8 +26,15 @@ namespace BiBo.SQL
 		protected SqlConnector()
 		{
 		  if(con == null){
+        
 		  	con = new SQLiteConnection("Data Source=" + DATABASE_NAME);
           	con.Open();
+            if (new FileInfo("Database.dat").Length == 0)
+            {
+              BiBo.SQL.InitDbSQL x = new InitDbSQL();
+              x.createAllTables();
+              x.createDummyData();
+            }
 		  }
 		}
 		

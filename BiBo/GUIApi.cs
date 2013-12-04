@@ -17,6 +17,11 @@ namespace BiBo
             this.GUI = Application.Current.Windows.Cast<Window>().FirstOrDefault(window => window is MainWindow) as MainWindow;            
         }
 
+        public GUIApi(bool test)
+        {
+          GUI = new MainWindow(this);
+        }
+
         public void setLoggedInUser(Customer customer)
         {
             (load("MainUserName") as Label).Content = customer.FirstName + " " + customer.LastName;

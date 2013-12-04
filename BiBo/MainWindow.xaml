@@ -11,7 +11,7 @@
    
    
   
-    <Grid Visibility="Collapsed">
+    <Grid Visibility="Visible">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />

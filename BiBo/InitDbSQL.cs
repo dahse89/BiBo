@@ -83,7 +83,7 @@ namespace BiBo.SQL
       
       con.Close();
 
-      if (con.State.ToString() == "Close")
+      if (con.State.ToString() == "Closed")
       {
         return true;
       }

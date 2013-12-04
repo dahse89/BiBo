@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BiBo.DAO;
-using BiBo;
 using System;
 using BiBo.SQL;
 using System.Collections.Generic;
 
-namespace Test
+namespace BiBo.Test
 {
     [TestClass()]
     public class BookDAOTest
@@ -13,8 +12,8 @@ namespace Test
         [TestMethod()]
         public void AddBookTest()
         {
-            GUIApi gui = new GUIApi();
-            Library lib = new Library();
+            GUIApi gui = new GUIApi(true);
+            BiBo.Library lib = new BiBo.Library();
             BookDAO dao = new BookDAO(gui, lib);
 
             ulong bookId = 100;                           // ID
