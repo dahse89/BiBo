@@ -139,15 +139,27 @@ namespace BiBo.DAO
 
     public void SetPassword(Customer cust, string password)
     {
-      MD5 md5 = MD5.Create();
-      byte[] output = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
-      StringBuilder builder = new StringBuilder();
 
-      foreach (byte by in output)
-      {
-        builder.Append(by.ToString("x2"));
-      }
-      cust.Password = builder.ToString();
+        cust.Password = getMD5(password);
+    }
+
+    public bool checkPass(Customer customer, String pass){
+        return getMD5(pass) == customer.Password;
+    }
+
+    //musste das mal splitten
+    private String getMD5(String from)
+    {
+        MD5 md5 = MD5.Create();
+        byte[] output = md5.ComputeHash(Encoding.UTF8.GetBytes(from));
+        StringBuilder builder = new StringBuilder();
+
+        foreach (byte by in output)
+        {
+            builder.Append(by.ToString("x2"));
+        }
+
+        return builder.ToString();
     }
 
     public bool BorrowExemplar(DateTime dateBookWillBeBack, Book book, Customer customer)

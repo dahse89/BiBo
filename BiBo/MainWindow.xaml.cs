@@ -16,6 +16,7 @@ using System.IO;
 using System.Data;
 using System.Collections;
 using System.Windows.Controls.Primitives;
+using BiBo.Exception;
 
 namespace BiBo
 {
@@ -243,6 +244,73 @@ namespace BiBo
         private void ClearUserAdd_Click(object sender, RoutedEventArgs e)
         {
             clearAddCustomer();
+        }
+
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            String IdString = (FindName("LoginName") as TextBox).Text;
+            ulong id = 0;
+
+            String pass = (FindName("LoginPass") as PasswordBox).Password;
+            Customer potentialLogin;
+
+            if (Validation.isNumeric(IdString))
+            {
+                id = (ulong)Convert.ToInt64(IdString);
+                try
+                {
+                    potentialLogin = lib.getCustomerDAO().GetCustomerById(id);
+                }
+                catch (CustomerNotFoundException cnfe) {
+                    MessageBox.Show(cnfe.Message);
+                    return;
+                }
+
+                if (lib.getCustomerDAO().checkPass(potentialLogin,pass))
+                {
+                    //login
+                    login(potentialLogin); 
+                    return;
+                }
+                MessageBox.Show("Ungültiges Password");
+                return;
+            }
+            MessageBox.Show("Die ID muss eine Zahl sein");
+        }
+
+        private void login(Customer x)
+        {
+            switch (x.Right)
+            {
+                case Rights.ADMINISTRATOR:
+                    admin_login(x);
+                    break;
+                case Rights.EMPLOYEE:
+                    employee_login(x);
+                    break;
+                case Rights.CUSTOMER:
+                    customer_login(x);
+                    break;
+            }
+        }
+
+        private void admin_login(Customer admin)
+        {
+            employee_login(admin);
+        }
+
+        private void employee_login(Customer employee)
+        {
+            (FindName("EmployeeArea") as Grid).Visibility = Visibility.Visible;
+            (FindName("Login") as Grid).Visibility = Visibility.Collapsed;
+        }
+
+        private void customer_login(Customer customer)
+        {
+
         }
         
 

@@ -8,7 +8,7 @@
         <SolidColorBrush x:Key="GrayGridLine" Color="#cccccccc" />
     </Window.Resources>
   <Grid>
-        <Grid>
+        <Grid Name="Login">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -38,13 +38,13 @@
                 </Grid.Background>
                 <Label Grid.Column="1" Grid.Row="1">Kunden ID:</Label>
                 <Label Grid.Column="1" Grid.Row="2">Passwort:</Label>
-                <TextBox VerticalAlignment="Top" Height="30" FontSize="20" Name="LoginNane"  Grid.Column="2" Grid.Row="1"></TextBox>
+                <TextBox VerticalAlignment="Top" Height="30" FontSize="18" Name="LoginName"  Grid.Column="2" Grid.Row="1"></TextBox>
                 <PasswordBox VerticalAlignment="Top" Height="30" FontSize="20" Name="LoginPass" Grid.Column="2" Grid.Row="2"></PasswordBox>
-                <Button Width="80" HorizontalAlignment="Left" Name="LoginButton" Grid.Column="1" Grid.Row="3" Height="30" VerticalAlignment="Top">einloggen</Button>
+                <Button Width="80" HorizontalAlignment="Left" Name="LoginButton" Grid.Column="1" Grid.Row="3" Height="30" VerticalAlignment="Top" Click="Login_Click">einloggen</Button>
                 <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Woher bekomme ich einen Login?" TextDecorations="Underline"/>
             </Grid>
         </Grid>
-        <Grid Visibility="Collapsed">
+        <Grid Name="EmployeeArea"  Visibility="Collapsed">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
