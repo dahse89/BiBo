@@ -35,8 +35,13 @@ namespace BiBo
         public MainWindow()
         {
             //TODO: remove test
-            //createRandomBooks(); return;
-
+            //TODO: only uncomment when update Database
+            /*
+            InitDbSQL x = new InitDbSQL();
+            x.createAllTables();
+            x.createDummyData();
+            createRandomBooks(); return;
+            */
             InitializeComponent();
             initMainWindow();
         }

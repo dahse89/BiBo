@@ -26,9 +26,15 @@ namespace BiBo.SQL
               command.CommandText = @"INSERT INTO
                                             Customer (
                                                 id,
+                                                cardId,
+                                                cardValidUntil,
                                                 firstName, 
                                                 lastName, 
                                                 birthDate,
+                                                email,
+                                                mobileNumber,
+                                                createdAt,
+                                                lastUpdate,
                                                 street,
                                                 streetNumber,
                                                 additionalRoad,
@@ -40,9 +46,15 @@ namespace BiBo.SQL
                                             ) 
                                             VALUES (
                                                 NULL,
+                                                '" + customer.Card.CardID + @"',
+                                                '" + customer.Card.CardValidUntil + @"',
                                                 '" + customer.FirstName + @"',
                                                 '" + customer.LastName  + @"',
                                                 '" + customer.BirthDate.ToShortDateString() + @"',
+                                                '" + customer.EMailAddress + @"',
+                                                '" + customer.MobileNumber + @"',
+                                                '" + customer.CreatedAt + @"',
+                                                '" + customer.LastUpdate + @"',   
                                                 '" + customer.Street + @"',
                                                 '" + customer.StreetNumber + @"',
                                                 '" + customer.AdditionalRoad + @"',
@@ -71,7 +83,12 @@ namespace BiBo.SQL
         public override bool UpdateEntry(Customer customer)
         {
           SQLiteCommand command = new SQLiteCommand(con);
-          command.CommandText = @"UPDATE Customer SET 
+          command.CommandText = @"UPDATE Customer SET
+                                    cardValidUntil = '" + customer.Card.CardValidUntil + @"',
+                                    email = '" + customer.EMailAddress + @"',
+                                    mobileNumber = '" + customer.MobileNumber + @"',
+                                    createdAt = '" + customer.CreatedAt + @"',
+                                    lastUpdate = '" + customer.LastUpdate + @"',
                                     firstName = '" + customer.FirstName + @"',
                                     lastName = '" + customer.LastName + @"',
                                     street = '" + customer.Street + @"',
@@ -130,7 +147,10 @@ namespace BiBo.SQL
             DateTime birthDate = DateTime.Parse(reader.GetString(reader.GetOrdinal("birthDate")));
 
             tmp = new Customer(id, firstName, lastName, birthDate);
-                  
+            
+            tmp.EMailAddress = reader.GetString(reader.GetOrdinal("email"));
+            tmp.MobileNumber = reader.GetString(reader.GetOrdinal("mobileNumber"));
+                
             string street = reader.GetString(reader.GetOrdinal("street"));
             tmp.Street = street;
             tmp.StreetNumber = reader.GetString(reader.GetOrdinal("streetNumber"));
@@ -138,6 +158,15 @@ namespace BiBo.SQL
             tmp.ZipCode = reader.GetOrdinal("zipCode").ToString();
             tmp.Town = reader.GetString(reader.GetOrdinal("town"));
             tmp.Country = reader.GetString(reader.GetOrdinal("country"));
+
+            tmp.LastUpdate = DateTime.Parse(reader.GetString(reader.GetOrdinal("lastUpdate")));
+            tmp.CreatedAt = DateTime.Parse(reader.GetString(reader.GetOrdinal("createdAt")));
+
+            int cardId = reader.GetInt32(reader.GetOrdinal("cardId"));
+
+            string cardValue = reader.GetString(reader.GetOrdinal("cardValidUntil"));
+
+            tmp.Card = new Card(cardId,cardValue);
 
             string rightString = reader.GetString(reader.GetOrdinal("rights"));
             Rights right = (Rights)Enum.Parse(typeof(Rights), rightString, true);

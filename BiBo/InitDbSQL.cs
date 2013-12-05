@@ -22,9 +22,15 @@ namespace BiBo.SQL
       string customerSQL = @"CREATE TABLE IF NOT EXISTS
                                     Customer (
                                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                        cardId INTEGER NOT NULL,
+                                        cardValidUntil VARCHAR(255),
                                         firstName VARCHAR(100) NOT NULL,
                                         lastName VARCHAR(100) NOT NULL,
                                         birthDate DATETIME,
+                                        email VARCHAR(100),
+                                        mobileNumber VARCHAR(100),
+                                        createdAt DATETIME,
+                                        lastUpdate DATETIME,
                                         street VARCHAR(100),
                                         streetNumber VARCHAR(10),
                                         additionalRoad VARCHAR(100), 
@@ -118,6 +124,8 @@ namespace BiBo.SQL
         customer.BirthDate = new DateTime(r.Next(1900, 2000), r.Next(1, 12), r.Next(1, 28));
         customer.Country = "Deutschland";
         customer.Town = names[r.Next(0, names.Length - 1)] + "stadt";
+        customer.Card = new Card(i, "Bis zur unendlichkeit und noch viel,viel weiter!");
+
         dao.SetPassword(customer, "1234");
 
         SQL.CustomerSQL customerSQL = new SQL.CustomerSQL();
