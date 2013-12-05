@@ -18,13 +18,17 @@ namespace BiBo.DAO
     private Library lib;
     private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
     private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+    private ChargeAccountDAO chargeAccountSql;
     private BookDAO bookDAO;
+    private ExemplarDAO exemplarDAO;
 
     public CustomerDAO(GUIApi gui, Library lib)
     {
       this.gui = gui;
       this.lib = lib;
       this.bookDAO = new BookDAO(gui, lib);
+      this.chargeAccountSql = new ChargeAccountDAO(gui, lib);
+      this.exemplarDAO = new ExemplarDAO(gui, lib);
     }
 
     public CustomerDAO()
@@ -35,7 +39,12 @@ namespace BiBo.DAO
     {
         if (lib.CustomerList == null)
         {
-          //init
+          //initialize the Lists when start the application
+          //List<Customer> customerList = customerSql.GetAllEntrys();
+          //List<ChargeAccount> chargeAccountList = chargeAccountSql.GetAllEntrys();
+          List<Exemplar> exemplarList = exemplarSql.GetAllEntrys();
+          //List<ChargeAccount> chargeAccountList = chargeAccountSql.GetAllChargeAccounts();
+
           lib.CustomerList = customerSql.GetAllEntrys();            
         }
         return lib.CustomerList;

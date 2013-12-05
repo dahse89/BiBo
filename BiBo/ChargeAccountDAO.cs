@@ -11,14 +11,26 @@ namespace BiBo.DAO
   public class ChargeAccountDAO
   {
     GUIApi gui;
-    //public ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();
+    Library lib;
+    public ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();
 
-    public ChargeAccountDAO(GUIApi gui)
+    public ChargeAccountDAO(GUIApi gui, Library lib)
     {
+      this.lib = lib;
       this.gui = gui;
     }
 
-    public List<Charge> GetChargeAccountList(Customer customer)
+    public List<ChargeAccount> GetAllChargeAccounts()
+    {
+      if (lib.ChargeAccountList == null)
+      {
+        return lib.ChargeAccountList = chargeAccountSql.GetAllEntrys();
+      }
+      else
+        return lib.ChargeAccountList;
+    }
+
+    public List<Charge> GetChargeAccountToCustomer(Customer customer)
     {
       return customer.ChargeAccount.Charges;
     }

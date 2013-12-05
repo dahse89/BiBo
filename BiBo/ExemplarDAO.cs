@@ -8,12 +8,25 @@ namespace BiBo.DAO
 {
   public class ExemplarDAO
   {
-    MainWindow GUI;
+    GUIApi gui;
+    Library lib;
+
     public ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
 
-    public ExemplarDAO(MainWindow GUI)
+    public ExemplarDAO(GUIApi gui, Library lib)
     {
-      this.GUI = GUI;
+      this.lib = lib;
+      this.gui = gui;
+    }
+
+    public List<Exemplar> GetAllExemplars()
+    {
+      if (lib.ExemplarList == null)
+      {
+        return lib.ExemplarList = exemplarSql.GetAllEntrys();
+      }
+      else
+        return lib.ExemplarList;
     }
   }
 }

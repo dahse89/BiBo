@@ -20,6 +20,8 @@ namespace BiBo
     //Lists of the important objects
     private List<Customer> customerList;
     private List<Book> bookList;
+    private List<Exemplar> exemplarList;
+    private List<ChargeAccount> chargeAccountList;
 
     //GUI Adapter
     private GUIApi gui;
@@ -97,6 +99,17 @@ namespace BiBo
       set { bookList = value; }
     }
 
+    public List<Exemplar> ExemplarList
+    {
+      get { return exemplarList; }
+      set { exemplarList = value; }
+    }
+
+    public List<ChargeAccount> ChargeAccountList
+    {
+      get { return chargeAccountList; }
+      set { chargeAccountList = value; }
+    }
 
     //Methods
     public CustomerDAO getCustomerDAO()
