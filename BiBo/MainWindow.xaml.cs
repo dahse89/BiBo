@@ -50,6 +50,7 @@ namespace BiBo
             //TODO: Version has been added to Login Box
             //(FindName("Version") as TextBox).Text = this.currentVersion;
 
+            updater.checkForNewVersion();
             InitializeComponent();
             initMainWindow();
             
