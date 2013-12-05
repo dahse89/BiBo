@@ -65,7 +65,7 @@ namespace BiBo
 
             foreach (Book book in lib.BookList)
             {                
-                //this.lib.getGuiApi().Add_c_Book(book);
+                this.lib.getGuiApi().Add_c_Book(book);
             }
         }
 
@@ -397,6 +397,11 @@ namespace BiBo
 
         private void ToolBarSearch_c_MouseUp(object sender, MouseButtonEventArgs e)
         {
+
+            Boolean useTitle = (bool) (FindName("cCboxTitle") as CheckBox).IsChecked;
+            Boolean useAuthor = (bool)(FindName("cCboxAuthor") as CheckBox).IsChecked;
+           
+
             String searchFor = (FindName("cToolBarSearch") as TextBox).Text;
 
             DataGrid table = FindName("cBookTable") as DataGrid;
@@ -418,14 +423,41 @@ namespace BiBo
             {
                 id = (ulong)Convert.ToInt64(dt.Rows[i]["ID"] as String);
                 tmp = lib.getBookDAO().GetBookById(id);
-                if (tmp.ToString().ToUpper().Contains(searchFor.ToUpper()))
+
+                if (useTitle && useAuthor)
                 {
-                    newDt.Rows.Add(
-                        tmp.BookId,
-                        tmp.Author,
-                        tmp.Titel
-                    );
+                    if ((tmp.Author + "" + tmp.Titel).ToUpper().Contains(searchFor.ToUpper()))
+                    {
+                        newDt.Rows.Add(
+                            tmp.BookId,
+                            tmp.Author,
+                            tmp.Titel
+                        );
+                    }
                 }
+                else if (useTitle)
+                {
+                    if ((tmp.Titel).ToUpper().Contains(searchFor.ToUpper()))
+                    {
+                        newDt.Rows.Add(
+                            tmp.BookId,
+                            tmp.Author,
+                            tmp.Titel
+                        );
+                    }
+                }
+                else if(useAuthor)
+                {
+                    if ((tmp.Author).ToUpper().Contains(searchFor.ToUpper()))
+                    {
+                        newDt.Rows.Add(
+                            tmp.BookId,
+                            tmp.Author,
+                            tmp.Titel
+                        );
+                    }
+                }
+               
 
             }
             table.DataContext = newDt;
