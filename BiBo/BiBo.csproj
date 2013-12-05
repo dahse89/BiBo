@@ -159,7 +159,16 @@
     <Resource Include="Images\delete.png" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Images\library.png" />
+    <Resource Include="Images\library.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bgjpg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Images\splash.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

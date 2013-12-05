@@ -304,11 +304,7 @@ namespace BiBo
 
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-          //resize to full
-        }
-
+      
      
        
     }
