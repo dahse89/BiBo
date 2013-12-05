@@ -61,10 +61,11 @@ namespace BiBo
                 this.lib.getGuiApi().AddCustomer(cust);
             }
 
+            
+
             foreach (Book book in lib.BookList)
-            {
-                
-                this.lib.getGuiApi().Add_c_Book(book);
+            {                
+                //this.lib.getGuiApi().Add_c_Book(book);
             }
         }
 
