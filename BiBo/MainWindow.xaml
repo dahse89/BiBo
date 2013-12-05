@@ -104,6 +104,7 @@
                             <Image Margin="5,0" Height="16" Width="16" ToolTip="Zeige alle Bücher" Source="/BiBo;component/Images/all.png" MouseUp="ToolBarShowAllBook_c_MouseUp"></Image>
                             <CheckBox Name="cCboxTitle" IsChecked="True">nach Title suchen</CheckBox>
                             <CheckBox Name="cCboxAuthor" IsChecked="True">nach Autor suchen</CheckBox>
+                            <Image Margin="5,0" Height="16" Width="16" ToolTip="Buch vorbestellen" Source="/BiBo;component/Images/star.png"></Image>
                         </ToolBar>
                   
                         <DataGrid Grid.ColumnSpan="2" Name="cBookTable" Grid.Row="2" ItemsSource="{Binding}" IsReadOnly="True" SelectionMode="Single"
