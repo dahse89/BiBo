@@ -336,7 +336,11 @@ namespace BiBo
             (FindName("LoginName") as TextBox).Text = "";
             (FindName("LoginPass") as PasswordBox).Password = "";
         }
-        
+
+        private void LoginInfo_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Bitte wenden Sie sich an einen unserer Mitarbeiter. Dieser kann Ihnen über Ihren Zugang informieren");
+        }
 
         private void ToolBarSearch_MouseUp(object sender, MouseButtonEventArgs e)
         {
