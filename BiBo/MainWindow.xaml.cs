@@ -22,6 +22,7 @@ using System.Text.RegularExpressions;
 using System.Net;
 using BiBo.DAO;
 using BiBo.SQL;
+using System.Diagnostics;
 
 namespace BiBo
 {
@@ -36,11 +37,11 @@ namespace BiBo
 
         public MainWindow()
         {
+            Debug.WriteLine("Applicaion Beginn");
             AppSettingsReader config = new AppSettingsReader();
             bool migrateDB = (bool)config.GetValue("MigrateDB", typeof(bool));
             bool ImportDummyData = (bool)config.GetValue("ImportDummyData", typeof(bool));
             InitDbSQL x = new InitDbSQL();
-
             if (migrateDB == true) { x.createAllTables(); }
             if (ImportDummyData == true){x.createDummyData();createRandomBooks();}
 
@@ -51,8 +52,12 @@ namespace BiBo
             //(FindName("Version") as TextBox).Text = this.currentVersion;
 
             updater.checkForNewVersion();
+            Debug.WriteLine("Update Finish");
             InitializeComponent();
+            Debug.WriteLine("InitializeComponent Finish");
+            //TODO: An dieser Stelle bricht die Compalierte Exe immer ab, wenn man sie von der Webseite bezieht
             initMainWindow();
+            Debug.WriteLine("initMainWindow Finish");
             
         }
 
