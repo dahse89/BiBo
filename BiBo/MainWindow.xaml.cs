@@ -307,6 +307,7 @@ namespace BiBo
             (FindName("EmployeeArea") as Grid).Visibility = Visibility.Visible;
             (FindName("Login") as Grid).Visibility = Visibility.Collapsed;
             lib.getGuiApi().setLoggedInUser(employee);
+            lib.LoggedUser = employee;
         }
 
         private void customer_login(Customer customer)
@@ -328,6 +329,14 @@ namespace BiBo
                 this.lib.getGuiApi().AddCustomer(cust);
             }            
         }
+
+        private void Employee_Logout_MouseUp(object sender, MouseButtonEventArgs e) {
+            (FindName("EmployeeArea") as Grid).Visibility = Visibility.Collapsed;
+            (FindName("Login") as Grid).Visibility = Visibility.Visible;
+            (FindName("LoginName") as TextBox).Text = "";
+            (FindName("LoginPass") as PasswordBox).Password = "";
+        }
+        
 
         private void ToolBarSearch_MouseUp(object sender, MouseButtonEventArgs e)
         {

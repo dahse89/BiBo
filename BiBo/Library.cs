@@ -15,6 +15,8 @@ namespace BiBo
     private double fee;           //Gebuehren
     private string openingTime;  //Oeffnungszeiten
 
+    private Customer loggedUser;
+
     //Lists of the important objects
     private List<Customer> customerList;
     private List<Book> bookList;
@@ -30,9 +32,9 @@ namespace BiBo
   
     
 
-		//Konstruktor
-		public Library()
-		{
+	//Konstruktor
+	public Library()
+	{
       this.gui = new GUIApi();
       this.customerDAO = new CustomerDAO(gui, this);
       this.bookDAO = new BookDAO(gui, this);   
@@ -42,7 +44,7 @@ namespace BiBo
 
       //init Book list
       bookDAO.getAllBooks();
-		}
+    }
 
     public Library(GUIApi api)
     {
@@ -59,6 +61,13 @@ namespace BiBo
 
 
     //Property Deklaration
+    public Customer LoggedUser
+    {
+        get { return loggedUser; }
+        set { loggedUser = value; }
+    }
+
+
     public double Fee
     {
       get { return fee; }
