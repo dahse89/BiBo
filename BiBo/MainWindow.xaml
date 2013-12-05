@@ -81,11 +81,10 @@
                         </VisualBrush>
                     </Border.BorderBrush>
                 </Border>
-
-                <Image Grid.Row="0" Margin="19" Height="64" HorizontalAlignment="Left" Name="cCustomerMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/account.png" />
-                <Image MouseUp="MouseUp_BooksImage" Grid.Row="0" Margin="88 19 0 19" Height="64" HorizontalAlignment="Left" Name="cBooksMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/books.png" />
-                <Image Grid.Row="0" Margin="157 19 0 19" Height="64" HorizontalAlignment="Left" Name="cBorrowMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/borrowicon.png" />
-
+                
+                <Image MouseUp="MouseUp_BooksImage" Grid.Row="0" Margin="20 19 0 19" Height="64" HorizontalAlignment="Left" Name="cBooksMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/books.png" />
+                <Image MouseUp="MouseUp_BooksImage" Grid.Row="0" Margin="88 19 0 19" Height="64" HorizontalAlignment="Left" Name="cAccountsMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/account.png" />
+                
                 <Image Name="cImageLogout" MouseUp="Customer_Logout_MouseUp" Grid.Row="0" Source="/BiBo;component/Images/logout.png" HorizontalAlignment="Right" Margin="0 19 30 19"></Image>
                 <Grid  Name="cMainPanel" Grid.Row="1">
 
