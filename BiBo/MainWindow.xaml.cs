@@ -34,7 +34,7 @@ namespace BiBo
 
         public MainWindow()
         {
-            //TODO: Only uncomment for first start!!!
+            //TODO: remove test
             //createRandomBooks(); return;
 
             InitializeComponent();
@@ -341,6 +341,7 @@ namespace BiBo
         {
             (FindName("CustomerArea") as Grid).Visibility = Visibility.Visible;
             (FindName("Login") as Grid).Visibility = Visibility.Collapsed;
+            lib.getGuiApi().setLoggedInUser(customer);
             lib.LoggedUser = customer;
             
         }

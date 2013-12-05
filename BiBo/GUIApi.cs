@@ -24,12 +24,17 @@ namespace BiBo
 
         public void setLoggedInUser(Customer customer)
         {
-            (load("MainUserName") as Label).Content = customer.FirstName + " " + customer.LastName;
+            if (customer.Right == Rights.CUSTOMER)
+            {
+                (load("CustomerUserName") as Label).Content = customer.FirstName + " " + customer.LastName;
+                (load("CustomerCreatedAt") as Label).Content = "seit " + customer.CreatedAt.ToShortDateString();
+            }
+            else
+            {
+                (load("MainUserName") as Label).Content = customer.FirstName + " " + customer.LastName;
+            }
             Label UserRights = load("MainUserRights") as Label;
             switch(customer.Right){
-                case Rights.CUSTOMER:
-                    UserRights.Content = "Kunde";
-                    break;
                 case Rights.EMPLOYEE:
                     UserRights.Content = "Mitarbeiter";
                     break;
