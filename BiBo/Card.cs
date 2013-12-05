@@ -7,7 +7,7 @@ using BiBo.Persons;
 
 namespace BiBo
 {
-  class Card
+  public class Card
   {
     private Customer customer;                      //dazugehöriger Benutzer
     private int cardID;                             //Ausweis
