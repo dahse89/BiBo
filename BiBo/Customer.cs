@@ -26,8 +26,7 @@ namespace BiBo.Persons
         private Rights right = Rights.CUSTOMER;         //Rechte
         private ChargeAccount chargeAccount;            //Gebuehrenkonto
         private int biboID;                             //Bibliotheks-ID
-        private int cardID;                             //Ausweis-
-        private string cardValidUntil;                  //Gültigkeitdatum des Ausweises 
+        private Card card;                              //Ausweis
         private UserStates userState;                   //Benutzer- 
         private string mobileNumber;                    //Handy-
         private string eMailAddress;                    //Email-Adresse
@@ -107,16 +106,10 @@ namespace BiBo.Persons
             get { return this.country; }
             set { this.country = value; }
         }
-
         public Rights Right
         {
             get { return this.right; }
             set { this.right = value; }
-        }
-        public ChargeAccount ChargeAccountNumber
-        {
-          get { return this.chargeAccount; }
-          set { this.chargeAccount = value; }
         }
         public ChargeAccount ChargeAccount
         {
@@ -127,11 +120,6 @@ namespace BiBo.Persons
         {
             get { return this.biboID; }
             set { this.biboID = value; }
-        }
-        public int CardID
-        {
-            get { return this.cardID; }
-            set { this.cardID = value; }
         }
         public UserStates UserState
         {
@@ -148,31 +136,31 @@ namespace BiBo.Persons
             get { return this.eMailAddress; }
             set { this.eMailAddress = value; }
         }
-
         public List<Exemplar> ExemplarList
         {
           get { return this.exemplarList; }
           set { this.exemplarList = value; }
         }
-
         public string Password
         {
           get { return this.password; }
           set { this.password = value; }
         }
-
+        public Card Card
+        {
+          get { return this.card; }
+          set { this.card = value; }
+        }
         public DateTime CreatedAt
         {
           get { return this.createdAt; }
           set { this.createdAt = value; }
         }
-
         public DateTime LastUpdate
         {
           get { return this.lastUpdate; }
           set { this.lastUpdate = value; }
         }
-
         public DateTime DeletedAt
         {
           get { return this.deletedAt; }

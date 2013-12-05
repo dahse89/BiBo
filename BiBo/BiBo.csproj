@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Charge.cs" />
+	<Compile Include="Card.cs" />
     <Compile Include="ChargeSQL.cs" />
     <Compile Include="GUIApi.cs" />
     <Compile Include="Rights.cs" />

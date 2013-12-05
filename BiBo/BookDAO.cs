@@ -30,8 +30,14 @@ namespace BiBo.DAO
 
     public List<Book> getAllBooks(){
       if (lib.BookList == null)
-        return lib.BookList = bookSql.GetAllEntrys();
-
+      {
+        List<Book> bookList = bookSql.GetAllEntrys();
+        foreach (Book book in bookList)
+        {
+          book.Exemplare = exemplarSql.GetAllEntrysByBook(book);
+        }
+        return bookList;
+      }
       else
         return lib.BookList;
     }
@@ -166,7 +172,7 @@ namespace BiBo.DAO
     }
 
     //TODO : Muss noch angepasst werden !!!!!!!!!!!!!!!!!!!!!
-    public void RemoveExemplar(ulong exemplarId, Book book) // <-- Alle exemplare haben die selbe Signatur, dadurch ist dies der Falsche Parameter ... evtl. eher die ExemplarID als Kriterium wählen
+    public void RemoveExemplar(ulong exemplarId, Book book)
     {
       ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
 
