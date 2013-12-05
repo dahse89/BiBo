@@ -28,10 +28,12 @@ namespace BiBo.DAO
       this.lib = lib;
     }
 
-    public List<Book> getAllBooks(){
+    public List<Book> getAllBooks()
+    {
       if (lib.BookList == null)
       {
         List<Book> bookList = bookSql.GetAllEntrys();
+        lib.BookList = bookList;
         foreach (Book book in bookList)
         {
           book.Exemplare = exemplarSql.GetAllEntrysByBook(book);
