@@ -76,6 +76,8 @@ namespace BiBo
             init_c_BookTable();
         }
 
+        
+
         private void initCoutriesComboBox()
         {
             //init Employee_UserAdd_Country
@@ -132,6 +134,12 @@ namespace BiBo
             DataTable BookTable = getBookDataTable();
             (FindName("cBookTable") as DataGrid).DataContext = BookTable;
             
+        }
+
+        private void resetEmployeeArea()
+        {
+            (FindName("CustomerPanel") as Grid).Visibility = Visibility.Visible;
+            (FindName("BookPanel") as Grid).Visibility = Visibility.Hidden;
         }
 
         private void MouseUp_BooksImage(object sender, MouseButtonEventArgs e)
@@ -331,6 +339,7 @@ namespace BiBo
 
         private void employee_login(Customer employee)
         {
+            resetEmployeeArea();
             (FindName("EmployeeArea") as Grid).Visibility = Visibility.Visible;
             (FindName("Login") as Grid).Visibility = Visibility.Collapsed;
             lib.getGuiApi().setLoggedInUser(employee);
