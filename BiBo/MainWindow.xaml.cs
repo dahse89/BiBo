@@ -306,6 +306,7 @@ namespace BiBo
         {
             (FindName("EmployeeArea") as Grid).Visibility = Visibility.Visible;
             (FindName("Login") as Grid).Visibility = Visibility.Collapsed;
+            lib.getGuiApi().setLoggedInUser(employee);
         }
 
         private void customer_login(Customer customer)
