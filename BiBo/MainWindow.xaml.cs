@@ -17,6 +17,10 @@ using System.Data;
 using System.Collections;
 using System.Windows.Controls.Primitives;
 using BiBo.Exception;
+using System.Text.RegularExpressions;
+using System.Net;
+using BiBo.DAO;
+using BiBo.SQL;
 
 namespace BiBo
 {
@@ -31,9 +35,7 @@ namespace BiBo
         public MainWindow()
         {
             //TODO: Only uncomment for first start!!!
-            //SQL.InitDbSQL x = new SQL.InitDbSQL();
-            //x.createAllTables();
-            //x.createDummyData();
+            //createRandomBooks(); return;
 
             InitializeComponent();
             initMainWindow();
@@ -58,12 +60,19 @@ namespace BiBo
             {
                 this.lib.getGuiApi().AddCustomer(cust);
             }
+
+            foreach (Book book in lib.BookList)
+            {
+                
+                this.lib.getGuiApi().Add_c_Book(book);
+            }
         }
 
         private void initElements()
         {
             initCoutriesComboBox();
             initCustomerTable();
+            init_c_BookTable();
         }
 
         private void initCoutriesComboBox()
@@ -101,10 +110,27 @@ namespace BiBo
             return New;
         }
 
+        private DataTable getBookDataTable()
+        {
+            DataTable New = new DataTable("Books");
+            New.Columns.Add("ID");
+            New.Columns.Add("Author");  
+            New.Columns.Add("Title");
+                  
+            return New;
+        }
+
         private void initCustomerTable()
         {
             DataTable CustomerTable = getCustomerDataTable();
             (FindName("CustomerTable") as DataGrid).DataContext = CustomerTable;
+        }
+
+        private void init_c_BookTable()
+        {
+            DataTable BookTable = getBookDataTable();
+            (FindName("cBookTable") as DataGrid).DataContext = BookTable;
+            
         }
 
         private void MouseUp_BooksImage(object sender, MouseButtonEventArgs e)
@@ -312,7 +338,10 @@ namespace BiBo
 
         private void customer_login(Customer customer)
         {
-
+            (FindName("CustomerArea") as Grid).Visibility = Visibility.Visible;
+            (FindName("Login") as Grid).Visibility = Visibility.Collapsed;
+            lib.LoggedUser = customer;
+            
         }
         
 
@@ -330,11 +359,75 @@ namespace BiBo
             }            
         }
 
+        private void ToolBarShowAllBook_c_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            (FindName("cToolBarSearch") as TextBox).Text = "";
+            DataGrid table = FindName("cBookTable") as DataGrid;
+
+            table.DataContext = getBookDataTable();
+
+            foreach (Book book in lib.BookList)
+            {
+                this.lib.getGuiApi().Add_c_Book(book);
+            }
+        }
+
         private void Employee_Logout_MouseUp(object sender, MouseButtonEventArgs e) {
             (FindName("EmployeeArea") as Grid).Visibility = Visibility.Collapsed;
             (FindName("Login") as Grid).Visibility = Visibility.Visible;
             (FindName("LoginName") as TextBox).Text = "";
             (FindName("LoginPass") as PasswordBox).Password = "";
+        }
+
+        private void Customer_Logout_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            (FindName("CustomerArea") as Grid).Visibility = Visibility.Collapsed;
+            (FindName("Login") as Grid).Visibility = Visibility.Visible;
+            (FindName("LoginName") as TextBox).Text = "";
+            (FindName("LoginPass") as PasswordBox).Password = "";
+        }
+
+        
+
+        private void LoginInfo_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Bitte wenden Sie sich an einen unserer Mitarbeiter. Dieser kann Ihnen über Ihren Zugang informieren");
+        }
+
+        private void ToolBarSearch_c_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            String searchFor = (FindName("cToolBarSearch") as TextBox).Text;
+
+            DataGrid table = FindName("cBookTable") as DataGrid;
+
+            table.DataContext = getBookDataTable();
+
+            foreach (Book book in lib.BookList)
+            {
+                this.lib.getGuiApi().Add_c_Book(book);
+            }
+
+            DataTable dt = table.DataContext as DataTable;
+            DataTable newDt = getBookDataTable();
+
+            ulong id;
+            Book tmp;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                id = (ulong)Convert.ToInt64(dt.Rows[i]["ID"] as String);
+                tmp = lib.getBookDAO().GetBookById(id);
+                if (tmp.ToString().ToUpper().Contains(searchFor.ToUpper()))
+                {
+                    newDt.Rows.Add(
+                        tmp.BookId,
+                        tmp.Author,
+                        tmp.Titel
+                    );
+                }
+
+            }
+            table.DataContext = newDt;
         }
         
 
@@ -382,8 +475,48 @@ namespace BiBo
 
         }
 
-      
-     
+
+        private void createRandomBooks()
+        {
+            ExemplarSQL exemplarSql = new ExemplarSQL();
+            BookSQL bookSql = new BookSQL();
+
+            String Source = "http://www.lovelybooks.de/buecher/romane/Schr%C3%A4ge-Buchtitel-582954334/";
+            WebClient client = new WebClient();
+            client.Encoding = Encoding.UTF8;
+            string downloadString = client.DownloadString(Source);
+
+
+
+            Regex regex = new Regex(@">([^<]+)</span></a></h3");
+            var listTitle = (from Match m in regex.Matches(downloadString) select m).ToList();
+
+
+            regex = new Regex(@"von\s<a[^>]+>([^<]+)<");
+            var listAuthor = (from Match m in regex.Matches(downloadString) select m).ToList();
+
+            Random r = new Random();
+            int k;
+            Book book;
+
+            for (int i = 0; i < listTitle.Count; i++)
+            {
+                k =  r.Next(1,5);
+                book = new Book(0, listAuthor[i].Groups[1].Value, listTitle[i].Groups[1].Value, "Roman");
+                for (int j = 0;  j < k; j++)
+                {
+                    Exemplar ex = new Exemplar(book);
+                    ulong id = exemplarSql.AddEntryReturnId(ex);
+                    ex.ExemplarId = id;
+                    book.Exemplare.Add(ex);
+                }
+
+                book.BookId = bookSql.AddEntryReturnId(book);
+            }
+
+            MessageBox.Show("Book add done");
+
+        }
        
     }
 
