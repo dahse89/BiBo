@@ -62,6 +62,25 @@ namespace BiBo
            
         }
 
+        public void Add_c_Book(Book book)
+        {
+            DataGrid BookTable = load("cBookTable") as DataGrid;
+
+            //CustomerTable.DataContext
+            DataTable test = (BookTable.DataContext as DataTable);
+
+
+            test.Rows.Add(
+                book.BookId,
+                book.Author,
+                book.Titel
+            );
+
+            
+            BookTable.DataContext = test;
+
+        }
+
         public void DeleteCustomer(int index)
         {
             DataGrid table = GUI.FindName("CustomerTable") as DataGrid;
