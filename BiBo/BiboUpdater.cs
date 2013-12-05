@@ -13,21 +13,6 @@ namespace BiBo.Updater
         XmlTextReader reader;
         Version newVersion = null;  
 
-        public Version AssemblyVersion
-        {
-            get
-            {
-                try
-                {
-                    return ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                }
-                catch
-                {
-                    return new Version("1.3.3.7");
-                }
-            }
-        }
-
         public void checkForNewVersion()
         {
             try
@@ -73,10 +58,6 @@ namespace BiBo.Updater
             {
                 System.Diagnostics.Process.Start(url);
             } 
-        }
-        public override string ToString()
-        {
-            return ""+this.AssemblyVersion;
         }
     }
 }

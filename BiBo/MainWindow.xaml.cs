@@ -33,7 +33,6 @@ namespace BiBo
     {
         Library lib;
         private String CountriesSource = "../../countries.txt";
-        private string currentVersion = "";
 
         public MainWindow()
         {
@@ -46,10 +45,10 @@ namespace BiBo
             if (ImportDummyData == true){x.createDummyData();createRandomBooks();}
 
             BiBo.Updater.BiboUpdater updater = new BiBo.Updater.BiboUpdater();
-            string currentVersion = updater.AssemblyVersion.ToString();
+            string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             //TODO: Version has been added to Login Box
-            //(FindName("Version") as TextBox).Text = this.currentVersion;
+            //(FindName("Version") as TextBox).Text = currentVersion;
 
             updater.checkForNewVersion();
             Debug.WriteLine("Update Finish");
