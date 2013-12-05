@@ -32,6 +32,7 @@ namespace BiBo
     {
         Library lib;
         private String CountriesSource = "../../countries.txt";
+        private string currentVersion = "";
 
         public MainWindow()
         {
@@ -43,8 +44,15 @@ namespace BiBo
             if (migrateDB == true) { x.createAllTables(); }
             if (ImportDummyData == true){x.createDummyData();createRandomBooks();}
 
+            BiBo.Updater.BiboUpdater updater = new BiBo.Updater.BiboUpdater();
+            string currentVersion = updater.AssemblyVersion.ToString();
+
+            //TODO: Version has been added to Login Box
+            //(FindName("Version") as TextBox).Text = this.currentVersion;
+
             InitializeComponent();
             initMainWindow();
+            
         }
 
         public MainWindow(GUIApi api)
@@ -88,7 +96,6 @@ namespace BiBo
         {
             //init Employee_UserAdd_Country
             ComboBox comBox = this.FindName("Employee_UserAdd_Country") as ComboBox;
-
             //create line string to catch lines from file
             string line;
 
@@ -290,8 +297,6 @@ namespace BiBo
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            
-
             String IdString = (FindName("LoginName") as TextBox).Text;
             ulong id = 0;
 
