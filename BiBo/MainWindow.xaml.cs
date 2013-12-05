@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
 using BiBo.Persons;
 using System.IO;
 using System.Data;
@@ -34,14 +35,14 @@ namespace BiBo
 
         public MainWindow()
         {
-            //TODO: remove test
-            //TODO: only uncomment when update Database
-            /*
+            AppSettingsReader config = new AppSettingsReader();
+            bool migrateDB = (bool)config.GetValue("MigrateDB", typeof(bool));
+            bool ImportDummyData = (bool)config.GetValue("ImportDummyData", typeof(bool));
             InitDbSQL x = new InitDbSQL();
-            x.createAllTables();
-            x.createDummyData();
-            createRandomBooks(); return;
-            */
+
+            if (migrateDB == true) { x.createAllTables(); }
+            if (ImportDummyData == true){x.createDummyData();createRandomBooks();}
+
             InitializeComponent();
             initMainWindow();
         }
