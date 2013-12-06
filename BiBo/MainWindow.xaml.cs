@@ -205,7 +205,15 @@ namespace BiBo
 
             DataRowView row = (DataRowView)table.SelectedItems[0];
 
-            for (int i = 0; i < table.SelectedItems.Count; i++)
+            while (table.SelectedItem != null)
+            {
+              row = (DataRowView)table.SelectedItem;
+              ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
+              lib.getCustomerDAO().DeleteCustomer(lib.getCustomerDAO().GetCustomerById(id));
+            }
+
+
+           /* for (int i = 0; i < table.SelectedItems.Count; i++)
             {              
               try
               {
@@ -215,12 +223,12 @@ namespace BiBo
               {
                 
               }
+          */
+              
 
-              ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
+              
 
-              lib.getCustomerDAO().DeleteCustomer(lib.getCustomerDAO().GetCustomerById(id));
-
-            }
+            
             
            
 
