@@ -200,22 +200,33 @@ namespace BiBo
 
         private void ToolBarDelte_MouseUp(object sender, MouseButtonEventArgs e)
         {
+
+          List<KeyValuePair<int, Customer>> list = new List<KeyValuePair<int, Customer>>();
+
             DataGrid table = FindName("CustomerTable") as DataGrid;
-            DataRowView row;
-            try
-            {
-                row = (DataRowView)table.SelectedItems[0];
+            if (table.SelectedItems.Count < 1) return;
+
+            DataRowView row = (DataRowView)table.SelectedItems[0];
+
+            for (int i = 0; i < table.SelectedItems.Count; i++)
+            {              
+              try
+              {
+                row = (DataRowView)table.SelectedItems[i];
+              }
+              catch (ArgumentOutOfRangeException aoore)
+              {
+                
+              }
+
+              ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
+
+              Customer customer = lib.getCustomerDAO().GetCustomerById(id);
+              list.Add(new KeyValuePair<int, Customer>(table.SelectedIndex, customer));
+
             }
-            catch (ArgumentOutOfRangeException aoore)
-            {
-                return;
-            }
 
-            ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
-
-            Customer customer = lib.getCustomerDAO().GetCustomerById(id);
-
-            (table.DataContext as DataTable).Rows[table.SelectedIndex].Delete();
+            //(table.DataContext as DataTable).Rows[table.SelectedIndex].Delete();
 
         }
 
