@@ -67,9 +67,9 @@ namespace BiBo.DAO
 
     public void DeleteCustomer(Customer customer)
     {
-      decimal currentValue = customer.ChargeAccount.Charges.Last().CurrentValue;
-      if (currentValue == 0 && customer.ExemplarList.Count == 0)
-      {
+      //decimal currentValue = customer.ChargeAccount.Charges.Last().CurrentValue;
+      //if (currentValue == 0 && customer.ExemplarList.Count == 0)
+      //{
         List<ulong> list = new List<ulong>();
         list.Add(customer.CustomerID);
 
@@ -80,8 +80,8 @@ namespace BiBo.DAO
         customerSql.DeleteEntryByIdList(list); //<--- TODO possibility to delete a single customer ?
 
         //on view-layer
-        //gui.DeleteCustomer();   <--- TODO possibilitý to delete customer in the view
-      }
+        gui.DeleteCustomer(); //  <--- TODO possibilitý to delete customer in the view
+      //}
     }
 
     //TODO: is not possible to delete single Customer?
