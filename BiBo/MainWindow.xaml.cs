@@ -122,6 +122,7 @@ namespace BiBo
             return New;
         }
 
+
         private DataTable getBookDataTable()
         {
             DataTable New = new DataTable("Books");
@@ -566,6 +567,39 @@ namespace BiBo
 
             MessageBox.Show("Book add done");
 
+        }
+
+        private void ToggleAddEditButton()
+        {
+          Button x = FindName("CustomerAddEditButton") as Button;
+         
+        }
+
+        private void MainCustomerTable_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+          DataGrid table = sender as DataGrid;
+          DataRowView row;
+          try
+          {
+            row = (DataRowView)table.SelectedItems[0];
+          }
+          catch (ArgumentOutOfRangeException aoore)
+          {
+            return;
+          }
+
+          ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
+          Customer customer = lib.getCustomerDAO().GetCustomerById(id);
+          clearAddCustomer();
+          (FindName("Employee_UserAdd_Firstname") as TextBox).Text = customer.FirstName;
+          (FindName("Employee_UserAdd_Lastname") as TextBox).Text = customer.LastName;
+          (FindName("Employee_UserAdd_Street") as TextBox).Text = customer.Street;
+          (FindName("Employee_UserAdd_StreetNumber") as TextBox).Text = customer.StreetNumber;
+          (FindName("Employee_UserAdd_Phone") as TextBox).Text = customer.MobileNumber;
+          (FindName("Employee_UserAdd_Birthday") as DatePicker).SelectedDate = customer.BirthDate;
+          (FindName("Employee_UserAdd_Town") as TextBox).Text = customer.Town;
+          (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = customer.Country;
+          showUnderToolBar(true);
         }
        
     }
