@@ -31,6 +31,7 @@ namespace BiBo
     public partial class MainWindow : Window
     {
         Library lib;
+        Tabs CurrentEmployeeAreaTab = Tabs.CUSTOMER;
 
         public MainWindow()
         {
@@ -80,6 +81,7 @@ namespace BiBo
             foreach (Book book in lib.BookList)
             {                
                 this.lib.getGuiApi().Add_c_Book(book);
+                this.lib.getGuiApi().AddBook(book);
             }
         }
 
@@ -88,6 +90,7 @@ namespace BiBo
             initCoutriesComboBox();
             initCustomerTable();
             init_c_BookTable();
+            initBookTable();
         }
 
         private void initCoutriesComboBox()
@@ -127,7 +130,9 @@ namespace BiBo
             New.Columns.Add("ID",typeof(ulong));
             New.Columns.Add("Author");  
             New.Columns.Add("Title");
-                  
+            New.Columns.Add("Fachrichtung");
+            New.Columns.Add("Anzahl Exemplare");
+                            
             return New;
         }
 
@@ -144,6 +149,13 @@ namespace BiBo
             
         }
 
+        private void initBookTable()
+        {
+          DataTable BookTable = getBookDataTable();
+          (FindName("EmployeeBooksTable") as DataGrid).DataContext = BookTable;
+
+        }
+
         private void resetEmployeeArea()
         {
             (FindName("CustomerPanel") as Grid).Visibility = Visibility.Visible;
@@ -152,8 +164,51 @@ namespace BiBo
 
         private void MouseUp_BooksImage(object sender, MouseButtonEventArgs e)
         {
-            (FindName("CustomerPanel") as Grid).Visibility = Visibility.Hidden;
-            (FindName("BookPanel") as Grid).Visibility = Visibility.Visible;
+          HandleTabs_EmployeeArea(Tabs.BOOK);
+        }
+
+        private void MouseUp_AccountImage(object sender, MouseButtonEventArgs e)
+        {          
+          HandleTabs_EmployeeArea(Tabs.CUSTOMER);
+        }
+
+        private void MouseUp_BorrowImage(object sender, MouseButtonEventArgs e)
+        {          
+          HandleTabs_EmployeeArea(Tabs.BORROW);
+        }
+
+        private void EmployeeArea_AddBook_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+          showUnderToolBar(true);
+        }
+
+      
+      
+        private void HandleTabs_EmployeeArea(Tabs show)
+        {
+          if (show == CurrentEmployeeAreaTab) return;
+  
+          //hide all
+          (FindName("CustomerPanel") as Grid).Visibility = Visibility.Hidden;
+          (FindName("BookPanel") as Grid).Visibility = Visibility.Hidden;
+          (FindName("BorrowPanel") as Grid).Visibility = Visibility.Hidden;  
+
+          //show
+          switch (show)
+          {
+            case Tabs.CUSTOMER:
+              (FindName("CustomerPanel") as Grid).Visibility = Visibility.Visible;
+              CurrentEmployeeAreaTab = Tabs.CUSTOMER;
+              break;
+            case Tabs.BOOK:
+              (FindName("BookPanel") as Grid).Visibility = Visibility.Visible;
+              CurrentEmployeeAreaTab = Tabs.BOOK;
+              break;
+            case Tabs.BORROW:
+              (FindName("BorrowPanel") as Grid).Visibility = Visibility.Visible;              
+              CurrentEmployeeAreaTab = Tabs.BORROW;
+              break;
+          }
         }
 
         private void UserAdd_Click(object sender, RoutedEventArgs e)
@@ -218,22 +273,52 @@ namespace BiBo
 
         private void showUnderToolBar(bool s)
         {
+          if (CurrentEmployeeAreaTab == Tabs.CUSTOMER)
+          {
             if (s)
             {
-                Grid grid = FindName("CustomerPanel") as Grid;
-                grid.RowDefinitions[0].Height = new GridLength(150);
+              Grid grid = FindName("CustomerPanel") as Grid;
+              grid.RowDefinitions[0].Height = new GridLength(150);
 
-                Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
-                CustomerAddGrid.Visibility = Visibility.Visible;
+              Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
+              CustomerAddGrid.Visibility = Visibility.Visible;
             }
             else
             {
-                Grid grid = FindName("CustomerPanel") as Grid;
-                grid.RowDefinitions[0].Height = new GridLength(30);
+              Grid grid = FindName("CustomerPanel") as Grid;
+              grid.RowDefinitions[0].Height = new GridLength(30);
 
-                Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
-                CustomerAddGrid.Visibility = Visibility.Collapsed;
+              Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
+              CustomerAddGrid.Visibility = Visibility.Collapsed;
             }
+            return;
+          }
+
+          if (CurrentEmployeeAreaTab == Tabs.BOOK)
+          {
+            if (s)
+            {
+              Grid grid = FindName("EmployeeArea_BooksMainGrid") as Grid;
+              grid.RowDefinitions[1].Height = new GridLength(100);
+
+             /* Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
+              CustomerAddGrid.Visibility = Visibility.Visible;*/
+            }
+            else
+            {
+              Grid grid = FindName("EmployeeArea_BooksMainGrid") as Grid;
+              grid.RowDefinitions[0].Height = new GridLength(0);
+
+              /*
+              Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
+              CustomerAddGrid.Visibility = Visibility.Collapsed;
+               * */
+            }
+            return;
+          }
+
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
