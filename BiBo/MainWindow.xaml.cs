@@ -616,6 +616,14 @@ namespace BiBo
           (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = customer.Country;
           showUnderToolBar(true);
         }
+
+        private void LoginName_KeyDown(object sender, KeyEventArgs e)
+        {
+          if (e.Key == Key.Enter)
+          {
+            Login_Click(new Object(), new RoutedEventArgs());
+          }
+        }
        
     }
 
