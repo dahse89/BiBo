@@ -57,7 +57,6 @@ namespace BiBo.DAO
       ulong chargeAccountId = chargeAccountDAO.chargeAccountSql.AddEntryReturnId(new ChargeAccount(customer));
       customer.ChargeAccount.Id = chargeAccountId;
       
-      
       //add user in Objects
       lib.CustomerList.Add(customer);
 
@@ -80,7 +79,7 @@ namespace BiBo.DAO
         customerSql.DeleteEntryByIdList(list); //<--- TODO possibility to delete a single customer ?
 
         //on view-layer
-        gui.DeleteCustomer(); //  <--- TODO possibilitý to delete customer in the view
+        gui.DeleteCustomer(customer); //  <--- TODO possibilitý to delete customer in the view
       //}
     }
 

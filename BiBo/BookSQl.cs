@@ -10,8 +10,8 @@ namespace BiBo.SQL
     /// </summary>
         public class BookSQL : SqlConnector<Book>
         {                
-                public override bool AddEntry(Book book)
-        {
+          public override bool AddEntry(Book book)
+          {
             try
             {
                 SQLiteCommand command = new SQLiteCommand(con);

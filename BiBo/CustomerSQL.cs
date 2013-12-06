@@ -26,8 +26,6 @@ namespace BiBo.SQL
               command.CommandText = @"INSERT INTO
                                             Customer (
                                                 id,
-                                                cardId,
-                                                cardValidUntil,
                                                 firstName, 
                                                 lastName, 
                                                 birthDate,
@@ -46,8 +44,6 @@ namespace BiBo.SQL
                                             ) 
                                             VALUES (
                                                 NULL,
-                                                '" + customer.Card.CardID + @"',
-                                                '" + customer.Card.CardValidUntil + @"',
                                                 '" + customer.FirstName + @"',
                                                 '" + customer.LastName  + @"',
                                                 '" + customer.BirthDate.ToShortDateString() + @"',
@@ -89,6 +85,7 @@ namespace BiBo.SQL
                                     mobileNumber = '" + customer.MobileNumber + @"',
                                     createdAt = '" + customer.CreatedAt + @"',
                                     lastUpdate = '" + customer.LastUpdate + @"',
+                                    deletetAt = '" + customer.DeletedAt + @"',
                                     firstName = '" + customer.FirstName + @"',
                                     lastName = '" + customer.LastName + @"',
                                     street = '" + customer.Street + @"',
@@ -161,12 +158,7 @@ namespace BiBo.SQL
 
             tmp.LastUpdate = DateTime.Parse(reader.GetString(reader.GetOrdinal("lastUpdate")));
             tmp.CreatedAt = DateTime.Parse(reader.GetString(reader.GetOrdinal("createdAt")));
-
-            int cardId = reader.GetInt32(reader.GetOrdinal("cardId"));
-
-            string cardValue = reader.GetString(reader.GetOrdinal("cardValidUntil"));
-
-            tmp.Card = new Card(cardId,cardValue);
+            //tmp.DeletedAt = DateTime.Parse(reader.GetString(reader.GetOrdinal("deletedAt"))); TODO: funktioniert erst mit neuer DB
 
             string rightString = reader.GetString(reader.GetOrdinal("rights"));
             Rights right = (Rights)Enum.Parse(typeof(Rights), rightString, true);

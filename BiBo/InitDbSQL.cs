@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 using System.Data.SqlTypes;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace BiBo.SQL
 {
@@ -31,6 +34,7 @@ namespace BiBo.SQL
                                         mobileNumber VARCHAR(100),
                                         createdAt DATETIME,
                                         lastUpdate DATETIME,
+                                        deletedAt DATEIME,
                                         street VARCHAR(100),
                                         streetNumber VARCHAR(10),
                                         additionalRoad VARCHAR(100), 
@@ -78,13 +82,22 @@ namespace BiBo.SQL
       command4.ExecuteNonQuery();
 
       string chargeTransactionSQL = @"CREATE TABLE IF NOT EXISTS ChargeTransactions (
-                                        ChargeAccountID INTEGER NOT NULL PRIMARY KEY,
+                                        TransactionID Integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                        ChargeAccountID INTEGER NOT NULL,
                                         change DECIMAL,
                                         newValue DECIMAL,
                                         changedAt DATETIME
                                     );";
 
       SQLiteCommand command5 = new SQLiteCommand(chargeTransactionSQL, con);
+      command5.ExecuteNonQuery();
+
+      string cardSQL = @"CREATE TABLE IF NOT EXISTS Card (
+                                        ID Integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                        cardValidUntil DATETIME NOT NULL
+                                    );";
+
+      SQLiteCommand command6 = new SQLiteCommand(cardSQL, con);
       command5.ExecuteNonQuery();
       
       con.Close();
@@ -124,7 +137,9 @@ namespace BiBo.SQL
         customer.BirthDate = new DateTime(r.Next(1900, 2000), r.Next(1, 12), r.Next(1, 28));
         customer.Country = "Deutschland";
         customer.Town = names[r.Next(0, names.Length - 1)] + "stadt";
-        customer.Card = new Card(i, "Bis zur unendlichkeit und noch viel,viel weiter!");
+        DateTime valid = new DateTime();
+        valid = DateTime.Now.AddYears(1);
+        //customer.Card = new Card(valid);
 
         dao.SetPassword(customer, "1234");
 
@@ -132,6 +147,48 @@ namespace BiBo.SQL
         customerSQL.AddEntry(customer);
       }
       return true;
+    }
+
+    public void createRandomBooks()
+    {
+      ExemplarSQL exemplarSql = new ExemplarSQL();
+      BookSQL bookSql = new BookSQL();
+
+      String Source = "http://www.lovelybooks.de/buecher/romane/Schr%C3%A4ge-Buchtitel-582954334/";
+      WebClient client = new WebClient();
+      client.Encoding = Encoding.UTF8;
+      string downloadString = client.DownloadString(Source);
+
+
+
+      Regex regex = new Regex(@">([^<]+)</span></a></h3");
+      var listTitle = (from Match m in regex.Matches(downloadString) select m).ToList();
+
+
+      regex = new Regex(@"von\s<a[^>]+>([^<]+)<");
+      var listAuthor = (from Match m in regex.Matches(downloadString) select m).ToList();
+
+      Random r = new Random();
+      int k;
+      Book book;
+
+      for (int i = 0; i < listTitle.Count; i++)
+      {
+        k = r.Next(1, 5);
+        book = new Book(0, listAuthor[i].Groups[1].Value, listTitle[i].Groups[1].Value, "Roman");
+        for (int j = 0; j < k; j++)
+        {
+          Exemplar ex = new Exemplar(book);
+          ulong id = exemplarSql.AddEntryReturnId(ex);
+          ex.ExemplarId = id;
+          book.Exemplare.Add(ex);
+        }
+
+        book.BookId = bookSql.AddEntryReturnId(book);
+      }
+
+      MessageBox.Show("Book add done");
+
     }
   }
 }

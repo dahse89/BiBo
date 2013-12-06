@@ -10,26 +10,31 @@ namespace BiBo
   public class Card
   {
     private Customer customer;                      //dazugehöriger Benutzer
-    private int cardID;                             //Ausweis
-    private string cardValidUntil;                  //Gültigkeitdatum des Ausweises 
+    private ulong cardID;                             //Ausweis
+    private DateTime cardValidUntil;                  //Gültigkeitdatum des Ausweises 
 
     public Card()
     {
     }
 
-    public Card(int cardID, string cardValidUntil)
+    public Card(ulong cardID, DateTime cardValidUntil)
     {
       this.cardID = cardID;
       this.cardValidUntil = cardValidUntil;
     }
 
-    public int CardID
+    public Card(DateTime cardValidUntil)
+    {
+      this.cardValidUntil = cardValidUntil;
+    }
+
+    public ulong CardID
     {
       get { return this.cardID; }
       set { this.cardID = value; }
     }
 
-    public string CardValidUntil
+    public DateTime CardValidUntil
     {
       get { return this.cardValidUntil; }
       set { this.cardValidUntil = value; }

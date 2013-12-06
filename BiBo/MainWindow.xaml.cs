@@ -18,8 +18,6 @@ using System.Data;
 using System.Collections;
 using System.Windows.Controls.Primitives;
 using BiBo.Exception;
-using System.Text.RegularExpressions;
-using System.Net;
 using BiBo.DAO;
 using BiBo.SQL;
 using System.Diagnostics;
@@ -42,7 +40,7 @@ namespace BiBo
             bool ImportDummyData = (bool)config.GetValue("ImportDummyData", typeof(bool));
             InitDbSQL x = new InitDbSQL();
             if (migrateDB == true) { x.createAllTables(); }
-            if (ImportDummyData == true){x.createDummyData();createRandomBooks();}
+            if (ImportDummyData == true){x.createDummyData();x.createRandomBooks();}
             
             BiBo.Updater.BiboUpdater updater = new BiBo.Updater.BiboUpdater();
             string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -541,48 +539,6 @@ namespace BiBo
 
         }
 
-
-        private void createRandomBooks()
-        {
-            ExemplarSQL exemplarSql = new ExemplarSQL();
-            BookSQL bookSql = new BookSQL();
-
-            String Source = "http://www.lovelybooks.de/buecher/romane/Schr%C3%A4ge-Buchtitel-582954334/";
-            WebClient client = new WebClient();
-            client.Encoding = Encoding.UTF8;
-            string downloadString = client.DownloadString(Source);
-
-
-
-            Regex regex = new Regex(@">([^<]+)</span></a></h3");
-            var listTitle = (from Match m in regex.Matches(downloadString) select m).ToList();
-
-
-            regex = new Regex(@"von\s<a[^>]+>([^<]+)<");
-            var listAuthor = (from Match m in regex.Matches(downloadString) select m).ToList();
-
-            Random r = new Random();
-            int k;
-            Book book;
-
-            for (int i = 0; i < listTitle.Count; i++)
-            {
-                k =  r.Next(1,5);
-                book = new Book(0, listAuthor[i].Groups[1].Value, listTitle[i].Groups[1].Value, "Roman");
-                for (int j = 0;  j < k; j++)
-                {
-                    Exemplar ex = new Exemplar(book);
-                    ulong id = exemplarSql.AddEntryReturnId(ex);
-                    ex.ExemplarId = id;
-                    book.Exemplare.Add(ex);
-                }
-
-                book.BookId = bookSql.AddEntryReturnId(book);
-            }
-
-            MessageBox.Show("Book add done");
-
-        }
 
         private void ToggleAddEditButton()
         {
