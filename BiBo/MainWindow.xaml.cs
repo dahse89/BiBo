@@ -110,8 +110,8 @@ namespace BiBo
 
         private DataTable getCustomerDataTable()
         {
-            DataTable New = new DataTable("Customers");
-            New.Columns.Add("ID");
+            DataTable New = new DataTable("Customers");         
+            New.Columns.Add("ID",typeof(int));
             New.Columns.Add("Vorname");
             New.Columns.Add("Nachname");
             New.Columns.Add("Strasse");
