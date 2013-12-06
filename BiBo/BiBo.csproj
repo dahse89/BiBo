@@ -102,6 +102,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BiboUpdater.cs" />
+    <Compile Include="CardDAO.cs" />
     <Compile Include="CardSQL.cs" />
     <Compile Include="Charge.cs" />
     <Compile Include="Card.cs" />
