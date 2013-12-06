@@ -27,11 +27,16 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://bibo.vicodambeck.de/</InstallUrl>
+    <TargetCulture>de-DE</TargetCulture>
+    <ProductName>Bibo</ProductName>
+    <PublisherName>Markus Münzberg, Philipp Dahse, Yevgen Korepin, Vico Dambeck</PublisherName>
+    <SuiteName>FA21</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
