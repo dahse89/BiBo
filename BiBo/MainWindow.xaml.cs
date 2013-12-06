@@ -111,7 +111,7 @@ namespace BiBo
         private DataTable getCustomerDataTable()
         {
             DataTable New = new DataTable("Customers");         
-            New.Columns.Add("ID",typeof(int));
+            New.Columns.Add("ID",typeof(ulong));
             New.Columns.Add("Vorname");
             New.Columns.Add("Nachname");
             New.Columns.Add("Strasse");
@@ -126,7 +126,7 @@ namespace BiBo
         private DataTable getBookDataTable()
         {
             DataTable New = new DataTable("Books");
-            New.Columns.Add("ID");
+            New.Columns.Add("ID",typeof(ulong));
             New.Columns.Add("Author");  
             New.Columns.Add("Title");
                   
@@ -207,7 +207,7 @@ namespace BiBo
 
             List<Customer> customers = new List<Customer>();
             foreach(DataRowView row in table.SelectedItems){
-              id = (ulong)Convert.ToInt64(row["ID"]);
+              id = (ulong)row["ID"];
               customers.Add(lib.getCustomerDAO().GetCustomerById(id));
             }
 
@@ -257,7 +257,7 @@ namespace BiBo
                 return;
             }
 
-            ulong id = (ulong) Convert.ToInt64( row["ID"] as String );
+            ulong id = (ulong) row["ID"];
 
             Customer customer = lib.getCustomerDAO().GetCustomerById(id);
 
@@ -586,7 +586,7 @@ namespace BiBo
             return;
           }
 
-          ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
+          ulong id = (ulong) row["ID"];
           Customer customer = lib.getCustomerDAO().GetCustomerById(id);
           clearAddCustomer();
           (FindName("Employee_UserAdd_Firstname") as TextBox).Text = customer.FirstName;
