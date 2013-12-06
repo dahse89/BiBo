@@ -299,7 +299,7 @@ namespace BiBo
             if (s)
             {
               Grid grid = FindName("EmployeeArea_BooksMainGrid") as Grid;
-              grid.RowDefinitions[1].Height = new GridLength(100);
+              grid.RowDefinitions[1].Height = new GridLength(30);
 
              /* Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
               CustomerAddGrid.Visibility = Visibility.Visible;*/
@@ -489,6 +489,10 @@ namespace BiBo
             (FindName("LoginPass") as PasswordBox).Password = "";
         }
 
+        private void EmployeeArea_Unfold(object sender, MouseButtonEventArgs e)
+        {
+            
+        }
         
 
         private void LoginInfo_MouseUp(object sender, MouseButtonEventArgs e)

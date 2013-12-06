@@ -259,14 +259,16 @@
               </Grid.RowDefinitions>
               <ToolBar HorizontalAlignment="Stretch" Grid.Row="0">
                 <Image MouseUp="EmployeeArea_AddBook_MouseUp" Height="16" Width="16" Margin="5,0" Source="/BiBo;component/Images/addBook.png"></Image>
+                <Image MouseUp="EmployeeArea_Unfold" Height="16" Width="16" Margin="5,0" Source="/BiBo;component/Images/unfold.png"></Image>
                 
               </ToolBar>
               <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                   <RowDefinition></RowDefinition>
-                  <RowDefinition></RowDefinition>
+                 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50"></ColumnDefinition>
                   <ColumnDefinition></ColumnDefinition>
                   <ColumnDefinition></ColumnDefinition>
                   <ColumnDefinition></ColumnDefinition>
@@ -274,7 +276,7 @@
                   <ColumnDefinition></ColumnDefinition>
                   <ColumnDefinition></ColumnDefinition>
                   <ColumnDefinition></ColumnDefinition>
-                  <ColumnDefinition></ColumnDefinition>                  
+                  <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 
                 <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0">Author</Label>
@@ -287,7 +289,7 @@
                 <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="5" Name="BookAddSubjectArea"></TextBox>
                 <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="7" Name="BookAddNumberOfExemplars"></TextBox>
 
-                <Button Height="30" Grid.Row="1" Grid.Column="0">hinzufügen</Button>
+                <Button Height="30" Grid.Row="0" Grid.Column="8">hinzufügen</Button>
               </Grid>          
 
               <DataGrid 
