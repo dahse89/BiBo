@@ -94,10 +94,15 @@ namespace BiBo
 
         }
 
-        public void DeleteCustomer(int index)
+        public void DeleteCustomer(Customer customer)
         {
+            ulong id = customer.CustomerID;
             DataGrid table = GUI.FindName("CustomerTable") as DataGrid;
-            (table.DataContext as DataTable).Rows[table.SelectedIndex].Delete();
+            // (table.DataContext as DataTable).Rows[table.SelectedIndex].Delete();
+            DataTable dataTable = table.DataContext as DataTable;
+            //from Customer c in lib.CustomerList where c.CustomerID == id select c).ToList()[0];
+            dataTable = dataTable.AsEnumerable().Where(r => r.Field<string>("ID") != customer.CustomerID.ToString()).CopyToDataTable();
+            table.DataContext = dataTable;
         }
 
        
