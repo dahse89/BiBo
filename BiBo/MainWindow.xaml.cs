@@ -47,7 +47,7 @@ namespace BiBo
             BiBo.Updater.BiboUpdater updater = new BiBo.Updater.BiboUpdater();
             string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-            updater.checkForNewVersion();
+            //updater.checkForNewVersion();
             Debug.WriteLine("Update Finish");
             InitializeComponent();
             Debug.WriteLine("InitializeComponent Finish");
