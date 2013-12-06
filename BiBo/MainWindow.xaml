@@ -42,7 +42,6 @@
                 <PasswordBox VerticalAlignment="Top" Height="30" FontSize="20" Name="LoginPass" Grid.Column="2" Grid.Row="2"></PasswordBox>
                 <Button Width="80" HorizontalAlignment="Left" Name="LoginButton" Grid.Column="1" Grid.Row="3" Height="30" VerticalAlignment="Top" Click="Login_Click">einloggen</Button>
                 <TextBlock ToolTip="Bitte wenden Sie sich an einen unserer Mitarbeiter. Dieser kann Ihnen über Ihren Zugang informieren" MouseUp="LoginInfo_MouseUp" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Text="Woher bekomme ich einen Login?" TextDecorations="Underline"/>
-                <TextBlock Name="Version" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Text="" Grid.ColumnSpan="2" Margin="0,81,9,0"/>
             </Grid>
         </Grid>
 
@@ -66,7 +65,9 @@
             <Label FontWeight="Bold" Name="CustomerCreatedAt" Grid.Column="0" Margin="5,30,0,5" HorizontalAlignment="Left" Width="170" ClipToBounds="True">
 
             </Label>
-
+            <Label FontWeight="Bold" Name="CurrentVersion" Grid.Column="0" Margin="5,60,0,10" HorizontalAlignment="Left" Width="170" ClipToBounds="True">           
+            
+            </Label>
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"></RowDefinition>

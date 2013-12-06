@@ -33,7 +33,6 @@ namespace BiBo
     public partial class MainWindow : Window
     {
         Library lib;
-        
 
         public MainWindow()
         {
@@ -44,12 +43,9 @@ namespace BiBo
             InitDbSQL x = new InitDbSQL();
             if (migrateDB == true) { x.createAllTables(); }
             if (ImportDummyData == true){x.createDummyData();createRandomBooks();}
-
+            
             BiBo.Updater.BiboUpdater updater = new BiBo.Updater.BiboUpdater();
             string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-
-            //TODO: Version has been added to Login Box
-            //(FindName("Version") as TextBox).Text = currentVersion;
 
             updater.checkForNewVersion();
             Debug.WriteLine("Update Finish");
@@ -96,14 +92,11 @@ namespace BiBo
             init_c_BookTable();
         }
 
-        
-
         private void initCoutriesComboBox()
         {
             //init Employee_UserAdd_Country
             ComboBox comBox = this.FindName("Employee_UserAdd_Country") as ComboBox;
             //create line string to catch lines from file
-            string line;
 
             // Read the file and display it line by line.
             string resource_data = Properties.Resources.countries;

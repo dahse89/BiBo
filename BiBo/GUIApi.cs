@@ -24,6 +24,14 @@ namespace BiBo
 
         public void setLoggedInUser(Customer customer)
         {
+            //TODO: Hier wird die Version nur bei Customer angezeigt.
+            //      Admins und Employees bekommen keine Version angezeigt
+            //      Das müsste noch gefixed werden
+            BiBo.Updater.BiboUpdater updater = new BiBo.Updater.BiboUpdater();
+            string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            (load("CurrentVersion") as Label).Content = "Version: " + currentVersion;
+
             if (customer.Right == Rights.CUSTOMER)
             {
                 (load("CustomerUserName") as Label).Content = customer.FirstName + " " + customer.LastName;
@@ -42,7 +50,7 @@ namespace BiBo
                     UserRights.Content = "Adminiestrator";
                     break;
 
-            }            
+            }
         }
 
         public void AddCustomer(Customer customer)
