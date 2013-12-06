@@ -39,7 +39,7 @@ namespace BiBo
             AppSettingsReader config = new AppSettingsReader();
             bool migrateDB = (bool)config.GetValue("MigrateDB", typeof(bool));
             bool ImportDummyData = (bool)config.GetValue("ImportDummyData", typeof(bool));
-            InitDbSQL x = new InitDbSQL();
+            InitDbSQL x = new InitDbSQL(); //x.createAllTables(); x.createRandomBooks(); x.createDummyData();
             if (migrateDB == true) { x.createAllTables(); }
             if (ImportDummyData == true) { x.createRandomBooks(); x.createDummyData(); }
             

@@ -79,9 +79,9 @@ namespace BiBo.SQL
                                        ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                                        bookId INTEGER,
                                        loanPeriod DateTime, 
-                                       state VARCHAR(100) NOT NULL,
-                                       signatur VARCHAR(100) NOT NULL, 
-                                       access VARCHAR(100) NOT NULL,
+                                       state VARCHAR(100),
+                                       signatur VARCHAR(100), 
+                                       access VARCHAR(100),
                                        customerId INTEGER
                                     );";
 
@@ -221,14 +221,15 @@ namespace BiBo.SQL
       {
         k = r.Next(1, 5);
         book = new Book(0, listAuthor[i].Groups[1].Value, listTitle[i].Groups[1].Value, "Roman");
+        book.BookId = bookSql.AddEntryReturnId(book);
         for (int j = 0; j < k; j++)
         {
           Exemplar ex = new Exemplar(book);
-          ex.ExemplarId = exemplarSql.AddEntryReturnId(ex);
+          ex.ExemplarId = exemplarSql.AddEntryReturnId(ex); //TODO: SQL bricht ab, keine ahnung wieso, dadurch wird kein exemplar in die datenbank gefüllt
           book.Exemplare.Add(ex);
         }
 
-        book.BookId = bookSql.AddEntryReturnId(book);
+        
       }
 
       MessageBox.Show("Book add done");

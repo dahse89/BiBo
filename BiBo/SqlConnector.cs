@@ -33,6 +33,7 @@ namespace BiBo.SQL
             {
               BiBo.SQL.InitDbSQL x = new InitDbSQL();
               x.createAllTables();
+              x.createRandomBooks(); 
               x.createDummyData();
             }
 		  }
