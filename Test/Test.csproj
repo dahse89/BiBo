@@ -63,6 +63,7 @@
     <Compile Include="BookDAOTest.cs" />
     <Compile Include="BookStatesTest.cs" />
     <Compile Include="BookTest.cs" />
+    <Compile Include="ChargeAccountDAOTest.cs" />
     <Compile Include="ChargeAccountTest.cs" />
     <Compile Include="CustomerTest.cs" />
     <Compile Include="EmployeeTest.cs" />

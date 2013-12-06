@@ -62,7 +62,7 @@ namespace BiBo
             
 
             test.Rows.Add(
-                customer.CustomerID.ToString(),
+                customer.CustomerID,
                 customer.FirstName,
                 customer.LastName,
                 customer.Street,

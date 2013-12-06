@@ -108,8 +108,8 @@ namespace BiBo
 
         private DataTable getCustomerDataTable()
         {
-            DataTable New = new DataTable("Customers");
-            New.Columns.Add("ID");
+            DataTable New = new DataTable("Customers");         
+            New.Columns.Add("ID",typeof(ulong));
             New.Columns.Add("Vorname");
             New.Columns.Add("Nachname");
             New.Columns.Add("Strasse");
@@ -124,7 +124,7 @@ namespace BiBo
         private DataTable getBookDataTable()
         {
             DataTable New = new DataTable("Books");
-            New.Columns.Add("ID");
+            New.Columns.Add("ID",typeof(ulong));
             New.Columns.Add("Author");  
             New.Columns.Add("Title");
                   
@@ -193,6 +193,7 @@ namespace BiBo
         private void ToolBarUserAdd_Click(object sender, MouseButtonEventArgs e)
         {
             clearAddCustomer();
+            ToggleAddEditButton("hinzufügen");
             showUnderToolBar(true);
         }
 
@@ -201,35 +202,18 @@ namespace BiBo
             DataGrid table = FindName("CustomerTable") as DataGrid;
             if (table.SelectedItems.Count < 1) return;
 
-            DataRowView row = (DataRowView)table.SelectedItems[0];
+            ulong id;
 
-            while (table.SelectedItem != null)
-            {
-              row = (DataRowView)table.SelectedItem;
-              ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
-              lib.getCustomerDAO().DeleteCustomer(lib.getCustomerDAO().GetCustomerById(id));
+            List<Customer> customers = new List<Customer>();
+            foreach(DataRowView row in table.SelectedItems){
+              id = (ulong)row["ID"];
+              customers.Add(lib.getCustomerDAO().GetCustomerById(id));
             }
 
-
-           /* for (int i = 0; i < table.SelectedItems.Count; i++)
-            {              
-              try
-              {
-                row = (DataRowView)table.SelectedItems[i];
-              }
-              catch (ArgumentOutOfRangeException aoore)
-              {
-                
-              }
-          */
-              
-
-              
-
-            
-            
-           
-
+            foreach (Customer c in customers)
+            {
+              lib.getCustomerDAO().DeleteCustomer(c);
+            }
         }
 
         private void showUnderToolBar(bool s)
@@ -272,7 +256,7 @@ namespace BiBo
                 return;
             }
 
-            ulong id = (ulong) Convert.ToInt64( row["ID"] as String );
+            ulong id = (ulong) row["ID"];
 
             Customer customer = lib.getCustomerDAO().GetCustomerById(id);
 
@@ -284,6 +268,7 @@ namespace BiBo
             (FindName("Employee_UserAdd_Birthday") as DatePicker).SelectedDate = customer.BirthDate;
             (FindName("Employee_UserAdd_Town") as TextBox).Text = customer.Town;
             (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = customer.Country;
+            ToggleAddEditButton("bearbeiten");
 
         }
 
@@ -539,10 +524,32 @@ namespace BiBo
 
         }
 
-
-        private void ToggleAddEditButton()
+        private void ToggleAddEditButton(String value)
         {
           Button x = FindName("CustomerAddEditButton") as Button;
+          Button reset = FindName("CustomerAddEditResetButton") as Button;
+          if (value != "")
+          {
+            x.Content = value;
+            if (value == "hinzufügen")
+            {
+              reset.Visibility = Visibility.Visible;
+            }
+            else
+            {
+              reset.Visibility = Visibility.Collapsed;
+            }
+            return;
+          }
+          
+          if (x.Content.ToString().CompareTo("hinzufügen") == 0)
+          {
+            x.Content = "bearbeiten";
+          }
+          else
+          {
+            x.Content = "hinzufügen";
+          }
          
         }
 
@@ -559,7 +566,7 @@ namespace BiBo
             return;
           }
 
-          ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
+          ulong id = (ulong) row["ID"];
           Customer customer = lib.getCustomerDAO().GetCustomerById(id);
           clearAddCustomer();
           (FindName("Employee_UserAdd_Firstname") as TextBox).Text = customer.FirstName;
@@ -570,6 +577,7 @@ namespace BiBo
           (FindName("Employee_UserAdd_Birthday") as DatePicker).SelectedDate = customer.BirthDate;
           (FindName("Employee_UserAdd_Town") as TextBox).Text = customer.Town;
           (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = customer.Country;
+          ToggleAddEditButton("bearbeiten");
           showUnderToolBar(true);
         }
 
