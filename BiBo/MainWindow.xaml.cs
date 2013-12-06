@@ -41,7 +41,7 @@ namespace BiBo
             bool ImportDummyData = (bool)config.GetValue("ImportDummyData", typeof(bool));
             InitDbSQL x = new InitDbSQL();
             if (migrateDB == true) { x.createAllTables(); }
-            if (ImportDummyData == true){x.createDummyData();x.createRandomBooks();}
+            if (ImportDummyData == true) { x.createRandomBooks(); x.createDummyData(); }
             
             BiBo.Updater.BiboUpdater updater = new BiBo.Updater.BiboUpdater();
             string currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();

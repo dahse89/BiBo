@@ -17,8 +17,19 @@ namespace BiBo.SQL
   {
     protected static SQLiteConnection con;
 
+    Library lib;
+
     private ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();
     private CardSQL cardSql = SqlConnector<Card>.GetCardSqlInstance();
+    private BookSQL bookSql = SqlConnector<Book>.GetBookSqlInstance();
+
+    private CustomerDAO customerDAO = new CustomerDAO();
+
+    public InitDbSQL() { }
+    public InitDbSQL(Library lib)
+    {
+      this.lib = lib;
+    }
 
     public bool createAllTables()
     {
@@ -119,6 +130,7 @@ namespace BiBo.SQL
     {
       Random r = new Random();
       CustomerDAO dao = new CustomerDAO();
+      List<Book> bookList = bookSql.GetAllEntrys();
 
       String[] fnames = {"Klaus","Peter","Anton","Susan","Ingo","Carlos","Olga","Emiel","Philipp"};
       String[] names = {"Dahse","Münzberg","Korepin","Dambeck","Quittenbaum","Müller","Mayer","Schulze"};
@@ -158,6 +170,21 @@ namespace BiBo.SQL
         valid = DateTime.Now.AddYears(1);
         card.CardValidUntil = valid;
         customer.Card = card;
+
+        //add exemplar to customer
+        for (int j = 0; j < r.Next(1, 6); j++)
+        {
+          DateTime date = new DateTime();
+          date = DateTime.Now.AddDays(r.Next(20,30));
+          Book book = bookList.ElementAt(r.Next(1,50));
+          customerDAO.BorrowExemplar(date, book, customer);
+        }
+
+        //add a charge to customer
+        DateTime current = new DateTime();
+        current = DateTime.Now.AddDays(r.Next(1,5));
+        Charge charge = new Charge(current, 5, 5);
+        customer.ChargeAccount.Charges.Add(charge);
 
         dao.SetPassword(customer, "1234");
 
@@ -208,9 +235,5 @@ namespace BiBo.SQL
 
     }
 
-    private void AddCharge(ChargeAccount charge)
-    {
-
-    }
   }
 }
