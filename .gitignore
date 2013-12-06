@@ -6,6 +6,9 @@
 WindowsFormsApplication6/bin/Debug/*.exe
 BiBo/bin/Debug/*.exe
 BiBo/bin/Debug/BiBo.vshost.exe.manifest
+BiBo/bin/Debug/BiBo.exe.manifest
+BiBo/bin/Debug/BiBo.vshost.application
+BiBo/bin/Debug/BiBo.application
 Test/bin/Debug/Test.dll
 Test/bin/Debug/*.exe
 

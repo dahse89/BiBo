@@ -8,11 +8,17 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows;
 
+using BiBo.Persons;
+using BiBo.DAO;
+
 namespace BiBo.SQL
 {
   class InitDbSQL
   {
     protected static SQLiteConnection con;
+
+    private ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();
+    private CardSQL cardSql = SqlConnector<Card>.GetCardSqlInstance();
 
     public bool createAllTables()
     {
@@ -112,14 +118,14 @@ namespace BiBo.SQL
     public bool createDummyData()
     {
       Random r = new Random();
-      BiBo.DAO.CustomerDAO dao = new BiBo.DAO.CustomerDAO();
+      CustomerDAO dao = new CustomerDAO();
 
       String[] fnames = {"Klaus","Peter","Anton","Susan","Ingo","Carlos","Olga","Emiel","Philipp"};
       String[] names = {"Dahse","Münzberg","Korepin","Dambeck","Quittenbaum","Müller","Mayer","Schulze"};
 
       for (int i = 0; i < 100; i++)
       {
-        BiBo.Persons.Customer customer = new BiBo.Persons.Customer();
+        Customer customer = new Customer();
         if (i == 0)
         {
           customer.Right = Rights.ADMINISTRATOR;
@@ -137,13 +143,25 @@ namespace BiBo.SQL
         customer.BirthDate = new DateTime(r.Next(1900, 2000), r.Next(1, 12), r.Next(1, 28));
         customer.Country = "Deutschland";
         customer.Town = names[r.Next(0, names.Length - 1)] + "stadt";
+
+        //add an empty ChargeAccount
+        ChargeAccount chargeAccount = new ChargeAccount(customer);
+        ulong chargeAccountId = chargeAccountSql.AddEntryReturnId(chargeAccount);
+        chargeAccount.Id = chargeAccountId;
+        customer.ChargeAccount = chargeAccount;
+
+        //add the customer card
+        Card card = new Card(customer);
+        ulong cardId = cardSql.AddEntryReturnId(card);
+        card.CardID = cardId;
         DateTime valid = new DateTime();
         valid = DateTime.Now.AddYears(1);
-        //customer.Card = new Card(valid);
+        card.CardValidUntil = valid;
+        customer.Card = card;
 
         dao.SetPassword(customer, "1234");
 
-        SQL.CustomerSQL customerSQL = new SQL.CustomerSQL();
+        CustomerSQL customerSQL = new CustomerSQL();
         customerSQL.AddEntry(customer);
       }
       return true;
@@ -179,8 +197,7 @@ namespace BiBo.SQL
         for (int j = 0; j < k; j++)
         {
           Exemplar ex = new Exemplar(book);
-          ulong id = exemplarSql.AddEntryReturnId(ex);
-          ex.ExemplarId = id;
+          ex.ExemplarId = exemplarSql.AddEntryReturnId(ex);
           book.Exemplare.Add(ex);
         }
 
@@ -188,6 +205,11 @@ namespace BiBo.SQL
       }
 
       MessageBox.Show("Book add done");
+
+    }
+
+    private void AddCharge(ChargeAccount charge)
+    {
 
     }
   }

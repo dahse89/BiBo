@@ -67,6 +67,11 @@ namespace BiBo.SQL
     {
       return new ChargeAccountSQL();
     }
+
+    public static CardSQL GetCardSqlInstance()
+    {
+      return new CardSQL();
+    }
 		
 		public abstract bool AddEntry(T obj);
 

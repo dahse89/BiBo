@@ -163,10 +163,10 @@ namespace BiBo.DAO
 
     public void AddExemplar(Exemplar x, Book book)
     {
-      ExemplarSQL exDAO = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+      ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
 
       //first add the exemplar into the db
-      exDAO.AddEntry(x);
+      exemplarSql.AddEntry(x);
 
       //and then add the exemplar into the list in the specific book
       book.Exemplare.Add(x);

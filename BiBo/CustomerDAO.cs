@@ -18,9 +18,13 @@ namespace BiBo.DAO
     private Library lib;
     private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
     private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
+    private ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();
+    private CardSQL cardSql = SqlConnector<Card>.GetCardSqlInstance();
+
     private ChargeAccountDAO chargeAccountDAO;
     private BookDAO bookDAO;
     private ExemplarDAO exemplarDAO;
+    private CardDAO cardDAO;
 
     public CustomerDAO(GUIApi gui, Library lib)
     {
@@ -29,6 +33,7 @@ namespace BiBo.DAO
       this.bookDAO = new BookDAO(gui, lib);
       this.chargeAccountDAO = new ChargeAccountDAO(gui, lib);
       this.exemplarDAO = new ExemplarDAO(gui, lib);
+      this.cardDAO = new CardDAO();
     }
 
     public CustomerDAO()
@@ -54,8 +59,19 @@ namespace BiBo.DAO
     {
       //add user to DB and dummy get the right id
       customer.CustomerID = customerSql.AddEntryReturnId(customer);
-      ulong chargeAccountId = chargeAccountDAO.chargeAccountSql.AddEntryReturnId(new ChargeAccount(customer));
-      customer.ChargeAccount.Id = chargeAccountId;
+
+      //add an empty ChargeAccount
+      ChargeAccount chargeAccount = new ChargeAccount(customer);
+      chargeAccount.Id = chargeAccountSql.AddEntryReturnId(chargeAccount);
+      customer.ChargeAccount = chargeAccount;
+
+      //add the customer card
+      Card card = new Card(customer);
+      card.CardID = cardSql.AddEntryReturnId(card);
+      DateTime valid = new DateTime();
+      valid = DateTime.Now.AddYears(1);
+      card.CardValidUntil = valid;
+      customer.Card = card;
       
       //add user in Objects
       lib.CustomerList.Add(customer);
