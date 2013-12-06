@@ -262,7 +262,32 @@
                 
               </ToolBar>
               <Grid Grid.Row="1">
-                <Label>test</Label>
+                <Grid.RowDefinitions>
+                  <RowDefinition></RowDefinition>
+                  <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>
+                  <ColumnDefinition></ColumnDefinition>                  
+                </Grid.ColumnDefinitions>
+                
+                <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0">Author</Label>
+                <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="2">Title</Label>
+                <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="4">Fachrichting</Label>
+                <Label HorizontalAlignment="Right" Grid.Row="0" Grid.Column="6">Anzahl der Exemplare</Label>
+
+                <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="1" Name="BookAddAuthor"></TextBox>
+                <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="3" Name="BookAddTitle"></TextBox>
+                <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="5" Name="BookAddSubjectArea"></TextBox>
+                <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="7" Name="BookAddNumberOfExemplars"></TextBox>
+
+                <Button Height="30" Grid.Row="1" Grid.Column="0">hinzufügen</Button>
               </Grid>          
 
               <DataGrid 
