@@ -203,35 +203,18 @@ namespace BiBo
             DataGrid table = FindName("CustomerTable") as DataGrid;
             if (table.SelectedItems.Count < 1) return;
 
-            DataRowView row = (DataRowView)table.SelectedItems[0];
+            ulong id;
 
-            while (table.SelectedItem != null)
-            {
-              row = (DataRowView)table.SelectedItem;
-              ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
-              lib.getCustomerDAO().DeleteCustomer(lib.getCustomerDAO().GetCustomerById(id));
+            List<Customer> customers = new List<Customer>();
+            foreach(DataRowView row in table.SelectedItems){
+              id = (ulong)Convert.ToInt64(row["ID"]);
+              customers.Add(lib.getCustomerDAO().GetCustomerById(id));
             }
 
-
-           /* for (int i = 0; i < table.SelectedItems.Count; i++)
-            {              
-              try
-              {
-                row = (DataRowView)table.SelectedItems[i];
-              }
-              catch (ArgumentOutOfRangeException aoore)
-              {
-                
-              }
-          */
-              
-
-              
-
-            
-            
-           
-
+            foreach (Customer c in customers)
+            {
+              lib.getCustomerDAO().DeleteCustomer(c);
+            }
         }
 
         private void showUnderToolBar(bool s)

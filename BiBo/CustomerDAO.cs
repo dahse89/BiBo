@@ -80,7 +80,7 @@ namespace BiBo.DAO
         customerSql.DeleteEntryByIdList(list); //<--- TODO possibility to delete a single customer ?
 
         //on view-layer
-        gui.DeleteCustomer(); //  <--- TODO possibilitý to delete customer in the view
+        gui.DeleteCustomer(customer); //  <--- TODO possibilitý to delete customer in the view
       //}
     }
 
