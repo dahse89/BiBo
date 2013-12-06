@@ -42,14 +42,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BiBo.exe" size="278528">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BiBo.exe" size="282112">
       <assemblyIdentity name="BiBo" version="1.0.0.18" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+<<<<<<< HEAD
         <dsig:DigestValue>JmVHlr57+u4CLu3Wkad2aXt3XI8=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>q1YHKTlgbTKe+oAfz51z4NWuBfU=</dsig:DigestValue>
+>>>>>>> 442fadc325d580b11c28ad305cbe8714ef0735d5
       </hash>
     </dependentAssembly>
   </dependency>

@@ -75,6 +75,23 @@ namespace BiBo
            
         }
 
+        public void AddBook(Book book)
+        {
+          DataGrid BookTable = load("EmployeeBooksTable") as DataGrid;
+          DataTable test = (BookTable.DataContext as DataTable);
+
+          test.Rows.Add(
+             book.BookId,
+             book.Author,
+             book.Titel,
+             book.SubjectArea,
+             book.Exemplare.Count
+         );
+
+
+          BookTable.DataContext = test;
+        }
+
         public void Add_c_Book(Book book)
         {
             DataGrid BookTable = load("cBookTable") as DataGrid;
@@ -86,7 +103,9 @@ namespace BiBo
             test.Rows.Add(
                 book.BookId,
                 book.Author,
-                book.Titel
+                book.Titel,
+                book.SubjectArea,
+                book.Exemplare.Count
             );
 
             
@@ -117,9 +136,5 @@ namespace BiBo
           //TODO : implement ^^
         }
 
-        public void AddBook(Book book)
-        {
-          //TODO : implement ^^
-        }
     }
 }

@@ -7,7 +7,7 @@ using BiBo.SQL;
 
 namespace BiBo
 {
-  class CardSQL : SqlConnector<Card>
+  public class CardSQL : SqlConnector<Card>
   {
     public override bool AddEntry(Card card)
     {

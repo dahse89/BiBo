@@ -9,7 +9,7 @@ namespace BiBo
 {
   public class Card
   {
-    private Customer customer;                      //dazugehöriger Benutzer
+    private Customer customer;                        //dazugehöriger Benutzer
     private ulong cardID;                             //Ausweis
     private DateTime cardValidUntil;                  //Gültigkeitdatum des Ausweises 
 
@@ -17,15 +17,9 @@ namespace BiBo
     {
     }
 
-    public Card(ulong cardID, DateTime cardValidUntil)
+    public Card(Customer customer)
     {
-      this.cardID = cardID;
-      this.cardValidUntil = cardValidUntil;
-    }
-
-    public Card(DateTime cardValidUntil)
-    {
-      this.cardValidUntil = cardValidUntil;
+      this.customer = customer;
     }
 
     public ulong CardID
