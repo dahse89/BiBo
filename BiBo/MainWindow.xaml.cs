@@ -199,10 +199,7 @@ namespace BiBo
         }
 
         private void ToolBarDelte_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-
-          List<KeyValuePair<int, Customer>> list = new List<KeyValuePair<int, Customer>>();
-
+        {         
             DataGrid table = FindName("CustomerTable") as DataGrid;
             if (table.SelectedItems.Count < 1) return;
 
@@ -221,12 +218,11 @@ namespace BiBo
 
               ulong id = (ulong)Convert.ToInt64(row["ID"] as String);
 
-              Customer customer = lib.getCustomerDAO().GetCustomerById(id);
-              list.Add(new KeyValuePair<int, Customer>(table.SelectedIndex, customer));
+              lib.getCustomerDAO().DeleteCustomer(lib.getCustomerDAO().GetCustomerById(id));
 
             }
-
-            //(table.DataContext as DataTable).Rows[table.SelectedIndex].Delete();
+            
+           
 
         }
 
