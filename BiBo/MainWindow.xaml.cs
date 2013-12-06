@@ -195,6 +195,7 @@ namespace BiBo
         private void ToolBarUserAdd_Click(object sender, MouseButtonEventArgs e)
         {
             clearAddCustomer();
+            ToggleAddEditButton("hinzufügen");
             showUnderToolBar(true);
         }
 
@@ -269,6 +270,7 @@ namespace BiBo
             (FindName("Employee_UserAdd_Birthday") as DatePicker).SelectedDate = customer.BirthDate;
             (FindName("Employee_UserAdd_Town") as TextBox).Text = customer.Town;
             (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = customer.Country;
+            ToggleAddEditButton("bearbeiten");
 
         }
 
@@ -567,9 +569,32 @@ namespace BiBo
 
         }
 
-        private void ToggleAddEditButton()
+        private void ToggleAddEditButton(String value)
         {
           Button x = FindName("CustomerAddEditButton") as Button;
+          Button reset = FindName("CustomerAddEditResetButton") as Button;
+          if (value != "")
+          {
+            x.Content = value;
+            if (value == "hinzufügen")
+            {
+              reset.Visibility = Visibility.Visible;
+            }
+            else
+            {
+              reset.Visibility = Visibility.Collapsed;
+            }
+            return;
+          }
+          
+          if (x.Content.ToString().CompareTo("hinzufügen") == 0)
+          {
+            x.Content = "bearbeiten";
+          }
+          else
+          {
+            x.Content = "hinzufügen";
+          }
          
         }
 
@@ -597,6 +622,7 @@ namespace BiBo
           (FindName("Employee_UserAdd_Birthday") as DatePicker).SelectedDate = customer.BirthDate;
           (FindName("Employee_UserAdd_Town") as TextBox).Text = customer.Town;
           (FindName("Employee_UserAdd_Country") as ComboBox).SelectedValue = customer.Country;
+          ToggleAddEditButton("bearbeiten");
           showUnderToolBar(true);
         }
 
