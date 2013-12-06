@@ -18,7 +18,7 @@ namespace BiBo.DAO
     private Library lib;
     private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
     private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
-    private ChargeAccountDAO chargeAccountSql;
+    private ChargeAccountDAO chargeAccountDAO;
     private BookDAO bookDAO;
     private ExemplarDAO exemplarDAO;
 
@@ -27,7 +27,7 @@ namespace BiBo.DAO
       this.gui = gui;
       this.lib = lib;
       this.bookDAO = new BookDAO(gui, lib);
-      this.chargeAccountSql = new ChargeAccountDAO(gui, lib);
+      this.chargeAccountDAO = new ChargeAccountDAO(gui, lib);
       this.exemplarDAO = new ExemplarDAO(gui, lib);
     }
 
@@ -53,13 +53,16 @@ namespace BiBo.DAO
     public void AddCustomer(Customer customer)
     {
       //add user to DB and dummy get the right id
-        customer.CustomerID = customerSql.AddEntryReturnId(customer);
+      customer.CustomerID = customerSql.AddEntryReturnId(customer);
+      ulong chargeAccountId = chargeAccountDAO.chargeAccountSql.AddEntryReturnId(new ChargeAccount(customer));
+      customer.ChargeAccount.Id = chargeAccountId;
+      
       
       //add user in Objects
-        lib.CustomerList.Add(customer);
+      lib.CustomerList.Add(customer);
 
       //refresh GUI-View
-        gui.AddCustomer(customer);
+      gui.AddCustomer(customer);
     }
 
     public void DeleteCustomer(Customer customer)

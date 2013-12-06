@@ -9,12 +9,13 @@ namespace BiBo.Persons
   {
     private Customer customer;
     private List<Charge> charges;
-    private uint id;
+    private ulong id;
 
     //Konstruktor
     public ChargeAccount(Customer customer)
     {
       this.customer = customer;
+      this.charges = new List<Charge>();
     }
 
     public Customer Customer
@@ -29,7 +30,7 @@ namespace BiBo.Persons
       set { this.charges = value; }
     }
 
-    public uint Id
+    public ulong Id
     {
       get { return this.id; }
       set { this.id = value; }
