@@ -23,6 +23,7 @@ using System.Net;
 using BiBo.DAO;
 using BiBo.SQL;
 using System.Diagnostics;
+using System.Resources;
 
 namespace BiBo
 {
@@ -32,7 +33,7 @@ namespace BiBo
     public partial class MainWindow : Window
     {
         Library lib;
-        private String CountriesSource = "../../countries.txt";
+        
 
         public MainWindow()
         {
@@ -105,14 +106,11 @@ namespace BiBo
             string line;
 
             // Read the file and display it line by line.
-            StreamReader file = new System.IO.StreamReader(this.CountriesSource);
-            
-            while ((line = file.ReadLine()) != null)
-            {
-                //add to country dataTable
-                comBox.Items.Add(line);
+            string resource_data = Properties.Resources.countries;
+            string [] words = resource_data.Split(new[] {Environment.NewLine}, StringSplitOptions.RemoveEmptyEntries);
+            foreach(string lines in words){
+                comBox.Items.Add(lines);
             }
-            file.Close();
 
             comBox.SelectedIndex = 0;
         }
