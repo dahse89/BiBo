@@ -8,12 +8,12 @@ using BiBo.Persons;
 namespace Test
 {
   [TestClass()]
-  class ChargeAccountDAOTest
+  public class ChargeAccountDAOTest
   {
     [TestMethod()]
     public void GetAllChargeAccountsTest()
     {
-      int capacity = 1;
+      int capacity = 2;
       GUIApi api = new GUIApi(true);
       Library lib = new Library(api);
       ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();
@@ -66,6 +66,66 @@ namespace Test
 
       lib.ChargeAccountList = list;
       Assert.AreEqual(lib.ChargeAccountList, list);
+    }
+
+    [TestMethod()]
+    public void GetChargeAccountToCustomerTest()
+    {
+      int capacity = 2;
+
+      DateTime changedAt = DateTime.Today;
+      decimal currentValue = 500;
+      decimal changeValue = 50;
+      Charge ch = new Charge(changedAt, currentValue, changeValue);
+      
+      List<Charge> chlist = new List<Charge>(capacity);
+      chlist.Add(ch);
+
+      ulong cusID = 1;
+      string firstName = "Vorname1";
+      string lastName = "Nachname1";
+      DateTime birthDate = DateTime.Parse("01.04.1999");
+      Customer cus1 = new Customer(cusID, firstName, lastName, birthDate);
+
+      ChargeAccount chAcc1 = new ChargeAccount(cus1);
+      chAcc1.Charges = chlist;
+
+      cus1.ChargeAccount = chAcc1;
+
+      Assert.AreEqual(cus1.ChargeAccount.Charges, chlist);
+
+    }
+
+    [TestMethod()]
+    public void AddChargeTest()
+    {
+      int capacity = 2;
+
+      DateTime changedAt = DateTime.Today;
+      decimal currentValue = 500;
+      decimal changeValue = 50;
+      Charge ch = new Charge(changedAt, currentValue, changeValue);
+
+      List<Charge> chlist = new List<Charge>(capacity);
+      chlist.Add(ch);
+
+      ulong cusID = 1;
+      string firstName = "Vorname1";
+      string lastName = "Nachname1";
+      DateTime birthDate = DateTime.Parse("01.04.1999");
+      Customer cus1 = new Customer(cusID, firstName, lastName, birthDate);
+
+      ChargeAccount chAcc1 = new ChargeAccount(cus1);
+      chAcc1.Charges = chlist;
+
+      cus1.ChargeAccount = chAcc1;
+      // Kennt Last() nicht!!!
+      /*
+       Charge ch2 = cus1.ChargeAccount.Charges.Last();
+      decimal value = ch2.CurrentValue + changeValue;
+      cus1.ChargeAccount.Charges.Add(new Charge(changedAt, value, changeValue));
+      */
+
     }
   }
 }
