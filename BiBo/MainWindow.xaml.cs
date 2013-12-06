@@ -31,6 +31,7 @@ namespace BiBo
     public partial class MainWindow : Window
     {
         Library lib;
+        Tabs CurrentEmployeeAreaTab = Tabs.CUSTOMER;
 
         public MainWindow()
         {
@@ -152,8 +153,46 @@ namespace BiBo
 
         private void MouseUp_BooksImage(object sender, MouseButtonEventArgs e)
         {
-            (FindName("CustomerPanel") as Grid).Visibility = Visibility.Hidden;
-            (FindName("BookPanel") as Grid).Visibility = Visibility.Visible;
+          HandleTabs_EmployeeArea(Tabs.BOOK);
+        }
+
+        private void MouseUp_AccountImage(object sender, MouseButtonEventArgs e)
+        {          
+          HandleTabs_EmployeeArea(Tabs.CUSTOMER);
+        }
+
+        private void MouseUp_BorrowImage(object sender, MouseButtonEventArgs e)
+        {          
+          HandleTabs_EmployeeArea(Tabs.BORROW);
+        }
+
+      
+      
+        private void HandleTabs_EmployeeArea(Tabs show)
+        {
+          if (show == CurrentEmployeeAreaTab) return;
+  
+          //hide all
+          (FindName("CustomerPanel") as Grid).Visibility = Visibility.Hidden;
+          (FindName("BookPanel") as Grid).Visibility = Visibility.Hidden;
+          (FindName("BorrowPanel") as Grid).Visibility = Visibility.Hidden;  
+
+          //show
+          switch (show)
+          {
+            case Tabs.CUSTOMER:
+              (FindName("CustomerPanel") as Grid).Visibility = Visibility.Visible;
+              CurrentEmployeeAreaTab = Tabs.CUSTOMER;
+              break;
+            case Tabs.BOOK:
+              (FindName("BookPanel") as Grid).Visibility = Visibility.Visible;
+              CurrentEmployeeAreaTab = Tabs.BOOK;
+              break;
+            case Tabs.BORROW:
+              (FindName("BorrowPanel") as Grid).Visibility = Visibility.Visible;              
+              CurrentEmployeeAreaTab = Tabs.BORROW;
+              break;
+          }
         }
 
         private void UserAdd_Click(object sender, RoutedEventArgs e)

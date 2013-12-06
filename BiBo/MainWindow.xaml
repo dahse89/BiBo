@@ -162,10 +162,10 @@
                         </VisualBrush>
                     </Border.BorderBrush>
                 </Border>
-                
-                <Image Grid.Row="0" Margin="19" Height="64" HorizontalAlignment="Left" Name="CustomerMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/account.png" />
+
+              <Image MouseUp="MouseUp_AccountImage" Grid.Row="0" Margin="19" Height="64" HorizontalAlignment="Left" Name="CustomerMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/account.png" />
                 <Image MouseUp="MouseUp_BooksImage" Grid.Row="0" Margin="88 19 0 19" Height="64" HorizontalAlignment="Left" Name="BooksMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/books.png" />
-                <Image Grid.Row="0" Margin="157 19 0 19" Height="64" HorizontalAlignment="Left" Name="BorrowMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/borrowicon.png" />
+        <Image MouseUp="MouseUp_BorrowImage" Grid.Row="0" Margin="157 19 0 19" Height="64" HorizontalAlignment="Left" Name="BorrowMainButton" Stretch="Fill" VerticalAlignment="Top" Width="65" Source="/BiBo;component/Images/borrowicon.png" />
 
                 <Image Name="ImageLogout" MouseUp="Employee_Logout_MouseUp" Grid.Row="0" Source="/BiBo;component/Images/logout.png" HorizontalAlignment="Right" Margin="0 19 30 19"></Image>
             <Grid  Name="MainPanel" Grid.Row="1">
@@ -251,10 +251,15 @@
                 </Grid>
               
                 <Grid Name="BookPanel" Visibility="Hidden">
-                    <Label >test</Label>
+            <Label >BookPanel</Label>
                     
                 </Grid>
-            </Grid>
+
+          <Grid Name="BorrowPanel" Visibility="Hidden">
+            <Label >BorrowPanel</Label>
+
+          </Grid>
+        </Grid>
            
         </Grid>
     
