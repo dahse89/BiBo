@@ -22,8 +22,11 @@ namespace BiBo.SQL
     private ChargeAccountSQL chargeAccountSql = SqlConnector<ChargeAccount>.GetChargeAccountSqlInstance();
     private CardSQL cardSql = SqlConnector<Card>.GetCardSqlInstance();
     private BookSQL bookSql = SqlConnector<Book>.GetBookSqlInstance();
+    private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
+    private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
 
     private CustomerDAO customerDAO = new CustomerDAO();
+    private BookDAO bookDAO = new BookDAO();
 
     public InitDbSQL() { }
     public InitDbSQL(Library lib)
@@ -130,7 +133,7 @@ namespace BiBo.SQL
     {
       Random r = new Random();
       CustomerDAO dao = new CustomerDAO();
-      List<Book> bookList = bookSql.GetAllEntrys();
+      List<Book> bookList = bookDAO.getAllBooksForNonLib();
 
       String[] fnames = {"Klaus","Peter","Anton","Susan","Ingo","Carlos","Olga","Emiel","Philipp"};
       String[] names = {"Dahse","Münzberg","Korepin","Dambeck","Quittenbaum","Müller","Mayer","Schulze"};
@@ -155,6 +158,7 @@ namespace BiBo.SQL
         customer.BirthDate = new DateTime(r.Next(1900, 2000), r.Next(1, 12), r.Next(1, 28));
         customer.Country = "Deutschland";
         customer.Town = names[r.Next(0, names.Length - 1)] + "stadt";
+        //customer.CustomerID = Convert.ToUInt64(i + 1);
 
         //add an empty ChargeAccount
         ChargeAccount chargeAccount = new ChargeAccount(customer);
@@ -176,8 +180,30 @@ namespace BiBo.SQL
         {
           DateTime date = new DateTime();
           date = DateTime.Now.AddDays(r.Next(20,30));
-          Book book = bookList.ElementAt(r.Next(1,50));
-          customerDAO.BorrowExemplar(date, book, customer);
+          Book book = bookList.ElementAt(r.Next(1,20));
+          //customerDAO.BorrowExemplar(date, book, customer);
+          Exemplar ex = null;
+          foreach (Exemplar exemplar in book.Exemplare)
+          {
+            if (exemplar.Accesser == Access.FREEHAND_LENDING && exemplar.State != BookStates.MISSING && exemplar.State != BookStates.ONLY_VISIBLE)
+            {
+              ex = exemplar;
+              break;
+            }
+          }
+          if (ex != null)
+          {
+            ex.LoanPeriod = date;
+            ex.Borrower = customer;
+            ex.CountBorrow = ex.CountBorrow + 1;
+            //customer.ExemplarList.Add(ex);
+          }
+          
+          //on db-layer update the customer
+          //customerSql.UpdateEntry(customer);
+
+          //on db-layer update the exemplar
+          exemplarSql.UpdateEntry(ex);
         }
 
         //add a charge to customer
@@ -225,7 +251,7 @@ namespace BiBo.SQL
         for (int j = 0; j < k; j++)
         {
           Exemplar ex = new Exemplar(book);
-          ex.ExemplarId = exemplarSql.AddEntryReturnId(ex); //TODO: SQL bricht ab, keine ahnung wieso, dadurch wird kein exemplar in die datenbank gefüllt
+          ex.ExemplarId = exemplarSql.AddEntryReturnId(ex); 
           book.Exemplare.Add(ex);
         }
 

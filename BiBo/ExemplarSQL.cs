@@ -33,8 +33,7 @@ namespace BiBo.SQL
                                       loanPeriod,
                                       state,
                                       signatur,
-                                      access,
-                                      customerId
+                                      access
                                   )   
                                   VALUES (
                                       NULL,  
@@ -42,8 +41,7 @@ namespace BiBo.SQL
                                       '" + exemplar.LoanPeriod.ToShortDateString() + @"',
                                       '" + exemplar.State.ToString() + @"',
                                       '" + exemplar.Signatur + @"',
-                                      '" + exemplar.Accesser.ToString() + @"',
-                                      '" + exemplar.Borrower.CustomerID + @"',
+                                      '" + exemplar.Accesser.ToString() + @"'
                                   );";
 
                     command.ExecuteNonQuery();
@@ -67,18 +65,13 @@ namespace BiBo.SQL
             return (ulong)lastRowID64;
         }
 
+      //TODO: add countBorrow to db
         public override bool UpdateEntry(Exemplar obj)
         {
           SQLiteCommand command = new SQLiteCommand(con);
-          command.CommandText = @"UPDATE Exemplar SET
-                                    bookId = '" + obj.BookId + @"',
-                                    loanPeriod = '" + obj.LoanPeriod + @"',
-                                    state = '" + obj.State + @"',
-                                    signatur = '" + obj.Signatur + @"',
-                                    access = '" + obj.Accesser.ToString() + @"',
-                                    customerId = '" + obj.Borrower.CustomerID + @"',
-                                  WHERE id = '" + obj.ExemplarId + @"');";
+          command.CommandText = ("UPDATE Exemplar SET bookId = '" + obj.BookId.ToString() + "', loanPeriod = '" + obj.LoanPeriod.ToShortDateString() + "', state = '" + obj.State.ToString() + "', signatur = '" + obj.Signatur + "', access = '" + obj.Accesser.ToString() + "', customerId = '" + obj.Borrower.CustomerID + "' WHERE ID = '" + obj.ExemplarId + "'");
           command.ExecuteNonQuery();
+
           return true;
         }
 
@@ -159,14 +152,16 @@ namespace BiBo.SQL
 
             string stateString = reader.GetString(reader.GetOrdinal("state"));
             BookStates state = (BookStates) Enum.Parse(typeof(BookStates), stateString, true);
-
+            string accessString = reader.GetString(reader.GetOrdinal("access"));
+            Access access = (Access)Enum.Parse(typeof(Access), accessString, true);
             string signatur = reader.GetString(reader.GetOrdinal("signatur"));
-            ulong customerId = System.Convert.ToUInt64(reader.GetInt32(reader.GetOrdinal("customerID")));
+            //ulong customerId = System.Convert.ToUInt64(reader.GetInt32(reader.GetOrdinal("customerID"))); <--- TODO: nicht sinnvoll, da nicht zwinend vorhanden
             ulong bookId = System.Convert.ToUInt64(reader.GetInt32(reader.GetOrdinal("bookID")));
             
             exemplar.ExemplarId = id;
             exemplar.LoanPeriod = loanPeriod;
             exemplar.State = state;
+            exemplar.Accesser = access; 
             exemplar.Signatur = signatur;
             exemplar.BookId = bookId;
 

@@ -19,13 +19,15 @@ namespace BiBo.SQL
 	/// Description of CustomerSql.
 	/// </summary>
 	public class CustomerSQL : SqlConnector<Customer>
-	{		
-		public override bool AddEntry(Customer customer)
-		{
-              SQLiteCommand command = new SQLiteCommand(con);
-              command.CommandText = @"INSERT INTO
+	{
+      public override bool AddEntry(Customer customer)
+      {
+        SQLiteCommand command = new SQLiteCommand(con);
+        command.CommandText = @"INSERT INTO
                                             Customer (
                                                 id,
+                                                cardId,
+                                                cardValidUntil,
                                                 firstName, 
                                                 lastName, 
                                                 birthDate,
@@ -33,6 +35,7 @@ namespace BiBo.SQL
                                                 mobileNumber,
                                                 createdAt,
                                                 lastUpdate,
+                                                deletedAt,
                                                 street,
                                                 streetNumber,
                                                 additionalRoad,
@@ -40,17 +43,21 @@ namespace BiBo.SQL
                                                 town,
                                                 country,
                                                 rights,
-                                                password
+                                                password,
+                                                chargeAccount
                                             ) 
                                             VALUES (
                                                 NULL,
+                                                '" + customer.Card.CardID + @"',
+                                                '" + customer.Card.CardValidUntil + @"',
                                                 '" + customer.FirstName + @"',
-                                                '" + customer.LastName  + @"',
+                                                '" + customer.LastName + @"',
                                                 '" + customer.BirthDate.ToShortDateString() + @"',
                                                 '" + customer.EMailAddress + @"',
                                                 '" + customer.MobileNumber + @"',
                                                 '" + customer.CreatedAt + @"',
                                                 '" + customer.LastUpdate + @"',   
+                                                '" + customer.DeletedAt + @"',   
                                                 '" + customer.Street + @"',
                                                 '" + customer.StreetNumber + @"',
                                                 '" + customer.AdditionalRoad + @"',
@@ -58,13 +65,14 @@ namespace BiBo.SQL
                                                 '" + customer.Town + @"',
                                                 '" + customer.Country + @"',
                                                 '" + customer.Right.ToString() + @"',
-                                                '" + customer.Password + @"'
+                                                '" + customer.Password + @"',
+                                                '" + 5 + @"'
                                              );";
 
-              command.ExecuteNonQuery();
+        command.ExecuteNonQuery();
 
-            return true;
-		}
+        return true;
+      }
 
         public override ulong AddEntryReturnId(Customer customer)
         {
@@ -94,8 +102,9 @@ namespace BiBo.SQL
                                     zipCode = '" + customer.ZipCode + @"',
                                     town = '" + customer.Town + @"',
                                     country = '" + customer.Country + @"',
-                                    rights = '" + customer.Right.ToString() + @"'
-                                    password = '" + customer.Password + @"'
+                                    rights = '" + customer.Right.ToString() + @"',
+                                    password = '" + customer.Password + @"',
+                                    chargeAccount = '" + customer.ChargeAccount.Id + @"'
                                   WHERE id = '" + customer.CustomerID + @"');";
           command.ExecuteNonQuery();
           return true;

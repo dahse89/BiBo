@@ -17,17 +17,13 @@ namespace BiBo.SQL
                 SQLiteCommand command = new SQLiteCommand(con);
                 if (command != null)
                 {
-                  command.CommandText = @"INSERT INTO ChargeTransactions (
-                                      ChargeAccountID,
-                                      change,
-                                      newValue,
-                                      changedAt
+                  command.CommandText = @"INSERT INTO ChargeAccount (
+                                      id,
+                                      customerId
                                   )   
                                   VALUES (
                                       NULL,
-                                      '""',  
-                                      '" + obj.Customer.CustomerID + @"',
-                                      '" + DateTime.Now + @"'
+                                      '" + obj.Customer.CustomerID + @"'
                                   );";
 
                     command.ExecuteNonQuery();
