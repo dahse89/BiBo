@@ -116,7 +116,7 @@ namespace BiBo.SQL
                                     );";
 
       SQLiteCommand command6 = new SQLiteCommand(cardSQL, con);
-      command5.ExecuteNonQuery();
+      command6.ExecuteNonQuery();
       
       con.Close();
 

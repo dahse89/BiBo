@@ -57,7 +57,17 @@ namespace BiBo.DAO
 
     public void AddCustomer(Customer customer)
     {
-      CustomerSQL custSql = SqlConnector<Customer>.GetCustomerSqlInstance();
+      CustomerSQL custSql = SqlConnector<Customer>.GetCustomerSqlInstance(); // <-- TODO: because the Database was closed, where is the error ?
+
+      //prepare dummy data
+      customer.EMailAddress = "bla@gmail.com";
+      customer.CreatedAt = DateTime.Now;
+      customer.LastUpdate = DateTime.Now;
+      customer.DeletedAt = DateTime.MaxValue;
+      customer.AdditionalRoad = "abc";
+      customer.Right = Rights.CUSTOMER;
+      customer.Password = "1234";
+
       //add user to DB and dummy get the right id
       customer.CustomerID = custSql.AddEntryReturnId(customer);
 

@@ -104,7 +104,7 @@ namespace BiBo.SQL
 
         public override ulong AddEntryReturnId(Customer customer)
         {
-            AddEntryDummy(customer);//da hier ja eh ne unique id erzeugt wird kann ich die ja auch gleich nutzen <Philipp>
+            AddEntry(customer);//da hier ja eh ne unique id erzeugt wird kann ich die ja auch gleich nutzen <Philipp>
 
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "SELECT last_insert_rowid()";

@@ -15,6 +15,7 @@ namespace BiBo.SQL
           try
             {
                 SQLiteCommand command = new SQLiteCommand(con);
+                if (con.State.ToString().CompareTo("Closed") == 0) con.Open(); //TODO: why is the con closed when i add a customer ?
                 if (command != null)
                 {
                   command.CommandText = @"INSERT INTO ChargeAccount (
