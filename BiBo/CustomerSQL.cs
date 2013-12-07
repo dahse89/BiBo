@@ -26,8 +26,6 @@ namespace BiBo.SQL
         command.CommandText = @"INSERT INTO
                                             Customer (
                                                 id,
-                                                cardId,
-                                                cardValidUntil,
                                                 firstName, 
                                                 lastName, 
                                                 birthDate,
@@ -43,13 +41,10 @@ namespace BiBo.SQL
                                                 town,
                                                 country,
                                                 rights,
-                                                password,
-                                                chargeAccount
+                                                password
                                             ) 
                                             VALUES (
                                                 NULL,
-                                                '" + customer.Card.CardID + @"',
-                                                '" + customer.Card.CardValidUntil + @"',
                                                 '" + customer.FirstName + @"',
                                                 '" + customer.LastName + @"',
                                                 '" + customer.BirthDate.ToShortDateString() + @"',
@@ -65,8 +60,41 @@ namespace BiBo.SQL
                                                 '" + customer.Town + @"',
                                                 '" + customer.Country + @"',
                                                 '" + customer.Right.ToString() + @"',
-                                                '" + customer.Password + @"',
-                                                '" + 5 + @"'
+                                                '" + customer.Password + @"'
+                                             );";
+
+        command.ExecuteNonQuery();
+
+        return true;
+      }
+
+      public bool AddEntryDummy(Customer customer)
+      {
+        SQLiteCommand command = new SQLiteCommand(con);
+        command.CommandText = @"INSERT INTO
+                                            Customer (
+                                                id,
+                                                firstName, 
+                                                lastName, 
+                                                birthDate,
+                                                mobileNumber,
+                                                street,
+                                                streetNumber,
+                                                zipCode,
+                                                town,
+                                                country
+                                            ) 
+                                            VALUES (
+                                                NULL,
+                                                '" + customer.FirstName + @"',
+                                                '" + customer.LastName + @"',
+                                                '" + customer.BirthDate.ToShortDateString() + @"',
+                                                '" + customer.MobileNumber + @"',
+                                                '" + customer.Street + @"',
+                                                '" + customer.StreetNumber + @"',
+                                                '" + customer.ZipCode + @"',
+                                                '" + customer.Town + @"',
+                                                '" + customer.Country + @"'
                                              );";
 
         command.ExecuteNonQuery();
@@ -76,7 +104,7 @@ namespace BiBo.SQL
 
         public override ulong AddEntryReturnId(Customer customer)
         {
-            AddEntry(customer);//da hier ja eh ne unique id erzeugt wird kann ich die ja auch gleich nutzen <Philipp>
+            AddEntryDummy(customer);//da hier ja eh ne unique id erzeugt wird kann ich die ja auch gleich nutzen <Philipp>
 
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "SELECT last_insert_rowid()";
@@ -88,7 +116,6 @@ namespace BiBo.SQL
         {
           SQLiteCommand command = new SQLiteCommand(con);
           command.CommandText = @"UPDATE Customer SET
-                                    cardValidUntil = '" + customer.Card.CardValidUntil + @"',
                                     email = '" + customer.EMailAddress + @"',
                                     mobileNumber = '" + customer.MobileNumber + @"',
                                     createdAt = '" + customer.CreatedAt + @"',
@@ -104,7 +131,7 @@ namespace BiBo.SQL
                                     country = '" + customer.Country + @"',
                                     rights = '" + customer.Right.ToString() + @"',
                                     password = '" + customer.Password + @"',
-                                    chargeAccount = '" + customer.ChargeAccount.Id + @"'
+                                    chargeAccountId = '" + customer.ChargeAccount.Id + @"'
                                   WHERE id = '" + customer.CustomerID + @"');";
           command.ExecuteNonQuery();
           return true;

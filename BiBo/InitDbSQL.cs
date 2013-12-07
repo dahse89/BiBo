@@ -45,8 +45,6 @@ namespace BiBo.SQL
       string customerSQL = @"CREATE TABLE IF NOT EXISTS
                                     Customer (
                                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-                                        cardId INTEGER NOT NULL,
-                                        cardValidUntil VARCHAR(255),
                                         firstName VARCHAR(100) NOT NULL,
                                         lastName VARCHAR(100) NOT NULL,
                                         birthDate DATETIME,
@@ -63,7 +61,7 @@ namespace BiBo.SQL
                                         country VARCHAR(100),
                                         rights VARCHAR(100),
                                         password VARCHAR(100), 
-                                        chargeAccount INTEGER(100)
+                                        chargeAccountId INTEGER(100)
                                     );";
 
       SQLiteCommand command = new SQLiteCommand(customerSQL, con);
@@ -138,7 +136,7 @@ namespace BiBo.SQL
       String[] fnames = {"Klaus","Peter","Anton","Susan","Ingo","Carlos","Olga","Emiel","Philipp"};
       String[] names = {"Dahse","Münzberg","Korepin","Dambeck","Quittenbaum","Müller","Mayer","Schulze"};
 
-      for (int i = 0; i < 100; i++)
+      for (int i = 0; i < 5; i++)
       {
         Customer customer = new Customer();
         if (i == 0)
@@ -158,7 +156,7 @@ namespace BiBo.SQL
         customer.BirthDate = new DateTime(r.Next(1900, 2000), r.Next(1, 12), r.Next(1, 28));
         customer.Country = "Deutschland";
         customer.Town = names[r.Next(0, names.Length - 1)] + "stadt";
-        //customer.CustomerID = Convert.ToUInt64(i + 1);
+        customer.CustomerID = Convert.ToUInt64(i + 1);
 
         //add an empty ChargeAccount
         ChargeAccount chargeAccount = new ChargeAccount(customer);
@@ -243,7 +241,7 @@ namespace BiBo.SQL
       int k;
       Book book;
 
-      for (int i = 0; i < listTitle.Count; i++)
+      for (int i = 0; i < listTitle.Count; i++) //TODO: there are only 100 exemplars but not for every book
       {
         k = r.Next(1, 5);
         book = new Book(0, listAuthor[i].Groups[1].Value, listTitle[i].Groups[1].Value, "Roman");

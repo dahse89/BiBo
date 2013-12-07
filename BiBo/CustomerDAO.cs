@@ -57,8 +57,9 @@ namespace BiBo.DAO
 
     public void AddCustomer(Customer customer)
     {
+      CustomerSQL custSql = SqlConnector<Customer>.GetCustomerSqlInstance();
       //add user to DB and dummy get the right id
-      customer.CustomerID = customerSql.AddEntryReturnId(customer);
+      customer.CustomerID = custSql.AddEntryReturnId(customer);
 
       //add an empty ChargeAccount
       ChargeAccount chargeAccount = new ChargeAccount(customer);

@@ -31,12 +31,16 @@ namespace BiBo.SQL
           	con.Open();
             if (new FileInfo("Database.dat").Length == 0)
             {
-              BiBo.SQL.InitDbSQL x = new InitDbSQL();
+              BiBo.SQL.InitDbSQL x = new InitDbSQL(); //TODO: big issue ... hier wird beim durchlaufen des anlegen der datenbank mehrmals durchlaufen ... deswegen schmeisst der auch ne Exception ... hier muss nochmal geprüft werden mit dem debugger, LOGIKFEHLER
               x.createAllTables();
               x.createRandomBooks(); 
               x.createDummyData();
             }
 		  }
+          if (con.State.ToString().CompareTo("Closed") == 0)
+          {
+            con.Open();
+          }
 		}
 		
 		~SqlConnector()
