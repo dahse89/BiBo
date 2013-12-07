@@ -59,14 +59,14 @@ namespace BiBo.DAO
     {
       CustomerSQL custSql = SqlConnector<Customer>.GetCustomerSqlInstance(); // <-- TODO: because the Database was closed, where is the error ?
 
-      //prepare dummy data
+      //prepare dummy data <--- TODO: diese Felder brauchen wir noch in der GUI, abgesehen von LastUpdate and Deleted, müssen aber gesetzt sein, da sonst Fehler beim auslesen aus der Datenbank
       customer.EMailAddress = "bla@gmail.com";
       customer.CreatedAt = DateTime.Now;
       customer.LastUpdate = DateTime.Now;
       customer.DeletedAt = DateTime.MaxValue;
       customer.AdditionalRoad = "abc";
       customer.Right = Rights.CUSTOMER;
-      customer.Password = "1234";
+      customer.Password = getMD5("1234");
 
       //add user to DB and dummy get the right id
       customer.CustomerID = custSql.AddEntryReturnId(customer);
