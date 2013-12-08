@@ -18,15 +18,17 @@ namespace BiBo.SQL
         if (command != null)
         {
           command.CommandText = @"INSERT INTO ChargeTransactions (
+                                      TransactionID,
                                       ChargeAccountID,
                                       change,
                                       newValue,
                                       changedAt
                                   )   
                                   VALUES (
-                                      '1',
+                                      NULL,
+                                      '" + obj.ChargeAccountId +@"',
                                       '" + obj.ChangeValues +@"',  
-                                      '" + obj.CurrentValue + obj.ChangeValues + @"',
+                                      '" + obj.CurrentValue +@"',
                                       '" + DateTime.Now + @"'
                                   );";
 

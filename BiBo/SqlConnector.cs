@@ -58,11 +58,6 @@ namespace BiBo.SQL
 			return new CustomerSQL();
 		}
 
-    public static ChargeSQL GetChargeSqlInstance()
-    {
-      return new ChargeSQL();
-    }
-
 		public static ExemplarSQL GetExemplarSqlInstance()
 		{
 			return new ExemplarSQL();
@@ -71,6 +66,11 @@ namespace BiBo.SQL
     public static ChargeAccountSQL GetChargeAccountSqlInstance()
     {
       return new ChargeAccountSQL();
+    }
+
+    public static ChargeSQL GetChargeSqlInstance()
+    {
+      return new ChargeSQL();
     }
 
     public static CardSQL GetCardSqlInstance()

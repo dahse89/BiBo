@@ -53,6 +53,7 @@ namespace BiBo.Persons
         public Customer() 
         {
           this.password = "";
+          this.ExemplarList = new List<Exemplar>();
         }
 
         //Property Deklaration

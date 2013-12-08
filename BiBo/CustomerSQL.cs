@@ -188,7 +188,7 @@ namespace BiBo.SQL
             tmp.Street = street;
             tmp.StreetNumber = reader.GetString(reader.GetOrdinal("streetNumber"));
             tmp.AdditionalRoad = reader.GetString(reader.GetOrdinal("additionalRoad"));
-            tmp.ZipCode = reader.GetOrdinal("zipCode").ToString();
+            tmp.ZipCode = reader.GetString(reader.GetOrdinal("zipCode"));
             tmp.Town = reader.GetString(reader.GetOrdinal("town"));
             tmp.Country = reader.GetString(reader.GetOrdinal("country"));
 

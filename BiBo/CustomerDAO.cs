@@ -31,7 +31,7 @@ namespace BiBo.DAO
       this.gui = gui;
       this.lib = lib;
       this.bookDAO = new BookDAO(gui, lib);
-      this.chargeAccountDAO = new ChargeAccountDAO(gui, lib);
+      this.chargeAccountDAO = new ChargeAccountDAO(lib);
       this.exemplarDAO = new ExemplarDAO(gui, lib);
       this.cardDAO = new CardDAO();
     }
@@ -78,10 +78,10 @@ namespace BiBo.DAO
 
       //add the customer card
       Card card = new Card(customer);
-      card.CardID = cardSql.AddEntryReturnId(card);
       DateTime valid = new DateTime();
       valid = DateTime.Now.AddYears(1);
       card.CardValidUntil = valid;
+      card.CardID = cardSql.AddEntryReturnId(card);
       customer.Card = card;
       
       //add user in Objects

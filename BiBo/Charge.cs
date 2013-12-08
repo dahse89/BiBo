@@ -10,7 +10,8 @@ namespace BiBo
     private DateTime changedAt;
     private decimal changeValue;
     private decimal currentValue;
-    private uint transactionId;
+    private ulong transactionId;
+    private ulong chargeAccountId;
 
     public Charge(DateTime changedAt, decimal currentValue, decimal changeValue)
     {
@@ -37,10 +38,16 @@ namespace BiBo
       set { this.currentValue = value; }
     }
 
-    public uint TransactionId
+    public ulong TransactionId
     {
       get { return this.transactionId; }
       set { this.transactionId = value; }
+    }
+
+    public ulong ChargeAccountId
+    {
+      get { return this.chargeAccountId; }
+      set { this.chargeAccountId = value; }
     }
   }
 }

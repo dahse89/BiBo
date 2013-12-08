@@ -25,7 +25,6 @@ namespace BiBo.SQL
     private CustomerSQL customerSql = SqlConnector<Customer>.GetCustomerSqlInstance();
     private ExemplarSQL exemplarSql = SqlConnector<Exemplar>.GetExemplarSqlInstance();
 
-    private CustomerDAO customerDAO = new CustomerDAO();
     private BookDAO bookDAO = new BookDAO();
 
     public InitDbSQL() { }
@@ -56,7 +55,7 @@ namespace BiBo.SQL
                                         street VARCHAR(100),
                                         streetNumber VARCHAR(10),
                                         additionalRoad VARCHAR(100), 
-                                        zipCode INTEGER(5), 
+                                        zipCode VARCHAR(100), 
                                         town VARCHAR(100), 
                                         country VARCHAR(100),
                                         rights VARCHAR(100),
@@ -136,7 +135,7 @@ namespace BiBo.SQL
       String[] fnames = {"Klaus","Peter","Anton","Susan","Ingo","Carlos","Olga","Emiel","Philipp"};
       String[] names = {"Dahse","Münzberg","Korepin","Dambeck","Quittenbaum","Müller","Mayer","Schulze"};
 
-      for (int i = 0; i < 5; i++)
+      for (int i = 0; i < 20; i++)
       {
         Customer customer = new Customer();
         if (i == 0)
@@ -157,6 +156,17 @@ namespace BiBo.SQL
         customer.Country = "Deutschland";
         customer.Town = names[r.Next(0, names.Length - 1)] + "stadt";
         customer.CustomerID = Convert.ToUInt64(i + 1);
+        customer.EMailAddress = customer.FirstName + "." + customer.LastName + "@gmail.com";
+        customer.MobileNumber = "0172" + r.Next(1234567, 9999999);
+        customer.AdditionalRoad = "";
+        customer.BiboID = 1;
+        customer.CreatedAt = DateTime.Now;
+        customer.LastUpdate = DateTime.Now;
+        customer.DeletedAt = DateTime.MaxValue;
+        customer.Street = customer.LastName + "strasse";
+        customer.StreetNumber = r.Next(1, 100).ToString();
+        customer.ZipCode = r.Next(01000, 99999).ToString();
+
 
         //add an empty ChargeAccount
         ChargeAccount chargeAccount = new ChargeAccount(customer);
@@ -166,11 +176,11 @@ namespace BiBo.SQL
 
         //add the customer card
         Card card = new Card(customer);
-        ulong cardId = cardSql.AddEntryReturnId(card);
-        card.CardID = cardId;
         DateTime valid = new DateTime();
         valid = DateTime.Now.AddYears(1);
         card.CardValidUntil = valid;
+        ulong cardId = cardSql.AddEntryReturnId(card);
+        card.CardID = cardId;
         customer.Card = card;
 
         //add exemplar to customer
@@ -194,7 +204,7 @@ namespace BiBo.SQL
             ex.LoanPeriod = date;
             ex.Borrower = customer;
             ex.CountBorrow = ex.CountBorrow + 1;
-            //customer.ExemplarList.Add(ex);
+            customer.ExemplarList.Add(ex);
           }
           
           //on db-layer update the customer
@@ -205,10 +215,15 @@ namespace BiBo.SQL
         }
 
         //add a charge to customer
+        ChargeAccountDAO chargeAccountDAO = new ChargeAccountDAO();
+
         DateTime current = new DateTime();
         current = DateTime.Now.AddDays(r.Next(1,5));
         Charge charge = new Charge(current, 5, 5);
-        customer.ChargeAccount.Charges.Add(charge);
+        //ChargeSQL chargeSql = SqlConnector<Charge>.GetChargeSqlInstance();
+        //charge.TransactionId = chargeSql.AddEntryReturnId(charge);
+        chargeAccountDAO.AddCharge(customer, current, r.Next(1,20));
+        //customer.ChargeAccount.Charges.Add(charge);
 
         dao.SetPassword(customer, "1234");
 
