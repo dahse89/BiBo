@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Xml.Linq;
+using System.Data;
 
 namespace BiBo.SQL
 {
@@ -41,6 +42,12 @@ namespace BiBo.SQL
         public override ulong AddEntryReturnId(Book book)
         {
             AddEntry(book);
+
+            if (con != null && con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "SELECT last_insert_rowid()";
             Int64 lastRowID64 = Convert.ToInt64(command.ExecuteScalar());

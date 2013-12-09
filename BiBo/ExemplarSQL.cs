@@ -6,6 +6,7 @@ using System.Data.SQLite;
 using BiBo.Persons;
 
 using BiBo.SQL;
+using System.Data;
 
 namespace BiBo.SQL
 {
@@ -57,6 +58,12 @@ namespace BiBo.SQL
         public override ulong AddEntryReturnId(Exemplar exemplar)
         {
             AddEntry(exemplar);
+
+            if (con != null && con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            
 
             SQLiteCommand command = new SQLiteCommand(con);
             command.CommandText = "select last_insert_rowid()";

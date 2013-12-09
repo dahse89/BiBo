@@ -307,7 +307,7 @@ namespace BiBo
             else
             {
               Grid grid = FindName("EmployeeArea_BooksMainGrid") as Grid;
-              grid.RowDefinitions[0].Height = new GridLength(0);
+              grid.RowDefinitions[1].Height = new GridLength(0);
 
               /*
               Grid CustomerAddGrid = FindName("CustomerAddGrid") as Grid;
@@ -491,7 +491,7 @@ namespace BiBo
 
         private void EmployeeArea_Unfold(object sender, MouseButtonEventArgs e)
         {
-            
+            showUnderToolBar(false);
         }
         
 
@@ -676,6 +676,38 @@ namespace BiBo
           {
             Login_Click(new Object(), new RoutedEventArgs());
           }
+        }
+
+        private void EmployeeArea_BookAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+             <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="1" Name="BookAddAuthor"></TextBox>
+                <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="3" Name="BookAddTitle"></TextBox>
+                <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="5" Name="BookAddSubjectArea"></TextBox>
+                <TextBox VerticalAlignment="Top" Height="25" Grid.Row="0" Grid.Column="7" Name="BookAddNumberOfExemplars"></TextBox>
+
+             */
+
+            String author = (FindName("BookAddAuthor") as TextBox).Text;
+            String title = (FindName("BookAddTitle") as TextBox).Text;
+            String subjectArea = (FindName("BookAddSubjectArea") as TextBox).Text;
+            String numberOfExemplars = (FindName("BookAddNumberOfExemplars") as TextBox).Text;
+            int countExemplars = 1;
+
+            if (Validation.isNumeric(numberOfExemplars))
+            {
+                countExemplars = Convert.ToInt32(numberOfExemplars);
+            }
+            else
+            {
+                MessageBox.Show("Anzahl der Exemplare darf nur Zahlen enthalten");
+                return;
+            }
+
+            //TODO validation
+
+            Book dummy = new Book(0, author, title, subjectArea);
+            lib.getBookDAO().AddBook(dummy, countExemplars);
         }
        
     }
