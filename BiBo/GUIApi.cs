@@ -75,6 +75,28 @@ namespace BiBo
            
         }
 
+        public void Add_b_Customer(Customer customer)
+        {
+            DataGrid CustomerTable = load("EmployeeBorrowTableCustomers") as DataGrid;
+
+            //CustomerTable.DataContext
+            DataTable test = (CustomerTable.DataContext as DataTable);
+
+
+            test.Rows.Add(
+                customer.CustomerID,
+                customer.FirstName,
+                customer.LastName,
+                customer.Street,
+                customer.StreetNumber,
+                customer.ZipCode,
+                customer.Town,
+                customer.Country
+            );
+            CustomerTable.DataContext = test;
+
+        }
+
         public void AddBook(Book book)
         {
           DataGrid BookTable = load("EmployeeBooksTable") as DataGrid;
@@ -90,6 +112,47 @@ namespace BiBo
 
 
           BookTable.DataContext = test;
+        }
+
+        public void Add_b_Book(Book book)
+        {
+            
+            DataGrid BookTable = load("EmployeeBorrowTableBooks") as DataGrid;
+            DataTable test = (BookTable.DataContext as DataTable);
+
+            test.Rows.Add(
+               book.BookId,
+               book.Author,
+               book.Titel,
+               book.SubjectArea,
+               book.Exemplare.Count
+           );
+
+
+            BookTable.DataContext = test;
+        }
+
+        public void Add_b_Exemplar(Exemplar ex)
+        {
+            DataGrid ExTable = load("EmployeeBorrowTableExemplars") as DataGrid;
+            DataTable test = (ExTable.DataContext as DataTable);
+            /*
+             * "ID", typeof(ulong));
+            New.Columns.Add("Status");
+            New.Columns.Add("Signaure");
+            New.Columns.Add("Zugriff");
+            New.Columns.Add("Ausleihzeit");
+             */
+            test.Rows.Add(
+               ex.ExemplarId,
+               ex.State,
+               ex.Signatur,
+               ex.Accesser,
+               ex.LoanPeriod
+           );
+
+
+            ExTable.DataContext = test;
         }
 
         public void Add_c_Book(Book book)

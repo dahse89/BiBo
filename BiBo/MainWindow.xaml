@@ -302,14 +302,60 @@
                           SelectionMode="Single"
                           VerticalGridLinesBrush="{StaticResource GrayGridLine}"
                           HorizontalGridLinesBrush="{StaticResource GrayGridLine}"
+                          MouseDoubleClick="BooksTable_DoubleClick"
                           ></DataGrid>
                     
             </Grid>
                 </Grid>
 
             <Grid Name="BorrowPanel" Visibility="Hidden">
-            <Label >BorrowPanel</Label>
+                <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <DataGrid 
+                          Name="EmployeeBorrowTableCustomers"                         
+                          Grid.Row="0"
+                          Grid.Column="0"
+                          ItemsSource="{Binding}"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          VerticalGridLinesBrush="{StaticResource GrayGridLine}"
+                          HorizontalGridLinesBrush="{StaticResource GrayGridLine}"
+                          
+                          ></DataGrid>
 
+                          
+                            <DataGrid 
+                          Name="EmployeeBorrowTableBooks"                         
+                          Grid.Row="0"
+                          Grid.Column="1"
+                          ItemsSource="{Binding}"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          VerticalGridLinesBrush="{StaticResource GrayGridLine}"
+                          HorizontalGridLinesBrush="{StaticResource GrayGridLine}"
+                          
+                          ></DataGrid>
+
+                            <DataGrid 
+                          Name="EmployeeBorrowTableExemplars"                         
+                          Grid.Row="0"
+                          Grid.Column="2"
+                          ItemsSource="{Binding}"
+                          IsReadOnly="True"
+                          SelectionMode="Single"
+                          VerticalGridLinesBrush="{StaticResource GrayGridLine}"
+                          HorizontalGridLinesBrush="{StaticResource GrayGridLine}"
+                          
+                          ></DataGrid>
+                        </Grid>
           </Grid>
         </Grid>
            

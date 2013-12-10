@@ -74,6 +74,7 @@ namespace BiBo
             foreach (Customer cust in lib.CustomerList)
             {
                 this.lib.getGuiApi().AddCustomer(cust);
+                this.lib.getGuiApi().Add_b_Customer(cust);
             }
 
             
@@ -82,6 +83,7 @@ namespace BiBo
             {                
                 this.lib.getGuiApi().Add_c_Book(book);
                 this.lib.getGuiApi().AddBook(book);
+                this.lib.getGuiApi().Add_b_Book(book);
             }
         }
 
@@ -91,6 +93,7 @@ namespace BiBo
             initCustomerTable();
             init_c_BookTable();
             initBookTable();
+            initBorrowTabels();
         }
 
         private void initCoutriesComboBox()
@@ -136,6 +139,26 @@ namespace BiBo
             return New;
         }
 
+        private DataTable getExemplarDataTable()
+        {
+            DataTable New = new DataTable("Books");
+            New.Columns.Add("ID", typeof(ulong));
+            New.Columns.Add("Status");
+            New.Columns.Add("Signaure");
+            New.Columns.Add("Zugriff");
+            New.Columns.Add("Ausleihzeit");
+
+            return New;
+        }
+
+        private void initBorrowTabels()
+        {
+            (FindName("EmployeeBorrowTableCustomers") as DataGrid).DataContext = getCustomerDataTable();
+            (FindName("EmployeeBorrowTableBooks") as DataGrid).DataContext = getBookDataTable();
+            (FindName("EmployeeBorrowTableExemplars") as DataGrid).DataContext = getExemplarDataTable();
+
+        }
+
         private void initCustomerTable()
         {
             DataTable CustomerTable = getCustomerDataTable();
@@ -179,10 +202,17 @@ namespace BiBo
 
         private void EmployeeArea_AddBook_MouseUp(object sender, MouseButtonEventArgs e)
         {
-          showUnderToolBar(true);
+            (FindName("EmployeeArea_BookAddButton") as Button).Content = "hinzufügen";
+            clearBookAddForm();
+            showUnderToolBar(true);
         }
 
-      
+        private void clearBookAddForm(){
+            (FindName("BookAddAuthor") as TextBox).Text = "";
+            (FindName("BookAddTitle") as TextBox).Text = "";
+            (FindName("BookAddSubjectArea") as TextBox).Text = "";
+            (FindName("BookAddNumberOfExemplars") as TextBox).Text = "";
+        }
       
         private void HandleTabs_EmployeeArea(Tabs show)
         {
@@ -676,6 +706,25 @@ namespace BiBo
           {
             Login_Click(new Object(), new RoutedEventArgs());
           }
+        }
+
+        private void BooksTable_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            DataGrid that = sender as DataGrid;
+            DataRowView Row = that.SelectedItem as DataRowView;
+            ulong id = (ulong) Row["ID"];
+
+            Book selectedBook = lib.getBookDAO().GetBookById(id);
+
+            (FindName("BookAddAuthor") as TextBox).Text = selectedBook.Author;
+            (FindName("BookAddTitle") as TextBox).Text = selectedBook.Titel;
+            (FindName("BookAddSubjectArea") as TextBox).Text = selectedBook.SubjectArea;
+            (FindName("BookAddNumberOfExemplars") as TextBox).Text = selectedBook.Exemplare.ToString();
+
+            MessageBox.Show(selectedBook.Exemplare[0].Signatur);
+
+            (FindName("EmployeeArea_BookAddButton") as Button).Content = "bearbeiten";
+            showUnderToolBar(true);
         }
 
         private void EmployeeArea_BookAddButton_Click(object sender, RoutedEventArgs e)
